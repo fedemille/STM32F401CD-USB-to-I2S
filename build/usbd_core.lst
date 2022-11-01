@@ -1,0 +1,694 @@
+ARM GAS  /tmp/ccan1VKq.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"usbd_core.c"
+  14              		.text
+  15              		.section	.text.USBD_Init,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.global	USBD_Init
+  19              		.arch armv7e-m
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	USBD_Init:
+  26              		@ args = 0, pretend = 0, frame = 0
+  27              		@ frame_needed = 0, uses_anonymous_args = 0
+  28 0000 88B1     		cbz	r0, .L5
+  29 0002 08B5     		push	{r3, lr}
+  30 0004 D0F88C32 		ldr	r3, [r0, #652]
+  31 0008 13B1     		cbz	r3, .L3
+  32 000a 0023     		movs	r3, #0
+  33 000c C0F88C32 		str	r3, [r0, #652]
+  34              	.L3:
+  35 0010 09B1     		cbz	r1, .L4
+  36 0012 C0F88812 		str	r1, [r0, #648]
+  37              	.L4:
+  38 0016 0123     		movs	r3, #1
+  39 0018 80F87432 		strb	r3, [r0, #628]
+  40 001c 0270     		strb	r2, [r0]
+  41 001e FFF7FEFF 		bl	USBD_LL_Init
+  42 0022 0020     		movs	r0, #0
+  43 0024 08BD     		pop	{r3, pc}
+  44              	.L5:
+  45 0026 0220     		movs	r0, #2
+  46 0028 7047     		bx	lr
+  48 002a 00BF     		.section	.text.USBD_DeInit,"ax",%progbits
+  49              		.align	1
+  50              		.p2align 2,,3
+  51              		.global	USBD_DeInit
+  52              		.syntax unified
+  53              		.thumb
+  54              		.thumb_func
+  55              		.fpu fpv4-sp-d16
+  57              	USBD_DeInit:
+  58              		@ args = 0, pretend = 0, frame = 0
+  59              		@ frame_needed = 0, uses_anonymous_args = 0
+  60 0000 10B5     		push	{r4, lr}
+ARM GAS  /tmp/ccan1VKq.s 			page 2
+
+
+  61 0002 0122     		movs	r2, #1
+  62 0004 D0F88C32 		ldr	r3, [r0, #652]
+  63 0008 80F87422 		strb	r2, [r0, #628]
+  64 000c 0179     		ldrb	r1, [r0, #4]	@ zero_extendqisi2
+  65 000e 5B68     		ldr	r3, [r3, #4]
+  66 0010 0446     		mov	r4, r0
+  67 0012 9847     		blx	r3
+  68 0014 2046     		mov	r0, r4
+  69 0016 FFF7FEFF 		bl	USBD_LL_Stop
+  70 001a 2046     		mov	r0, r4
+  71 001c FFF7FEFF 		bl	USBD_LL_DeInit
+  72 0020 0020     		movs	r0, #0
+  73 0022 10BD     		pop	{r4, pc}
+  75              		.section	.text.USBD_RegisterClass,"ax",%progbits
+  76              		.align	1
+  77              		.p2align 2,,3
+  78              		.global	USBD_RegisterClass
+  79              		.syntax unified
+  80              		.thumb
+  81              		.thumb_func
+  82              		.fpu fpv4-sp-d16
+  84              	USBD_RegisterClass:
+  85              		@ args = 0, pretend = 0, frame = 0
+  86              		@ frame_needed = 0, uses_anonymous_args = 0
+  87              		@ link register save eliminated.
+  88 0000 19B1     		cbz	r1, .L21
+  89 0002 C0F88C12 		str	r1, [r0, #652]
+  90 0006 0020     		movs	r0, #0
+  91 0008 7047     		bx	lr
+  92              	.L21:
+  93 000a 0220     		movs	r0, #2
+  94 000c 7047     		bx	lr
+  96 000e 00BF     		.section	.text.USBD_Start,"ax",%progbits
+  97              		.align	1
+  98              		.p2align 2,,3
+  99              		.global	USBD_Start
+ 100              		.syntax unified
+ 101              		.thumb
+ 102              		.thumb_func
+ 103              		.fpu fpv4-sp-d16
+ 105              	USBD_Start:
+ 106              		@ args = 0, pretend = 0, frame = 0
+ 107              		@ frame_needed = 0, uses_anonymous_args = 0
+ 108 0000 08B5     		push	{r3, lr}
+ 109 0002 FFF7FEFF 		bl	USBD_LL_Start
+ 110 0006 0020     		movs	r0, #0
+ 111 0008 08BD     		pop	{r3, pc}
+ 113 000a 00BF     		.section	.text.USBD_Stop,"ax",%progbits
+ 114              		.align	1
+ 115              		.p2align 2,,3
+ 116              		.global	USBD_Stop
+ 117              		.syntax unified
+ 118              		.thumb
+ 119              		.thumb_func
+ 120              		.fpu fpv4-sp-d16
+ 122              	USBD_Stop:
+ 123              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  /tmp/ccan1VKq.s 			page 3
+
+
+ 124              		@ frame_needed = 0, uses_anonymous_args = 0
+ 125 0000 10B5     		push	{r4, lr}
+ 126 0002 D0F88C32 		ldr	r3, [r0, #652]
+ 127 0006 0179     		ldrb	r1, [r0, #4]	@ zero_extendqisi2
+ 128 0008 5B68     		ldr	r3, [r3, #4]
+ 129 000a 0446     		mov	r4, r0
+ 130 000c 9847     		blx	r3
+ 131 000e 2046     		mov	r0, r4
+ 132 0010 FFF7FEFF 		bl	USBD_LL_Stop
+ 133 0014 0020     		movs	r0, #0
+ 134 0016 10BD     		pop	{r4, pc}
+ 136              		.section	.text.USBD_RunTestMode,"ax",%progbits
+ 137              		.align	1
+ 138              		.p2align 2,,3
+ 139              		.global	USBD_RunTestMode
+ 140              		.syntax unified
+ 141              		.thumb
+ 142              		.thumb_func
+ 143              		.fpu fpv4-sp-d16
+ 145              	USBD_RunTestMode:
+ 146              		@ args = 0, pretend = 0, frame = 0
+ 147              		@ frame_needed = 0, uses_anonymous_args = 0
+ 148              		@ link register save eliminated.
+ 149 0000 0020     		movs	r0, #0
+ 150 0002 7047     		bx	lr
+ 152              		.section	.text.USBD_SetClassConfig,"ax",%progbits
+ 153              		.align	1
+ 154              		.p2align 2,,3
+ 155              		.global	USBD_SetClassConfig
+ 156              		.syntax unified
+ 157              		.thumb
+ 158              		.thumb_func
+ 159              		.fpu fpv4-sp-d16
+ 161              	USBD_SetClassConfig:
+ 162              		@ args = 0, pretend = 0, frame = 0
+ 163              		@ frame_needed = 0, uses_anonymous_args = 0
+ 164 0000 08B5     		push	{r3, lr}
+ 165 0002 D0F88C32 		ldr	r3, [r0, #652]
+ 166 0006 1BB1     		cbz	r3, .L30
+ 167 0008 1B68     		ldr	r3, [r3]
+ 168 000a 9847     		blx	r3
+ 169 000c 00B9     		cbnz	r0, .L30
+ 170 000e 08BD     		pop	{r3, pc}
+ 171              	.L30:
+ 172 0010 0220     		movs	r0, #2
+ 173 0012 08BD     		pop	{r3, pc}
+ 175              		.section	.text.USBD_ClrClassConfig,"ax",%progbits
+ 176              		.align	1
+ 177              		.p2align 2,,3
+ 178              		.global	USBD_ClrClassConfig
+ 179              		.syntax unified
+ 180              		.thumb
+ 181              		.thumb_func
+ 182              		.fpu fpv4-sp-d16
+ 184              	USBD_ClrClassConfig:
+ 185              		@ args = 0, pretend = 0, frame = 0
+ 186              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /tmp/ccan1VKq.s 			page 4
+
+
+ 187 0000 08B5     		push	{r3, lr}
+ 188 0002 D0F88C32 		ldr	r3, [r0, #652]
+ 189 0006 5B68     		ldr	r3, [r3, #4]
+ 190 0008 9847     		blx	r3
+ 191 000a 0020     		movs	r0, #0
+ 192 000c 08BD     		pop	{r3, pc}
+ 194 000e 00BF     		.section	.text.USBD_LL_SetupStage,"ax",%progbits
+ 195              		.align	1
+ 196              		.p2align 2,,3
+ 197              		.global	USBD_LL_SetupStage
+ 198              		.syntax unified
+ 199              		.thumb
+ 200              		.thumb_func
+ 201              		.fpu fpv4-sp-d16
+ 203              	USBD_LL_SetupStage:
+ 204              		@ args = 0, pretend = 0, frame = 0
+ 205              		@ frame_needed = 0, uses_anonymous_args = 0
+ 206 0000 38B5     		push	{r3, r4, r5, lr}
+ 207 0002 0446     		mov	r4, r0
+ 208 0004 00F52075 		add	r5, r0, #640
+ 209 0008 2846     		mov	r0, r5
+ 210 000a FFF7FEFF 		bl	USBD_ParseSetupRequest
+ 211 000e 94F88012 		ldrb	r1, [r4, #640]	@ zero_extendqisi2
+ 212 0012 B4F88622 		ldrh	r2, [r4, #646]
+ 213 0016 C4F87022 		str	r2, [r4, #624]
+ 214 001a 0123     		movs	r3, #1
+ 215 001c C4F86C32 		str	r3, [r4, #620]
+ 216 0020 01F01F03 		and	r3, r1, #31
+ 217 0024 012B     		cmp	r3, #1
+ 218 0026 09D0     		beq	.L35
+ 219 0028 022B     		cmp	r3, #2
+ 220 002a 13D0     		beq	.L36
+ 221 002c 63B1     		cbz	r3, .L40
+ 222 002e 01F08001 		and	r1, r1, #128
+ 223 0032 2046     		mov	r0, r4
+ 224 0034 FFF7FEFF 		bl	USBD_LL_StallEP
+ 225 0038 0020     		movs	r0, #0
+ 226 003a 38BD     		pop	{r3, r4, r5, pc}
+ 227              	.L35:
+ 228 003c 2946     		mov	r1, r5
+ 229 003e 2046     		mov	r0, r4
+ 230 0040 FFF7FEFF 		bl	USBD_StdItfReq
+ 231 0044 0020     		movs	r0, #0
+ 232 0046 38BD     		pop	{r3, r4, r5, pc}
+ 233              	.L40:
+ 234 0048 2946     		mov	r1, r5
+ 235 004a 2046     		mov	r0, r4
+ 236 004c FFF7FEFF 		bl	USBD_StdDevReq
+ 237 0050 0020     		movs	r0, #0
+ 238 0052 38BD     		pop	{r3, r4, r5, pc}
+ 239              	.L36:
+ 240 0054 2946     		mov	r1, r5
+ 241 0056 2046     		mov	r0, r4
+ 242 0058 FFF7FEFF 		bl	USBD_StdEPReq
+ 243 005c 0020     		movs	r0, #0
+ 244 005e 38BD     		pop	{r3, r4, r5, pc}
+ 246              		.section	.text.USBD_LL_DataOutStage,"ax",%progbits
+ARM GAS  /tmp/ccan1VKq.s 			page 5
+
+
+ 247              		.align	1
+ 248              		.p2align 2,,3
+ 249              		.global	USBD_LL_DataOutStage
+ 250              		.syntax unified
+ 251              		.thumb
+ 252              		.thumb_func
+ 253              		.fpu fpv4-sp-d16
+ 255              	USBD_LL_DataOutStage:
+ 256              		@ args = 0, pretend = 0, frame = 0
+ 257              		@ frame_needed = 0, uses_anonymous_args = 0
+ 258 0000 38B5     		push	{r3, r4, r5, lr}
+ 259 0002 0546     		mov	r5, r0
+ 260 0004 69B9     		cbnz	r1, .L42
+ 261 0006 1346     		mov	r3, r2
+ 262 0008 D0F86C22 		ldr	r2, [r0, #620]
+ 263 000c 032A     		cmp	r2, #3
+ 264 000e 15D0     		beq	.L57
+ 265 0010 052A     		cmp	r2, #5
+ 266 0012 0C46     		mov	r4, r1
+ 267 0014 0ED1     		bne	.L56
+ 268 0016 C5F86C12 		str	r1, [r5, #620]
+ 269 001a FFF7FEFF 		bl	USBD_LL_StallEP
+ 270 001e 2046     		mov	r0, r4
+ 271 0020 38BD     		pop	{r3, r4, r5, pc}
+ 272              	.L42:
+ 273 0022 D0F88C32 		ldr	r3, [r0, #652]
+ 274 0026 9B69     		ldr	r3, [r3, #24]
+ 275 0028 33B1     		cbz	r3, .L51
+ 276 002a 90F87422 		ldrb	r2, [r0, #628]	@ zero_extendqisi2
+ 277 002e 032A     		cmp	r2, #3
+ 278 0030 02D1     		bne	.L51
+ 279 0032 9847     		blx	r3
+ 280              	.L56:
+ 281 0034 0020     		movs	r0, #0
+ 282 0036 38BD     		pop	{r3, r4, r5, pc}
+ 283              	.L51:
+ 284 0038 0220     		movs	r0, #2
+ 285 003a 38BD     		pop	{r3, r4, r5, pc}
+ 286              	.L57:
+ 287 003c D0E95312 		ldrd	r1, r2, [r0, #332]
+ 288 0040 9142     		cmp	r1, r2
+ 289 0042 0CD9     		bls	.L44
+ 290 0044 891A     		subs	r1, r1, r2
+ 291 0046 8A42     		cmp	r2, r1
+ 292 0048 88BF     		it	hi
+ 293 004a 8AB2     		uxthhi	r2, r1
+ 294 004c C0F84C11 		str	r1, [r0, #332]
+ 295 0050 98BF     		it	ls
+ 296 0052 92B2     		uxthls	r2, r2
+ 297 0054 1946     		mov	r1, r3
+ 298 0056 FFF7FEFF 		bl	USBD_CtlContinueRx
+ 299 005a 0020     		movs	r0, #0
+ 300 005c 38BD     		pop	{r3, r4, r5, pc}
+ 301              	.L44:
+ 302 005e D0F88C32 		ldr	r3, [r0, #652]
+ 303 0062 1B69     		ldr	r3, [r3, #16]
+ 304 0064 1BB1     		cbz	r3, .L48
+ARM GAS  /tmp/ccan1VKq.s 			page 6
+
+
+ 305 0066 90F87422 		ldrb	r2, [r0, #628]	@ zero_extendqisi2
+ 306 006a 032A     		cmp	r2, #3
+ 307 006c 04D0     		beq	.L58
+ 308              	.L48:
+ 309 006e 2846     		mov	r0, r5
+ 310 0070 FFF7FEFF 		bl	USBD_CtlSendStatus
+ 311 0074 0020     		movs	r0, #0
+ 312 0076 38BD     		pop	{r3, r4, r5, pc}
+ 313              	.L58:
+ 314 0078 9847     		blx	r3
+ 315 007a F8E7     		b	.L48
+ 317              		.section	.text.USBD_LL_DataInStage,"ax",%progbits
+ 318              		.align	1
+ 319              		.p2align 2,,3
+ 320              		.global	USBD_LL_DataInStage
+ 321              		.syntax unified
+ 322              		.thumb
+ 323              		.thumb_func
+ 324              		.fpu fpv4-sp-d16
+ 326              	USBD_LL_DataInStage:
+ 327              		@ args = 0, pretend = 0, frame = 0
+ 328              		@ frame_needed = 0, uses_anonymous_args = 0
+ 329 0000 70B5     		push	{r4, r5, r6, lr}
+ 330 0002 0446     		mov	r4, r0
+ 331 0004 89B9     		cbnz	r1, .L60
+ 332 0006 1346     		mov	r3, r2
+ 333 0008 D0F86C22 		ldr	r2, [r0, #620]
+ 334 000c 022A     		cmp	r2, #2
+ 335 000e 1CD0     		beq	.L75
+ 336 0010 32F00403 		bics	r3, r2, #4
+ 337 0014 02D1     		bne	.L63
+ 338 0016 8021     		movs	r1, #128
+ 339 0018 FFF7FEFF 		bl	USBD_LL_StallEP
+ 340              	.L63:
+ 341 001c 94F87832 		ldrb	r3, [r4, #632]	@ zero_extendqisi2
+ 342 0020 012B     		cmp	r3, #1
+ 343 0022 4FF00000 		mov	r0, #0
+ 344 0026 0DD0     		beq	.L76
+ 345              	.L66:
+ 346 0028 70BD     		pop	{r4, r5, r6, pc}
+ 347              	.L60:
+ 348 002a D0F88C32 		ldr	r3, [r0, #652]
+ 349 002e 5B69     		ldr	r3, [r3, #20]
+ 350 0030 33B1     		cbz	r3, .L69
+ 351 0032 90F87422 		ldrb	r2, [r0, #628]	@ zero_extendqisi2
+ 352 0036 032A     		cmp	r2, #3
+ 353 0038 02D1     		bne	.L69
+ 354 003a 9847     		blx	r3
+ 355 003c 0020     		movs	r0, #0
+ 356 003e 70BD     		pop	{r4, r5, r6, pc}
+ 357              	.L69:
+ 358 0040 0220     		movs	r0, #2
+ 359 0042 70BD     		pop	{r4, r5, r6, pc}
+ 360              	.L76:
+ 361 0044 84F87802 		strb	r0, [r4, #632]
+ 362 0048 70BD     		pop	{r4, r5, r6, pc}
+ 363              	.L75:
+ARM GAS  /tmp/ccan1VKq.s 			page 7
+
+
+ 364 004a D0E90862 		ldrd	r6, r2, [r0, #32]
+ 365 004e 9642     		cmp	r6, r2
+ 366 0050 27D8     		bhi	.L77
+ 367 0052 C369     		ldr	r3, [r0, #28]
+ 368 0054 B3FBF2F5 		udiv	r5, r3, r2
+ 369 0058 02FB1535 		mls	r5, r2, r5, r3
+ 370 005c 5DB9     		cbnz	r5, .L64
+ 371 005e 9A42     		cmp	r2, r3
+ 372 0060 09D8     		bhi	.L64
+ 373 0062 D0F87022 		ldr	r2, [r0, #624]
+ 374 0066 9342     		cmp	r3, r2
+ 375 0068 05D2     		bcs	.L64
+ 376 006a 2A46     		mov	r2, r5
+ 377 006c FFF7FEFF 		bl	USBD_CtlContinueSendData
+ 378 0070 C4F87052 		str	r5, [r4, #624]
+ 379 0074 1CE0     		b	.L74
+ 380              	.L64:
+ 381 0076 D4F88C32 		ldr	r3, [r4, #652]
+ 382 007a DB68     		ldr	r3, [r3, #12]
+ 383 007c 1BB1     		cbz	r3, .L65
+ 384 007e 94F87422 		ldrb	r2, [r4, #628]	@ zero_extendqisi2
+ 385 0082 032A     		cmp	r2, #3
+ 386 0084 1BD0     		beq	.L78
+ 387              	.L65:
+ 388 0086 8021     		movs	r1, #128
+ 389 0088 2046     		mov	r0, r4
+ 390 008a FFF7FEFF 		bl	USBD_LL_StallEP
+ 391 008e 2046     		mov	r0, r4
+ 392 0090 FFF7FEFF 		bl	USBD_CtlReceiveStatus
+ 393 0094 94F87832 		ldrb	r3, [r4, #632]	@ zero_extendqisi2
+ 394 0098 012B     		cmp	r3, #1
+ 395 009a 4FF00000 		mov	r0, #0
+ 396 009e C3D1     		bne	.L66
+ 397 00a0 D0E7     		b	.L76
+ 398              	.L77:
+ 399 00a2 B21A     		subs	r2, r6, r2
+ 400 00a4 0D46     		mov	r5, r1
+ 401 00a6 0262     		str	r2, [r0, #32]
+ 402 00a8 1946     		mov	r1, r3
+ 403 00aa 92B2     		uxth	r2, r2
+ 404 00ac FFF7FEFF 		bl	USBD_CtlContinueSendData
+ 405              	.L74:
+ 406 00b0 2B46     		mov	r3, r5
+ 407 00b2 2A46     		mov	r2, r5
+ 408 00b4 2946     		mov	r1, r5
+ 409 00b6 2046     		mov	r0, r4
+ 410 00b8 FFF7FEFF 		bl	USBD_LL_PrepareReceive
+ 411 00bc AEE7     		b	.L63
+ 412              	.L78:
+ 413 00be 2046     		mov	r0, r4
+ 414 00c0 9847     		blx	r3
+ 415 00c2 E0E7     		b	.L65
+ 417              		.section	.text.USBD_LL_Reset,"ax",%progbits
+ 418              		.align	1
+ 419              		.p2align 2,,3
+ 420              		.global	USBD_LL_Reset
+ 421              		.syntax unified
+ARM GAS  /tmp/ccan1VKq.s 			page 8
+
+
+ 422              		.thumb
+ 423              		.thumb_func
+ 424              		.fpu fpv4-sp-d16
+ 426              	USBD_LL_Reset:
+ 427              		@ args = 0, pretend = 0, frame = 0
+ 428              		@ frame_needed = 0, uses_anonymous_args = 0
+ 429 0000 70B5     		push	{r4, r5, r6, lr}
+ 430 0002 0022     		movs	r2, #0
+ 431 0004 0446     		mov	r4, r0
+ 432 0006 1146     		mov	r1, r2
+ 433 0008 0125     		movs	r5, #1
+ 434 000a 4026     		movs	r6, #64
+ 435 000c 4023     		movs	r3, #64
+ 436 000e FFF7FEFF 		bl	USBD_LL_OpenEP
+ 437 0012 3346     		mov	r3, r6
+ 438 0014 8021     		movs	r1, #128
+ 439 0016 C4F84451 		str	r5, [r4, #324]
+ 440 001a C4F85061 		str	r6, [r4, #336]
+ 441 001e 0022     		movs	r2, #0
+ 442 0020 2046     		mov	r0, r4
+ 443 0022 FFF7FEFF 		bl	USBD_LL_OpenEP
+ 444 0026 D4F89032 		ldr	r3, [r4, #656]
+ 445 002a A561     		str	r5, [r4, #24]
+ 446 002c 0021     		movs	r1, #0
+ 447 002e 6662     		str	r6, [r4, #36]
+ 448 0030 84F87452 		strb	r5, [r4, #628]
+ 449 0034 C4F86C12 		str	r1, [r4, #620]
+ 450 0038 6160     		str	r1, [r4, #4]
+ 451 003a C4F87C12 		str	r1, [r4, #636]
+ 452 003e 23B1     		cbz	r3, .L80
+ 453 0040 D4F88C32 		ldr	r3, [r4, #652]
+ 454 0044 2046     		mov	r0, r4
+ 455 0046 5B68     		ldr	r3, [r3, #4]
+ 456 0048 9847     		blx	r3
+ 457              	.L80:
+ 458 004a 0020     		movs	r0, #0
+ 459 004c 70BD     		pop	{r4, r5, r6, pc}
+ 461 004e 00BF     		.section	.text.USBD_LL_SetSpeed,"ax",%progbits
+ 462              		.align	1
+ 463              		.p2align 2,,3
+ 464              		.global	USBD_LL_SetSpeed
+ 465              		.syntax unified
+ 466              		.thumb
+ 467              		.thumb_func
+ 468              		.fpu fpv4-sp-d16
+ 470              	USBD_LL_SetSpeed:
+ 471              		@ args = 0, pretend = 0, frame = 0
+ 472              		@ frame_needed = 0, uses_anonymous_args = 0
+ 473              		@ link register save eliminated.
+ 474 0000 0174     		strb	r1, [r0, #16]
+ 475 0002 0020     		movs	r0, #0
+ 476 0004 7047     		bx	lr
+ 478 0006 00BF     		.section	.text.USBD_LL_Suspend,"ax",%progbits
+ 479              		.align	1
+ 480              		.p2align 2,,3
+ 481              		.global	USBD_LL_Suspend
+ 482              		.syntax unified
+ARM GAS  /tmp/ccan1VKq.s 			page 9
+
+
+ 483              		.thumb
+ 484              		.thumb_func
+ 485              		.fpu fpv4-sp-d16
+ 487              	USBD_LL_Suspend:
+ 488              		@ args = 0, pretend = 0, frame = 0
+ 489              		@ frame_needed = 0, uses_anonymous_args = 0
+ 490              		@ link register save eliminated.
+ 491 0000 90F87422 		ldrb	r2, [r0, #628]	@ zero_extendqisi2
+ 492 0004 80F87522 		strb	r2, [r0, #629]
+ 493 0008 0423     		movs	r3, #4
+ 494 000a 80F87432 		strb	r3, [r0, #628]
+ 495 000e 0020     		movs	r0, #0
+ 496 0010 7047     		bx	lr
+ 498 0012 00BF     		.section	.text.USBD_LL_Resume,"ax",%progbits
+ 499              		.align	1
+ 500              		.p2align 2,,3
+ 501              		.global	USBD_LL_Resume
+ 502              		.syntax unified
+ 503              		.thumb
+ 504              		.thumb_func
+ 505              		.fpu fpv4-sp-d16
+ 507              	USBD_LL_Resume:
+ 508              		@ args = 0, pretend = 0, frame = 0
+ 509              		@ frame_needed = 0, uses_anonymous_args = 0
+ 510              		@ link register save eliminated.
+ 511 0000 0346     		mov	r3, r0
+ 512 0002 0020     		movs	r0, #0
+ 513 0004 93F87522 		ldrb	r2, [r3, #629]	@ zero_extendqisi2
+ 514 0008 83F87422 		strb	r2, [r3, #628]
+ 515 000c 7047     		bx	lr
+ 517 000e 00BF     		.section	.text.USBD_LL_SOF,"ax",%progbits
+ 518              		.align	1
+ 519              		.p2align 2,,3
+ 520              		.global	USBD_LL_SOF
+ 521              		.syntax unified
+ 522              		.thumb
+ 523              		.thumb_func
+ 524              		.fpu fpv4-sp-d16
+ 526              	USBD_LL_SOF:
+ 527              		@ args = 0, pretend = 0, frame = 0
+ 528              		@ frame_needed = 0, uses_anonymous_args = 0
+ 529 0000 90F87422 		ldrb	r2, [r0, #628]	@ zero_extendqisi2
+ 530 0004 032A     		cmp	r2, #3
+ 531 0006 01D0     		beq	.L97
+ 532 0008 0020     		movs	r0, #0
+ 533 000a 7047     		bx	lr
+ 534              	.L97:
+ 535 000c 08B5     		push	{r3, lr}
+ 536 000e D0F88C32 		ldr	r3, [r0, #652]
+ 537 0012 DB69     		ldr	r3, [r3, #28]
+ 538 0014 03B1     		cbz	r3, .L89
+ 539 0016 9847     		blx	r3
+ 540              	.L89:
+ 541 0018 0020     		movs	r0, #0
+ 542 001a 08BD     		pop	{r3, pc}
+ 544              		.section	.text.USBD_LL_IsoINIncomplete,"ax",%progbits
+ 545              		.align	1
+ARM GAS  /tmp/ccan1VKq.s 			page 10
+
+
+ 546              		.p2align 2,,3
+ 547              		.global	USBD_LL_IsoINIncomplete
+ 548              		.syntax unified
+ 549              		.thumb
+ 550              		.thumb_func
+ 551              		.fpu fpv4-sp-d16
+ 553              	USBD_LL_IsoINIncomplete:
+ 554              		@ args = 0, pretend = 0, frame = 0
+ 555              		@ frame_needed = 0, uses_anonymous_args = 0
+ 556 0000 90F87422 		ldrb	r2, [r0, #628]	@ zero_extendqisi2
+ 557 0004 032A     		cmp	r2, #3
+ 558 0006 01D0     		beq	.L107
+ 559 0008 0020     		movs	r0, #0
+ 560 000a 7047     		bx	lr
+ 561              	.L107:
+ 562 000c 08B5     		push	{r3, lr}
+ 563 000e D0F88C32 		ldr	r3, [r0, #652]
+ 564 0012 1B6A     		ldr	r3, [r3, #32]
+ 565 0014 03B1     		cbz	r3, .L99
+ 566 0016 9847     		blx	r3
+ 567              	.L99:
+ 568 0018 0020     		movs	r0, #0
+ 569 001a 08BD     		pop	{r3, pc}
+ 571              		.section	.text.USBD_LL_IsoOUTIncomplete,"ax",%progbits
+ 572              		.align	1
+ 573              		.p2align 2,,3
+ 574              		.global	USBD_LL_IsoOUTIncomplete
+ 575              		.syntax unified
+ 576              		.thumb
+ 577              		.thumb_func
+ 578              		.fpu fpv4-sp-d16
+ 580              	USBD_LL_IsoOUTIncomplete:
+ 581              		@ args = 0, pretend = 0, frame = 0
+ 582              		@ frame_needed = 0, uses_anonymous_args = 0
+ 583 0000 90F87422 		ldrb	r2, [r0, #628]	@ zero_extendqisi2
+ 584 0004 032A     		cmp	r2, #3
+ 585 0006 01D0     		beq	.L117
+ 586 0008 0020     		movs	r0, #0
+ 587 000a 7047     		bx	lr
+ 588              	.L117:
+ 589 000c 08B5     		push	{r3, lr}
+ 590 000e D0F88C32 		ldr	r3, [r0, #652]
+ 591 0012 5B6A     		ldr	r3, [r3, #36]
+ 592 0014 03B1     		cbz	r3, .L109
+ 593 0016 9847     		blx	r3
+ 594              	.L109:
+ 595 0018 0020     		movs	r0, #0
+ 596 001a 08BD     		pop	{r3, pc}
+ 598              		.section	.text.USBD_LL_DevConnected,"ax",%progbits
+ 599              		.align	1
+ 600              		.p2align 2,,3
+ 601              		.global	USBD_LL_DevConnected
+ 602              		.syntax unified
+ 603              		.thumb
+ 604              		.thumb_func
+ 605              		.fpu fpv4-sp-d16
+ 607              	USBD_LL_DevConnected:
+ARM GAS  /tmp/ccan1VKq.s 			page 11
+
+
+ 608              		@ args = 0, pretend = 0, frame = 0
+ 609              		@ frame_needed = 0, uses_anonymous_args = 0
+ 610              		@ link register save eliminated.
+ 611 0000 0020     		movs	r0, #0
+ 612 0002 7047     		bx	lr
+ 614              		.section	.text.USBD_LL_DevDisconnected,"ax",%progbits
+ 615              		.align	1
+ 616              		.p2align 2,,3
+ 617              		.global	USBD_LL_DevDisconnected
+ 618              		.syntax unified
+ 619              		.thumb
+ 620              		.thumb_func
+ 621              		.fpu fpv4-sp-d16
+ 623              	USBD_LL_DevDisconnected:
+ 624              		@ args = 0, pretend = 0, frame = 0
+ 625              		@ frame_needed = 0, uses_anonymous_args = 0
+ 626 0000 08B5     		push	{r3, lr}
+ 627 0002 D0F88C22 		ldr	r2, [r0, #652]
+ 628 0006 0121     		movs	r1, #1
+ 629 0008 80F87412 		strb	r1, [r0, #628]
+ 630 000c 5268     		ldr	r2, [r2, #4]
+ 631 000e 0179     		ldrb	r1, [r0, #4]	@ zero_extendqisi2
+ 632 0010 9047     		blx	r2
+ 633 0012 0020     		movs	r0, #0
+ 634 0014 08BD     		pop	{r3, pc}
+ 636 0016 00BF     		.ident	"GCC: (15:10.3-2021.07-4) 10.3.1 20210621 (release)"
+ARM GAS  /tmp/ccan1VKq.s 			page 12
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 usbd_core.c
+     /tmp/ccan1VKq.s:16     .text.USBD_Init:0000000000000000 $t
+     /tmp/ccan1VKq.s:25     .text.USBD_Init:0000000000000000 USBD_Init
+     /tmp/ccan1VKq.s:49     .text.USBD_DeInit:0000000000000000 $t
+     /tmp/ccan1VKq.s:57     .text.USBD_DeInit:0000000000000000 USBD_DeInit
+     /tmp/ccan1VKq.s:76     .text.USBD_RegisterClass:0000000000000000 $t
+     /tmp/ccan1VKq.s:84     .text.USBD_RegisterClass:0000000000000000 USBD_RegisterClass
+     /tmp/ccan1VKq.s:97     .text.USBD_Start:0000000000000000 $t
+     /tmp/ccan1VKq.s:105    .text.USBD_Start:0000000000000000 USBD_Start
+     /tmp/ccan1VKq.s:114    .text.USBD_Stop:0000000000000000 $t
+     /tmp/ccan1VKq.s:122    .text.USBD_Stop:0000000000000000 USBD_Stop
+     /tmp/ccan1VKq.s:137    .text.USBD_RunTestMode:0000000000000000 $t
+     /tmp/ccan1VKq.s:145    .text.USBD_RunTestMode:0000000000000000 USBD_RunTestMode
+     /tmp/ccan1VKq.s:153    .text.USBD_SetClassConfig:0000000000000000 $t
+     /tmp/ccan1VKq.s:161    .text.USBD_SetClassConfig:0000000000000000 USBD_SetClassConfig
+     /tmp/ccan1VKq.s:176    .text.USBD_ClrClassConfig:0000000000000000 $t
+     /tmp/ccan1VKq.s:184    .text.USBD_ClrClassConfig:0000000000000000 USBD_ClrClassConfig
+     /tmp/ccan1VKq.s:195    .text.USBD_LL_SetupStage:0000000000000000 $t
+     /tmp/ccan1VKq.s:203    .text.USBD_LL_SetupStage:0000000000000000 USBD_LL_SetupStage
+     /tmp/ccan1VKq.s:247    .text.USBD_LL_DataOutStage:0000000000000000 $t
+     /tmp/ccan1VKq.s:255    .text.USBD_LL_DataOutStage:0000000000000000 USBD_LL_DataOutStage
+     /tmp/ccan1VKq.s:318    .text.USBD_LL_DataInStage:0000000000000000 $t
+     /tmp/ccan1VKq.s:326    .text.USBD_LL_DataInStage:0000000000000000 USBD_LL_DataInStage
+     /tmp/ccan1VKq.s:418    .text.USBD_LL_Reset:0000000000000000 $t
+     /tmp/ccan1VKq.s:426    .text.USBD_LL_Reset:0000000000000000 USBD_LL_Reset
+     /tmp/ccan1VKq.s:462    .text.USBD_LL_SetSpeed:0000000000000000 $t
+     /tmp/ccan1VKq.s:470    .text.USBD_LL_SetSpeed:0000000000000000 USBD_LL_SetSpeed
+     /tmp/ccan1VKq.s:479    .text.USBD_LL_Suspend:0000000000000000 $t
+     /tmp/ccan1VKq.s:487    .text.USBD_LL_Suspend:0000000000000000 USBD_LL_Suspend
+     /tmp/ccan1VKq.s:499    .text.USBD_LL_Resume:0000000000000000 $t
+     /tmp/ccan1VKq.s:507    .text.USBD_LL_Resume:0000000000000000 USBD_LL_Resume
+     /tmp/ccan1VKq.s:518    .text.USBD_LL_SOF:0000000000000000 $t
+     /tmp/ccan1VKq.s:526    .text.USBD_LL_SOF:0000000000000000 USBD_LL_SOF
+     /tmp/ccan1VKq.s:545    .text.USBD_LL_IsoINIncomplete:0000000000000000 $t
+     /tmp/ccan1VKq.s:553    .text.USBD_LL_IsoINIncomplete:0000000000000000 USBD_LL_IsoINIncomplete
+     /tmp/ccan1VKq.s:572    .text.USBD_LL_IsoOUTIncomplete:0000000000000000 $t
+     /tmp/ccan1VKq.s:580    .text.USBD_LL_IsoOUTIncomplete:0000000000000000 USBD_LL_IsoOUTIncomplete
+     /tmp/ccan1VKq.s:599    .text.USBD_LL_DevConnected:0000000000000000 $t
+     /tmp/ccan1VKq.s:607    .text.USBD_LL_DevConnected:0000000000000000 USBD_LL_DevConnected
+     /tmp/ccan1VKq.s:615    .text.USBD_LL_DevDisconnected:0000000000000000 $t
+     /tmp/ccan1VKq.s:623    .text.USBD_LL_DevDisconnected:0000000000000000 USBD_LL_DevDisconnected
+
+UNDEFINED SYMBOLS
+USBD_LL_Init
+USBD_LL_Stop
+USBD_LL_DeInit
+USBD_LL_Start
+USBD_ParseSetupRequest
+USBD_LL_StallEP
+USBD_StdItfReq
+USBD_StdDevReq
+USBD_StdEPReq
+USBD_CtlContinueRx
+USBD_CtlSendStatus
+USBD_CtlContinueSendData
+USBD_CtlReceiveStatus
+ARM GAS  /tmp/ccan1VKq.s 			page 13
+
+
+USBD_LL_PrepareReceive
+USBD_LL_OpenEP

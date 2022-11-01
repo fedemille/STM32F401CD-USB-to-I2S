@@ -1,0 +1,780 @@
+ARM GAS  /tmp/ccVsZ6gc.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32f4xx_hal.c"
+  14              		.text
+  15              		.section	.text.HAL_MspInit,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.weak	HAL_MspInit
+  19              		.arch armv7e-m
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	HAL_MspInit:
+  26              		@ args = 0, pretend = 0, frame = 0
+  27              		@ frame_needed = 0, uses_anonymous_args = 0
+  28              		@ link register save eliminated.
+  29 0000 7047     		bx	lr
+  31 0002 00BF     		.section	.text.HAL_MspDeInit,"ax",%progbits
+  32              		.align	1
+  33              		.p2align 2,,3
+  34              		.weak	HAL_MspDeInit
+  35              		.syntax unified
+  36              		.thumb
+  37              		.thumb_func
+  38              		.fpu fpv4-sp-d16
+  40              	HAL_MspDeInit:
+  41              		@ args = 0, pretend = 0, frame = 0
+  42              		@ frame_needed = 0, uses_anonymous_args = 0
+  43              		@ link register save eliminated.
+  44 0000 7047     		bx	lr
+  46 0002 00BF     		.section	.text.HAL_DeInit,"ax",%progbits
+  47              		.align	1
+  48              		.p2align 2,,3
+  49              		.global	HAL_DeInit
+  50              		.syntax unified
+  51              		.thumb
+  52              		.thumb_func
+  53              		.fpu fpv4-sp-d16
+  55              	HAL_DeInit:
+  56              		@ args = 0, pretend = 0, frame = 0
+  57              		@ frame_needed = 0, uses_anonymous_args = 0
+  58 0000 10B5     		push	{r4, lr}
+  59 0002 094B     		ldr	r3, .L6
+  60 0004 0024     		movs	r4, #0
+  61 0006 4FF0FF32 		mov	r2, #-1
+  62 000a 1A62     		str	r2, [r3, #32]
+ARM GAS  /tmp/ccVsZ6gc.s 			page 2
+
+
+  63 000c 1C62     		str	r4, [r3, #32]
+  64 000e 5A62     		str	r2, [r3, #36]
+  65 0010 5C62     		str	r4, [r3, #36]
+  66 0012 1A61     		str	r2, [r3, #16]
+  67 0014 1C61     		str	r4, [r3, #16]
+  68 0016 5A61     		str	r2, [r3, #20]
+  69 0018 5C61     		str	r4, [r3, #20]
+  70 001a 9A61     		str	r2, [r3, #24]
+  71 001c 9C61     		str	r4, [r3, #24]
+  72 001e FFF7FEFF 		bl	HAL_MspDeInit
+  73 0022 2046     		mov	r0, r4
+  74 0024 10BD     		pop	{r4, pc}
+  75              	.L7:
+  76 0026 00BF     		.align	2
+  77              	.L6:
+  78 0028 00380240 		.word	1073887232
+  80              		.section	.text.HAL_InitTick,"ax",%progbits
+  81              		.align	1
+  82              		.p2align 2,,3
+  83              		.weak	HAL_InitTick
+  84              		.syntax unified
+  85              		.thumb
+  86              		.thumb_func
+  87              		.fpu fpv4-sp-d16
+  89              	HAL_InitTick:
+  90              		@ args = 0, pretend = 0, frame = 0
+  91              		@ frame_needed = 0, uses_anonymous_args = 0
+  92 0000 38B5     		push	{r3, r4, r5, lr}
+  93 0002 0E4A     		ldr	r2, .L14
+  94 0004 0E4B     		ldr	r3, .L14+4
+  95 0006 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+  96 0008 1B68     		ldr	r3, [r3]
+  97 000a 0546     		mov	r5, r0
+  98 000c 4FF47A70 		mov	r0, #1000
+  99 0010 B0FBF2F0 		udiv	r0, r0, r2
+ 100 0014 B3FBF0F0 		udiv	r0, r3, r0
+ 101 0018 FFF7FEFF 		bl	HAL_SYSTICK_Config
+ 102 001c 08B9     		cbnz	r0, .L11
+ 103 001e 0F2D     		cmp	r5, #15
+ 104 0020 01D9     		bls	.L13
+ 105              	.L11:
+ 106 0022 0120     		movs	r0, #1
+ 107 0024 38BD     		pop	{r3, r4, r5, pc}
+ 108              	.L13:
+ 109 0026 0446     		mov	r4, r0
+ 110 0028 0246     		mov	r2, r0
+ 111 002a 2946     		mov	r1, r5
+ 112 002c 4FF0FF30 		mov	r0, #-1
+ 113 0030 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 114 0034 034B     		ldr	r3, .L14+8
+ 115 0036 2046     		mov	r0, r4
+ 116 0038 1D60     		str	r5, [r3]
+ 117 003a 38BD     		pop	{r3, r4, r5, pc}
+ 118              	.L15:
+ 119              		.align	2
+ 120              	.L14:
+ 121 003c 00000000 		.word	.LANCHOR0
+ARM GAS  /tmp/ccVsZ6gc.s 			page 3
+
+
+ 122 0040 00000000 		.word	SystemCoreClock
+ 123 0044 00000000 		.word	.LANCHOR1
+ 125              		.section	.text.HAL_Init,"ax",%progbits
+ 126              		.align	1
+ 127              		.p2align 2,,3
+ 128              		.global	HAL_Init
+ 129              		.syntax unified
+ 130              		.thumb
+ 131              		.thumb_func
+ 132              		.fpu fpv4-sp-d16
+ 134              	HAL_Init:
+ 135              		@ args = 0, pretend = 0, frame = 0
+ 136              		@ frame_needed = 0, uses_anonymous_args = 0
+ 137 0000 08B5     		push	{r3, lr}
+ 138 0002 0B4B     		ldr	r3, .L18
+ 139 0004 1A68     		ldr	r2, [r3]
+ 140 0006 42F40072 		orr	r2, r2, #512
+ 141 000a 1A60     		str	r2, [r3]
+ 142 000c 1A68     		ldr	r2, [r3]
+ 143 000e 42F48062 		orr	r2, r2, #1024
+ 144 0012 1A60     		str	r2, [r3]
+ 145 0014 1A68     		ldr	r2, [r3]
+ 146 0016 42F48072 		orr	r2, r2, #256
+ 147 001a 1A60     		str	r2, [r3]
+ 148 001c 0320     		movs	r0, #3
+ 149 001e FFF7FEFF 		bl	HAL_NVIC_SetPriorityGrouping
+ 150 0022 0020     		movs	r0, #0
+ 151 0024 FFF7FEFF 		bl	HAL_InitTick
+ 152 0028 FFF7FEFF 		bl	HAL_MspInit
+ 153 002c 0020     		movs	r0, #0
+ 154 002e 08BD     		pop	{r3, pc}
+ 155              	.L19:
+ 156              		.align	2
+ 157              	.L18:
+ 158 0030 003C0240 		.word	1073888256
+ 160              		.section	.text.HAL_IncTick,"ax",%progbits
+ 161              		.align	1
+ 162              		.p2align 2,,3
+ 163              		.weak	HAL_IncTick
+ 164              		.syntax unified
+ 165              		.thumb
+ 166              		.thumb_func
+ 167              		.fpu fpv4-sp-d16
+ 169              	HAL_IncTick:
+ 170              		@ args = 0, pretend = 0, frame = 0
+ 171              		@ frame_needed = 0, uses_anonymous_args = 0
+ 172              		@ link register save eliminated.
+ 173 0000 034A     		ldr	r2, .L21
+ 174 0002 044B     		ldr	r3, .L21+4
+ 175 0004 1168     		ldr	r1, [r2]
+ 176 0006 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 177 0008 0B44     		add	r3, r3, r1
+ 178 000a 1360     		str	r3, [r2]
+ 179 000c 7047     		bx	lr
+ 180              	.L22:
+ 181 000e 00BF     		.align	2
+ 182              	.L21:
+ARM GAS  /tmp/ccVsZ6gc.s 			page 4
+
+
+ 183 0010 00000000 		.word	.LANCHOR2
+ 184 0014 00000000 		.word	.LANCHOR0
+ 186              		.section	.text.HAL_GetTick,"ax",%progbits
+ 187              		.align	1
+ 188              		.p2align 2,,3
+ 189              		.weak	HAL_GetTick
+ 190              		.syntax unified
+ 191              		.thumb
+ 192              		.thumb_func
+ 193              		.fpu fpv4-sp-d16
+ 195              	HAL_GetTick:
+ 196              		@ args = 0, pretend = 0, frame = 0
+ 197              		@ frame_needed = 0, uses_anonymous_args = 0
+ 198              		@ link register save eliminated.
+ 199 0000 014B     		ldr	r3, .L24
+ 200 0002 1868     		ldr	r0, [r3]
+ 201 0004 7047     		bx	lr
+ 202              	.L25:
+ 203 0006 00BF     		.align	2
+ 204              	.L24:
+ 205 0008 00000000 		.word	.LANCHOR2
+ 207              		.section	.text.HAL_GetTickPrio,"ax",%progbits
+ 208              		.align	1
+ 209              		.p2align 2,,3
+ 210              		.global	HAL_GetTickPrio
+ 211              		.syntax unified
+ 212              		.thumb
+ 213              		.thumb_func
+ 214              		.fpu fpv4-sp-d16
+ 216              	HAL_GetTickPrio:
+ 217              		@ args = 0, pretend = 0, frame = 0
+ 218              		@ frame_needed = 0, uses_anonymous_args = 0
+ 219              		@ link register save eliminated.
+ 220 0000 014B     		ldr	r3, .L27
+ 221 0002 1868     		ldr	r0, [r3]
+ 222 0004 7047     		bx	lr
+ 223              	.L28:
+ 224 0006 00BF     		.align	2
+ 225              	.L27:
+ 226 0008 00000000 		.word	.LANCHOR1
+ 228              		.section	.rodata.HAL_SetTickFreq.str1.4,"aMS",%progbits,1
+ 229              		.align	2
+ 230              	.LC0:
+ 231 0000 64726976 		.ascii	"drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c\000"
+ 231      6572732F 
+ 231      53544D33 
+ 231      32463478 
+ 231      785F4841 
+ 232              		.section	.text.HAL_SetTickFreq,"ax",%progbits
+ 233              		.align	1
+ 234              		.p2align 2,,3
+ 235              		.global	HAL_SetTickFreq
+ 236              		.syntax unified
+ 237              		.thumb
+ 238              		.thumb_func
+ 239              		.fpu fpv4-sp-d16
+ 241              	HAL_SetTickFreq:
+ARM GAS  /tmp/ccVsZ6gc.s 			page 5
+
+
+ 242              		@ args = 0, pretend = 0, frame = 0
+ 243              		@ frame_needed = 0, uses_anonymous_args = 0
+ 244 0000 6428     		cmp	r0, #100
+ 245 0002 70B5     		push	{r4, r5, r6, lr}
+ 246 0004 0446     		mov	r4, r0
+ 247 0006 08D0     		beq	.L30
+ 248 0008 0A28     		cmp	r0, #10
+ 249 000a 06D0     		beq	.L30
+ 250 000c 0128     		cmp	r0, #1
+ 251 000e 04D0     		beq	.L30
+ 252 0010 0948     		ldr	r0, .L47
+ 253 0012 4FF4AD71 		mov	r1, #346
+ 254 0016 FFF7FEFF 		bl	assert_failed
+ 255              	.L30:
+ 256 001a 084D     		ldr	r5, .L47+4
+ 257 001c 2E78     		ldrb	r6, [r5]	@ zero_extendqisi2
+ 258 001e A642     		cmp	r6, r4
+ 259 0020 01D1     		bne	.L46
+ 260 0022 0020     		movs	r0, #0
+ 261              	.L31:
+ 262 0024 70BD     		pop	{r4, r5, r6, pc}
+ 263              	.L46:
+ 264 0026 064B     		ldr	r3, .L47+8
+ 265 0028 2C70     		strb	r4, [r5]
+ 266 002a 1868     		ldr	r0, [r3]
+ 267 002c FFF7FEFF 		bl	HAL_InitTick
+ 268 0030 0028     		cmp	r0, #0
+ 269 0032 F7D0     		beq	.L31
+ 270 0034 2E70     		strb	r6, [r5]
+ 271 0036 70BD     		pop	{r4, r5, r6, pc}
+ 272              	.L48:
+ 273              		.align	2
+ 274              	.L47:
+ 275 0038 00000000 		.word	.LC0
+ 276 003c 00000000 		.word	.LANCHOR0
+ 277 0040 00000000 		.word	.LANCHOR1
+ 279              		.section	.text.HAL_GetTickFreq,"ax",%progbits
+ 280              		.align	1
+ 281              		.p2align 2,,3
+ 282              		.global	HAL_GetTickFreq
+ 283              		.syntax unified
+ 284              		.thumb
+ 285              		.thumb_func
+ 286              		.fpu fpv4-sp-d16
+ 288              	HAL_GetTickFreq:
+ 289              		@ args = 0, pretend = 0, frame = 0
+ 290              		@ frame_needed = 0, uses_anonymous_args = 0
+ 291              		@ link register save eliminated.
+ 292 0000 014B     		ldr	r3, .L50
+ 293 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 294 0004 7047     		bx	lr
+ 295              	.L51:
+ 296 0006 00BF     		.align	2
+ 297              	.L50:
+ 298 0008 00000000 		.word	.LANCHOR0
+ 300              		.section	.text.HAL_Delay,"ax",%progbits
+ 301              		.align	1
+ARM GAS  /tmp/ccVsZ6gc.s 			page 6
+
+
+ 302              		.p2align 2,,3
+ 303              		.weak	HAL_Delay
+ 304              		.syntax unified
+ 305              		.thumb
+ 306              		.thumb_func
+ 307              		.fpu fpv4-sp-d16
+ 309              	HAL_Delay:
+ 310              		@ args = 0, pretend = 0, frame = 0
+ 311              		@ frame_needed = 0, uses_anonymous_args = 0
+ 312 0000 38B5     		push	{r3, r4, r5, lr}
+ 313 0002 0446     		mov	r4, r0
+ 314 0004 FFF7FEFF 		bl	HAL_GetTick
+ 315 0008 631C     		adds	r3, r4, #1
+ 316 000a 0546     		mov	r5, r0
+ 317 000c 02D0     		beq	.L54
+ 318 000e 044B     		ldr	r3, .L60
+ 319 0010 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 320 0012 1C44     		add	r4, r4, r3
+ 321              	.L54:
+ 322 0014 FFF7FEFF 		bl	HAL_GetTick
+ 323 0018 431B     		subs	r3, r0, r5
+ 324 001a A342     		cmp	r3, r4
+ 325 001c FAD3     		bcc	.L54
+ 326 001e 38BD     		pop	{r3, r4, r5, pc}
+ 327              	.L61:
+ 328              		.align	2
+ 329              	.L60:
+ 330 0020 00000000 		.word	.LANCHOR0
+ 332              		.section	.text.HAL_SuspendTick,"ax",%progbits
+ 333              		.align	1
+ 334              		.p2align 2,,3
+ 335              		.weak	HAL_SuspendTick
+ 336              		.syntax unified
+ 337              		.thumb
+ 338              		.thumb_func
+ 339              		.fpu fpv4-sp-d16
+ 341              	HAL_SuspendTick:
+ 342              		@ args = 0, pretend = 0, frame = 0
+ 343              		@ frame_needed = 0, uses_anonymous_args = 0
+ 344              		@ link register save eliminated.
+ 345 0000 4FF0E022 		mov	r2, #-536813568
+ 346 0004 1369     		ldr	r3, [r2, #16]
+ 347 0006 23F00203 		bic	r3, r3, #2
+ 348 000a 1361     		str	r3, [r2, #16]
+ 349 000c 7047     		bx	lr
+ 351 000e 00BF     		.section	.text.HAL_ResumeTick,"ax",%progbits
+ 352              		.align	1
+ 353              		.p2align 2,,3
+ 354              		.weak	HAL_ResumeTick
+ 355              		.syntax unified
+ 356              		.thumb
+ 357              		.thumb_func
+ 358              		.fpu fpv4-sp-d16
+ 360              	HAL_ResumeTick:
+ 361              		@ args = 0, pretend = 0, frame = 0
+ 362              		@ frame_needed = 0, uses_anonymous_args = 0
+ 363              		@ link register save eliminated.
+ARM GAS  /tmp/ccVsZ6gc.s 			page 7
+
+
+ 364 0000 4FF0E022 		mov	r2, #-536813568
+ 365 0004 1369     		ldr	r3, [r2, #16]
+ 366 0006 43F00203 		orr	r3, r3, #2
+ 367 000a 1361     		str	r3, [r2, #16]
+ 368 000c 7047     		bx	lr
+ 370 000e 00BF     		.section	.text.HAL_GetHalVersion,"ax",%progbits
+ 371              		.align	1
+ 372              		.p2align 2,,3
+ 373              		.global	HAL_GetHalVersion
+ 374              		.syntax unified
+ 375              		.thumb
+ 376              		.thumb_func
+ 377              		.fpu fpv4-sp-d16
+ 379              	HAL_GetHalVersion:
+ 380              		@ args = 0, pretend = 0, frame = 0
+ 381              		@ frame_needed = 0, uses_anonymous_args = 0
+ 382              		@ link register save eliminated.
+ 383 0000 0048     		ldr	r0, .L65
+ 384 0002 7047     		bx	lr
+ 385              	.L66:
+ 386              		.align	2
+ 387              	.L65:
+ 388 0004 000A0701 		.word	17238528
+ 390              		.section	.text.HAL_GetREVID,"ax",%progbits
+ 391              		.align	1
+ 392              		.p2align 2,,3
+ 393              		.global	HAL_GetREVID
+ 394              		.syntax unified
+ 395              		.thumb
+ 396              		.thumb_func
+ 397              		.fpu fpv4-sp-d16
+ 399              	HAL_GetREVID:
+ 400              		@ args = 0, pretend = 0, frame = 0
+ 401              		@ frame_needed = 0, uses_anonymous_args = 0
+ 402              		@ link register save eliminated.
+ 403 0000 014B     		ldr	r3, .L68
+ 404 0002 1868     		ldr	r0, [r3]
+ 405 0004 000C     		lsrs	r0, r0, #16
+ 406 0006 7047     		bx	lr
+ 407              	.L69:
+ 408              		.align	2
+ 409              	.L68:
+ 410 0008 002004E0 		.word	-536600576
+ 412              		.section	.text.HAL_GetDEVID,"ax",%progbits
+ 413              		.align	1
+ 414              		.p2align 2,,3
+ 415              		.global	HAL_GetDEVID
+ 416              		.syntax unified
+ 417              		.thumb
+ 418              		.thumb_func
+ 419              		.fpu fpv4-sp-d16
+ 421              	HAL_GetDEVID:
+ 422              		@ args = 0, pretend = 0, frame = 0
+ 423              		@ frame_needed = 0, uses_anonymous_args = 0
+ 424              		@ link register save eliminated.
+ 425 0000 024B     		ldr	r3, .L71
+ 426 0002 1868     		ldr	r0, [r3]
+ARM GAS  /tmp/ccVsZ6gc.s 			page 8
+
+
+ 427 0004 C0F30B00 		ubfx	r0, r0, #0, #12
+ 428 0008 7047     		bx	lr
+ 429              	.L72:
+ 430 000a 00BF     		.align	2
+ 431              	.L71:
+ 432 000c 002004E0 		.word	-536600576
+ 434              		.section	.text.HAL_DBGMCU_EnableDBGSleepMode,"ax",%progbits
+ 435              		.align	1
+ 436              		.p2align 2,,3
+ 437              		.global	HAL_DBGMCU_EnableDBGSleepMode
+ 438              		.syntax unified
+ 439              		.thumb
+ 440              		.thumb_func
+ 441              		.fpu fpv4-sp-d16
+ 443              	HAL_DBGMCU_EnableDBGSleepMode:
+ 444              		@ args = 0, pretend = 0, frame = 0
+ 445              		@ frame_needed = 0, uses_anonymous_args = 0
+ 446              		@ link register save eliminated.
+ 447 0000 024A     		ldr	r2, .L74
+ 448 0002 5368     		ldr	r3, [r2, #4]
+ 449 0004 43F00103 		orr	r3, r3, #1
+ 450 0008 5360     		str	r3, [r2, #4]
+ 451 000a 7047     		bx	lr
+ 452              	.L75:
+ 453              		.align	2
+ 454              	.L74:
+ 455 000c 002004E0 		.word	-536600576
+ 457              		.section	.text.HAL_DBGMCU_DisableDBGSleepMode,"ax",%progbits
+ 458              		.align	1
+ 459              		.p2align 2,,3
+ 460              		.global	HAL_DBGMCU_DisableDBGSleepMode
+ 461              		.syntax unified
+ 462              		.thumb
+ 463              		.thumb_func
+ 464              		.fpu fpv4-sp-d16
+ 466              	HAL_DBGMCU_DisableDBGSleepMode:
+ 467              		@ args = 0, pretend = 0, frame = 0
+ 468              		@ frame_needed = 0, uses_anonymous_args = 0
+ 469              		@ link register save eliminated.
+ 470 0000 024A     		ldr	r2, .L77
+ 471 0002 5368     		ldr	r3, [r2, #4]
+ 472 0004 23F00103 		bic	r3, r3, #1
+ 473 0008 5360     		str	r3, [r2, #4]
+ 474 000a 7047     		bx	lr
+ 475              	.L78:
+ 476              		.align	2
+ 477              	.L77:
+ 478 000c 002004E0 		.word	-536600576
+ 480              		.section	.text.HAL_DBGMCU_EnableDBGStopMode,"ax",%progbits
+ 481              		.align	1
+ 482              		.p2align 2,,3
+ 483              		.global	HAL_DBGMCU_EnableDBGStopMode
+ 484              		.syntax unified
+ 485              		.thumb
+ 486              		.thumb_func
+ 487              		.fpu fpv4-sp-d16
+ 489              	HAL_DBGMCU_EnableDBGStopMode:
+ARM GAS  /tmp/ccVsZ6gc.s 			page 9
+
+
+ 490              		@ args = 0, pretend = 0, frame = 0
+ 491              		@ frame_needed = 0, uses_anonymous_args = 0
+ 492              		@ link register save eliminated.
+ 493 0000 024A     		ldr	r2, .L80
+ 494 0002 5368     		ldr	r3, [r2, #4]
+ 495 0004 43F00203 		orr	r3, r3, #2
+ 496 0008 5360     		str	r3, [r2, #4]
+ 497 000a 7047     		bx	lr
+ 498              	.L81:
+ 499              		.align	2
+ 500              	.L80:
+ 501 000c 002004E0 		.word	-536600576
+ 503              		.section	.text.HAL_DBGMCU_DisableDBGStopMode,"ax",%progbits
+ 504              		.align	1
+ 505              		.p2align 2,,3
+ 506              		.global	HAL_DBGMCU_DisableDBGStopMode
+ 507              		.syntax unified
+ 508              		.thumb
+ 509              		.thumb_func
+ 510              		.fpu fpv4-sp-d16
+ 512              	HAL_DBGMCU_DisableDBGStopMode:
+ 513              		@ args = 0, pretend = 0, frame = 0
+ 514              		@ frame_needed = 0, uses_anonymous_args = 0
+ 515              		@ link register save eliminated.
+ 516 0000 024A     		ldr	r2, .L83
+ 517 0002 5368     		ldr	r3, [r2, #4]
+ 518 0004 23F00203 		bic	r3, r3, #2
+ 519 0008 5360     		str	r3, [r2, #4]
+ 520 000a 7047     		bx	lr
+ 521              	.L84:
+ 522              		.align	2
+ 523              	.L83:
+ 524 000c 002004E0 		.word	-536600576
+ 526              		.section	.text.HAL_DBGMCU_EnableDBGStandbyMode,"ax",%progbits
+ 527              		.align	1
+ 528              		.p2align 2,,3
+ 529              		.global	HAL_DBGMCU_EnableDBGStandbyMode
+ 530              		.syntax unified
+ 531              		.thumb
+ 532              		.thumb_func
+ 533              		.fpu fpv4-sp-d16
+ 535              	HAL_DBGMCU_EnableDBGStandbyMode:
+ 536              		@ args = 0, pretend = 0, frame = 0
+ 537              		@ frame_needed = 0, uses_anonymous_args = 0
+ 538              		@ link register save eliminated.
+ 539 0000 024A     		ldr	r2, .L86
+ 540 0002 5368     		ldr	r3, [r2, #4]
+ 541 0004 43F00403 		orr	r3, r3, #4
+ 542 0008 5360     		str	r3, [r2, #4]
+ 543 000a 7047     		bx	lr
+ 544              	.L87:
+ 545              		.align	2
+ 546              	.L86:
+ 547 000c 002004E0 		.word	-536600576
+ 549              		.section	.text.HAL_DBGMCU_DisableDBGStandbyMode,"ax",%progbits
+ 550              		.align	1
+ 551              		.p2align 2,,3
+ARM GAS  /tmp/ccVsZ6gc.s 			page 10
+
+
+ 552              		.global	HAL_DBGMCU_DisableDBGStandbyMode
+ 553              		.syntax unified
+ 554              		.thumb
+ 555              		.thumb_func
+ 556              		.fpu fpv4-sp-d16
+ 558              	HAL_DBGMCU_DisableDBGStandbyMode:
+ 559              		@ args = 0, pretend = 0, frame = 0
+ 560              		@ frame_needed = 0, uses_anonymous_args = 0
+ 561              		@ link register save eliminated.
+ 562 0000 024A     		ldr	r2, .L89
+ 563 0002 5368     		ldr	r3, [r2, #4]
+ 564 0004 23F00403 		bic	r3, r3, #4
+ 565 0008 5360     		str	r3, [r2, #4]
+ 566 000a 7047     		bx	lr
+ 567              	.L90:
+ 568              		.align	2
+ 569              	.L89:
+ 570 000c 002004E0 		.word	-536600576
+ 572              		.section	.text.HAL_EnableCompensationCell,"ax",%progbits
+ 573              		.align	1
+ 574              		.p2align 2,,3
+ 575              		.global	HAL_EnableCompensationCell
+ 576              		.syntax unified
+ 577              		.thumb
+ 578              		.thumb_func
+ 579              		.fpu fpv4-sp-d16
+ 581              	HAL_EnableCompensationCell:
+ 582              		@ args = 0, pretend = 0, frame = 0
+ 583              		@ frame_needed = 0, uses_anonymous_args = 0
+ 584              		@ link register save eliminated.
+ 585 0000 024B     		ldr	r3, .L92
+ 586 0002 0122     		movs	r2, #1
+ 587 0004 C3F80024 		str	r2, [r3, #1024]
+ 588 0008 7047     		bx	lr
+ 589              	.L93:
+ 590 000a 00BF     		.align	2
+ 591              	.L92:
+ 592 000c 00002742 		.word	1109852160
+ 594              		.section	.text.HAL_DisableCompensationCell,"ax",%progbits
+ 595              		.align	1
+ 596              		.p2align 2,,3
+ 597              		.global	HAL_DisableCompensationCell
+ 598              		.syntax unified
+ 599              		.thumb
+ 600              		.thumb_func
+ 601              		.fpu fpv4-sp-d16
+ 603              	HAL_DisableCompensationCell:
+ 604              		@ args = 0, pretend = 0, frame = 0
+ 605              		@ frame_needed = 0, uses_anonymous_args = 0
+ 606              		@ link register save eliminated.
+ 607 0000 024B     		ldr	r3, .L95
+ 608 0002 0022     		movs	r2, #0
+ 609 0004 C3F80024 		str	r2, [r3, #1024]
+ 610 0008 7047     		bx	lr
+ 611              	.L96:
+ 612 000a 00BF     		.align	2
+ 613              	.L95:
+ARM GAS  /tmp/ccVsZ6gc.s 			page 11
+
+
+ 614 000c 00002742 		.word	1109852160
+ 616              		.section	.text.HAL_GetUIDw0,"ax",%progbits
+ 617              		.align	1
+ 618              		.p2align 2,,3
+ 619              		.global	HAL_GetUIDw0
+ 620              		.syntax unified
+ 621              		.thumb
+ 622              		.thumb_func
+ 623              		.fpu fpv4-sp-d16
+ 625              	HAL_GetUIDw0:
+ 626              		@ args = 0, pretend = 0, frame = 0
+ 627              		@ frame_needed = 0, uses_anonymous_args = 0
+ 628              		@ link register save eliminated.
+ 629 0000 014B     		ldr	r3, .L98
+ 630 0002 D3F8100A 		ldr	r0, [r3, #2576]
+ 631 0006 7047     		bx	lr
+ 632              	.L99:
+ 633              		.align	2
+ 634              	.L98:
+ 635 0008 0070FF1F 		.word	536834048
+ 637              		.section	.text.HAL_GetUIDw1,"ax",%progbits
+ 638              		.align	1
+ 639              		.p2align 2,,3
+ 640              		.global	HAL_GetUIDw1
+ 641              		.syntax unified
+ 642              		.thumb
+ 643              		.thumb_func
+ 644              		.fpu fpv4-sp-d16
+ 646              	HAL_GetUIDw1:
+ 647              		@ args = 0, pretend = 0, frame = 0
+ 648              		@ frame_needed = 0, uses_anonymous_args = 0
+ 649              		@ link register save eliminated.
+ 650 0000 014B     		ldr	r3, .L101
+ 651 0002 D3F8140A 		ldr	r0, [r3, #2580]
+ 652 0006 7047     		bx	lr
+ 653              	.L102:
+ 654              		.align	2
+ 655              	.L101:
+ 656 0008 0070FF1F 		.word	536834048
+ 658              		.section	.text.HAL_GetUIDw2,"ax",%progbits
+ 659              		.align	1
+ 660              		.p2align 2,,3
+ 661              		.global	HAL_GetUIDw2
+ 662              		.syntax unified
+ 663              		.thumb
+ 664              		.thumb_func
+ 665              		.fpu fpv4-sp-d16
+ 667              	HAL_GetUIDw2:
+ 668              		@ args = 0, pretend = 0, frame = 0
+ 669              		@ frame_needed = 0, uses_anonymous_args = 0
+ 670              		@ link register save eliminated.
+ 671 0000 014B     		ldr	r3, .L104
+ 672 0002 D3F8180A 		ldr	r0, [r3, #2584]
+ 673 0006 7047     		bx	lr
+ 674              	.L105:
+ 675              		.align	2
+ 676              	.L104:
+ARM GAS  /tmp/ccVsZ6gc.s 			page 12
+
+
+ 677 0008 0070FF1F 		.word	536834048
+ 679              		.global	uwTickFreq
+ 680              		.global	uwTickPrio
+ 681              		.global	uwTick
+ 682              		.section	.bss.uwTick,"aw",%nobits
+ 683              		.align	2
+ 684              		.set	.LANCHOR2,. + 0
+ 687              	uwTick:
+ 688 0000 00000000 		.space	4
+ 689              		.section	.data.uwTickFreq,"aw"
+ 690              		.set	.LANCHOR0,. + 0
+ 693              	uwTickFreq:
+ 694 0000 01       		.byte	1
+ 695              		.section	.data.uwTickPrio,"aw"
+ 696              		.align	2
+ 697              		.set	.LANCHOR1,. + 0
+ 700              	uwTickPrio:
+ 701 0000 10000000 		.word	16
+ 702              		.ident	"GCC: (15:10.3-2021.07-4) 10.3.1 20210621 (release)"
+ARM GAS  /tmp/ccVsZ6gc.s 			page 13
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 stm32f4xx_hal.c
+     /tmp/ccVsZ6gc.s:16     .text.HAL_MspInit:0000000000000000 $t
+     /tmp/ccVsZ6gc.s:25     .text.HAL_MspInit:0000000000000000 HAL_MspInit
+     /tmp/ccVsZ6gc.s:32     .text.HAL_MspDeInit:0000000000000000 $t
+     /tmp/ccVsZ6gc.s:40     .text.HAL_MspDeInit:0000000000000000 HAL_MspDeInit
+     /tmp/ccVsZ6gc.s:47     .text.HAL_DeInit:0000000000000000 $t
+     /tmp/ccVsZ6gc.s:55     .text.HAL_DeInit:0000000000000000 HAL_DeInit
+     /tmp/ccVsZ6gc.s:78     .text.HAL_DeInit:0000000000000028 $d
+     /tmp/ccVsZ6gc.s:81     .text.HAL_InitTick:0000000000000000 $t
+     /tmp/ccVsZ6gc.s:89     .text.HAL_InitTick:0000000000000000 HAL_InitTick
+     /tmp/ccVsZ6gc.s:121    .text.HAL_InitTick:000000000000003c $d
+     /tmp/ccVsZ6gc.s:126    .text.HAL_Init:0000000000000000 $t
+     /tmp/ccVsZ6gc.s:134    .text.HAL_Init:0000000000000000 HAL_Init
+     /tmp/ccVsZ6gc.s:158    .text.HAL_Init:0000000000000030 $d
+     /tmp/ccVsZ6gc.s:161    .text.HAL_IncTick:0000000000000000 $t
+     /tmp/ccVsZ6gc.s:169    .text.HAL_IncTick:0000000000000000 HAL_IncTick
+     /tmp/ccVsZ6gc.s:183    .text.HAL_IncTick:0000000000000010 $d
+     /tmp/ccVsZ6gc.s:187    .text.HAL_GetTick:0000000000000000 $t
+     /tmp/ccVsZ6gc.s:195    .text.HAL_GetTick:0000000000000000 HAL_GetTick
+     /tmp/ccVsZ6gc.s:205    .text.HAL_GetTick:0000000000000008 $d
+     /tmp/ccVsZ6gc.s:208    .text.HAL_GetTickPrio:0000000000000000 $t
+     /tmp/ccVsZ6gc.s:216    .text.HAL_GetTickPrio:0000000000000000 HAL_GetTickPrio
+     /tmp/ccVsZ6gc.s:226    .text.HAL_GetTickPrio:0000000000000008 $d
+     /tmp/ccVsZ6gc.s:229    .rodata.HAL_SetTickFreq.str1.4:0000000000000000 $d
+     /tmp/ccVsZ6gc.s:233    .text.HAL_SetTickFreq:0000000000000000 $t
+     /tmp/ccVsZ6gc.s:241    .text.HAL_SetTickFreq:0000000000000000 HAL_SetTickFreq
+     /tmp/ccVsZ6gc.s:275    .text.HAL_SetTickFreq:0000000000000038 $d
+     /tmp/ccVsZ6gc.s:280    .text.HAL_GetTickFreq:0000000000000000 $t
+     /tmp/ccVsZ6gc.s:288    .text.HAL_GetTickFreq:0000000000000000 HAL_GetTickFreq
+     /tmp/ccVsZ6gc.s:298    .text.HAL_GetTickFreq:0000000000000008 $d
+     /tmp/ccVsZ6gc.s:301    .text.HAL_Delay:0000000000000000 $t
+     /tmp/ccVsZ6gc.s:309    .text.HAL_Delay:0000000000000000 HAL_Delay
+     /tmp/ccVsZ6gc.s:330    .text.HAL_Delay:0000000000000020 $d
+     /tmp/ccVsZ6gc.s:333    .text.HAL_SuspendTick:0000000000000000 $t
+     /tmp/ccVsZ6gc.s:341    .text.HAL_SuspendTick:0000000000000000 HAL_SuspendTick
+     /tmp/ccVsZ6gc.s:352    .text.HAL_ResumeTick:0000000000000000 $t
+     /tmp/ccVsZ6gc.s:360    .text.HAL_ResumeTick:0000000000000000 HAL_ResumeTick
+     /tmp/ccVsZ6gc.s:371    .text.HAL_GetHalVersion:0000000000000000 $t
+     /tmp/ccVsZ6gc.s:379    .text.HAL_GetHalVersion:0000000000000000 HAL_GetHalVersion
+     /tmp/ccVsZ6gc.s:388    .text.HAL_GetHalVersion:0000000000000004 $d
+     /tmp/ccVsZ6gc.s:391    .text.HAL_GetREVID:0000000000000000 $t
+     /tmp/ccVsZ6gc.s:399    .text.HAL_GetREVID:0000000000000000 HAL_GetREVID
+     /tmp/ccVsZ6gc.s:410    .text.HAL_GetREVID:0000000000000008 $d
+     /tmp/ccVsZ6gc.s:413    .text.HAL_GetDEVID:0000000000000000 $t
+     /tmp/ccVsZ6gc.s:421    .text.HAL_GetDEVID:0000000000000000 HAL_GetDEVID
+     /tmp/ccVsZ6gc.s:432    .text.HAL_GetDEVID:000000000000000c $d
+     /tmp/ccVsZ6gc.s:435    .text.HAL_DBGMCU_EnableDBGSleepMode:0000000000000000 $t
+     /tmp/ccVsZ6gc.s:443    .text.HAL_DBGMCU_EnableDBGSleepMode:0000000000000000 HAL_DBGMCU_EnableDBGSleepMode
+     /tmp/ccVsZ6gc.s:455    .text.HAL_DBGMCU_EnableDBGSleepMode:000000000000000c $d
+     /tmp/ccVsZ6gc.s:458    .text.HAL_DBGMCU_DisableDBGSleepMode:0000000000000000 $t
+     /tmp/ccVsZ6gc.s:466    .text.HAL_DBGMCU_DisableDBGSleepMode:0000000000000000 HAL_DBGMCU_DisableDBGSleepMode
+     /tmp/ccVsZ6gc.s:478    .text.HAL_DBGMCU_DisableDBGSleepMode:000000000000000c $d
+     /tmp/ccVsZ6gc.s:481    .text.HAL_DBGMCU_EnableDBGStopMode:0000000000000000 $t
+     /tmp/ccVsZ6gc.s:489    .text.HAL_DBGMCU_EnableDBGStopMode:0000000000000000 HAL_DBGMCU_EnableDBGStopMode
+     /tmp/ccVsZ6gc.s:501    .text.HAL_DBGMCU_EnableDBGStopMode:000000000000000c $d
+     /tmp/ccVsZ6gc.s:504    .text.HAL_DBGMCU_DisableDBGStopMode:0000000000000000 $t
+ARM GAS  /tmp/ccVsZ6gc.s 			page 14
+
+
+     /tmp/ccVsZ6gc.s:512    .text.HAL_DBGMCU_DisableDBGStopMode:0000000000000000 HAL_DBGMCU_DisableDBGStopMode
+     /tmp/ccVsZ6gc.s:524    .text.HAL_DBGMCU_DisableDBGStopMode:000000000000000c $d
+     /tmp/ccVsZ6gc.s:527    .text.HAL_DBGMCU_EnableDBGStandbyMode:0000000000000000 $t
+     /tmp/ccVsZ6gc.s:535    .text.HAL_DBGMCU_EnableDBGStandbyMode:0000000000000000 HAL_DBGMCU_EnableDBGStandbyMode
+     /tmp/ccVsZ6gc.s:547    .text.HAL_DBGMCU_EnableDBGStandbyMode:000000000000000c $d
+     /tmp/ccVsZ6gc.s:550    .text.HAL_DBGMCU_DisableDBGStandbyMode:0000000000000000 $t
+     /tmp/ccVsZ6gc.s:558    .text.HAL_DBGMCU_DisableDBGStandbyMode:0000000000000000 HAL_DBGMCU_DisableDBGStandbyMode
+     /tmp/ccVsZ6gc.s:570    .text.HAL_DBGMCU_DisableDBGStandbyMode:000000000000000c $d
+     /tmp/ccVsZ6gc.s:573    .text.HAL_EnableCompensationCell:0000000000000000 $t
+     /tmp/ccVsZ6gc.s:581    .text.HAL_EnableCompensationCell:0000000000000000 HAL_EnableCompensationCell
+     /tmp/ccVsZ6gc.s:592    .text.HAL_EnableCompensationCell:000000000000000c $d
+     /tmp/ccVsZ6gc.s:595    .text.HAL_DisableCompensationCell:0000000000000000 $t
+     /tmp/ccVsZ6gc.s:603    .text.HAL_DisableCompensationCell:0000000000000000 HAL_DisableCompensationCell
+     /tmp/ccVsZ6gc.s:614    .text.HAL_DisableCompensationCell:000000000000000c $d
+     /tmp/ccVsZ6gc.s:617    .text.HAL_GetUIDw0:0000000000000000 $t
+     /tmp/ccVsZ6gc.s:625    .text.HAL_GetUIDw0:0000000000000000 HAL_GetUIDw0
+     /tmp/ccVsZ6gc.s:635    .text.HAL_GetUIDw0:0000000000000008 $d
+     /tmp/ccVsZ6gc.s:638    .text.HAL_GetUIDw1:0000000000000000 $t
+     /tmp/ccVsZ6gc.s:646    .text.HAL_GetUIDw1:0000000000000000 HAL_GetUIDw1
+     /tmp/ccVsZ6gc.s:656    .text.HAL_GetUIDw1:0000000000000008 $d
+     /tmp/ccVsZ6gc.s:659    .text.HAL_GetUIDw2:0000000000000000 $t
+     /tmp/ccVsZ6gc.s:667    .text.HAL_GetUIDw2:0000000000000000 HAL_GetUIDw2
+     /tmp/ccVsZ6gc.s:677    .text.HAL_GetUIDw2:0000000000000008 $d
+     /tmp/ccVsZ6gc.s:693    .data.uwTickFreq:0000000000000000 uwTickFreq
+     /tmp/ccVsZ6gc.s:700    .data.uwTickPrio:0000000000000000 uwTickPrio
+     /tmp/ccVsZ6gc.s:687    .bss.uwTick:0000000000000000 uwTick
+     /tmp/ccVsZ6gc.s:683    .bss.uwTick:0000000000000000 $d
+     /tmp/ccVsZ6gc.s:696    .data.uwTickPrio:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+HAL_SYSTICK_Config
+HAL_NVIC_SetPriority
+SystemCoreClock
+HAL_NVIC_SetPriorityGrouping
+assert_failed

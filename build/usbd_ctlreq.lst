@@ -1,0 +1,741 @@
+ARM GAS  /tmp/ccoNs3Up.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"usbd_ctlreq.c"
+  14              		.text
+  15              		.section	.text.USBD_StdDevReq,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.global	USBD_StdDevReq
+  19              		.arch armv7e-m
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	USBD_StdDevReq:
+  26              		@ args = 0, pretend = 0, frame = 8
+  27              		@ frame_needed = 0, uses_anonymous_args = 0
+  28 0000 30B5     		push	{r4, r5, lr}
+  29 0002 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+  30 0004 03F06003 		and	r3, r3, #96
+  31 0008 202B     		cmp	r3, #32
+  32 000a 83B0     		sub	sp, sp, #12
+  33 000c 0D46     		mov	r5, r1
+  34 000e 0446     		mov	r4, r0
+  35 0010 0DD0     		beq	.L2
+  36 0012 402B     		cmp	r3, #64
+  37 0014 0BD0     		beq	.L2
+  38 0016 9BB1     		cbz	r3, .L78
+  39              	.L4:
+  40 0018 8021     		movs	r1, #128
+  41 001a 2046     		mov	r0, r4
+  42 001c FFF7FEFF 		bl	USBD_LL_StallEP
+  43 0020 0021     		movs	r1, #0
+  44 0022 2046     		mov	r0, r4
+  45 0024 FFF7FEFF 		bl	USBD_LL_StallEP
+  46              	.L5:
+  47 0028 0020     		movs	r0, #0
+  48 002a 03B0     		add	sp, sp, #12
+  49              		@ sp needed
+  50 002c 30BD     		pop	{r4, r5, pc}
+  51              	.L2:
+  52 002e D4F88C32 		ldr	r3, [r4, #652]
+  53 0032 2946     		mov	r1, r5
+  54 0034 9B68     		ldr	r3, [r3, #8]
+  55 0036 2046     		mov	r0, r4
+  56 0038 9847     		blx	r3
+  57 003a 0020     		movs	r0, #0
+  58 003c 03B0     		add	sp, sp, #12
+ARM GAS  /tmp/ccoNs3Up.s 			page 2
+
+
+  59              		@ sp needed
+  60 003e 30BD     		pop	{r4, r5, pc}
+  61              	.L78:
+  62 0040 4B78     		ldrb	r3, [r1, #1]	@ zero_extendqisi2
+  63 0042 092B     		cmp	r3, #9
+  64 0044 E8D8     		bhi	.L4
+  65 0046 01A2     		adr	r2, .L7
+  66 0048 52F823F0 		ldr	pc, [r2, r3, lsl #2]
+  67              		.p2align 2
+  68              	.L7:
+  69 004c A7000000 		.word	.L13+1
+  70 0050 CF000000 		.word	.L12+1
+  71 0054 19000000 		.word	.L4+1
+  72 0058 ED000000 		.word	.L11+1
+  73 005c 19000000 		.word	.L4+1
+  74 0060 F5000000 		.word	.L10+1
+  75 0064 2D010000 		.word	.L9+1
+  76 0068 19000000 		.word	.L4+1
+  77 006c 5D010000 		.word	.L8+1
+  78 0070 75000000 		.word	.L6+1
+  79              		.p2align 1
+  80              	.L6:
+  81 0074 8978     		ldrb	r1, [r1, #2]	@ zero_extendqisi2
+  82 0076 9D4D     		ldr	r5, .L80
+  83 0078 0129     		cmp	r1, #1
+  84 007a 2970     		strb	r1, [r5]
+  85 007c CCD8     		bhi	.L4
+  86 007e 90F87432 		ldrb	r3, [r0, #628]	@ zero_extendqisi2
+  87 0082 022B     		cmp	r3, #2
+  88 0084 00F00D81 		beq	.L38
+  89 0088 032B     		cmp	r3, #3
+  90 008a 00F0F980 		beq	.L39
+  91 008e 8021     		movs	r1, #128
+  92 0090 FFF7FEFF 		bl	USBD_LL_StallEP
+  93 0094 0021     		movs	r1, #0
+  94 0096 2046     		mov	r0, r4
+  95 0098 FFF7FEFF 		bl	USBD_LL_StallEP
+  96 009c 2978     		ldrb	r1, [r5]	@ zero_extendqisi2
+  97 009e 2046     		mov	r0, r4
+  98 00a0 FFF7FEFF 		bl	USBD_ClrClassConfig
+  99 00a4 C0E7     		b	.L5
+ 100              	.L13:
+ 101 00a6 90F87432 		ldrb	r3, [r0, #628]	@ zero_extendqisi2
+ 102 00aa 013B     		subs	r3, r3, #1
+ 103 00ac 022B     		cmp	r3, #2
+ 104 00ae B3D8     		bhi	.L4
+ 105 00b0 CA88     		ldrh	r2, [r1, #6]
+ 106 00b2 022A     		cmp	r2, #2
+ 107 00b4 B0D1     		bne	.L4
+ 108 00b6 D0F87C32 		ldr	r3, [r0, #636]
+ 109 00ba 0146     		mov	r1, r0
+ 110 00bc 002B     		cmp	r3, #0
+ 111 00be 14BF     		ite	ne
+ 112 00c0 1346     		movne	r3, r2
+ 113 00c2 0023     		moveq	r3, #0
+ 114 00c4 41F80C3F 		str	r3, [r1, #12]!
+ 115 00c8 FFF7FEFF 		bl	USBD_CtlSendData
+ARM GAS  /tmp/ccoNs3Up.s 			page 3
+
+
+ 116 00cc ACE7     		b	.L5
+ 117              	.L12:
+ 118 00ce 90F87432 		ldrb	r3, [r0, #628]	@ zero_extendqisi2
+ 119 00d2 013B     		subs	r3, r3, #1
+ 120 00d4 022B     		cmp	r3, #2
+ 121 00d6 9FD8     		bhi	.L4
+ 122 00d8 4B88     		ldrh	r3, [r1, #2]
+ 123 00da 012B     		cmp	r3, #1
+ 124 00dc A4D1     		bne	.L5
+ 125 00de 0023     		movs	r3, #0
+ 126              	.L75:
+ 127 00e0 C4F87C32 		str	r3, [r4, #636]
+ 128              	.L76:
+ 129 00e4 2046     		mov	r0, r4
+ 130 00e6 FFF7FEFF 		bl	USBD_CtlSendStatus
+ 131 00ea 9DE7     		b	.L5
+ 132              	.L11:
+ 133 00ec 4B88     		ldrh	r3, [r1, #2]
+ 134 00ee 012B     		cmp	r3, #1
+ 135 00f0 9AD1     		bne	.L5
+ 136 00f2 F5E7     		b	.L75
+ 137              	.L10:
+ 138 00f4 8B88     		ldrh	r3, [r1, #4]
+ 139 00f6 002B     		cmp	r3, #0
+ 140 00f8 8ED1     		bne	.L4
+ 141 00fa CB88     		ldrh	r3, [r1, #6]
+ 142 00fc 002B     		cmp	r3, #0
+ 143 00fe 8BD1     		bne	.L4
+ 144 0100 4D88     		ldrh	r5, [r1, #2]
+ 145 0102 7F2D     		cmp	r5, #127
+ 146 0104 88D8     		bhi	.L4
+ 147 0106 90F87432 		ldrb	r3, [r0, #628]	@ zero_extendqisi2
+ 148 010a 032B     		cmp	r3, #3
+ 149 010c 84D0     		beq	.L4
+ 150 010e E9B2     		uxtb	r1, r5
+ 151 0110 80F87612 		strb	r1, [r0, #630]
+ 152 0114 FFF7FEFF 		bl	USBD_LL_SetUSBAddress
+ 153 0118 2046     		mov	r0, r4
+ 154 011a FFF7FEFF 		bl	USBD_CtlSendStatus
+ 155 011e 002D     		cmp	r5, #0
+ 156 0120 00F0E080 		beq	.L37
+ 157 0124 0223     		movs	r3, #2
+ 158 0126 84F87432 		strb	r3, [r4, #628]
+ 159 012a 7DE7     		b	.L5
+ 160              	.L9:
+ 161 012c 4A88     		ldrh	r2, [r1, #2]
+ 162 012e 130A     		lsrs	r3, r2, #8
+ 163 0130 013B     		subs	r3, r3, #1
+ 164 0132 062B     		cmp	r3, #6
+ 165 0134 3FF670AF 		bhi	.L4
+ 166 0138 01A1     		adr	r1, .L16
+ 167 013a 51F823F0 		ldr	pc, [r1, r3, lsl #2]
+ 168 013e 00BF     		.p2align 2
+ 169              	.L16:
+ 170 0140 03020000 		.word	.L20+1
+ 171 0144 EB010000 		.word	.L19+1
+ 172 0148 D9010000 		.word	.L18+1
+ARM GAS  /tmp/ccoNs3Up.s 			page 4
+
+
+ 173 014c 19000000 		.word	.L4+1
+ 174 0150 19000000 		.word	.L4+1
+ 175 0154 C3010000 		.word	.L17+1
+ 176 0158 83010000 		.word	.L15+1
+ 177              		.p2align 1
+ 178              	.L8:
+ 179 015c CA88     		ldrh	r2, [r1, #6]
+ 180 015e 012A     		cmp	r2, #1
+ 181 0160 7FF45AAF 		bne	.L4
+ 182 0164 90F87432 		ldrb	r3, [r0, #628]	@ zero_extendqisi2
+ 183 0168 022B     		cmp	r3, #2
+ 184 016a 00F28280 		bhi	.L43
+ 185 016e 002B     		cmp	r3, #0
+ 186 0170 3FF452AF 		beq	.L4
+ 187 0174 0146     		mov	r1, r0
+ 188 0176 0023     		movs	r3, #0
+ 189 0178 41F8083F 		str	r3, [r1, #8]!
+ 190 017c FFF7FEFF 		bl	USBD_CtlSendData
+ 191 0180 52E7     		b	.L5
+ 192              	.L15:
+ 193 0182 037C     		ldrb	r3, [r0, #16]	@ zero_extendqisi2
+ 194 0184 002B     		cmp	r3, #0
+ 195 0186 7FF447AF 		bne	.L4
+ 196 018a D0F88C32 		ldr	r3, [r0, #652]
+ 197 018e 0DF10600 		add	r0, sp, #6
+ 198 0192 1B6B     		ldr	r3, [r3, #48]
+ 199 0194 9847     		blx	r3
+ 200 0196 0723     		movs	r3, #7
+ 201 0198 4370     		strb	r3, [r0, #1]
+ 202              	.L21:
+ 203 019a BDF80620 		ldrh	r2, [sp, #6]
+ 204 019e 5AB1     		cbz	r2, .L32
+ 205 01a0 EB88     		ldrh	r3, [r5, #6]
+ 206 01a2 002B     		cmp	r3, #0
+ 207 01a4 9ED0     		beq	.L76
+ 208 01a6 9A42     		cmp	r2, r3
+ 209 01a8 28BF     		it	cs
+ 210 01aa 1A46     		movcs	r2, r3
+ 211 01ac 0146     		mov	r1, r0
+ 212 01ae 2046     		mov	r0, r4
+ 213 01b0 ADF80620 		strh	r2, [sp, #6]	@ movhi
+ 214 01b4 FFF7FEFF 		bl	USBD_CtlSendData
+ 215              	.L32:
+ 216 01b8 EB88     		ldrh	r3, [r5, #6]
+ 217 01ba 002B     		cmp	r3, #0
+ 218 01bc 7FF434AF 		bne	.L5
+ 219 01c0 90E7     		b	.L76
+ 220              	.L17:
+ 221 01c2 037C     		ldrb	r3, [r0, #16]	@ zero_extendqisi2
+ 222 01c4 002B     		cmp	r3, #0
+ 223 01c6 7FF427AF 		bne	.L4
+ 224 01ca D0F88C32 		ldr	r3, [r0, #652]
+ 225 01ce 0DF10600 		add	r0, sp, #6
+ 226 01d2 5B6B     		ldr	r3, [r3, #52]
+ 227 01d4 9847     		blx	r3
+ 228 01d6 E0E7     		b	.L21
+ 229              	.L18:
+ARM GAS  /tmp/ccoNs3Up.s 			page 5
+
+
+ 230 01d8 D2B2     		uxtb	r2, r2
+ 231 01da 052A     		cmp	r2, #5
+ 232 01dc 3FF61CAF 		bhi	.L4
+ 233 01e0 DFE802F0 		tbb	[pc, r2]
+ 234              	.L24:
+ 235 01e4 3F       		.byte	(.L29-.L24)/2
+ 236 01e5 37       		.byte	(.L28-.L24)/2
+ 237 01e6 2F       		.byte	(.L27-.L24)/2
+ 238 01e7 27       		.byte	(.L26-.L24)/2
+ 239 01e8 1F       		.byte	(.L25-.L24)/2
+ 240 01e9 17       		.byte	(.L23-.L24)/2
+ 241              		.p2align 1
+ 242              	.L19:
+ 243 01ea 037C     		ldrb	r3, [r0, #16]	@ zero_extendqisi2
+ 244 01ec 002B     		cmp	r3, #0
+ 245 01ee 66D1     		bne	.L22
+ 246 01f0 D0F88C32 		ldr	r3, [r0, #652]
+ 247 01f4 0DF10600 		add	r0, sp, #6
+ 248 01f8 9B6A     		ldr	r3, [r3, #40]
+ 249 01fa 9847     		blx	r3
+ 250 01fc 0223     		movs	r3, #2
+ 251 01fe 4370     		strb	r3, [r0, #1]
+ 252 0200 CBE7     		b	.L21
+ 253              	.L20:
+ 254 0202 D0F88832 		ldr	r3, [r0, #648]
+ 255 0206 007C     		ldrb	r0, [r0, #16]	@ zero_extendqisi2
+ 256 0208 1B68     		ldr	r3, [r3]
+ 257 020a 0DF10601 		add	r1, sp, #6
+ 258 020e 9847     		blx	r3
+ 259 0210 C3E7     		b	.L21
+ 260              	.L23:
+ 261 0212 D0F88832 		ldr	r3, [r0, #648]
+ 262 0216 007C     		ldrb	r0, [r0, #16]	@ zero_extendqisi2
+ 263 0218 9B69     		ldr	r3, [r3, #24]
+ 264 021a 0DF10601 		add	r1, sp, #6
+ 265 021e 9847     		blx	r3
+ 266 0220 BBE7     		b	.L21
+ 267              	.L25:
+ 268 0222 D0F88832 		ldr	r3, [r0, #648]
+ 269 0226 007C     		ldrb	r0, [r0, #16]	@ zero_extendqisi2
+ 270 0228 5B69     		ldr	r3, [r3, #20]
+ 271 022a 0DF10601 		add	r1, sp, #6
+ 272 022e 9847     		blx	r3
+ 273 0230 B3E7     		b	.L21
+ 274              	.L26:
+ 275 0232 D0F88832 		ldr	r3, [r0, #648]
+ 276 0236 007C     		ldrb	r0, [r0, #16]	@ zero_extendqisi2
+ 277 0238 1B69     		ldr	r3, [r3, #16]
+ 278 023a 0DF10601 		add	r1, sp, #6
+ 279 023e 9847     		blx	r3
+ 280 0240 ABE7     		b	.L21
+ 281              	.L27:
+ 282 0242 D0F88832 		ldr	r3, [r0, #648]
+ 283 0246 007C     		ldrb	r0, [r0, #16]	@ zero_extendqisi2
+ 284 0248 DB68     		ldr	r3, [r3, #12]
+ 285 024a 0DF10601 		add	r1, sp, #6
+ 286 024e 9847     		blx	r3
+ARM GAS  /tmp/ccoNs3Up.s 			page 6
+
+
+ 287 0250 A3E7     		b	.L21
+ 288              	.L28:
+ 289 0252 D0F88832 		ldr	r3, [r0, #648]
+ 290 0256 007C     		ldrb	r0, [r0, #16]	@ zero_extendqisi2
+ 291 0258 9B68     		ldr	r3, [r3, #8]
+ 292 025a 0DF10601 		add	r1, sp, #6
+ 293 025e 9847     		blx	r3
+ 294 0260 9BE7     		b	.L21
+ 295              	.L29:
+ 296 0262 D0F88832 		ldr	r3, [r0, #648]
+ 297 0266 007C     		ldrb	r0, [r0, #16]	@ zero_extendqisi2
+ 298 0268 5B68     		ldr	r3, [r3, #4]
+ 299 026a 0DF10601 		add	r1, sp, #6
+ 300 026e 9847     		blx	r3
+ 301 0270 93E7     		b	.L21
+ 302              	.L43:
+ 303 0272 032B     		cmp	r3, #3
+ 304 0274 7FF4D0AE 		bne	.L4
+ 305 0278 011D     		adds	r1, r0, #4
+ 306 027a FFF7FEFF 		bl	USBD_CtlSendData
+ 307 027e D3E6     		b	.L5
+ 308              	.L39:
+ 309 0280 31B3     		cbz	r1, .L79
+ 310 0282 4168     		ldr	r1, [r0, #4]
+ 311 0284 0129     		cmp	r1, #1
+ 312 0286 3FF42DAF 		beq	.L76
+ 313 028a C9B2     		uxtb	r1, r1
+ 314 028c FFF7FEFF 		bl	USBD_ClrClassConfig
+ 315 0290 2978     		ldrb	r1, [r5]	@ zero_extendqisi2
+ 316 0292 6160     		str	r1, [r4, #4]
+ 317 0294 2046     		mov	r0, r4
+ 318 0296 FFF7FEFF 		bl	USBD_SetClassConfig
+ 319 029a 0228     		cmp	r0, #2
+ 320 029c 7FF422AF 		bne	.L76
+ 321 02a0 BAE6     		b	.L4
+ 322              	.L38:
+ 323 02a2 0029     		cmp	r1, #0
+ 324 02a4 3FF41EAF 		beq	.L76
+ 325 02a8 0121     		movs	r1, #1
+ 326 02aa 0323     		movs	r3, #3
+ 327 02ac 4160     		str	r1, [r0, #4]
+ 328 02ae 80F87432 		strb	r3, [r0, #628]
+ 329 02b2 FFF7FEFF 		bl	USBD_SetClassConfig
+ 330 02b6 0228     		cmp	r0, #2
+ 331 02b8 7FF414AF 		bne	.L76
+ 332 02bc ACE6     		b	.L4
+ 333              	.L22:
+ 334 02be D0F88C32 		ldr	r3, [r0, #652]
+ 335 02c2 0DF10600 		add	r0, sp, #6
+ 336 02c6 DB6A     		ldr	r3, [r3, #44]
+ 337 02c8 9847     		blx	r3
+ 338 02ca 0223     		movs	r3, #2
+ 339 02cc 4370     		strb	r3, [r0, #1]
+ 340 02ce 64E7     		b	.L21
+ 341              	.L79:
+ 342 02d0 0223     		movs	r3, #2
+ 343 02d2 80F87432 		strb	r3, [r0, #628]
+ARM GAS  /tmp/ccoNs3Up.s 			page 7
+
+
+ 344 02d6 4160     		str	r1, [r0, #4]
+ 345 02d8 FFF7FEFF 		bl	USBD_ClrClassConfig
+ 346 02dc 2046     		mov	r0, r4
+ 347 02de FFF7FEFF 		bl	USBD_CtlSendStatus
+ 348 02e2 A1E6     		b	.L5
+ 349              	.L37:
+ 350 02e4 0123     		movs	r3, #1
+ 351 02e6 84F87432 		strb	r3, [r4, #628]
+ 352 02ea 9DE6     		b	.L5
+ 353              	.L81:
+ 354              		.align	2
+ 355              	.L80:
+ 356 02ec 00000000 		.word	.LANCHOR0
+ 358              		.section	.text.USBD_StdItfReq,"ax",%progbits
+ 359              		.align	1
+ 360              		.p2align 2,,3
+ 361              		.global	USBD_StdItfReq
+ 362              		.syntax unified
+ 363              		.thumb
+ 364              		.thumb_func
+ 365              		.fpu fpv4-sp-d16
+ 367              	USBD_StdItfReq:
+ 368              		@ args = 0, pretend = 0, frame = 0
+ 369              		@ frame_needed = 0, uses_anonymous_args = 0
+ 370 0000 38B5     		push	{r3, r4, r5, lr}
+ 371 0002 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 372 0004 03F06002 		and	r2, r3, #96
+ 373 0008 402A     		cmp	r2, #64
+ 374 000a 0D46     		mov	r5, r1
+ 375 000c 0446     		mov	r4, r0
+ 376 000e 0AD0     		beq	.L83
+ 377 0010 5B06     		lsls	r3, r3, #25
+ 378 0012 08D5     		bpl	.L83
+ 379 0014 8021     		movs	r1, #128
+ 380 0016 FFF7FEFF 		bl	USBD_LL_StallEP
+ 381 001a 0021     		movs	r1, #0
+ 382 001c 2046     		mov	r0, r4
+ 383 001e FFF7FEFF 		bl	USBD_LL_StallEP
+ 384              	.L86:
+ 385 0022 0020     		movs	r0, #0
+ 386 0024 38BD     		pop	{r3, r4, r5, pc}
+ 387              	.L83:
+ 388 0026 94F87432 		ldrb	r3, [r4, #628]	@ zero_extendqisi2
+ 389 002a 013B     		subs	r3, r3, #1
+ 390 002c 022B     		cmp	r3, #2
+ 391 002e 11D8     		bhi	.L85
+ 392 0030 2B79     		ldrb	r3, [r5, #4]	@ zero_extendqisi2
+ 393 0032 022B     		cmp	r3, #2
+ 394 0034 0ED8     		bhi	.L85
+ 395 0036 D4F88C32 		ldr	r3, [r4, #652]
+ 396 003a 2946     		mov	r1, r5
+ 397 003c 9B68     		ldr	r3, [r3, #8]
+ 398 003e 2046     		mov	r0, r4
+ 399 0040 9847     		blx	r3
+ 400 0042 EB88     		ldrh	r3, [r5, #6]
+ 401 0044 002B     		cmp	r3, #0
+ 402 0046 ECD1     		bne	.L86
+ARM GAS  /tmp/ccoNs3Up.s 			page 8
+
+
+ 403 0048 0028     		cmp	r0, #0
+ 404 004a EAD1     		bne	.L86
+ 405 004c 2046     		mov	r0, r4
+ 406 004e FFF7FEFF 		bl	USBD_CtlSendStatus
+ 407 0052 E6E7     		b	.L86
+ 408              	.L85:
+ 409 0054 8021     		movs	r1, #128
+ 410 0056 2046     		mov	r0, r4
+ 411 0058 FFF7FEFF 		bl	USBD_LL_StallEP
+ 412 005c 0021     		movs	r1, #0
+ 413 005e 2046     		mov	r0, r4
+ 414 0060 FFF7FEFF 		bl	USBD_LL_StallEP
+ 415 0064 0020     		movs	r0, #0
+ 416 0066 38BD     		pop	{r3, r4, r5, pc}
+ 418              		.section	.text.USBD_StdEPReq,"ax",%progbits
+ 419              		.align	1
+ 420              		.p2align 2,,3
+ 421              		.global	USBD_StdEPReq
+ 422              		.syntax unified
+ 423              		.thumb
+ 424              		.thumb_func
+ 425              		.fpu fpv4-sp-d16
+ 427              	USBD_StdEPReq:
+ 428              		@ args = 0, pretend = 0, frame = 0
+ 429              		@ frame_needed = 0, uses_anonymous_args = 0
+ 430 0000 38B5     		push	{r3, r4, r5, lr}
+ 431 0002 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 432 0004 03F06003 		and	r3, r3, #96
+ 433 0008 202B     		cmp	r3, #32
+ 434 000a 0446     		mov	r4, r0
+ 435 000c 0CD0     		beq	.L92
+ 436 000e 402B     		cmp	r3, #64
+ 437 0010 0AD0     		beq	.L92
+ 438 0012 83B1     		cbz	r3, .L146
+ 439              	.L94:
+ 440 0014 8021     		movs	r1, #128
+ 441 0016 2046     		mov	r0, r4
+ 442 0018 FFF7FEFF 		bl	USBD_LL_StallEP
+ 443 001c 0021     		movs	r1, #0
+ 444 001e 2046     		mov	r0, r4
+ 445 0020 FFF7FEFF 		bl	USBD_LL_StallEP
+ 446              	.L95:
+ 447 0024 0020     		movs	r0, #0
+ 448 0026 38BD     		pop	{r3, r4, r5, pc}
+ 449              	.L92:
+ 450 0028 D4F88C32 		ldr	r3, [r4, #652]
+ 451 002c 2046     		mov	r0, r4
+ 452 002e 9B68     		ldr	r3, [r3, #8]
+ 453 0030 9847     		blx	r3
+ 454 0032 0020     		movs	r0, #0
+ 455 0034 38BD     		pop	{r3, r4, r5, pc}
+ 456              	.L146:
+ 457 0036 4B78     		ldrb	r3, [r1, #1]	@ zero_extendqisi2
+ 458 0038 8A88     		ldrh	r2, [r1, #4]
+ 459 003a 012B     		cmp	r3, #1
+ 460 003c 5FFA82FC 		uxtb	ip, r2
+ 461 0040 3DD0     		beq	.L96
+ARM GAS  /tmp/ccoNs3Up.s 			page 9
+
+
+ 462 0042 032B     		cmp	r3, #3
+ 463 0044 29D0     		beq	.L97
+ 464 0046 002B     		cmp	r3, #0
+ 465 0048 E4D1     		bne	.L94
+ 466 004a 90F87432 		ldrb	r3, [r0, #628]	@ zero_extendqisi2
+ 467 004e 022B     		cmp	r3, #2
+ 468 0050 50D0     		beq	.L105
+ 469 0052 032B     		cmp	r3, #3
+ 470 0054 DED1     		bne	.L94
+ 471 0056 0CF00F03 		and	r3, ip, #15
+ 472 005a 03EB8303 		add	r3, r3, r3, lsl #2
+ 473 005e 1206     		lsls	r2, r2, #24
+ 474 0060 00EB8303 		add	r3, r0, r3, lsl #2
+ 475 0064 55D4     		bmi	.L147
+ 476 0066 D3F84431 		ldr	r3, [r3, #324]
+ 477 006a 002B     		cmp	r3, #0
+ 478 006c D2D0     		beq	.L94
+ 479 006e 0CF07F03 		and	r3, ip, #127
+ 480 0072 1425     		movs	r5, #20
+ 481 0074 05FB0305 		mla	r5, r5, r3, r0
+ 482 0078 05F5A075 		add	r5, r5, #320
+ 483              	.L112:
+ 484 007c 33B1     		cbz	r3, .L143
+ 485 007e 6146     		mov	r1, ip
+ 486 0080 2046     		mov	r0, r4
+ 487 0082 FFF7FEFF 		bl	USBD_LL_IsStallEP
+ 488 0086 0028     		cmp	r0, #0
+ 489 0088 4FD0     		beq	.L115
+ 490 008a 0123     		movs	r3, #1
+ 491              	.L143:
+ 492 008c 2B60     		str	r3, [r5]
+ 493              	.L114:
+ 494 008e 0222     		movs	r2, #2
+ 495 0090 2946     		mov	r1, r5
+ 496 0092 2046     		mov	r0, r4
+ 497 0094 FFF7FEFF 		bl	USBD_CtlSendData
+ 498 0098 C4E7     		b	.L95
+ 499              	.L97:
+ 500 009a 90F87432 		ldrb	r3, [r0, #628]	@ zero_extendqisi2
+ 501 009e 022B     		cmp	r3, #2
+ 502 00a0 1DD0     		beq	.L103
+ 503 00a2 032B     		cmp	r3, #3
+ 504 00a4 B6D1     		bne	.L94
+ 505 00a6 4B88     		ldrh	r3, [r1, #2]
+ 506 00a8 2BB9     		cbnz	r3, .L102
+ 507 00aa 1CF07F0F 		tst	ip, #127
+ 508 00ae 02D0     		beq	.L102
+ 509 00b0 CB88     		ldrh	r3, [r1, #6]
+ 510 00b2 002B     		cmp	r3, #0
+ 511 00b4 3BD0     		beq	.L148
+ 512              	.L102:
+ 513 00b6 2046     		mov	r0, r4
+ 514 00b8 FFF7FEFF 		bl	USBD_CtlSendStatus
+ 515 00bc B2E7     		b	.L95
+ 516              	.L96:
+ 517 00be 90F87432 		ldrb	r3, [r0, #628]	@ zero_extendqisi2
+ 518 00c2 022B     		cmp	r3, #2
+ARM GAS  /tmp/ccoNs3Up.s 			page 10
+
+
+ 519 00c4 0BD0     		beq	.L103
+ 520 00c6 032B     		cmp	r3, #3
+ 521 00c8 A4D1     		bne	.L94
+ 522 00ca 4B88     		ldrh	r3, [r1, #2]
+ 523 00cc 002B     		cmp	r3, #0
+ 524 00ce A9D1     		bne	.L95
+ 525 00d0 1CF07F0F 		tst	ip, #127
+ 526 00d4 EFD0     		beq	.L102
+ 527 00d6 6146     		mov	r1, ip
+ 528 00d8 FFF7FEFF 		bl	USBD_LL_ClearStallEP
+ 529 00dc EBE7     		b	.L102
+ 530              	.L103:
+ 531 00de 1CF07F0F 		tst	ip, #127
+ 532 00e2 97D0     		beq	.L94
+ 533 00e4 6146     		mov	r1, ip
+ 534 00e6 FFF7FEFF 		bl	USBD_LL_StallEP
+ 535 00ea 8021     		movs	r1, #128
+ 536 00ec 2046     		mov	r0, r4
+ 537 00ee FFF7FEFF 		bl	USBD_LL_StallEP
+ 538 00f2 97E7     		b	.L95
+ 539              	.L105:
+ 540 00f4 1CF07F0F 		tst	ip, #127
+ 541 00f8 8CD1     		bne	.L94
+ 542 00fa 1106     		lsls	r1, r2, #24
+ 543 00fc 4CBF     		ite	mi
+ 544 00fe 00F11401 		addmi	r1, r0, #20
+ 545 0102 00F5A071 		addpl	r1, r0, #320
+ 546 0106 0023     		movs	r3, #0
+ 547 0108 0B60     		str	r3, [r1]
+ 548 010a 0222     		movs	r2, #2
+ 549 010c FFF7FEFF 		bl	USBD_CtlSendData
+ 550 0110 88E7     		b	.L95
+ 551              	.L147:
+ 552 0112 9B69     		ldr	r3, [r3, #24]
+ 553 0114 002B     		cmp	r3, #0
+ 554 0116 3FF47DAF 		beq	.L94
+ 555 011a 0CF07F03 		and	r3, ip, #127
+ 556 011e 5D1C     		adds	r5, r3, #1
+ 557 0120 05EB8505 		add	r5, r5, r5, lsl #2
+ 558 0124 00EB8505 		add	r5, r0, r5, lsl #2
+ 559 0128 A8E7     		b	.L112
+ 560              	.L115:
+ 561 012a 2860     		str	r0, [r5]
+ 562 012c AFE7     		b	.L114
+ 563              	.L148:
+ 564 012e 6146     		mov	r1, ip
+ 565 0130 FFF7FEFF 		bl	USBD_LL_StallEP
+ 566 0134 BFE7     		b	.L102
+ 568 0136 00BF     		.section	.text.USBD_ParseSetupRequest,"ax",%progbits
+ 569              		.align	1
+ 570              		.p2align 2,,3
+ 571              		.global	USBD_ParseSetupRequest
+ 572              		.syntax unified
+ 573              		.thumb
+ 574              		.thumb_func
+ 575              		.fpu fpv4-sp-d16
+ 577              	USBD_ParseSetupRequest:
+ARM GAS  /tmp/ccoNs3Up.s 			page 11
+
+
+ 578              		@ args = 0, pretend = 0, frame = 0
+ 579              		@ frame_needed = 0, uses_anonymous_args = 0
+ 580              		@ link register save eliminated.
+ 581 0000 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 582 0002 0370     		strb	r3, [r0]
+ 583 0004 4B78     		ldrb	r3, [r1, #1]	@ zero_extendqisi2
+ 584 0006 4370     		strb	r3, [r0, #1]
+ 585 0008 CA78     		ldrb	r2, [r1, #3]	@ zero_extendqisi2
+ 586 000a 8B78     		ldrb	r3, [r1, #2]	@ zero_extendqisi2
+ 587 000c 03EB0223 		add	r3, r3, r2, lsl #8
+ 588 0010 4380     		strh	r3, [r0, #2]	@ movhi
+ 589 0012 4A79     		ldrb	r2, [r1, #5]	@ zero_extendqisi2
+ 590 0014 0B79     		ldrb	r3, [r1, #4]	@ zero_extendqisi2
+ 591 0016 03EB0223 		add	r3, r3, r2, lsl #8
+ 592 001a 8380     		strh	r3, [r0, #4]	@ movhi
+ 593 001c CA79     		ldrb	r2, [r1, #7]	@ zero_extendqisi2
+ 594 001e 8B79     		ldrb	r3, [r1, #6]	@ zero_extendqisi2
+ 595 0020 03EB0223 		add	r3, r3, r2, lsl #8
+ 596 0024 C380     		strh	r3, [r0, #6]	@ movhi
+ 597 0026 7047     		bx	lr
+ 599              		.section	.text.USBD_CtlError,"ax",%progbits
+ 600              		.align	1
+ 601              		.p2align 2,,3
+ 602              		.global	USBD_CtlError
+ 603              		.syntax unified
+ 604              		.thumb
+ 605              		.thumb_func
+ 606              		.fpu fpv4-sp-d16
+ 608              	USBD_CtlError:
+ 609              		@ args = 0, pretend = 0, frame = 0
+ 610              		@ frame_needed = 0, uses_anonymous_args = 0
+ 611 0000 10B5     		push	{r4, lr}
+ 612 0002 8021     		movs	r1, #128
+ 613 0004 0446     		mov	r4, r0
+ 614 0006 FFF7FEFF 		bl	USBD_LL_StallEP
+ 615 000a 2046     		mov	r0, r4
+ 616 000c 0021     		movs	r1, #0
+ 617 000e BDE81040 		pop	{r4, lr}
+ 618 0012 FFF7FEBF 		b	USBD_LL_StallEP
+ 620 0016 00BF     		.section	.text.USBD_GetString,"ax",%progbits
+ 621              		.align	1
+ 622              		.p2align 2,,3
+ 623              		.global	USBD_GetString
+ 624              		.syntax unified
+ 625              		.thumb
+ 626              		.thumb_func
+ 627              		.fpu fpv4-sp-d16
+ 629              	USBD_GetString:
+ 630              		@ args = 0, pretend = 0, frame = 0
+ 631              		@ frame_needed = 0, uses_anonymous_args = 0
+ 632              		@ link register save eliminated.
+ 633 0000 18B3     		cbz	r0, .L165
+ 634 0002 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 635 0004 30B4     		push	{r4, r5}
+ 636 0006 0BB3     		cbz	r3, .L158
+ 637 0008 0446     		mov	r4, r0
+ 638 000a C0F1010C 		rsb	ip, r0, #1
+ARM GAS  /tmp/ccoNs3Up.s 			page 12
+
+
+ 639              	.L155:
+ 640 000e 04EB0C03 		add	r3, r4, ip
+ 641 0012 14F8015F 		ldrb	r5, [r4, #1]!	@ zero_extendqisi2
+ 642 0016 DBB2     		uxtb	r3, r3
+ 643 0018 002D     		cmp	r5, #0
+ 644 001a F8D1     		bne	.L155
+ 645 001c 0133     		adds	r3, r3, #1
+ 646 001e 5B00     		lsls	r3, r3, #1
+ 647 0020 DCB2     		uxtb	r4, r3
+ 648              	.L154:
+ 649 0022 1380     		strh	r3, [r2]	@ movhi
+ 650 0024 0323     		movs	r3, #3
+ 651 0026 0C70     		strb	r4, [r1]
+ 652 0028 4B70     		strb	r3, [r1, #1]
+ 653 002a 0478     		ldrb	r4, [r0]	@ zero_extendqisi2
+ 654 002c 5CB1     		cbz	r4, .L152
+ 655 002e 0223     		movs	r3, #2
+ 656 0030 0025     		movs	r5, #0
+ 657              	.L157:
+ 658 0032 5A1C     		adds	r2, r3, #1
+ 659 0034 D2B2     		uxtb	r2, r2
+ 660 0036 CC54     		strb	r4, [r1, r3]
+ 661 0038 8D54     		strb	r5, [r1, r2]
+ 662 003a 10F8014F 		ldrb	r4, [r0, #1]!	@ zero_extendqisi2
+ 663 003e 0233     		adds	r3, r3, #2
+ 664 0040 DBB2     		uxtb	r3, r3
+ 665 0042 002C     		cmp	r4, #0
+ 666 0044 F5D1     		bne	.L157
+ 667              	.L152:
+ 668 0046 30BC     		pop	{r4, r5}
+ 669 0048 7047     		bx	lr
+ 670              	.L165:
+ 671 004a 7047     		bx	lr
+ 672              	.L158:
+ 673 004c 0224     		movs	r4, #2
+ 674 004e 2346     		mov	r3, r4
+ 675 0050 E7E7     		b	.L154
+ 677 0052 00BF     		.section	.bss.cfgidx.0,"aw",%nobits
+ 678              		.set	.LANCHOR0,. + 0
+ 681              	cfgidx.0:
+ 682 0000 00       		.space	1
+ 683              		.ident	"GCC: (15:10.3-2021.07-4) 10.3.1 20210621 (release)"
+ARM GAS  /tmp/ccoNs3Up.s 			page 13
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 usbd_ctlreq.c
+     /tmp/ccoNs3Up.s:16     .text.USBD_StdDevReq:0000000000000000 $t
+     /tmp/ccoNs3Up.s:25     .text.USBD_StdDevReq:0000000000000000 USBD_StdDevReq
+     /tmp/ccoNs3Up.s:69     .text.USBD_StdDevReq:000000000000004c $d
+     /tmp/ccoNs3Up.s:79     .text.USBD_StdDevReq:0000000000000074 $t
+     /tmp/ccoNs3Up.s:170    .text.USBD_StdDevReq:0000000000000140 $d
+     /tmp/ccoNs3Up.s:177    .text.USBD_StdDevReq:000000000000015c $t
+     /tmp/ccoNs3Up.s:235    .text.USBD_StdDevReq:00000000000001e4 $d
+     /tmp/ccoNs3Up.s:241    .text.USBD_StdDevReq:00000000000001ea $t
+     /tmp/ccoNs3Up.s:356    .text.USBD_StdDevReq:00000000000002ec $d
+     /tmp/ccoNs3Up.s:359    .text.USBD_StdItfReq:0000000000000000 $t
+     /tmp/ccoNs3Up.s:367    .text.USBD_StdItfReq:0000000000000000 USBD_StdItfReq
+     /tmp/ccoNs3Up.s:419    .text.USBD_StdEPReq:0000000000000000 $t
+     /tmp/ccoNs3Up.s:427    .text.USBD_StdEPReq:0000000000000000 USBD_StdEPReq
+     /tmp/ccoNs3Up.s:569    .text.USBD_ParseSetupRequest:0000000000000000 $t
+     /tmp/ccoNs3Up.s:577    .text.USBD_ParseSetupRequest:0000000000000000 USBD_ParseSetupRequest
+     /tmp/ccoNs3Up.s:600    .text.USBD_CtlError:0000000000000000 $t
+     /tmp/ccoNs3Up.s:608    .text.USBD_CtlError:0000000000000000 USBD_CtlError
+     /tmp/ccoNs3Up.s:621    .text.USBD_GetString:0000000000000000 $t
+     /tmp/ccoNs3Up.s:629    .text.USBD_GetString:0000000000000000 USBD_GetString
+     /tmp/ccoNs3Up.s:681    .bss.cfgidx.0:0000000000000000 cfgidx.0
+     /tmp/ccoNs3Up.s:682    .bss.cfgidx.0:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+USBD_LL_StallEP
+USBD_ClrClassConfig
+USBD_CtlSendData
+USBD_CtlSendStatus
+USBD_LL_SetUSBAddress
+USBD_SetClassConfig
+USBD_LL_IsStallEP
+USBD_LL_ClearStallEP

@@ -1,0 +1,925 @@
+ARM GAS  /tmp/cceiBgD1.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"bsp_audio.c"
+  14              		.text
+  15              		.section	.text.I2S_Config_I2SPR.isra.0,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.arch armv7e-m
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu fpv4-sp-d16
+  24              	I2S_Config_I2SPR.isra.0:
+  25              		@ args = 0, pretend = 0, frame = 0
+  26              		@ frame_needed = 0, uses_anonymous_args = 0
+  27 0000 124B     		ldr	r3, .L10
+  28 0002 0022     		movs	r2, #0
+  29 0004 70B5     		push	{r4, r5, r6, lr}
+  30 0006 9A66     		str	r2, [r3, #104]
+  31 0008 0646     		mov	r6, r0
+  32 000a FFF7FEFF 		bl	HAL_GetTick
+  33 000e 104D     		ldr	r5, .L10+4
+  34 0010 0446     		mov	r4, r0
+  35 0012 04E0     		b	.L2
+  36              	.L3:
+  37 0014 FFF7FEFF 		bl	HAL_GetTick
+  38 0018 031B     		subs	r3, r0, r4
+  39 001a 022B     		cmp	r3, #2
+  40 001c 14D8     		bhi	.L1
+  41              	.L2:
+  42 001e 2B68     		ldr	r3, [r5]
+  43 0020 1A01     		lsls	r2, r3, #4
+  44 0022 F7D4     		bmi	.L3
+  45 0024 0B49     		ldr	r1, .L10+8
+  46 0026 094B     		ldr	r3, .L10
+  47 0028 0E62     		str	r6, [r1, #32]
+  48 002a 0122     		movs	r2, #1
+  49 002c 9A66     		str	r2, [r3, #104]
+  50 002e FFF7FEFF 		bl	HAL_GetTick
+  51 0032 074D     		ldr	r5, .L10+4
+  52 0034 0446     		mov	r4, r0
+  53 0036 04E0     		b	.L4
+  54              	.L6:
+  55 0038 FFF7FEFF 		bl	HAL_GetTick
+  56 003c 001B     		subs	r0, r0, r4
+  57 003e 0228     		cmp	r0, #2
+  58 0040 02D8     		bhi	.L1
+ARM GAS  /tmp/cceiBgD1.s 			page 2
+
+
+  59              	.L4:
+  60 0042 2B68     		ldr	r3, [r5]
+  61 0044 1B01     		lsls	r3, r3, #4
+  62 0046 F7D5     		bpl	.L6
+  63              	.L1:
+  64 0048 70BD     		pop	{r4, r5, r6, pc}
+  65              	.L11:
+  66 004a 00BF     		.align	2
+  67              	.L10:
+  68 004c 00004742 		.word	1111949312
+  69 0050 00380240 		.word	1073887232
+  70 0054 00380040 		.word	1073756160
+  72              		.section	.text.BSP_AUDIO_OUT_Play,"ax",%progbits
+  73              		.align	1
+  74              		.p2align 2,,3
+  75              		.global	BSP_AUDIO_OUT_Play
+  76              		.syntax unified
+  77              		.thumb
+  78              		.thumb_func
+  79              		.fpu fpv4-sp-d16
+  81              	BSP_AUDIO_OUT_Play:
+  82              		@ args = 0, pretend = 0, frame = 0
+  83              		@ frame_needed = 0, uses_anonymous_args = 0
+  84 0000 38B5     		push	{r3, r4, r5, lr}
+  85 0002 0122     		movs	r2, #1
+  86 0004 0446     		mov	r4, r0
+  87 0006 0D46     		mov	r5, r1
+  88 0008 0748     		ldr	r0, .L14
+  89 000a 4FF48071 		mov	r1, #256
+  90 000e FFF7FEFF 		bl	HAL_GPIO_WritePin
+  91 0012 C5F38F02 		ubfx	r2, r5, #2, #16
+  92 0016 2146     		mov	r1, r4
+  93 0018 0448     		ldr	r0, .L14+4
+  94 001a FFF7FEFF 		bl	HAL_I2S_Transmit_DMA
+  95 001e 0038     		subs	r0, r0, #0
+  96 0020 18BF     		it	ne
+  97 0022 0120     		movne	r0, #1
+  98 0024 38BD     		pop	{r3, r4, r5, pc}
+  99              	.L15:
+ 100 0026 00BF     		.align	2
+ 101              	.L14:
+ 102 0028 00040240 		.word	1073873920
+ 103 002c 00000000 		.word	.LANCHOR0
+ 105              		.section	.text.BSP_AUDIO_OUT_ChangeBuffer,"ax",%progbits
+ 106              		.align	1
+ 107              		.p2align 2,,3
+ 108              		.global	BSP_AUDIO_OUT_ChangeBuffer
+ 109              		.syntax unified
+ 110              		.thumb
+ 111              		.thumb_func
+ 112              		.fpu fpv4-sp-d16
+ 114              	BSP_AUDIO_OUT_ChangeBuffer:
+ 115              		@ args = 0, pretend = 0, frame = 0
+ 116              		@ frame_needed = 0, uses_anonymous_args = 0
+ 117              		@ link register save eliminated.
+ 118 0000 0346     		mov	r3, r0
+ 119 0002 8A08     		lsrs	r2, r1, #2
+ARM GAS  /tmp/cceiBgD1.s 			page 3
+
+
+ 120 0004 0148     		ldr	r0, .L17
+ 121 0006 1946     		mov	r1, r3
+ 122 0008 FFF7FEBF 		b	HAL_I2S_Transmit_DMA
+ 123              	.L18:
+ 124              		.align	2
+ 125              	.L17:
+ 126 000c 00000000 		.word	.LANCHOR0
+ 128              		.section	.text.BSP_AUDIO_OUT_Pause,"ax",%progbits
+ 129              		.align	1
+ 130              		.p2align 2,,3
+ 131              		.global	BSP_AUDIO_OUT_Pause
+ 132              		.syntax unified
+ 133              		.thumb
+ 134              		.thumb_func
+ 135              		.fpu fpv4-sp-d16
+ 137              	BSP_AUDIO_OUT_Pause:
+ 138              		@ args = 0, pretend = 0, frame = 0
+ 139              		@ frame_needed = 0, uses_anonymous_args = 0
+ 140 0000 10B5     		push	{r4, lr}
+ 141 0002 0748     		ldr	r0, .L21
+ 142 0004 FFF7FEFF 		bl	HAL_I2S_DMAPause
+ 143 0008 0022     		movs	r2, #0
+ 144 000a 0446     		mov	r4, r0
+ 145 000c 4FF48071 		mov	r1, #256
+ 146 0010 0448     		ldr	r0, .L21+4
+ 147 0012 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 148 0016 201E     		subs	r0, r4, #0
+ 149 0018 18BF     		it	ne
+ 150 001a 0120     		movne	r0, #1
+ 151 001c 10BD     		pop	{r4, pc}
+ 152              	.L22:
+ 153 001e 00BF     		.align	2
+ 154              	.L21:
+ 155 0020 00000000 		.word	.LANCHOR0
+ 156 0024 00040240 		.word	1073873920
+ 158              		.section	.text.BSP_AUDIO_OUT_Resume,"ax",%progbits
+ 159              		.align	1
+ 160              		.p2align 2,,3
+ 161              		.global	BSP_AUDIO_OUT_Resume
+ 162              		.syntax unified
+ 163              		.thumb
+ 164              		.thumb_func
+ 165              		.fpu fpv4-sp-d16
+ 167              	BSP_AUDIO_OUT_Resume:
+ 168              		@ args = 0, pretend = 0, frame = 0
+ 169              		@ frame_needed = 0, uses_anonymous_args = 0
+ 170 0000 10B5     		push	{r4, lr}
+ 171 0002 0748     		ldr	r0, .L25
+ 172 0004 FFF7FEFF 		bl	HAL_I2S_DMAResume
+ 173 0008 0122     		movs	r2, #1
+ 174 000a 0446     		mov	r4, r0
+ 175 000c 4FF48071 		mov	r1, #256
+ 176 0010 0448     		ldr	r0, .L25+4
+ 177 0012 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 178 0016 201E     		subs	r0, r4, #0
+ 179 0018 18BF     		it	ne
+ 180 001a 0120     		movne	r0, #1
+ARM GAS  /tmp/cceiBgD1.s 			page 4
+
+
+ 181 001c 10BD     		pop	{r4, pc}
+ 182              	.L26:
+ 183 001e 00BF     		.align	2
+ 184              	.L25:
+ 185 0020 00000000 		.word	.LANCHOR0
+ 186 0024 00040240 		.word	1073873920
+ 188              		.section	.text.BSP_AUDIO_OUT_Stop,"ax",%progbits
+ 189              		.align	1
+ 190              		.p2align 2,,3
+ 191              		.global	BSP_AUDIO_OUT_Stop
+ 192              		.syntax unified
+ 193              		.thumb
+ 194              		.thumb_func
+ 195              		.fpu fpv4-sp-d16
+ 197              	BSP_AUDIO_OUT_Stop:
+ 198              		@ args = 0, pretend = 0, frame = 0
+ 199              		@ frame_needed = 0, uses_anonymous_args = 0
+ 200 0000 10B5     		push	{r4, lr}
+ 201 0002 0748     		ldr	r0, .L29
+ 202 0004 FFF7FEFF 		bl	HAL_I2S_DMAStop
+ 203 0008 0022     		movs	r2, #0
+ 204 000a 0446     		mov	r4, r0
+ 205 000c 4FF48071 		mov	r1, #256
+ 206 0010 0448     		ldr	r0, .L29+4
+ 207 0012 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 208 0016 201E     		subs	r0, r4, #0
+ 209 0018 18BF     		it	ne
+ 210 001a 0120     		movne	r0, #1
+ 211 001c 10BD     		pop	{r4, pc}
+ 212              	.L30:
+ 213 001e 00BF     		.align	2
+ 214              	.L29:
+ 215 0020 00000000 		.word	.LANCHOR0
+ 216 0024 00040240 		.word	1073873920
+ 218              		.section	.text.BSP_AUDIO_OUT_SetVolume,"ax",%progbits
+ 219              		.align	1
+ 220              		.p2align 2,,3
+ 221              		.global	BSP_AUDIO_OUT_SetVolume
+ 222              		.syntax unified
+ 223              		.thumb
+ 224              		.thumb_func
+ 225              		.fpu fpv4-sp-d16
+ 227              	BSP_AUDIO_OUT_SetVolume:
+ 228              		@ args = 0, pretend = 0, frame = 0
+ 229              		@ frame_needed = 0, uses_anonymous_args = 0
+ 230              		@ link register save eliminated.
+ 231 0000 0020     		movs	r0, #0
+ 232 0002 7047     		bx	lr
+ 234              		.section	.text.BSP_AUDIO_OUT_SetMute,"ax",%progbits
+ 235              		.align	1
+ 236              		.p2align 2,,3
+ 237              		.global	BSP_AUDIO_OUT_SetMute
+ 238              		.syntax unified
+ 239              		.thumb
+ 240              		.thumb_func
+ 241              		.fpu fpv4-sp-d16
+ 243              	BSP_AUDIO_OUT_SetMute:
+ARM GAS  /tmp/cceiBgD1.s 			page 5
+
+
+ 244              		@ args = 0, pretend = 0, frame = 0
+ 245              		@ frame_needed = 0, uses_anonymous_args = 0
+ 246 0000 08B5     		push	{r3, lr}
+ 247 0002 38B1     		cbz	r0, .L33
+ 248 0004 0748     		ldr	r0, .L36
+ 249 0006 0022     		movs	r2, #0
+ 250 0008 4FF48071 		mov	r1, #256
+ 251 000c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 252 0010 0020     		movs	r0, #0
+ 253 0012 08BD     		pop	{r3, pc}
+ 254              	.L33:
+ 255 0014 0348     		ldr	r0, .L36
+ 256 0016 0122     		movs	r2, #1
+ 257 0018 4FF48071 		mov	r1, #256
+ 258 001c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 259 0020 0020     		movs	r0, #0
+ 260 0022 08BD     		pop	{r3, pc}
+ 261              	.L37:
+ 262              		.align	2
+ 263              	.L36:
+ 264 0024 00040240 		.word	1073873920
+ 266              		.section	.text.BSP_AUDIO_OUT_ChangeAudioConfig,"ax",%progbits
+ 267              		.align	1
+ 268              		.p2align 2,,3
+ 269              		.global	BSP_AUDIO_OUT_ChangeAudioConfig
+ 270              		.syntax unified
+ 271              		.thumb
+ 272              		.thumb_func
+ 273              		.fpu fpv4-sp-d16
+ 275              	BSP_AUDIO_OUT_ChangeAudioConfig:
+ 276              		@ args = 0, pretend = 0, frame = 0
+ 277              		@ frame_needed = 0, uses_anonymous_args = 0
+ 278 0000 38B5     		push	{r3, r4, r5, lr}
+ 279 0002 10F00104 		ands	r4, r0, #1
+ 280 0006 0BD0     		beq	.L39
+ 281 0008 0A4C     		ldr	r4, .L41
+ 282 000a A06B     		ldr	r0, [r4, #56]
+ 283 000c FFF7FEFF 		bl	HAL_DMA_DeInit
+ 284 0010 A06B     		ldr	r0, [r4, #56]
+ 285 0012 4FF48073 		mov	r3, #256
+ 286 0016 C361     		str	r3, [r0, #28]
+ 287 0018 BDE83840 		pop	{r3, r4, r5, lr}
+ 288 001c FFF7FEBF 		b	HAL_DMA_Init
+ 289              	.L39:
+ 290 0020 044D     		ldr	r5, .L41
+ 291 0022 A86B     		ldr	r0, [r5, #56]
+ 292 0024 FFF7FEFF 		bl	HAL_DMA_DeInit
+ 293 0028 A86B     		ldr	r0, [r5, #56]
+ 294 002a C461     		str	r4, [r0, #28]
+ 295 002c BDE83840 		pop	{r3, r4, r5, lr}
+ 296 0030 FFF7FEBF 		b	HAL_DMA_Init
+ 297              	.L42:
+ 298              		.align	2
+ 299              	.L41:
+ 300 0034 00000000 		.word	.LANCHOR0
+ 302              		.section	.text.BSP_AUDIO_OUT_GetRemainingDataSize,"ax",%progbits
+ 303              		.align	1
+ARM GAS  /tmp/cceiBgD1.s 			page 6
+
+
+ 304              		.p2align 2,,3
+ 305              		.global	BSP_AUDIO_OUT_GetRemainingDataSize
+ 306              		.syntax unified
+ 307              		.thumb
+ 308              		.thumb_func
+ 309              		.fpu fpv4-sp-d16
+ 311              	BSP_AUDIO_OUT_GetRemainingDataSize:
+ 312              		@ args = 0, pretend = 0, frame = 0
+ 313              		@ frame_needed = 0, uses_anonymous_args = 0
+ 314              		@ link register save eliminated.
+ 315 0000 014B     		ldr	r3, .L44
+ 316 0002 586F     		ldr	r0, [r3, #116]
+ 317 0004 80B2     		uxth	r0, r0
+ 318 0006 7047     		bx	lr
+ 319              	.L45:
+ 320              		.align	2
+ 321              	.L44:
+ 322 0008 00600240 		.word	1073897472
+ 324              		.section	.text.BSP_AUDIO_OUT_TransferComplete_CallBack,"ax",%progbits
+ 325              		.align	1
+ 326              		.p2align 2,,3
+ 327              		.weak	BSP_AUDIO_OUT_TransferComplete_CallBack
+ 328              		.syntax unified
+ 329              		.thumb
+ 330              		.thumb_func
+ 331              		.fpu fpv4-sp-d16
+ 333              	BSP_AUDIO_OUT_TransferComplete_CallBack:
+ 334              		@ args = 0, pretend = 0, frame = 0
+ 335              		@ frame_needed = 0, uses_anonymous_args = 0
+ 336              		@ link register save eliminated.
+ 337 0000 7047     		bx	lr
+ 339 0002 00BF     		.section	.text.HAL_I2S_TxCpltCallback,"ax",%progbits
+ 340              		.align	1
+ 341              		.p2align 2,,3
+ 342              		.global	HAL_I2S_TxCpltCallback
+ 343              		.syntax unified
+ 344              		.thumb
+ 345              		.thumb_func
+ 346              		.fpu fpv4-sp-d16
+ 348              	HAL_I2S_TxCpltCallback:
+ 349              		@ args = 0, pretend = 0, frame = 0
+ 350              		@ frame_needed = 0, uses_anonymous_args = 0
+ 351 0000 08B5     		push	{r3, lr}
+ 352 0002 FFF7FEFF 		bl	BSP_AUDIO_OUT_TransferComplete_CallBack
+ 353 0006 08BD     		pop	{r3, pc}
+ 355              		.section	.text.BSP_AUDIO_OUT_HalfTransfer_CallBack,"ax",%progbits
+ 356              		.align	1
+ 357              		.p2align 2,,3
+ 358              		.weak	BSP_AUDIO_OUT_HalfTransfer_CallBack
+ 359              		.syntax unified
+ 360              		.thumb
+ 361              		.thumb_func
+ 362              		.fpu fpv4-sp-d16
+ 364              	BSP_AUDIO_OUT_HalfTransfer_CallBack:
+ 365              		@ args = 0, pretend = 0, frame = 0
+ 366              		@ frame_needed = 0, uses_anonymous_args = 0
+ 367              		@ link register save eliminated.
+ARM GAS  /tmp/cceiBgD1.s 			page 7
+
+
+ 368 0000 7047     		bx	lr
+ 370 0002 00BF     		.section	.text.HAL_I2S_TxHalfCpltCallback,"ax",%progbits
+ 371              		.align	1
+ 372              		.p2align 2,,3
+ 373              		.global	HAL_I2S_TxHalfCpltCallback
+ 374              		.syntax unified
+ 375              		.thumb
+ 376              		.thumb_func
+ 377              		.fpu fpv4-sp-d16
+ 379              	HAL_I2S_TxHalfCpltCallback:
+ 380              		@ args = 0, pretend = 0, frame = 0
+ 381              		@ frame_needed = 0, uses_anonymous_args = 0
+ 382 0000 08B5     		push	{r3, lr}
+ 383 0002 FFF7FEFF 		bl	BSP_AUDIO_OUT_HalfTransfer_CallBack
+ 384 0006 08BD     		pop	{r3, pc}
+ 386              		.section	.text.BSP_AUDIO_OUT_Error_CallBack,"ax",%progbits
+ 387              		.align	1
+ 388              		.p2align 2,,3
+ 389              		.weak	BSP_AUDIO_OUT_Error_CallBack
+ 390              		.syntax unified
+ 391              		.thumb
+ 392              		.thumb_func
+ 393              		.fpu fpv4-sp-d16
+ 395              	BSP_AUDIO_OUT_Error_CallBack:
+ 396              		@ args = 0, pretend = 0, frame = 0
+ 397              		@ frame_needed = 0, uses_anonymous_args = 0
+ 398              		@ link register save eliminated.
+ 399 0000 7047     		bx	lr
+ 401 0002 00BF     		.section	.text.HAL_I2S_ErrorCallback,"ax",%progbits
+ 402              		.align	1
+ 403              		.p2align 2,,3
+ 404              		.global	HAL_I2S_ErrorCallback
+ 405              		.syntax unified
+ 406              		.thumb
+ 407              		.thumb_func
+ 408              		.fpu fpv4-sp-d16
+ 410              	HAL_I2S_ErrorCallback:
+ 411              		@ args = 0, pretend = 0, frame = 0
+ 412              		@ frame_needed = 0, uses_anonymous_args = 0
+ 413 0000 08B5     		push	{r3, lr}
+ 414 0002 FFF7FEFF 		bl	BSP_AUDIO_OUT_Error_CallBack
+ 415 0006 08BD     		pop	{r3, pc}
+ 417              		.section	.text.BSP_AUDIO_OUT_MspInit,"ax",%progbits
+ 418              		.align	1
+ 419              		.p2align 2,,3
+ 420              		.weak	BSP_AUDIO_OUT_MspInit
+ 421              		.syntax unified
+ 422              		.thumb
+ 423              		.thumb_func
+ 424              		.fpu fpv4-sp-d16
+ 426              	BSP_AUDIO_OUT_MspInit:
+ 427              		@ args = 0, pretend = 0, frame = 56
+ 428              		@ frame_needed = 0, uses_anonymous_args = 0
+ 429 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 430 0002 8FB0     		sub	sp, sp, #60
+ 431 0004 3A4C     		ldr	r4, .L59
+ 432 0006 0025     		movs	r5, #0
+ARM GAS  /tmp/cceiBgD1.s 			page 8
+
+
+ 433 0008 0095     		str	r5, [sp]
+ 434 000a 0695     		str	r5, [sp, #24]
+ 435 000c 236C     		ldr	r3, [r4, #64]
+ 436 000e 43F48043 		orr	r3, r3, #16384
+ 437 0012 2364     		str	r3, [r4, #64]
+ 438 0014 236C     		ldr	r3, [r4, #64]
+ 439 0016 03F48043 		and	r3, r3, #16384
+ 440 001a 0093     		str	r3, [sp]
+ 441 001c 009B     		ldr	r3, [sp]
+ 442 001e 0195     		str	r5, [sp, #4]
+ 443 0020 236B     		ldr	r3, [r4, #48]
+ 444 0022 0222     		movs	r2, #2
+ 445 0024 1343     		orrs	r3, r3, r2
+ 446 0026 2363     		str	r3, [r4, #48]
+ 447 0028 236B     		ldr	r3, [r4, #48]
+ 448 002a 0592     		str	r2, [sp, #20]
+ 449 002c 1340     		ands	r3, r3, r2
+ 450 002e 0193     		str	r3, [sp, #4]
+ 451 0030 4FF41443 		mov	r3, #37888
+ 452 0034 0199     		ldr	r1, [sp, #4]
+ 453 0036 0493     		str	r3, [sp, #16]
+ 454 0038 0646     		mov	r6, r0
+ 455 003a 0523     		movs	r3, #5
+ 456 003c 2D48     		ldr	r0, .L59+4
+ 457 003e 04A9     		add	r1, sp, #16
+ 458 0040 CDE90723 		strd	r2, r3, [sp, #28]
+ 459 0044 FFF7FEFF 		bl	HAL_GPIO_Init
+ 460 0048 0295     		str	r5, [sp, #8]
+ 461 004a 236B     		ldr	r3, [r4, #48]
+ 462 004c 2948     		ldr	r0, .L59+4
+ 463 004e 43F00203 		orr	r3, r3, #2
+ 464 0052 2363     		str	r3, [r4, #48]
+ 465 0054 236B     		ldr	r3, [r4, #48]
+ 466 0056 0B95     		str	r5, [sp, #44]
+ 467 0058 03F00203 		and	r3, r3, #2
+ 468 005c 0293     		str	r3, [sp, #8]
+ 469 005e 029B     		ldr	r3, [sp, #8]
+ 470 0060 09A9     		add	r1, sp, #36
+ 471 0062 0123     		movs	r3, #1
+ 472 0064 4FF48077 		mov	r7, #256
+ 473 0068 0A93     		str	r3, [sp, #40]
+ 474 006a CDE90C55 		strd	r5, r5, [sp, #48]
+ 475 006e 0997     		str	r7, [sp, #36]
+ 476 0070 FFF7FEFF 		bl	HAL_GPIO_Init
+ 477 0074 0395     		str	r5, [sp, #12]
+ 478 0076 236B     		ldr	r3, [r4, #48]
+ 479 0078 3268     		ldr	r2, [r6]
+ 480 007a 43F40013 		orr	r3, r3, #2097152
+ 481 007e 2363     		str	r3, [r4, #48]
+ 482 0080 236B     		ldr	r3, [r4, #48]
+ 483 0082 03F40013 		and	r3, r3, #2097152
+ 484 0086 0393     		str	r3, [sp, #12]
+ 485 0088 1B4B     		ldr	r3, .L59+8
+ 486 008a 0399     		ldr	r1, [sp, #12]
+ 487 008c 9A42     		cmp	r2, r3
+ 488 008e 09D0     		beq	.L58
+ 489              	.L56:
+ARM GAS  /tmp/cceiBgD1.s 			page 9
+
+
+ 490 0090 0022     		movs	r2, #0
+ 491 0092 0521     		movs	r1, #5
+ 492 0094 0F20     		movs	r0, #15
+ 493 0096 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 494 009a 0F20     		movs	r0, #15
+ 495 009c FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 496 00a0 0FB0     		add	sp, sp, #60
+ 497              		@ sp needed
+ 498 00a2 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 499              	.L58:
+ 500 00a4 154C     		ldr	r4, .L59+12
+ 501 00a6 B463     		str	r4, [r6, #56]
+ 502 00a8 03F50A33 		add	r3, r3, #141312
+ 503 00ac 7033     		adds	r3, r3, #112
+ 504 00ae 2360     		str	r3, [r4]
+ 505 00b0 4023     		movs	r3, #64
+ 506 00b2 C4E90153 		strd	r5, r3, [r4, #4]
+ 507 00b6 4FF48063 		mov	r3, #1024
+ 508 00ba C4E90353 		strd	r5, r3, [r4, #12]
+ 509 00be 4FF40062 		mov	r2, #2048
+ 510 00c2 4FF40053 		mov	r3, #8192
+ 511 00c6 C4E90523 		strd	r2, r3, [r4, #20]
+ 512 00ca 4FF40033 		mov	r3, #131072
+ 513 00ce C4E90773 		strd	r7, r3, [r4, #28]
+ 514 00d2 0422     		movs	r2, #4
+ 515 00d4 0323     		movs	r3, #3
+ 516 00d6 2046     		mov	r0, r4
+ 517 00d8 C4E90923 		strd	r2, r3, [r4, #36]
+ 518 00dc C4E90B55 		strd	r5, r5, [r4, #44]
+ 519 00e0 A663     		str	r6, [r4, #56]
+ 520 00e2 FFF7FEFF 		bl	HAL_DMA_DeInit
+ 521 00e6 2046     		mov	r0, r4
+ 522 00e8 FFF7FEFF 		bl	HAL_DMA_Init
+ 523 00ec D0E7     		b	.L56
+ 524              	.L60:
+ 525 00ee 00BF     		.align	2
+ 526              	.L59:
+ 527 00f0 00380240 		.word	1073887232
+ 528 00f4 00040240 		.word	1073873920
+ 529 00f8 00380040 		.word	1073756160
+ 530 00fc 00000000 		.word	.LANCHOR1
+ 532              		.section	.text.BSP_AUDIO_OUT_MspDeInit,"ax",%progbits
+ 533              		.align	1
+ 534              		.p2align 2,,3
+ 535              		.weak	BSP_AUDIO_OUT_MspDeInit
+ 536              		.syntax unified
+ 537              		.thumb
+ 538              		.thumb_func
+ 539              		.fpu fpv4-sp-d16
+ 541              	BSP_AUDIO_OUT_MspDeInit:
+ 542              		@ args = 0, pretend = 0, frame = 0
+ 543              		@ frame_needed = 0, uses_anonymous_args = 0
+ 544 0000 0B4A     		ldr	r2, .L63
+ 545 0002 0C48     		ldr	r0, .L63+4
+ 546 0004 08B5     		push	{r3, lr}
+ 547 0006 136C     		ldr	r3, [r2, #64]
+ 548 0008 23F48043 		bic	r3, r3, #16384
+ARM GAS  /tmp/cceiBgD1.s 			page 10
+
+
+ 549 000c 1364     		str	r3, [r2, #64]
+ 550 000e 4FF41441 		mov	r1, #37888
+ 551 0012 FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 552 0016 0748     		ldr	r0, .L63+4
+ 553 0018 4FF48071 		mov	r1, #256
+ 554 001c 0022     		movs	r2, #0
+ 555 001e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 556 0022 BDE80840 		pop	{r3, lr}
+ 557 0026 0348     		ldr	r0, .L63+4
+ 558 0028 4FF48071 		mov	r1, #256
+ 559 002c FFF7FEBF 		b	HAL_GPIO_DeInit
+ 560              	.L64:
+ 561              		.align	2
+ 562              	.L63:
+ 563 0030 00380240 		.word	1073887232
+ 564 0034 00040240 		.word	1073873920
+ 566              		.section	.text.BSP_AUDIO_OUT_DeInit,"ax",%progbits
+ 567              		.align	1
+ 568              		.p2align 2,,3
+ 569              		.global	BSP_AUDIO_OUT_DeInit
+ 570              		.syntax unified
+ 571              		.thumb
+ 572              		.thumb_func
+ 573              		.fpu fpv4-sp-d16
+ 575              	BSP_AUDIO_OUT_DeInit:
+ 576              		@ args = 0, pretend = 0, frame = 0
+ 577              		@ frame_needed = 0, uses_anonymous_args = 0
+ 578 0000 074B     		ldr	r3, .L67
+ 579 0002 10B5     		push	{r4, lr}
+ 580 0004 DA69     		ldr	r2, [r3, #28]
+ 581 0006 074C     		ldr	r4, .L67+4
+ 582 0008 22F48062 		bic	r2, r2, #1024
+ 583 000c 2360     		str	r3, [r4]
+ 584 000e 2046     		mov	r0, r4
+ 585 0010 DA61     		str	r2, [r3, #28]
+ 586 0012 FFF7FEFF 		bl	HAL_I2S_DeInit
+ 587 0016 0021     		movs	r1, #0
+ 588 0018 2046     		mov	r0, r4
+ 589 001a FFF7FEFF 		bl	BSP_AUDIO_OUT_MspDeInit
+ 590 001e 10BD     		pop	{r4, pc}
+ 591              	.L68:
+ 592              		.align	2
+ 593              	.L67:
+ 594 0020 00380040 		.word	1073756160
+ 595 0024 00000000 		.word	.LANCHOR0
+ 597              		.section	.text.BSP_AUDIO_OUT_ClockConfig,"ax",%progbits
+ 598              		.align	1
+ 599              		.p2align 2,,3
+ 600              		.weak	BSP_AUDIO_OUT_ClockConfig
+ 601              		.syntax unified
+ 602              		.thumb
+ 603              		.thumb_func
+ 604              		.fpu fpv4-sp-d16
+ 606              	BSP_AUDIO_OUT_ClockConfig:
+ 607              		@ args = 0, pretend = 0, frame = 32
+ 608              		@ frame_needed = 0, uses_anonymous_args = 0
+ 609 0000 10B5     		push	{r4, lr}
+ARM GAS  /tmp/cceiBgD1.s 			page 11
+
+
+ 610 0002 4AF64443 		movw	r3, #44100
+ 611 0006 9942     		cmp	r1, r3
+ 612 0008 88B0     		sub	sp, sp, #32
+ 613 000a 19D0     		beq	.L76
+ 614 000c 4BF68033 		movw	r3, #48000
+ 615 0010 9942     		cmp	r1, r3
+ 616 0012 29D0     		beq	.L77
+ 617 0014 1F4B     		ldr	r3, .L79
+ 618 0016 9942     		cmp	r1, r3
+ 619 0018 03A8     		add	r0, sp, #12
+ 620 001a 30D0     		beq	.L78
+ 621 001c FFF7FEFF 		bl	HAL_RCCEx_GetPeriphCLKConfig
+ 622 0020 0121     		movs	r1, #1
+ 623 0022 4FF4D472 		mov	r2, #424
+ 624 0026 0323     		movs	r3, #3
+ 625 0028 03A8     		add	r0, sp, #12
+ 626 002a CDE90312 		strd	r1, r2, [sp, #12]
+ 627 002e 0593     		str	r3, [sp, #20]
+ 628 0030 FFF7FEFF 		bl	HAL_RCCEx_PeriphCLKConfig
+ 629 0034 40F20B10 		movw	r0, #267
+ 630 0038 FFF7FEFF 		bl	I2S_Config_I2SPR.isra.0
+ 631 003c 08B0     		add	sp, sp, #32
+ 632              		@ sp needed
+ 633 003e 10BD     		pop	{r4, pc}
+ 634              	.L76:
+ 635 0040 03A8     		add	r0, sp, #12
+ 636 0042 0190     		str	r0, [sp, #4]
+ 637 0044 FFF7FEFF 		bl	HAL_RCCEx_GetPeriphCLKConfig
+ 638 0048 0198     		ldr	r0, [sp, #4]
+ 639 004a 1324     		movs	r4, #19
+ 640 004c 0422     		movs	r2, #4
+ 641 004e 40F2AD11 		movw	r1, #429
+ 642              	.L71:
+ 643 0052 0123     		movs	r3, #1
+ 644 0054 CDE90331 		strd	r3, r1, [sp, #12]
+ 645 0058 0592     		str	r2, [sp, #20]
+ 646 005a FFF7FEFF 		bl	HAL_RCCEx_PeriphCLKConfig
+ 647 005e 2046     		mov	r0, r4
+ 648 0060 FFF7FEFF 		bl	I2S_Config_I2SPR.isra.0
+ 649 0064 08B0     		add	sp, sp, #32
+ 650              		@ sp needed
+ 651 0066 10BD     		pop	{r4, pc}
+ 652              	.L77:
+ 653 0068 03A8     		add	r0, sp, #12
+ 654 006a 0190     		str	r0, [sp, #4]
+ 655 006c 4FF48674 		mov	r4, #268
+ 656 0070 FFF7FEFF 		bl	HAL_RCCEx_GetPeriphCLKConfig
+ 657 0074 0198     		ldr	r0, [sp, #4]
+ 658 0076 0522     		movs	r2, #5
+ 659 0078 4FF4C071 		mov	r1, #384
+ 660 007c E9E7     		b	.L71
+ 661              	.L78:
+ 662 007e 0190     		str	r0, [sp, #4]
+ 663 0080 40F20B14 		movw	r4, #267
+ 664 0084 FFF7FEFF 		bl	HAL_RCCEx_GetPeriphCLKConfig
+ 665 0088 0198     		ldr	r0, [sp, #4]
+ 666 008a 0322     		movs	r2, #3
+ARM GAS  /tmp/cceiBgD1.s 			page 12
+
+
+ 667 008c 4FF4D471 		mov	r1, #424
+ 668 0090 DFE7     		b	.L71
+ 669              	.L80:
+ 670 0092 00BF     		.align	2
+ 671              	.L79:
+ 672 0094 00770100 		.word	96000
+ 674              		.section	.text.BSP_AUDIO_OUT_Init,"ax",%progbits
+ 675              		.align	1
+ 676              		.p2align 2,,3
+ 677              		.global	BSP_AUDIO_OUT_Init
+ 678              		.syntax unified
+ 679              		.thumb
+ 680              		.thumb_func
+ 681              		.fpu fpv4-sp-d16
+ 683              	BSP_AUDIO_OUT_Init:
+ 684              		@ args = 0, pretend = 0, frame = 0
+ 685              		@ frame_needed = 0, uses_anonymous_args = 0
+ 686 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 687 0002 1F4E     		ldr	r6, .L87
+ 688 0004 1F4C     		ldr	r4, .L87+4
+ 689 0006 F369     		ldr	r3, [r6, #28]
+ 690 0008 2660     		str	r6, [r4]
+ 691 000a 23F48063 		bic	r3, r3, #1024
+ 692 000e 0D46     		mov	r5, r1
+ 693 0010 F361     		str	r3, [r6, #28]
+ 694 0012 2046     		mov	r0, r4
+ 695 0014 1746     		mov	r7, r2
+ 696 0016 FFF7FEFF 		bl	HAL_I2S_DeInit
+ 697 001a 2046     		mov	r0, r4
+ 698 001c 0022     		movs	r2, #0
+ 699 001e 2946     		mov	r1, r5
+ 700 0020 FFF7FEFF 		bl	BSP_AUDIO_OUT_ClockConfig
+ 701 0024 2046     		mov	r0, r4
+ 702 0026 2660     		str	r6, [r4]
+ 703 0028 FFF7FEFF 		bl	HAL_I2S_GetState
+ 704 002c 18B3     		cbz	r0, .L86
+ 705              	.L82:
+ 706 002e 144B     		ldr	r3, .L87
+ 707 0030 6561     		str	r5, [r4, #20]
+ 708 0032 DA69     		ldr	r2, [r3, #28]
+ 709 0034 2360     		str	r3, [r4]
+ 710 0036 22F48062 		bic	r2, r2, #1024
+ 711 003a 4FF40071 		mov	r1, #512
+ 712 003e 0025     		movs	r5, #0
+ 713 0040 6160     		str	r1, [r4, #4]
+ 714 0042 1048     		ldr	r0, .L87+4
+ 715 0044 DA61     		str	r2, [r3, #28]
+ 716 0046 0323     		movs	r3, #3
+ 717 0048 C4E90253 		strd	r5, r3, [r4, #8]
+ 718 004c C4E90655 		strd	r5, r5, [r4, #24]
+ 719 0050 2562     		str	r5, [r4, #32]
+ 720 0052 FFF7FEFF 		bl	HAL_I2S_Init
+ 721 0056 0C48     		ldr	r0, .L87+8
+ 722 0058 37B1     		cbz	r7, .L83
+ 723 005a 2A46     		mov	r2, r5
+ 724 005c 4FF48071 		mov	r1, #256
+ 725 0060 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ARM GAS  /tmp/cceiBgD1.s 			page 13
+
+
+ 726 0064 0020     		movs	r0, #0
+ 727 0066 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 728              	.L83:
+ 729 0068 0122     		movs	r2, #1
+ 730 006a 4FF48071 		mov	r1, #256
+ 731 006e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 732 0072 0020     		movs	r0, #0
+ 733 0074 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 734              	.L86:
+ 735 0076 0146     		mov	r1, r0
+ 736 0078 2046     		mov	r0, r4
+ 737 007a FFF7FEFF 		bl	BSP_AUDIO_OUT_MspInit
+ 738 007e D6E7     		b	.L82
+ 739              	.L88:
+ 740              		.align	2
+ 741              	.L87:
+ 742 0080 00380040 		.word	1073756160
+ 743 0084 00000000 		.word	.LANCHOR0
+ 744 0088 00040240 		.word	1073873920
+ 746              		.section	.text.BSP_AUDIO_OUT_SetFrequency,"ax",%progbits
+ 747              		.align	1
+ 748              		.p2align 2,,3
+ 749              		.global	BSP_AUDIO_OUT_SetFrequency
+ 750              		.syntax unified
+ 751              		.thumb
+ 752              		.thumb_func
+ 753              		.fpu fpv4-sp-d16
+ 755              	BSP_AUDIO_OUT_SetFrequency:
+ 756              		@ args = 0, pretend = 0, frame = 0
+ 757              		@ frame_needed = 0, uses_anonymous_args = 0
+ 758 0000 38B5     		push	{r3, r4, r5, lr}
+ 759 0002 0E4C     		ldr	r4, .L91
+ 760 0004 0546     		mov	r5, r0
+ 761 0006 2946     		mov	r1, r5
+ 762 0008 2046     		mov	r0, r4
+ 763 000a 0022     		movs	r2, #0
+ 764 000c FFF7FEFF 		bl	BSP_AUDIO_OUT_ClockConfig
+ 765 0010 0B4A     		ldr	r2, .L91+4
+ 766 0012 2260     		str	r2, [r4]
+ 767 0014 D169     		ldr	r1, [r2, #28]
+ 768 0016 6561     		str	r5, [r4, #20]
+ 769 0018 21F48061 		bic	r1, r1, #1024
+ 770 001c D161     		str	r1, [r2, #28]
+ 771 001e 0023     		movs	r3, #0
+ 772 0020 4FF40075 		mov	r5, #512
+ 773 0024 0322     		movs	r2, #3
+ 774 0026 C4E90153 		strd	r5, r3, [r4, #4]
+ 775 002a C4E90633 		strd	r3, r3, [r4, #24]
+ 776 002e 2046     		mov	r0, r4
+ 777 0030 E260     		str	r2, [r4, #12]
+ 778 0032 2362     		str	r3, [r4, #32]
+ 779 0034 BDE83840 		pop	{r3, r4, r5, lr}
+ 780 0038 FFF7FEBF 		b	HAL_I2S_Init
+ 781              	.L92:
+ 782              		.align	2
+ 783              	.L91:
+ 784 003c 00000000 		.word	.LANCHOR0
+ARM GAS  /tmp/cceiBgD1.s 			page 14
+
+
+ 785 0040 00380040 		.word	1073756160
+ 787              		.global	hdma_i2sTx
+ 788              		.global	haudio_i2s
+ 789              		.global	I2S_Clk_Config24
+ 790              		.global	I2SFreq
+ 791              		.section	.bss.haudio_i2s,"aw",%nobits
+ 792              		.align	2
+ 793              		.set	.LANCHOR0,. + 0
+ 796              	haudio_i2s:
+ 797 0000 00000000 		.space	72
+ 797      00000000 
+ 797      00000000 
+ 797      00000000 
+ 797      00000000 
+ 798              		.section	.bss.hdma_i2sTx,"aw",%nobits
+ 799              		.align	2
+ 800              		.set	.LANCHOR1,. + 0
+ 803              	hdma_i2sTx:
+ 804 0000 00000000 		.space	96
+ 804      00000000 
+ 804      00000000 
+ 804      00000000 
+ 804      00000000 
+ 805              		.section	.rodata.I2SFreq,"a"
+ 806              		.align	2
+ 809              	I2SFreq:
+ 810 0000 44AC0000 		.word	44100
+ 811 0004 80BB0000 		.word	48000
+ 812 0008 00770100 		.word	96000
+ 813              		.section	.rodata.I2S_Clk_Config24,"a"
+ 814              		.align	2
+ 817              	I2S_Clk_Config24:
+ 818 0000 AD010000 		.word	429
+ 819 0004 04000000 		.word	4
+ 820 0008 13000000 		.word	19
+ 821 000c 00000000 		.word	0
+ 822 0010 565E060B 		.word	184966742
+ 823 0014 80010000 		.word	384
+ 824 0018 05000000 		.word	5
+ 825 001c 0C000000 		.word	12
+ 826 0020 01000000 		.word	1
+ 827 0024 0000000C 		.word	201326592
+ 828 0028 A8010000 		.word	424
+ 829 002c 03000000 		.word	3
+ 830 0030 0B000000 		.word	11
+ 831 0034 01000000 		.word	1
+ 832 0038 70ED0018 		.word	402713968
+ 833              		.ident	"GCC: (15:10.3-2021.07-4) 10.3.1 20210621 (release)"
+ARM GAS  /tmp/cceiBgD1.s 			page 15
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 bsp_audio.c
+     /tmp/cceiBgD1.s:16     .text.I2S_Config_I2SPR.isra.0:0000000000000000 $t
+     /tmp/cceiBgD1.s:24     .text.I2S_Config_I2SPR.isra.0:0000000000000000 I2S_Config_I2SPR.isra.0
+     /tmp/cceiBgD1.s:68     .text.I2S_Config_I2SPR.isra.0:000000000000004c $d
+     /tmp/cceiBgD1.s:73     .text.BSP_AUDIO_OUT_Play:0000000000000000 $t
+     /tmp/cceiBgD1.s:81     .text.BSP_AUDIO_OUT_Play:0000000000000000 BSP_AUDIO_OUT_Play
+     /tmp/cceiBgD1.s:102    .text.BSP_AUDIO_OUT_Play:0000000000000028 $d
+     /tmp/cceiBgD1.s:106    .text.BSP_AUDIO_OUT_ChangeBuffer:0000000000000000 $t
+     /tmp/cceiBgD1.s:114    .text.BSP_AUDIO_OUT_ChangeBuffer:0000000000000000 BSP_AUDIO_OUT_ChangeBuffer
+     /tmp/cceiBgD1.s:126    .text.BSP_AUDIO_OUT_ChangeBuffer:000000000000000c $d
+     /tmp/cceiBgD1.s:129    .text.BSP_AUDIO_OUT_Pause:0000000000000000 $t
+     /tmp/cceiBgD1.s:137    .text.BSP_AUDIO_OUT_Pause:0000000000000000 BSP_AUDIO_OUT_Pause
+     /tmp/cceiBgD1.s:155    .text.BSP_AUDIO_OUT_Pause:0000000000000020 $d
+     /tmp/cceiBgD1.s:159    .text.BSP_AUDIO_OUT_Resume:0000000000000000 $t
+     /tmp/cceiBgD1.s:167    .text.BSP_AUDIO_OUT_Resume:0000000000000000 BSP_AUDIO_OUT_Resume
+     /tmp/cceiBgD1.s:185    .text.BSP_AUDIO_OUT_Resume:0000000000000020 $d
+     /tmp/cceiBgD1.s:189    .text.BSP_AUDIO_OUT_Stop:0000000000000000 $t
+     /tmp/cceiBgD1.s:197    .text.BSP_AUDIO_OUT_Stop:0000000000000000 BSP_AUDIO_OUT_Stop
+     /tmp/cceiBgD1.s:215    .text.BSP_AUDIO_OUT_Stop:0000000000000020 $d
+     /tmp/cceiBgD1.s:219    .text.BSP_AUDIO_OUT_SetVolume:0000000000000000 $t
+     /tmp/cceiBgD1.s:227    .text.BSP_AUDIO_OUT_SetVolume:0000000000000000 BSP_AUDIO_OUT_SetVolume
+     /tmp/cceiBgD1.s:235    .text.BSP_AUDIO_OUT_SetMute:0000000000000000 $t
+     /tmp/cceiBgD1.s:243    .text.BSP_AUDIO_OUT_SetMute:0000000000000000 BSP_AUDIO_OUT_SetMute
+     /tmp/cceiBgD1.s:264    .text.BSP_AUDIO_OUT_SetMute:0000000000000024 $d
+     /tmp/cceiBgD1.s:267    .text.BSP_AUDIO_OUT_ChangeAudioConfig:0000000000000000 $t
+     /tmp/cceiBgD1.s:275    .text.BSP_AUDIO_OUT_ChangeAudioConfig:0000000000000000 BSP_AUDIO_OUT_ChangeAudioConfig
+     /tmp/cceiBgD1.s:300    .text.BSP_AUDIO_OUT_ChangeAudioConfig:0000000000000034 $d
+     /tmp/cceiBgD1.s:303    .text.BSP_AUDIO_OUT_GetRemainingDataSize:0000000000000000 $t
+     /tmp/cceiBgD1.s:311    .text.BSP_AUDIO_OUT_GetRemainingDataSize:0000000000000000 BSP_AUDIO_OUT_GetRemainingDataSize
+     /tmp/cceiBgD1.s:322    .text.BSP_AUDIO_OUT_GetRemainingDataSize:0000000000000008 $d
+     /tmp/cceiBgD1.s:325    .text.BSP_AUDIO_OUT_TransferComplete_CallBack:0000000000000000 $t
+     /tmp/cceiBgD1.s:333    .text.BSP_AUDIO_OUT_TransferComplete_CallBack:0000000000000000 BSP_AUDIO_OUT_TransferComplete_CallBack
+     /tmp/cceiBgD1.s:340    .text.HAL_I2S_TxCpltCallback:0000000000000000 $t
+     /tmp/cceiBgD1.s:348    .text.HAL_I2S_TxCpltCallback:0000000000000000 HAL_I2S_TxCpltCallback
+     /tmp/cceiBgD1.s:356    .text.BSP_AUDIO_OUT_HalfTransfer_CallBack:0000000000000000 $t
+     /tmp/cceiBgD1.s:364    .text.BSP_AUDIO_OUT_HalfTransfer_CallBack:0000000000000000 BSP_AUDIO_OUT_HalfTransfer_CallBack
+     /tmp/cceiBgD1.s:371    .text.HAL_I2S_TxHalfCpltCallback:0000000000000000 $t
+     /tmp/cceiBgD1.s:379    .text.HAL_I2S_TxHalfCpltCallback:0000000000000000 HAL_I2S_TxHalfCpltCallback
+     /tmp/cceiBgD1.s:387    .text.BSP_AUDIO_OUT_Error_CallBack:0000000000000000 $t
+     /tmp/cceiBgD1.s:395    .text.BSP_AUDIO_OUT_Error_CallBack:0000000000000000 BSP_AUDIO_OUT_Error_CallBack
+     /tmp/cceiBgD1.s:402    .text.HAL_I2S_ErrorCallback:0000000000000000 $t
+     /tmp/cceiBgD1.s:410    .text.HAL_I2S_ErrorCallback:0000000000000000 HAL_I2S_ErrorCallback
+     /tmp/cceiBgD1.s:418    .text.BSP_AUDIO_OUT_MspInit:0000000000000000 $t
+     /tmp/cceiBgD1.s:426    .text.BSP_AUDIO_OUT_MspInit:0000000000000000 BSP_AUDIO_OUT_MspInit
+     /tmp/cceiBgD1.s:527    .text.BSP_AUDIO_OUT_MspInit:00000000000000f0 $d
+     /tmp/cceiBgD1.s:533    .text.BSP_AUDIO_OUT_MspDeInit:0000000000000000 $t
+     /tmp/cceiBgD1.s:541    .text.BSP_AUDIO_OUT_MspDeInit:0000000000000000 BSP_AUDIO_OUT_MspDeInit
+     /tmp/cceiBgD1.s:563    .text.BSP_AUDIO_OUT_MspDeInit:0000000000000030 $d
+     /tmp/cceiBgD1.s:567    .text.BSP_AUDIO_OUT_DeInit:0000000000000000 $t
+     /tmp/cceiBgD1.s:575    .text.BSP_AUDIO_OUT_DeInit:0000000000000000 BSP_AUDIO_OUT_DeInit
+     /tmp/cceiBgD1.s:594    .text.BSP_AUDIO_OUT_DeInit:0000000000000020 $d
+     /tmp/cceiBgD1.s:598    .text.BSP_AUDIO_OUT_ClockConfig:0000000000000000 $t
+     /tmp/cceiBgD1.s:606    .text.BSP_AUDIO_OUT_ClockConfig:0000000000000000 BSP_AUDIO_OUT_ClockConfig
+     /tmp/cceiBgD1.s:672    .text.BSP_AUDIO_OUT_ClockConfig:0000000000000094 $d
+     /tmp/cceiBgD1.s:675    .text.BSP_AUDIO_OUT_Init:0000000000000000 $t
+     /tmp/cceiBgD1.s:683    .text.BSP_AUDIO_OUT_Init:0000000000000000 BSP_AUDIO_OUT_Init
+ARM GAS  /tmp/cceiBgD1.s 			page 16
+
+
+     /tmp/cceiBgD1.s:742    .text.BSP_AUDIO_OUT_Init:0000000000000080 $d
+     /tmp/cceiBgD1.s:747    .text.BSP_AUDIO_OUT_SetFrequency:0000000000000000 $t
+     /tmp/cceiBgD1.s:755    .text.BSP_AUDIO_OUT_SetFrequency:0000000000000000 BSP_AUDIO_OUT_SetFrequency
+     /tmp/cceiBgD1.s:784    .text.BSP_AUDIO_OUT_SetFrequency:000000000000003c $d
+     /tmp/cceiBgD1.s:803    .bss.hdma_i2sTx:0000000000000000 hdma_i2sTx
+     /tmp/cceiBgD1.s:796    .bss.haudio_i2s:0000000000000000 haudio_i2s
+     /tmp/cceiBgD1.s:817    .rodata.I2S_Clk_Config24:0000000000000000 I2S_Clk_Config24
+     /tmp/cceiBgD1.s:809    .rodata.I2SFreq:0000000000000000 I2SFreq
+     /tmp/cceiBgD1.s:792    .bss.haudio_i2s:0000000000000000 $d
+     /tmp/cceiBgD1.s:799    .bss.hdma_i2sTx:0000000000000000 $d
+     /tmp/cceiBgD1.s:806    .rodata.I2SFreq:0000000000000000 $d
+     /tmp/cceiBgD1.s:814    .rodata.I2S_Clk_Config24:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+HAL_GetTick
+HAL_GPIO_WritePin
+HAL_I2S_Transmit_DMA
+HAL_I2S_DMAPause
+HAL_I2S_DMAResume
+HAL_I2S_DMAStop
+HAL_DMA_DeInit
+HAL_DMA_Init
+HAL_GPIO_Init
+HAL_NVIC_SetPriority
+HAL_NVIC_EnableIRQ
+HAL_GPIO_DeInit
+HAL_I2S_DeInit
+HAL_RCCEx_GetPeriphCLKConfig
+HAL_RCCEx_PeriphCLKConfig
+HAL_I2S_GetState
+HAL_I2S_Init

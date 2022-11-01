@@ -1,0 +1,242 @@
+ARM GAS  /tmp/cc6TvCln.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32f4xx_it.c"
+  14              		.text
+  15              		.section	.text.NMI_Handler,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.global	NMI_Handler
+  19              		.arch armv7e-m
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	NMI_Handler:
+  26              		@ args = 0, pretend = 0, frame = 0
+  27              		@ frame_needed = 0, uses_anonymous_args = 0
+  28              		@ link register save eliminated.
+  29 0000 7047     		bx	lr
+  31 0002 00BF     		.section	.text.HardFault_Handler,"ax",%progbits
+  32              		.align	1
+  33              		.p2align 2,,3
+  34              		.global	HardFault_Handler
+  35              		.syntax unified
+  36              		.thumb
+  37              		.thumb_func
+  38              		.fpu fpv4-sp-d16
+  40              	HardFault_Handler:
+  41              		@ Volatile: function does not return.
+  42              		@ args = 0, pretend = 0, frame = 0
+  43              		@ frame_needed = 0, uses_anonymous_args = 0
+  44              		@ link register save eliminated.
+  45              	.L4:
+  46 0000 FEE7     		b	.L4
+  48 0002 00BF     		.section	.text.MemManage_Handler,"ax",%progbits
+  49              		.align	1
+  50              		.p2align 2,,3
+  51              		.global	MemManage_Handler
+  52              		.syntax unified
+  53              		.thumb
+  54              		.thumb_func
+  55              		.fpu fpv4-sp-d16
+  57              	MemManage_Handler:
+  58              		@ Volatile: function does not return.
+  59              		@ args = 0, pretend = 0, frame = 0
+  60              		@ frame_needed = 0, uses_anonymous_args = 0
+  61              		@ link register save eliminated.
+  62              	.L6:
+ARM GAS  /tmp/cc6TvCln.s 			page 2
+
+
+  63 0000 FEE7     		b	.L6
+  65 0002 00BF     		.section	.text.BusFault_Handler,"ax",%progbits
+  66              		.align	1
+  67              		.p2align 2,,3
+  68              		.global	BusFault_Handler
+  69              		.syntax unified
+  70              		.thumb
+  71              		.thumb_func
+  72              		.fpu fpv4-sp-d16
+  74              	BusFault_Handler:
+  75              		@ Volatile: function does not return.
+  76              		@ args = 0, pretend = 0, frame = 0
+  77              		@ frame_needed = 0, uses_anonymous_args = 0
+  78              		@ link register save eliminated.
+  79              	.L8:
+  80 0000 FEE7     		b	.L8
+  82 0002 00BF     		.section	.text.UsageFault_Handler,"ax",%progbits
+  83              		.align	1
+  84              		.p2align 2,,3
+  85              		.global	UsageFault_Handler
+  86              		.syntax unified
+  87              		.thumb
+  88              		.thumb_func
+  89              		.fpu fpv4-sp-d16
+  91              	UsageFault_Handler:
+  92              		@ Volatile: function does not return.
+  93              		@ args = 0, pretend = 0, frame = 0
+  94              		@ frame_needed = 0, uses_anonymous_args = 0
+  95              		@ link register save eliminated.
+  96              	.L10:
+  97 0000 FEE7     		b	.L10
+  99 0002 00BF     		.section	.text.SVC_Handler,"ax",%progbits
+ 100              		.align	1
+ 101              		.p2align 2,,3
+ 102              		.global	SVC_Handler
+ 103              		.syntax unified
+ 104              		.thumb
+ 105              		.thumb_func
+ 106              		.fpu fpv4-sp-d16
+ 108              	SVC_Handler:
+ 109              		@ args = 0, pretend = 0, frame = 0
+ 110              		@ frame_needed = 0, uses_anonymous_args = 0
+ 111              		@ link register save eliminated.
+ 112 0000 7047     		bx	lr
+ 114 0002 00BF     		.section	.text.DebugMon_Handler,"ax",%progbits
+ 115              		.align	1
+ 116              		.p2align 2,,3
+ 117              		.global	DebugMon_Handler
+ 118              		.syntax unified
+ 119              		.thumb
+ 120              		.thumb_func
+ 121              		.fpu fpv4-sp-d16
+ 123              	DebugMon_Handler:
+ 124              		@ args = 0, pretend = 0, frame = 0
+ 125              		@ frame_needed = 0, uses_anonymous_args = 0
+ 126              		@ link register save eliminated.
+ 127 0000 7047     		bx	lr
+ARM GAS  /tmp/cc6TvCln.s 			page 3
+
+
+ 129 0002 00BF     		.section	.text.PendSV_Handler,"ax",%progbits
+ 130              		.align	1
+ 131              		.p2align 2,,3
+ 132              		.global	PendSV_Handler
+ 133              		.syntax unified
+ 134              		.thumb
+ 135              		.thumb_func
+ 136              		.fpu fpv4-sp-d16
+ 138              	PendSV_Handler:
+ 139              		@ args = 0, pretend = 0, frame = 0
+ 140              		@ frame_needed = 0, uses_anonymous_args = 0
+ 141              		@ link register save eliminated.
+ 142 0000 7047     		bx	lr
+ 144 0002 00BF     		.section	.text.SysTick_Handler,"ax",%progbits
+ 145              		.align	1
+ 146              		.p2align 2,,3
+ 147              		.global	SysTick_Handler
+ 148              		.syntax unified
+ 149              		.thumb
+ 150              		.thumb_func
+ 151              		.fpu fpv4-sp-d16
+ 153              	SysTick_Handler:
+ 154              		@ args = 0, pretend = 0, frame = 0
+ 155              		@ frame_needed = 0, uses_anonymous_args = 0
+ 156              		@ link register save eliminated.
+ 157 0000 FFF7FEBF 		b	HAL_IncTick
+ 159              		.section	.text.EXTI0_IRQHandler,"ax",%progbits
+ 160              		.align	1
+ 161              		.p2align 2,,3
+ 162              		.global	EXTI0_IRQHandler
+ 163              		.syntax unified
+ 164              		.thumb
+ 165              		.thumb_func
+ 166              		.fpu fpv4-sp-d16
+ 168              	EXTI0_IRQHandler:
+ 169              		@ args = 0, pretend = 0, frame = 0
+ 170              		@ frame_needed = 0, uses_anonymous_args = 0
+ 171              		@ link register save eliminated.
+ 172 0000 0120     		movs	r0, #1
+ 173 0002 FFF7FEBF 		b	HAL_GPIO_EXTI_IRQHandler
+ 175 0006 00BF     		.section	.text.DMA1_Stream4_IRQHandler,"ax",%progbits
+ 176              		.align	1
+ 177              		.p2align 2,,3
+ 178              		.global	DMA1_Stream4_IRQHandler
+ 179              		.syntax unified
+ 180              		.thumb
+ 181              		.thumb_func
+ 182              		.fpu fpv4-sp-d16
+ 184              	DMA1_Stream4_IRQHandler:
+ 185              		@ args = 0, pretend = 0, frame = 0
+ 186              		@ frame_needed = 0, uses_anonymous_args = 0
+ 187              		@ link register save eliminated.
+ 188 0000 0148     		ldr	r0, .L17
+ 189 0002 FFF7FEBF 		b	HAL_DMA_IRQHandler
+ 190              	.L18:
+ 191 0006 00BF     		.align	2
+ 192              	.L17:
+ARM GAS  /tmp/cc6TvCln.s 			page 4
+
+
+ 193 0008 00000000 		.word	hdma_i2sTx
+ 195              		.section	.text.OTG_FS_IRQHandler,"ax",%progbits
+ 196              		.align	1
+ 197              		.p2align 2,,3
+ 198              		.global	OTG_FS_IRQHandler
+ 199              		.syntax unified
+ 200              		.thumb
+ 201              		.thumb_func
+ 202              		.fpu fpv4-sp-d16
+ 204              	OTG_FS_IRQHandler:
+ 205              		@ args = 0, pretend = 0, frame = 0
+ 206              		@ frame_needed = 0, uses_anonymous_args = 0
+ 207              		@ link register save eliminated.
+ 208 0000 0148     		ldr	r0, .L20
+ 209 0002 FFF7FEBF 		b	HAL_PCD_IRQHandler
+ 210              	.L21:
+ 211 0006 00BF     		.align	2
+ 212              	.L20:
+ 213 0008 00000000 		.word	hpcd
+ 215              		.ident	"GCC: (15:10.3-2021.07-4) 10.3.1 20210621 (release)"
+ARM GAS  /tmp/cc6TvCln.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 stm32f4xx_it.c
+     /tmp/cc6TvCln.s:16     .text.NMI_Handler:0000000000000000 $t
+     /tmp/cc6TvCln.s:25     .text.NMI_Handler:0000000000000000 NMI_Handler
+     /tmp/cc6TvCln.s:32     .text.HardFault_Handler:0000000000000000 $t
+     /tmp/cc6TvCln.s:40     .text.HardFault_Handler:0000000000000000 HardFault_Handler
+     /tmp/cc6TvCln.s:49     .text.MemManage_Handler:0000000000000000 $t
+     /tmp/cc6TvCln.s:57     .text.MemManage_Handler:0000000000000000 MemManage_Handler
+     /tmp/cc6TvCln.s:66     .text.BusFault_Handler:0000000000000000 $t
+     /tmp/cc6TvCln.s:74     .text.BusFault_Handler:0000000000000000 BusFault_Handler
+     /tmp/cc6TvCln.s:83     .text.UsageFault_Handler:0000000000000000 $t
+     /tmp/cc6TvCln.s:91     .text.UsageFault_Handler:0000000000000000 UsageFault_Handler
+     /tmp/cc6TvCln.s:100    .text.SVC_Handler:0000000000000000 $t
+     /tmp/cc6TvCln.s:108    .text.SVC_Handler:0000000000000000 SVC_Handler
+     /tmp/cc6TvCln.s:115    .text.DebugMon_Handler:0000000000000000 $t
+     /tmp/cc6TvCln.s:123    .text.DebugMon_Handler:0000000000000000 DebugMon_Handler
+     /tmp/cc6TvCln.s:130    .text.PendSV_Handler:0000000000000000 $t
+     /tmp/cc6TvCln.s:138    .text.PendSV_Handler:0000000000000000 PendSV_Handler
+     /tmp/cc6TvCln.s:145    .text.SysTick_Handler:0000000000000000 $t
+     /tmp/cc6TvCln.s:153    .text.SysTick_Handler:0000000000000000 SysTick_Handler
+     /tmp/cc6TvCln.s:160    .text.EXTI0_IRQHandler:0000000000000000 $t
+     /tmp/cc6TvCln.s:168    .text.EXTI0_IRQHandler:0000000000000000 EXTI0_IRQHandler
+     /tmp/cc6TvCln.s:176    .text.DMA1_Stream4_IRQHandler:0000000000000000 $t
+     /tmp/cc6TvCln.s:184    .text.DMA1_Stream4_IRQHandler:0000000000000000 DMA1_Stream4_IRQHandler
+     /tmp/cc6TvCln.s:193    .text.DMA1_Stream4_IRQHandler:0000000000000008 $d
+     /tmp/cc6TvCln.s:196    .text.OTG_FS_IRQHandler:0000000000000000 $t
+     /tmp/cc6TvCln.s:204    .text.OTG_FS_IRQHandler:0000000000000000 OTG_FS_IRQHandler
+     /tmp/cc6TvCln.s:213    .text.OTG_FS_IRQHandler:0000000000000008 $d
+
+UNDEFINED SYMBOLS
+HAL_IncTick
+HAL_GPIO_EXTI_IRQHandler
+HAL_DMA_IRQHandler
+hdma_i2sTx
+HAL_PCD_IRQHandler
+hpcd

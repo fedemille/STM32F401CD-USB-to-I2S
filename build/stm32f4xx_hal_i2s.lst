@@ -1,0 +1,1989 @@
+ARM GAS  /tmp/cczQqIkK.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32f4xx_hal_i2s.c"
+  14              		.text
+  15              		.section	.text.HAL_I2S_MspInit,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.weak	HAL_I2S_MspInit
+  19              		.arch armv7e-m
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	HAL_I2S_MspInit:
+  26              		@ args = 0, pretend = 0, frame = 0
+  27              		@ frame_needed = 0, uses_anonymous_args = 0
+  28              		@ link register save eliminated.
+  29 0000 7047     		bx	lr
+  31 0002 00BF     		.section	.rodata.HAL_I2S_Init.str1.4,"aMS",%progbits,1
+  32              		.align	2
+  33              	.LC0:
+  34 0000 64726976 		.ascii	"drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2s."
+  34      6572732F 
+  34      53544D33 
+  34      32463478 
+  34      785F4841 
+  35 0033 6300     		.ascii	"c\000"
+  36              		.section	.text.HAL_I2S_Init,"ax",%progbits
+  37              		.align	1
+  38              		.p2align 2,,3
+  39              		.global	HAL_I2S_Init
+  40              		.syntax unified
+  41              		.thumb
+  42              		.thumb_func
+  43              		.fpu fpv4-sp-d16
+  45              	HAL_I2S_Init:
+  46              		@ args = 0, pretend = 0, frame = 0
+  47              		@ frame_needed = 0, uses_anonymous_args = 0
+  48 0000 0028     		cmp	r0, #0
+  49 0002 00F0F680 		beq	.L27
+  50 0006 38B5     		push	{r3, r4, r5, lr}
+  51 0008 7C4A     		ldr	r2, .L59
+  52 000a 0368     		ldr	r3, [r0]
+  53 000c 9342     		cmp	r3, r2
+  54 000e 0446     		mov	r4, r0
+  55 0010 08D0     		beq	.L5
+  56 0012 02F58062 		add	r2, r2, #1024
+ARM GAS  /tmp/cczQqIkK.s 			page 2
+
+
+  57 0016 9342     		cmp	r3, r2
+  58 0018 04D0     		beq	.L5
+  59 001a 7948     		ldr	r0, .L59+4
+  60 001c 40F21B11 		movw	r1, #283
+  61 0020 FFF7FEFF 		bl	assert_failed
+  62              	.L5:
+  63 0024 6368     		ldr	r3, [r4, #4]
+  64 0026 33F44073 		bics	r3, r3, #768
+  65 002a 04D0     		beq	.L6
+  66 002c 7448     		ldr	r0, .L59+4
+  67 002e 4FF48E71 		mov	r1, #284
+  68 0032 FFF7FEFF 		bl	assert_failed
+  69              	.L6:
+  70 0036 A368     		ldr	r3, [r4, #8]
+  71 0038 33F03002 		bics	r2, r3, #48
+  72 003c 06D0     		beq	.L7
+  73 003e B02B     		cmp	r3, #176
+  74 0040 04D0     		beq	.L7
+  75 0042 6F48     		ldr	r0, .L59+4
+  76 0044 40F21D11 		movw	r1, #285
+  77 0048 FFF7FEFF 		bl	assert_failed
+  78              	.L7:
+  79 004c E368     		ldr	r3, [r4, #12]
+  80 004e 052B     		cmp	r3, #5
+  81 0050 00F2BB80 		bhi	.L8
+  82 0054 2B22     		movs	r2, #43
+  83 0056 22FA03F3 		lsr	r3, r2, r3
+  84 005a DB07     		lsls	r3, r3, #31
+  85 005c 40F1B580 		bpl	.L8
+  86 0060 2369     		ldr	r3, [r4, #16]
+  87 0062 33F40073 		bics	r3, r3, #512
+  88 0066 40F0BA80 		bne	.L56
+  89              	.L10:
+  90 006a 6369     		ldr	r3, [r4, #20]
+  91 006c 654A     		ldr	r2, .L59+8
+  92 006e A3F5FA51 		sub	r1, r3, #8000
+  93 0072 9142     		cmp	r1, r2
+  94 0074 06D9     		bls	.L11
+  95 0076 022B     		cmp	r3, #2
+  96 0078 04D0     		beq	.L11
+  97 007a 6148     		ldr	r0, .L59+4
+  98 007c 4FF49071 		mov	r1, #288
+  99 0080 FFF7FEFF 		bl	assert_failed
+ 100              	.L11:
+ 101 0084 A369     		ldr	r3, [r4, #24]
+ 102 0086 33F00803 		bics	r3, r3, #8
+ 103 008a 04D0     		beq	.L12
+ 104 008c 5C48     		ldr	r0, .L59+4
+ 105 008e 40F22111 		movw	r1, #289
+ 106 0092 FFF7FEFF 		bl	assert_failed
+ 107              	.L12:
+ 108 0096 E369     		ldr	r3, [r4, #28]
+ 109 0098 012B     		cmp	r3, #1
+ 110 009a 04D9     		bls	.L13
+ 111 009c 5848     		ldr	r0, .L59+4
+ 112 009e 4FF49171 		mov	r1, #290
+ 113 00a2 FFF7FEFF 		bl	assert_failed
+ARM GAS  /tmp/cczQqIkK.s 			page 3
+
+
+ 114              	.L13:
+ 115 00a6 94F84130 		ldrb	r3, [r4, #65]	@ zero_extendqisi2
+ 116 00aa 03F0FF02 		and	r2, r3, #255
+ 117 00ae 002B     		cmp	r3, #0
+ 118 00b0 00F08380 		beq	.L57
+ 119              	.L14:
+ 120 00b4 2168     		ldr	r1, [r4]
+ 121 00b6 6369     		ldr	r3, [r4, #20]
+ 122 00b8 0222     		movs	r2, #2
+ 123 00ba 84F84120 		strb	r2, [r4, #65]
+ 124 00be C869     		ldr	r0, [r1, #28]
+ 125 00c0 20F47B60 		bic	r0, r0, #4016
+ 126 00c4 20F00F00 		bic	r0, r0, #15
+ 127 00c8 9342     		cmp	r3, r2
+ 128 00ca C861     		str	r0, [r1, #28]
+ 129 00cc 0A62     		str	r2, [r1, #32]
+ 130 00ce 72D0     		beq	.L15
+ 131 00d0 D4E90232 		ldrd	r3, r2, [r4, #8]
+ 132 00d4 002A     		cmp	r2, #0
+ 133 00d6 0CBF     		ite	eq
+ 134 00d8 1025     		moveq	r5, #16
+ 135 00da 2025     		movne	r5, #32
+ 136 00dc 0120     		movs	r0, #1
+ 137 00de 202B     		cmp	r3, #32
+ 138 00e0 98BF     		it	ls
+ 139 00e2 6D00     		lslls	r5, r5, #1
+ 140 00e4 FFF7FEFF 		bl	HAL_RCCEx_GetPeriphCLKFreq
+ 141 00e8 2269     		ldr	r2, [r4, #16]
+ 142 00ea B2F5007F 		cmp	r2, #512
+ 143 00ee 7CD0     		beq	.L58
+ 144              	.L18:
+ 145 00f0 B0FBF5F0 		udiv	r0, r0, r5
+ 146 00f4 00EB8000 		add	r0, r0, r0, lsl #2
+ 147 00f8 6169     		ldr	r1, [r4, #20]
+ 148 00fa 4300     		lsls	r3, r0, #1
+ 149 00fc B3FBF1F3 		udiv	r3, r3, r1
+ 150 0100 4149     		ldr	r1, .L59+12
+ 151 0102 0533     		adds	r3, r3, #5
+ 152 0104 A1FB0313 		umull	r1, r3, r1, r3
+ 153 0108 1809     		lsrs	r0, r3, #4
+ 154 010a 811E     		subs	r1, r0, #2
+ 155 010c FD29     		cmp	r1, #253
+ 156 010e C3F3C003 		ubfx	r3, r3, #3, #1
+ 157 0112 4AD8     		bhi	.L21
+ 158 0114 2168     		ldr	r1, [r4]
+ 159 0116 40EA0323 		orr	r3, r0, r3, lsl #8
+ 160              	.L22:
+ 161 011a 1343     		orrs	r3, r3, r2
+ 162 011c 0B62     		str	r3, [r1, #32]
+ 163 011e CA69     		ldr	r2, [r1, #28]
+ 164 0120 D4E90130 		ldrd	r3, r0, [r4, #4]
+ 165 0124 22F47B62 		bic	r2, r2, #4016
+ 166 0128 0343     		orrs	r3, r3, r0
+ 167 012a 22F00F02 		bic	r2, r2, #15
+ 168 012e E068     		ldr	r0, [r4, #12]
+ 169 0130 1343     		orrs	r3, r3, r2
+ 170 0132 0343     		orrs	r3, r3, r0
+ARM GAS  /tmp/cczQqIkK.s 			page 4
+
+
+ 171 0134 A069     		ldr	r0, [r4, #24]
+ 172 0136 226A     		ldr	r2, [r4, #32]
+ 173 0138 0343     		orrs	r3, r3, r0
+ 174 013a 43F40063 		orr	r3, r3, #2048
+ 175 013e 012A     		cmp	r2, #1
+ 176 0140 CB61     		str	r3, [r1, #28]
+ 177 0142 05D9     		bls	.L23
+ 178 0144 2E48     		ldr	r0, .L59+4
+ 179 0146 40F2BD11 		movw	r1, #445
+ 180 014a FFF7FEFF 		bl	assert_failed
+ 181 014e 226A     		ldr	r2, [r4, #32]
+ 182              	.L23:
+ 183 0150 012A     		cmp	r2, #1
+ 184 0152 24D1     		bne	.L24
+ 185 0154 2068     		ldr	r0, [r4]
+ 186 0156 6168     		ldr	r1, [r4, #4]
+ 187 0158 284B     		ldr	r3, .L59
+ 188 015a 2C4A     		ldr	r2, .L59+16
+ 189 015c 9842     		cmp	r0, r3
+ 190 015e 18BF     		it	ne
+ 191 0160 4FF04022 		movne	r2, #1073758208
+ 192 0164 31F40071 		bics	r1, r1, #512
+ 193 0168 D4E90210 		ldrd	r1, r0, [r4, #8]
+ 194 016c 284B     		ldr	r3, .L59+20
+ 195 016e 6363     		str	r3, [r4, #52]
+ 196 0170 41EA0001 		orr	r1, r1, r0
+ 197 0174 0CBF     		ite	eq
+ 198 0176 4FF48073 		moveq	r3, #256
+ 199 017a 0023     		movne	r3, #0
+ 200 017c 0B43     		orrs	r3, r3, r1
+ 201 017e D169     		ldr	r1, [r2, #28]
+ 202 0180 A069     		ldr	r0, [r4, #24]
+ 203 0182 21F47B61 		bic	r1, r1, #4016
+ 204 0186 0343     		orrs	r3, r3, r0
+ 205 0188 21F00F01 		bic	r1, r1, #15
+ 206 018c 0220     		movs	r0, #2
+ 207 018e D161     		str	r1, [r2, #28]
+ 208 0190 1062     		str	r0, [r2, #32]
+ 209 0192 D169     		ldr	r1, [r2, #28]
+ 210 0194 0B43     		orrs	r3, r3, r1
+ 211 0196 9BB2     		uxth	r3, r3
+ 212 0198 43F40063 		orr	r3, r3, #2048
+ 213 019c D361     		str	r3, [r2, #28]
+ 214              	.L24:
+ 215 019e 0020     		movs	r0, #0
+ 216 01a0 0123     		movs	r3, #1
+ 217 01a2 6064     		str	r0, [r4, #68]
+ 218 01a4 84F84130 		strb	r3, [r4, #65]
+ 219 01a8 38BD     		pop	{r3, r4, r5, pc}
+ 220              	.L21:
+ 221 01aa 636C     		ldr	r3, [r4, #68]
+ 222 01ac 43F01003 		orr	r3, r3, #16
+ 223 01b0 0120     		movs	r0, #1
+ 224 01b2 6364     		str	r3, [r4, #68]
+ 225 01b4 38BD     		pop	{r3, r4, r5, pc}
+ 226              	.L15:
+ 227 01b6 2269     		ldr	r2, [r4, #16]
+ARM GAS  /tmp/cczQqIkK.s 			page 5
+
+
+ 228 01b8 AFE7     		b	.L22
+ 229              	.L57:
+ 230 01ba 164B     		ldr	r3, .L59+24
+ 231 01bc 84F84020 		strb	r2, [r4, #64]
+ 232 01c0 6363     		str	r3, [r4, #52]
+ 233 01c2 2046     		mov	r0, r4
+ 234 01c4 FFF7FEFF 		bl	HAL_I2S_MspInit
+ 235 01c8 74E7     		b	.L14
+ 236              	.L8:
+ 237 01ca 0D48     		ldr	r0, .L59+4
+ 238 01cc 4FF48F71 		mov	r1, #286
+ 239 01d0 FFF7FEFF 		bl	assert_failed
+ 240 01d4 2369     		ldr	r3, [r4, #16]
+ 241 01d6 33F40073 		bics	r3, r3, #512
+ 242 01da 3FF446AF 		beq	.L10
+ 243              	.L56:
+ 244 01de 0848     		ldr	r0, .L59+4
+ 245 01e0 40F21F11 		movw	r1, #287
+ 246 01e4 FFF7FEFF 		bl	assert_failed
+ 247 01e8 3FE7     		b	.L10
+ 248              	.L58:
+ 249 01ea E368     		ldr	r3, [r4, #12]
+ 250 01ec 1BB1     		cbz	r3, .L19
+ 251 01ee AD00     		lsls	r5, r5, #2
+ 252 01f0 7EE7     		b	.L18
+ 253              	.L27:
+ 254 01f2 0120     		movs	r0, #1
+ 255 01f4 7047     		bx	lr
+ 256              	.L19:
+ 257 01f6 ED00     		lsls	r5, r5, #3
+ 258 01f8 7AE7     		b	.L18
+ 259              	.L60:
+ 260 01fa 00BF     		.align	2
+ 261              	.L59:
+ 262 01fc 00380040 		.word	1073756160
+ 263 0200 00000000 		.word	.LC0
+ 264 0204 C0CE0200 		.word	184000
+ 265 0208 CDCCCCCC 		.word	-858993459
+ 266 020c 00340040 		.word	1073755136
+ 267 0210 00000000 		.word	HAL_I2SEx_FullDuplex_IRQHandler
+ 268 0214 00000000 		.word	I2S_IRQHandler
+ 270              		.section	.text.HAL_I2S_MspDeInit,"ax",%progbits
+ 271              		.align	1
+ 272              		.p2align 2,,3
+ 273              		.weak	HAL_I2S_MspDeInit
+ 274              		.syntax unified
+ 275              		.thumb
+ 276              		.thumb_func
+ 277              		.fpu fpv4-sp-d16
+ 279              	HAL_I2S_MspDeInit:
+ 280              		@ args = 0, pretend = 0, frame = 0
+ 281              		@ frame_needed = 0, uses_anonymous_args = 0
+ 282              		@ link register save eliminated.
+ 283 0000 7047     		bx	lr
+ 285 0002 00BF     		.section	.text.HAL_I2S_DeInit,"ax",%progbits
+ 286              		.align	1
+ 287              		.p2align 2,,3
+ARM GAS  /tmp/cczQqIkK.s 			page 6
+
+
+ 288              		.global	HAL_I2S_DeInit
+ 289              		.syntax unified
+ 290              		.thumb
+ 291              		.thumb_func
+ 292              		.fpu fpv4-sp-d16
+ 294              	HAL_I2S_DeInit:
+ 295              		@ args = 0, pretend = 0, frame = 0
+ 296              		@ frame_needed = 0, uses_anonymous_args = 0
+ 297 0000 08B3     		cbz	r0, .L65
+ 298 0002 0368     		ldr	r3, [r0]
+ 299 0004 114A     		ldr	r2, .L70
+ 300 0006 9342     		cmp	r3, r2
+ 301 0008 10B5     		push	{r4, lr}
+ 302 000a 0446     		mov	r4, r0
+ 303 000c 09D0     		beq	.L64
+ 304 000e 02F58062 		add	r2, r2, #1024
+ 305 0012 9342     		cmp	r3, r2
+ 306 0014 05D0     		beq	.L64
+ 307 0016 0E48     		ldr	r0, .L70+4
+ 308 0018 4FF4FB71 		mov	r1, #502
+ 309 001c FFF7FEFF 		bl	assert_failed
+ 310 0020 2368     		ldr	r3, [r4]
+ 311              	.L64:
+ 312 0022 0222     		movs	r2, #2
+ 313 0024 84F84120 		strb	r2, [r4, #65]
+ 314 0028 DA69     		ldr	r2, [r3, #28]
+ 315 002a 22F48062 		bic	r2, r2, #1024
+ 316 002e 2046     		mov	r0, r4
+ 317 0030 DA61     		str	r2, [r3, #28]
+ 318 0032 FFF7FEFF 		bl	HAL_I2S_MspDeInit
+ 319 0036 0023     		movs	r3, #0
+ 320 0038 6364     		str	r3, [r4, #68]
+ 321 003a 84F84130 		strb	r3, [r4, #65]
+ 322 003e 84F84030 		strb	r3, [r4, #64]
+ 323 0042 1846     		mov	r0, r3
+ 324 0044 10BD     		pop	{r4, pc}
+ 325              	.L65:
+ 326 0046 0120     		movs	r0, #1
+ 327 0048 7047     		bx	lr
+ 328              	.L71:
+ 329 004a 00BF     		.align	2
+ 330              	.L70:
+ 331 004c 00380040 		.word	1073756160
+ 332 0050 00000000 		.word	.LC0
+ 334              		.section	.text.HAL_I2S_Transmit,"ax",%progbits
+ 335              		.align	1
+ 336              		.p2align 2,,3
+ 337              		.global	HAL_I2S_Transmit
+ 338              		.syntax unified
+ 339              		.thumb
+ 340              		.thumb_func
+ 341              		.fpu fpv4-sp-d16
+ 343              	HAL_I2S_Transmit:
+ 344              		@ args = 0, pretend = 0, frame = 8
+ 345              		@ frame_needed = 0, uses_anonymous_args = 0
+ 346 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 347 0004 82B0     		sub	sp, sp, #8
+ARM GAS  /tmp/cczQqIkK.s 			page 7
+
+
+ 348 0006 0029     		cmp	r1, #0
+ 349 0008 5AD0     		beq	.L94
+ 350 000a 002A     		cmp	r2, #0
+ 351 000c 58D0     		beq	.L94
+ 352 000e 1D46     		mov	r5, r3
+ 353 0010 90F84030 		ldrb	r3, [r0, #64]	@ zero_extendqisi2
+ 354 0014 012B     		cmp	r3, #1
+ 355 0016 0646     		mov	r6, r0
+ 356 0018 5CD0     		beq	.L95
+ 357 001a 0123     		movs	r3, #1
+ 358 001c 80F84030 		strb	r3, [r0, #64]
+ 359 0020 90F84130 		ldrb	r3, [r0, #65]	@ zero_extendqisi2
+ 360 0024 012B     		cmp	r3, #1
+ 361 0026 DFB2     		uxtb	r7, r3
+ 362 0028 73D1     		bne	.L112
+ 363 002a 4162     		str	r1, [r0, #36]
+ 364 002c 0321     		movs	r1, #3
+ 365 002e 80F84110 		strb	r1, [r0, #65]
+ 366 0032 0368     		ldr	r3, [r0]
+ 367 0034 0021     		movs	r1, #0
+ 368 0036 4164     		str	r1, [r0, #68]
+ 369 0038 D969     		ldr	r1, [r3, #28]
+ 370 003a 01F00701 		and	r1, r1, #7
+ 371 003e 0329     		cmp	r1, #3
+ 372 0040 43D0     		beq	.L75
+ 373 0042 0529     		cmp	r1, #5
+ 374 0044 41D0     		beq	.L75
+ 375 0046 0285     		strh	r2, [r0, #40]	@ movhi
+ 376 0048 4285     		strh	r2, [r0, #42]	@ movhi
+ 377              	.L77:
+ 378 004a D3F81C80 		ldr	r8, [r3, #28]
+ 379 004e DA69     		ldr	r2, [r3, #28]
+ 380 0050 5105     		lsls	r1, r2, #21
+ 381 0052 03D4     		bmi	.L78
+ 382 0054 DA69     		ldr	r2, [r3, #28]
+ 383 0056 42F48062 		orr	r2, r2, #1024
+ 384 005a DA61     		str	r2, [r3, #28]
+ 385              	.L78:
+ 386 005c FFF7FEFF 		bl	HAL_GetTick
+ 387 0060 8146     		mov	r9, r0
+ 388              	.L79:
+ 389 0062 3168     		ldr	r1, [r6]
+ 390 0064 01E0     		b	.L80
+ 391              	.L81:
+ 392 0066 6A1C     		adds	r2, r5, #1
+ 393 0068 4CD1     		bne	.L113
+ 394              	.L80:
+ 395 006a 8C68     		ldr	r4, [r1, #8]
+ 396 006c 14F00204 		ands	r4, r4, #2
+ 397 0070 F9D0     		beq	.L81
+ 398 0072 4FF00009 		mov	r9, #0
+ 399              	.L86:
+ 400 0076 738D     		ldrh	r3, [r6, #42]
+ 401 0078 9BB2     		uxth	r3, r3
+ 402 007a 002B     		cmp	r3, #0
+ 403 007c 51D0     		beq	.L114
+ 404 007e 726A     		ldr	r2, [r6, #36]
+ARM GAS  /tmp/cczQqIkK.s 			page 8
+
+
+ 405 0080 32F8023B 		ldrh	r3, [r2], #2
+ 406 0084 CB60     		str	r3, [r1, #12]
+ 407 0086 738D     		ldrh	r3, [r6, #42]
+ 408 0088 7262     		str	r2, [r6, #36]
+ 409 008a 013B     		subs	r3, r3, #1
+ 410 008c 9BB2     		uxth	r3, r3
+ 411 008e 7385     		strh	r3, [r6, #42]	@ movhi
+ 412 0090 FFF7FEFF 		bl	HAL_GetTick
+ 413 0094 8246     		mov	r10, r0
+ 414              	.L83:
+ 415 0096 3168     		ldr	r1, [r6]
+ 416 0098 01E0     		b	.L84
+ 417              	.L85:
+ 418 009a 6B1C     		adds	r3, r5, #1
+ 419 009c 1CD1     		bne	.L115
+ 420              	.L84:
+ 421 009e 8C68     		ldr	r4, [r1, #8]
+ 422 00a0 14F00204 		ands	r4, r4, #2
+ 423 00a4 F9D0     		beq	.L85
+ 424 00a6 8B68     		ldr	r3, [r1, #8]
+ 425 00a8 1807     		lsls	r0, r3, #28
+ 426 00aa E4D5     		bpl	.L86
+ 427 00ac CDF80490 		str	r9, [sp, #4]
+ 428 00b0 8B68     		ldr	r3, [r1, #8]
+ 429 00b2 0193     		str	r3, [sp, #4]
+ 430 00b4 019B     		ldr	r3, [sp, #4]
+ 431 00b6 736C     		ldr	r3, [r6, #68]
+ 432 00b8 43F00403 		orr	r3, r3, #4
+ 433 00bc 7364     		str	r3, [r6, #68]
+ 434 00be DAE7     		b	.L86
+ 435              	.L94:
+ 436 00c0 0127     		movs	r7, #1
+ 437              	.L73:
+ 438 00c2 3846     		mov	r0, r7
+ 439 00c4 02B0     		add	sp, sp, #8
+ 440              		@ sp needed
+ 441 00c6 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 442              	.L75:
+ 443 00ca 5200     		lsls	r2, r2, #1
+ 444 00cc 92B2     		uxth	r2, r2
+ 445 00ce 3285     		strh	r2, [r6, #40]	@ movhi
+ 446 00d0 7285     		strh	r2, [r6, #42]	@ movhi
+ 447 00d2 BAE7     		b	.L77
+ 448              	.L95:
+ 449 00d4 0227     		movs	r7, #2
+ 450 00d6 F4E7     		b	.L73
+ 451              	.L115:
+ 452 00d8 FFF7FEFF 		bl	HAL_GetTick
+ 453 00dc A0EB0A00 		sub	r0, r0, r10
+ 454 00e0 8542     		cmp	r5, r0
+ 455 00e2 D8D8     		bhi	.L83
+ 456              	.L111:
+ 457 00e4 0122     		movs	r2, #1
+ 458 00e6 86F84120 		strb	r2, [r6, #65]
+ 459 00ea 86F84040 		strb	r4, [r6, #64]
+ 460 00ee 736C     		ldr	r3, [r6, #68]
+ 461 00f0 3846     		mov	r0, r7
+ARM GAS  /tmp/cczQqIkK.s 			page 9
+
+
+ 462 00f2 1343     		orrs	r3, r3, r2
+ 463 00f4 7364     		str	r3, [r6, #68]
+ 464 00f6 86F84120 		strb	r2, [r6, #65]
+ 465 00fa 86F84040 		strb	r4, [r6, #64]
+ 466 00fe 02B0     		add	sp, sp, #8
+ 467              		@ sp needed
+ 468 0100 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 469              	.L113:
+ 470 0104 FFF7FEFF 		bl	HAL_GetTick
+ 471 0108 A0EB0900 		sub	r0, r0, r9
+ 472 010c 8542     		cmp	r5, r0
+ 473 010e A8D8     		bhi	.L79
+ 474 0110 E8E7     		b	.L111
+ 475              	.L112:
+ 476 0112 0023     		movs	r3, #0
+ 477 0114 0227     		movs	r7, #2
+ 478 0116 80F84030 		strb	r3, [r0, #64]
+ 479 011a 3846     		mov	r0, r7
+ 480 011c 02B0     		add	sp, sp, #8
+ 481              		@ sp needed
+ 482 011e BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 483              	.L114:
+ 484 0122 18F4007F 		tst	r8, #512
+ 485 0126 0AD0     		beq	.L88
+ 486              	.L92:
+ 487 0128 0023     		movs	r3, #0
+ 488 012a 1F46     		mov	r7, r3
+ 489 012c 0122     		movs	r2, #1
+ 490 012e 3846     		mov	r0, r7
+ 491 0130 86F84120 		strb	r2, [r6, #65]
+ 492 0134 86F84030 		strb	r3, [r6, #64]
+ 493 0138 02B0     		add	sp, sp, #8
+ 494              		@ sp needed
+ 495 013a BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 496              	.L88:
+ 497 013e FFF7FEFF 		bl	HAL_GetTick
+ 498 0142 0446     		mov	r4, r0
+ 499              	.L89:
+ 500 0144 3268     		ldr	r2, [r6]
+ 501              	.L90:
+ 502 0146 9368     		ldr	r3, [r2, #8]
+ 503 0148 1B06     		lsls	r3, r3, #24
+ 504 014a EDD5     		bpl	.L92
+ 505 014c 691C     		adds	r1, r5, #1
+ 506 014e FAD0     		beq	.L90
+ 507 0150 FFF7FEFF 		bl	HAL_GetTick
+ 508 0154 001B     		subs	r0, r0, r4
+ 509 0156 8542     		cmp	r5, r0
+ 510 0158 F4D8     		bhi	.L89
+ 511 015a 0121     		movs	r1, #1
+ 512 015c 0022     		movs	r2, #0
+ 513 015e 86F84110 		strb	r1, [r6, #65]
+ 514 0162 86F84020 		strb	r2, [r6, #64]
+ 515 0166 736C     		ldr	r3, [r6, #68]
+ 516 0168 0B43     		orrs	r3, r3, r1
+ 517 016a 7364     		str	r3, [r6, #68]
+ 518 016c 86F84110 		strb	r1, [r6, #65]
+ARM GAS  /tmp/cczQqIkK.s 			page 10
+
+
+ 519 0170 86F84020 		strb	r2, [r6, #64]
+ 520 0174 A5E7     		b	.L73
+ 522 0176 00BF     		.section	.text.HAL_I2S_Receive,"ax",%progbits
+ 523              		.align	1
+ 524              		.p2align 2,,3
+ 525              		.global	HAL_I2S_Receive
+ 526              		.syntax unified
+ 527              		.thumb
+ 528              		.thumb_func
+ 529              		.fpu fpv4-sp-d16
+ 531              	HAL_I2S_Receive:
+ 532              		@ args = 0, pretend = 0, frame = 8
+ 533              		@ frame_needed = 0, uses_anonymous_args = 0
+ 534 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+ 535 0004 83B0     		sub	sp, sp, #12
+ 536 0006 0029     		cmp	r1, #0
+ 537 0008 68D0     		beq	.L131
+ 538 000a 002A     		cmp	r2, #0
+ 539 000c 66D0     		beq	.L131
+ 540 000e 1D46     		mov	r5, r3
+ 541 0010 90F84030 		ldrb	r3, [r0, #64]	@ zero_extendqisi2
+ 542 0014 012B     		cmp	r3, #1
+ 543 0016 0646     		mov	r6, r0
+ 544 0018 6AD0     		beq	.L132
+ 545 001a 0123     		movs	r3, #1
+ 546 001c 80F84030 		strb	r3, [r0, #64]
+ 547 0020 90F84130 		ldrb	r3, [r0, #65]	@ zero_extendqisi2
+ 548 0024 012B     		cmp	r3, #1
+ 549 0026 DFB2     		uxtb	r7, r3
+ 550 0028 7AD1     		bne	.L142
+ 551 002a 0423     		movs	r3, #4
+ 552 002c 80F84130 		strb	r3, [r0, #65]
+ 553 0030 C162     		str	r1, [r0, #44]
+ 554 0032 0023     		movs	r3, #0
+ 555 0034 0168     		ldr	r1, [r0]
+ 556 0036 4364     		str	r3, [r0, #68]
+ 557 0038 CB69     		ldr	r3, [r1, #28]
+ 558 003a 03F00703 		and	r3, r3, #7
+ 559 003e 032B     		cmp	r3, #3
+ 560 0040 51D0     		beq	.L119
+ 561 0042 052B     		cmp	r3, #5
+ 562 0044 4FD0     		beq	.L119
+ 563 0046 0286     		strh	r2, [r0, #48]	@ movhi
+ 564 0048 4286     		strh	r2, [r0, #50]	@ movhi
+ 565              	.L121:
+ 566 004a CB69     		ldr	r3, [r1, #28]
+ 567 004c 5805     		lsls	r0, r3, #21
+ 568 004e 03D4     		bmi	.L122
+ 569 0050 CB69     		ldr	r3, [r1, #28]
+ 570 0052 43F48063 		orr	r3, r3, #1024
+ 571 0056 CB61     		str	r3, [r1, #28]
+ 572              	.L122:
+ 573 0058 CB69     		ldr	r3, [r1, #28]
+ 574 005a 03F44073 		and	r3, r3, #768
+ 575 005e B3F5407F 		cmp	r3, #768
+ 576 0062 06D1     		bne	.L123
+ 577 0064 0023     		movs	r3, #0
+ARM GAS  /tmp/cczQqIkK.s 			page 11
+
+
+ 578 0066 0093     		str	r3, [sp]
+ 579 0068 CB68     		ldr	r3, [r1, #12]
+ 580 006a 0093     		str	r3, [sp]
+ 581 006c 8B68     		ldr	r3, [r1, #8]
+ 582 006e 0093     		str	r3, [sp]
+ 583 0070 009B     		ldr	r3, [sp]
+ 584              	.L123:
+ 585 0072 4FF00008 		mov	r8, #0
+ 586              	.L128:
+ 587 0076 738E     		ldrh	r3, [r6, #50]
+ 588 0078 9BB2     		uxth	r3, r3
+ 589 007a 2BB3     		cbz	r3, .L143
+ 590              	.L129:
+ 591 007c FFF7FEFF 		bl	HAL_GetTick
+ 592 0080 8146     		mov	r9, r0
+ 593              	.L125:
+ 594 0082 3168     		ldr	r1, [r6]
+ 595 0084 01E0     		b	.L126
+ 596              	.L127:
+ 597 0086 6A1C     		adds	r2, r5, #1
+ 598 0088 34D1     		bne	.L144
+ 599              	.L126:
+ 600 008a 8C68     		ldr	r4, [r1, #8]
+ 601 008c 14F00104 		ands	r4, r4, #1
+ 602 0090 F9D0     		beq	.L127
+ 603 0092 F26A     		ldr	r2, [r6, #44]
+ 604 0094 CB68     		ldr	r3, [r1, #12]
+ 605 0096 22F8023B 		strh	r3, [r2], #2	@ movhi
+ 606 009a 738E     		ldrh	r3, [r6, #50]
+ 607 009c F262     		str	r2, [r6, #44]
+ 608 009e 013B     		subs	r3, r3, #1
+ 609 00a0 9BB2     		uxth	r3, r3
+ 610 00a2 7386     		strh	r3, [r6, #50]	@ movhi
+ 611 00a4 8B68     		ldr	r3, [r1, #8]
+ 612 00a6 5B06     		lsls	r3, r3, #25
+ 613 00a8 E5D5     		bpl	.L128
+ 614 00aa CDF80480 		str	r8, [sp, #4]
+ 615 00ae CB68     		ldr	r3, [r1, #12]
+ 616 00b0 0193     		str	r3, [sp, #4]
+ 617 00b2 8B68     		ldr	r3, [r1, #8]
+ 618 00b4 0193     		str	r3, [sp, #4]
+ 619 00b6 019B     		ldr	r3, [sp, #4]
+ 620 00b8 736C     		ldr	r3, [r6, #68]
+ 621 00ba 43F00203 		orr	r3, r3, #2
+ 622 00be 7364     		str	r3, [r6, #68]
+ 623 00c0 738E     		ldrh	r3, [r6, #50]
+ 624 00c2 9BB2     		uxth	r3, r3
+ 625 00c4 002B     		cmp	r3, #0
+ 626 00c6 D9D1     		bne	.L129
+ 627              	.L143:
+ 628 00c8 1F46     		mov	r7, r3
+ 629 00ca 0122     		movs	r2, #1
+ 630 00cc 3846     		mov	r0, r7
+ 631 00ce 86F84120 		strb	r2, [r6, #65]
+ 632 00d2 86F84030 		strb	r3, [r6, #64]
+ 633 00d6 03B0     		add	sp, sp, #12
+ 634              		@ sp needed
+ARM GAS  /tmp/cczQqIkK.s 			page 12
+
+
+ 635 00d8 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 636              	.L131:
+ 637 00dc 0127     		movs	r7, #1
+ 638              	.L117:
+ 639 00de 3846     		mov	r0, r7
+ 640 00e0 03B0     		add	sp, sp, #12
+ 641              		@ sp needed
+ 642 00e2 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 643              	.L119:
+ 644 00e6 5300     		lsls	r3, r2, #1
+ 645 00e8 9BB2     		uxth	r3, r3
+ 646 00ea 3386     		strh	r3, [r6, #48]	@ movhi
+ 647 00ec 7386     		strh	r3, [r6, #50]	@ movhi
+ 648 00ee ACE7     		b	.L121
+ 649              	.L132:
+ 650 00f0 0227     		movs	r7, #2
+ 651 00f2 F4E7     		b	.L117
+ 652              	.L144:
+ 653 00f4 FFF7FEFF 		bl	HAL_GetTick
+ 654 00f8 A0EB0900 		sub	r0, r0, r9
+ 655 00fc 8542     		cmp	r5, r0
+ 656 00fe C0D8     		bhi	.L125
+ 657 0100 0122     		movs	r2, #1
+ 658 0102 86F84120 		strb	r2, [r6, #65]
+ 659 0106 86F84040 		strb	r4, [r6, #64]
+ 660 010a 736C     		ldr	r3, [r6, #68]
+ 661 010c 3846     		mov	r0, r7
+ 662 010e 1343     		orrs	r3, r3, r2
+ 663 0110 7364     		str	r3, [r6, #68]
+ 664 0112 86F84120 		strb	r2, [r6, #65]
+ 665 0116 86F84040 		strb	r4, [r6, #64]
+ 666 011a 03B0     		add	sp, sp, #12
+ 667              		@ sp needed
+ 668 011c BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 669              	.L142:
+ 670 0120 0023     		movs	r3, #0
+ 671 0122 0227     		movs	r7, #2
+ 672 0124 80F84030 		strb	r3, [r0, #64]
+ 673 0128 3846     		mov	r0, r7
+ 674 012a 03B0     		add	sp, sp, #12
+ 675              		@ sp needed
+ 676 012c BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 678              		.section	.text.HAL_I2S_Transmit_IT,"ax",%progbits
+ 679              		.align	1
+ 680              		.p2align 2,,3
+ 681              		.global	HAL_I2S_Transmit_IT
+ 682              		.syntax unified
+ 683              		.thumb
+ 684              		.thumb_func
+ 685              		.fpu fpv4-sp-d16
+ 687              	HAL_I2S_Transmit_IT:
+ 688              		@ args = 0, pretend = 0, frame = 0
+ 689              		@ frame_needed = 0, uses_anonymous_args = 0
+ 690              		@ link register save eliminated.
+ 691 0000 71B3     		cbz	r1, .L153
+ 692 0002 6AB3     		cbz	r2, .L153
+ 693 0004 90F84030 		ldrb	r3, [r0, #64]	@ zero_extendqisi2
+ARM GAS  /tmp/cczQqIkK.s 			page 13
+
+
+ 694 0008 012B     		cmp	r3, #1
+ 695 000a 30D0     		beq	.L154
+ 696 000c 0123     		movs	r3, #1
+ 697 000e 80F84030 		strb	r3, [r0, #64]
+ 698 0012 90F84130 		ldrb	r3, [r0, #65]	@ zero_extendqisi2
+ 699 0016 012B     		cmp	r3, #1
+ 700 0018 2BD1     		bne	.L161
+ 701 001a 10B4     		push	{r4}
+ 702 001c 0324     		movs	r4, #3
+ 703 001e 80F84140 		strb	r4, [r0, #65]
+ 704 0022 0368     		ldr	r3, [r0]
+ 705 0024 0024     		movs	r4, #0
+ 706 0026 4464     		str	r4, [r0, #68]
+ 707 0028 DC69     		ldr	r4, [r3, #28]
+ 708 002a 4162     		str	r1, [r0, #36]
+ 709 002c 04F00701 		and	r1, r4, #7
+ 710 0030 0329     		cmp	r1, #3
+ 711 0032 17D0     		beq	.L148
+ 712 0034 0529     		cmp	r1, #5
+ 713 0036 15D0     		beq	.L148
+ 714 0038 0285     		strh	r2, [r0, #40]	@ movhi
+ 715 003a 4285     		strh	r2, [r0, #42]	@ movhi
+ 716              	.L150:
+ 717 003c 5A68     		ldr	r2, [r3, #4]
+ 718 003e 42F0A002 		orr	r2, r2, #160
+ 719 0042 5A60     		str	r2, [r3, #4]
+ 720 0044 DA69     		ldr	r2, [r3, #28]
+ 721 0046 5205     		lsls	r2, r2, #21
+ 722 0048 03D4     		bmi	.L151
+ 723 004a DA69     		ldr	r2, [r3, #28]
+ 724 004c 42F48062 		orr	r2, r2, #1024
+ 725 0050 DA61     		str	r2, [r3, #28]
+ 726              	.L151:
+ 727 0052 0023     		movs	r3, #0
+ 728 0054 80F84030 		strb	r3, [r0, #64]
+ 729 0058 5DF8044B 		ldr	r4, [sp], #4
+ 730 005c 1846     		mov	r0, r3
+ 731 005e 7047     		bx	lr
+ 732              	.L153:
+ 733 0060 0120     		movs	r0, #1
+ 734 0062 7047     		bx	lr
+ 735              	.L148:
+ 736 0064 5200     		lsls	r2, r2, #1
+ 737 0066 92B2     		uxth	r2, r2
+ 738 0068 0285     		strh	r2, [r0, #40]	@ movhi
+ 739 006a 4285     		strh	r2, [r0, #42]	@ movhi
+ 740 006c E6E7     		b	.L150
+ 741              	.L154:
+ 742 006e 0220     		movs	r0, #2
+ 743 0070 7047     		bx	lr
+ 744              	.L161:
+ 745 0072 0023     		movs	r3, #0
+ 746 0074 80F84030 		strb	r3, [r0, #64]
+ 747 0078 0220     		movs	r0, #2
+ 748 007a 7047     		bx	lr
+ 750              		.section	.text.HAL_I2S_Receive_IT,"ax",%progbits
+ 751              		.align	1
+ARM GAS  /tmp/cczQqIkK.s 			page 14
+
+
+ 752              		.p2align 2,,3
+ 753              		.global	HAL_I2S_Receive_IT
+ 754              		.syntax unified
+ 755              		.thumb
+ 756              		.thumb_func
+ 757              		.fpu fpv4-sp-d16
+ 759              	HAL_I2S_Receive_IT:
+ 760              		@ args = 0, pretend = 0, frame = 0
+ 761              		@ frame_needed = 0, uses_anonymous_args = 0
+ 762              		@ link register save eliminated.
+ 763 0000 71B3     		cbz	r1, .L170
+ 764 0002 6AB3     		cbz	r2, .L170
+ 765 0004 90F84030 		ldrb	r3, [r0, #64]	@ zero_extendqisi2
+ 766 0008 012B     		cmp	r3, #1
+ 767 000a 30D0     		beq	.L171
+ 768 000c 0123     		movs	r3, #1
+ 769 000e 80F84030 		strb	r3, [r0, #64]
+ 770 0012 90F84130 		ldrb	r3, [r0, #65]	@ zero_extendqisi2
+ 771 0016 012B     		cmp	r3, #1
+ 772 0018 2BD1     		bne	.L178
+ 773 001a 10B4     		push	{r4}
+ 774 001c 0424     		movs	r4, #4
+ 775 001e 80F84140 		strb	r4, [r0, #65]
+ 776 0022 0368     		ldr	r3, [r0]
+ 777 0024 0024     		movs	r4, #0
+ 778 0026 4464     		str	r4, [r0, #68]
+ 779 0028 DC69     		ldr	r4, [r3, #28]
+ 780 002a C162     		str	r1, [r0, #44]
+ 781 002c 04F00701 		and	r1, r4, #7
+ 782 0030 0329     		cmp	r1, #3
+ 783 0032 17D0     		beq	.L165
+ 784 0034 0529     		cmp	r1, #5
+ 785 0036 15D0     		beq	.L165
+ 786 0038 0286     		strh	r2, [r0, #48]	@ movhi
+ 787 003a 4286     		strh	r2, [r0, #50]	@ movhi
+ 788              	.L167:
+ 789 003c 5A68     		ldr	r2, [r3, #4]
+ 790 003e 42F06002 		orr	r2, r2, #96
+ 791 0042 5A60     		str	r2, [r3, #4]
+ 792 0044 DA69     		ldr	r2, [r3, #28]
+ 793 0046 5205     		lsls	r2, r2, #21
+ 794 0048 03D4     		bmi	.L168
+ 795 004a DA69     		ldr	r2, [r3, #28]
+ 796 004c 42F48062 		orr	r2, r2, #1024
+ 797 0050 DA61     		str	r2, [r3, #28]
+ 798              	.L168:
+ 799 0052 0023     		movs	r3, #0
+ 800 0054 80F84030 		strb	r3, [r0, #64]
+ 801 0058 5DF8044B 		ldr	r4, [sp], #4
+ 802 005c 1846     		mov	r0, r3
+ 803 005e 7047     		bx	lr
+ 804              	.L170:
+ 805 0060 0120     		movs	r0, #1
+ 806 0062 7047     		bx	lr
+ 807              	.L165:
+ 808 0064 5200     		lsls	r2, r2, #1
+ 809 0066 92B2     		uxth	r2, r2
+ARM GAS  /tmp/cczQqIkK.s 			page 15
+
+
+ 810 0068 0286     		strh	r2, [r0, #48]	@ movhi
+ 811 006a 4286     		strh	r2, [r0, #50]	@ movhi
+ 812 006c E6E7     		b	.L167
+ 813              	.L171:
+ 814 006e 0220     		movs	r0, #2
+ 815 0070 7047     		bx	lr
+ 816              	.L178:
+ 817 0072 0023     		movs	r3, #0
+ 818 0074 80F84030 		strb	r3, [r0, #64]
+ 819 0078 0220     		movs	r0, #2
+ 820 007a 7047     		bx	lr
+ 822              		.section	.text.HAL_I2S_Transmit_DMA,"ax",%progbits
+ 823              		.align	1
+ 824              		.p2align 2,,3
+ 825              		.global	HAL_I2S_Transmit_DMA
+ 826              		.syntax unified
+ 827              		.thumb
+ 828              		.thumb_func
+ 829              		.fpu fpv4-sp-d16
+ 831              	HAL_I2S_Transmit_DMA:
+ 832              		@ args = 0, pretend = 0, frame = 0
+ 833              		@ frame_needed = 0, uses_anonymous_args = 0
+ 834 0000 0029     		cmp	r1, #0
+ 835 0002 3FD0     		beq	.L189
+ 836 0004 002A     		cmp	r2, #0
+ 837 0006 3DD0     		beq	.L189
+ 838 0008 38B5     		push	{r3, r4, r5, lr}
+ 839 000a 90F84030 		ldrb	r3, [r0, #64]	@ zero_extendqisi2
+ 840 000e 012B     		cmp	r3, #1
+ 841 0010 0446     		mov	r4, r0
+ 842 0012 3ED0     		beq	.L190
+ 843 0014 0123     		movs	r3, #1
+ 844 0016 80F84030 		strb	r3, [r0, #64]
+ 845 001a 90F84130 		ldrb	r3, [r0, #65]	@ zero_extendqisi2
+ 846 001e 012B     		cmp	r3, #1
+ 847 0020 39D1     		bne	.L198
+ 848 0022 0323     		movs	r3, #3
+ 849 0024 80F84130 		strb	r3, [r0, #65]
+ 850 0028 0568     		ldr	r5, [r0]
+ 851 002a 0023     		movs	r3, #0
+ 852 002c 4364     		str	r3, [r0, #68]
+ 853 002e EB69     		ldr	r3, [r5, #28]
+ 854 0030 4162     		str	r1, [r0, #36]
+ 855 0032 03F00703 		and	r3, r3, #7
+ 856 0036 032B     		cmp	r3, #3
+ 857 0038 26D0     		beq	.L182
+ 858 003a 052B     		cmp	r3, #5
+ 859 003c 24D0     		beq	.L182
+ 860 003e 0285     		strh	r2, [r0, #40]	@ movhi
+ 861 0040 4285     		strh	r2, [r0, #42]	@ movhi
+ 862              	.L184:
+ 863 0042 A06B     		ldr	r0, [r4, #56]
+ 864 0044 1C4B     		ldr	r3, .L200
+ 865 0046 0364     		str	r3, [r0, #64]
+ 866 0048 1C4B     		ldr	r3, .L200+4
+ 867 004a C363     		str	r3, [r0, #60]
+ 868 004c 1C4B     		ldr	r3, .L200+8
+ARM GAS  /tmp/cczQqIkK.s 			page 16
+
+
+ 869 004e C364     		str	r3, [r0, #76]
+ 870 0050 238D     		ldrh	r3, [r4, #40]
+ 871 0052 05F10C02 		add	r2, r5, #12
+ 872 0056 9BB2     		uxth	r3, r3
+ 873 0058 FFF7FEFF 		bl	HAL_DMA_Start_IT
+ 874 005c 00BB     		cbnz	r0, .L199
+ 875 005e 2368     		ldr	r3, [r4]
+ 876 0060 DA69     		ldr	r2, [r3, #28]
+ 877 0062 5105     		lsls	r1, r2, #21
+ 878 0064 03D4     		bmi	.L186
+ 879 0066 DA69     		ldr	r2, [r3, #28]
+ 880 0068 42F48062 		orr	r2, r2, #1024
+ 881 006c DA61     		str	r2, [r3, #28]
+ 882              	.L186:
+ 883 006e 5A68     		ldr	r2, [r3, #4]
+ 884 0070 9207     		lsls	r2, r2, #30
+ 885 0072 03D4     		bmi	.L187
+ 886 0074 5A68     		ldr	r2, [r3, #4]
+ 887 0076 42F00202 		orr	r2, r2, #2
+ 888 007a 5A60     		str	r2, [r3, #4]
+ 889              	.L187:
+ 890 007c 0023     		movs	r3, #0
+ 891 007e 84F84030 		strb	r3, [r4, #64]
+ 892 0082 38BD     		pop	{r3, r4, r5, pc}
+ 893              	.L189:
+ 894 0084 0120     		movs	r0, #1
+ 895 0086 7047     		bx	lr
+ 896              	.L182:
+ 897 0088 5300     		lsls	r3, r2, #1
+ 898 008a 9BB2     		uxth	r3, r3
+ 899 008c 2385     		strh	r3, [r4, #40]	@ movhi
+ 900 008e 6385     		strh	r3, [r4, #42]	@ movhi
+ 901 0090 D7E7     		b	.L184
+ 902              	.L190:
+ 903 0092 0220     		movs	r0, #2
+ 904 0094 38BD     		pop	{r3, r4, r5, pc}
+ 905              	.L198:
+ 906 0096 0023     		movs	r3, #0
+ 907 0098 80F84030 		strb	r3, [r0, #64]
+ 908 009c 0220     		movs	r0, #2
+ 909 009e 38BD     		pop	{r3, r4, r5, pc}
+ 910              	.L199:
+ 911 00a0 636C     		ldr	r3, [r4, #68]
+ 912 00a2 0122     		movs	r2, #1
+ 913 00a4 43F00803 		orr	r3, r3, #8
+ 914 00a8 0021     		movs	r1, #0
+ 915 00aa 6364     		str	r3, [r4, #68]
+ 916 00ac 84F84120 		strb	r2, [r4, #65]
+ 917 00b0 84F84010 		strb	r1, [r4, #64]
+ 918 00b4 1046     		mov	r0, r2
+ 919 00b6 38BD     		pop	{r3, r4, r5, pc}
+ 920              	.L201:
+ 921              		.align	2
+ 922              	.L200:
+ 923 00b8 00000000 		.word	I2S_DMATxHalfCplt
+ 924 00bc 00000000 		.word	I2S_DMATxCplt
+ 925 00c0 00000000 		.word	I2S_DMAError
+ARM GAS  /tmp/cczQqIkK.s 			page 17
+
+
+ 927              		.section	.text.HAL_I2S_Receive_DMA,"ax",%progbits
+ 928              		.align	1
+ 929              		.p2align 2,,3
+ 930              		.global	HAL_I2S_Receive_DMA
+ 931              		.syntax unified
+ 932              		.thumb
+ 933              		.thumb_func
+ 934              		.fpu fpv4-sp-d16
+ 936              	HAL_I2S_Receive_DMA:
+ 937              		@ args = 0, pretend = 0, frame = 8
+ 938              		@ frame_needed = 0, uses_anonymous_args = 0
+ 939 0000 0029     		cmp	r1, #0
+ 940 0002 4FD0     		beq	.L213
+ 941 0004 002A     		cmp	r2, #0
+ 942 0006 4DD0     		beq	.L213
+ 943 0008 30B5     		push	{r4, r5, lr}
+ 944 000a 90F84030 		ldrb	r3, [r0, #64]	@ zero_extendqisi2
+ 945 000e 012B     		cmp	r3, #1
+ 946 0010 83B0     		sub	sp, sp, #12
+ 947 0012 0446     		mov	r4, r0
+ 948 0014 4DD0     		beq	.L214
+ 949 0016 0123     		movs	r3, #1
+ 950 0018 80F84030 		strb	r3, [r0, #64]
+ 951 001c 90F84130 		ldrb	r3, [r0, #65]	@ zero_extendqisi2
+ 952 0020 012B     		cmp	r3, #1
+ 953 0022 48D1     		bne	.L222
+ 954 0024 0423     		movs	r3, #4
+ 955 0026 80F84130 		strb	r3, [r0, #65]
+ 956 002a 0568     		ldr	r5, [r0]
+ 957 002c 0023     		movs	r3, #0
+ 958 002e 4364     		str	r3, [r0, #68]
+ 959 0030 EB69     		ldr	r3, [r5, #28]
+ 960 0032 C162     		str	r1, [r0, #44]
+ 961 0034 03F00703 		and	r3, r3, #7
+ 962 0038 032B     		cmp	r3, #3
+ 963 003a 35D0     		beq	.L205
+ 964 003c 052B     		cmp	r3, #5
+ 965 003e 33D0     		beq	.L205
+ 966 0040 0286     		strh	r2, [r0, #48]	@ movhi
+ 967 0042 4286     		strh	r2, [r0, #50]	@ movhi
+ 968              	.L207:
+ 969 0044 E06B     		ldr	r0, [r4, #60]
+ 970 0046 254B     		ldr	r3, .L224
+ 971 0048 0364     		str	r3, [r0, #64]
+ 972 004a 254B     		ldr	r3, .L224+4
+ 973 004c C363     		str	r3, [r0, #60]
+ 974 004e 254B     		ldr	r3, .L224+8
+ 975 0050 C364     		str	r3, [r0, #76]
+ 976 0052 EB69     		ldr	r3, [r5, #28]
+ 977 0054 03F44073 		and	r3, r3, #768
+ 978 0058 B3F5407F 		cmp	r3, #768
+ 979 005c 06D1     		bne	.L208
+ 980 005e 0023     		movs	r3, #0
+ 981 0060 0193     		str	r3, [sp, #4]
+ 982 0062 EB68     		ldr	r3, [r5, #12]
+ 983 0064 0193     		str	r3, [sp, #4]
+ 984 0066 AB68     		ldr	r3, [r5, #8]
+ARM GAS  /tmp/cczQqIkK.s 			page 18
+
+
+ 985 0068 0193     		str	r3, [sp, #4]
+ 986 006a 019B     		ldr	r3, [sp, #4]
+ 987              	.L208:
+ 988 006c 238E     		ldrh	r3, [r4, #48]
+ 989 006e 0A46     		mov	r2, r1
+ 990 0070 9BB2     		uxth	r3, r3
+ 991 0072 05F10C01 		add	r1, r5, #12
+ 992 0076 FFF7FEFF 		bl	HAL_DMA_Start_IT
+ 993 007a 10BB     		cbnz	r0, .L223
+ 994 007c 2368     		ldr	r3, [r4]
+ 995 007e DA69     		ldr	r2, [r3, #28]
+ 996 0080 5105     		lsls	r1, r2, #21
+ 997 0082 03D4     		bmi	.L210
+ 998 0084 DA69     		ldr	r2, [r3, #28]
+ 999 0086 42F48062 		orr	r2, r2, #1024
+ 1000 008a DA61     		str	r2, [r3, #28]
+ 1001              	.L210:
+ 1002 008c 5A68     		ldr	r2, [r3, #4]
+ 1003 008e D207     		lsls	r2, r2, #31
+ 1004 0090 03D4     		bmi	.L211
+ 1005 0092 5A68     		ldr	r2, [r3, #4]
+ 1006 0094 42F00102 		orr	r2, r2, #1
+ 1007 0098 5A60     		str	r2, [r3, #4]
+ 1008              	.L211:
+ 1009 009a 0023     		movs	r3, #0
+ 1010 009c 84F84030 		strb	r3, [r4, #64]
+ 1011              	.L203:
+ 1012 00a0 03B0     		add	sp, sp, #12
+ 1013              		@ sp needed
+ 1014 00a2 30BD     		pop	{r4, r5, pc}
+ 1015              	.L213:
+ 1016 00a4 0120     		movs	r0, #1
+ 1017 00a6 7047     		bx	lr
+ 1018              	.L205:
+ 1019 00a8 5300     		lsls	r3, r2, #1
+ 1020 00aa 9BB2     		uxth	r3, r3
+ 1021 00ac 2386     		strh	r3, [r4, #48]	@ movhi
+ 1022 00ae 6386     		strh	r3, [r4, #50]	@ movhi
+ 1023 00b0 C8E7     		b	.L207
+ 1024              	.L214:
+ 1025 00b2 0220     		movs	r0, #2
+ 1026 00b4 F4E7     		b	.L203
+ 1027              	.L222:
+ 1028 00b6 0023     		movs	r3, #0
+ 1029 00b8 80F84030 		strb	r3, [r0, #64]
+ 1030 00bc 0220     		movs	r0, #2
+ 1031 00be 03B0     		add	sp, sp, #12
+ 1032              		@ sp needed
+ 1033 00c0 30BD     		pop	{r4, r5, pc}
+ 1034              	.L223:
+ 1035 00c2 636C     		ldr	r3, [r4, #68]
+ 1036 00c4 0122     		movs	r2, #1
+ 1037 00c6 43F00803 		orr	r3, r3, #8
+ 1038 00ca 0021     		movs	r1, #0
+ 1039 00cc 1046     		mov	r0, r2
+ 1040 00ce 6364     		str	r3, [r4, #68]
+ 1041 00d0 84F84120 		strb	r2, [r4, #65]
+ARM GAS  /tmp/cczQqIkK.s 			page 19
+
+
+ 1042 00d4 84F84010 		strb	r1, [r4, #64]
+ 1043 00d8 03B0     		add	sp, sp, #12
+ 1044              		@ sp needed
+ 1045 00da 30BD     		pop	{r4, r5, pc}
+ 1046              	.L225:
+ 1047              		.align	2
+ 1048              	.L224:
+ 1049 00dc 00000000 		.word	I2S_DMARxHalfCplt
+ 1050 00e0 00000000 		.word	I2S_DMARxCplt
+ 1051 00e4 00000000 		.word	I2S_DMAError
+ 1053              		.section	.text.HAL_I2S_DMAPause,"ax",%progbits
+ 1054              		.align	1
+ 1055              		.p2align 2,,3
+ 1056              		.global	HAL_I2S_DMAPause
+ 1057              		.syntax unified
+ 1058              		.thumb
+ 1059              		.thumb_func
+ 1060              		.fpu fpv4-sp-d16
+ 1062              	HAL_I2S_DMAPause:
+ 1063              		@ args = 0, pretend = 0, frame = 0
+ 1064              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1065              		@ link register save eliminated.
+ 1066 0000 90F84030 		ldrb	r3, [r0, #64]	@ zero_extendqisi2
+ 1067 0004 012B     		cmp	r3, #1
+ 1068 0006 3ED0     		beq	.L232
+ 1069 0008 0123     		movs	r3, #1
+ 1070 000a 80F84030 		strb	r3, [r0, #64]
+ 1071 000e 90F84130 		ldrb	r3, [r0, #65]	@ zero_extendqisi2
+ 1072 0012 032B     		cmp	r3, #3
+ 1073 0014 0CD0     		beq	.L239
+ 1074 0016 90F84130 		ldrb	r3, [r0, #65]	@ zero_extendqisi2
+ 1075 001a 042B     		cmp	r3, #4
+ 1076 001c 12D0     		beq	.L240
+ 1077 001e 90F84130 		ldrb	r3, [r0, #65]	@ zero_extendqisi2
+ 1078 0022 052B     		cmp	r3, #5
+ 1079 0024 18D0     		beq	.L241
+ 1080 0026 0023     		movs	r3, #0
+ 1081 0028 80F84030 		strb	r3, [r0, #64]
+ 1082 002c 1846     		mov	r0, r3
+ 1083 002e 7047     		bx	lr
+ 1084              	.L239:
+ 1085 0030 0268     		ldr	r2, [r0]
+ 1086 0032 5368     		ldr	r3, [r2, #4]
+ 1087 0034 23F00203 		bic	r3, r3, #2
+ 1088 0038 5360     		str	r3, [r2, #4]
+ 1089 003a 0023     		movs	r3, #0
+ 1090 003c 80F84030 		strb	r3, [r0, #64]
+ 1091 0040 1846     		mov	r0, r3
+ 1092 0042 7047     		bx	lr
+ 1093              	.L240:
+ 1094 0044 0268     		ldr	r2, [r0]
+ 1095 0046 5368     		ldr	r3, [r2, #4]
+ 1096 0048 23F00103 		bic	r3, r3, #1
+ 1097 004c 5360     		str	r3, [r2, #4]
+ 1098 004e 0023     		movs	r3, #0
+ 1099 0050 80F84030 		strb	r3, [r0, #64]
+ 1100 0054 1846     		mov	r0, r3
+ARM GAS  /tmp/cczQqIkK.s 			page 20
+
+
+ 1101 0056 7047     		bx	lr
+ 1102              	.L241:
+ 1103 0058 0268     		ldr	r2, [r0]
+ 1104 005a 0C4B     		ldr	r3, .L242
+ 1105 005c 5168     		ldr	r1, [r2, #4]
+ 1106 005e 10B4     		push	{r4}
+ 1107 0060 0B4C     		ldr	r4, .L242+4
+ 1108 0062 21F00301 		bic	r1, r1, #3
+ 1109 0066 A242     		cmp	r2, r4
+ 1110 0068 18BF     		it	ne
+ 1111 006a 4FF04023 		movne	r3, #1073758208
+ 1112 006e 5160     		str	r1, [r2, #4]
+ 1113 0070 5A68     		ldr	r2, [r3, #4]
+ 1114 0072 22F00302 		bic	r2, r2, #3
+ 1115 0076 5A60     		str	r2, [r3, #4]
+ 1116 0078 0023     		movs	r3, #0
+ 1117 007a 80F84030 		strb	r3, [r0, #64]
+ 1118 007e 5DF8044B 		ldr	r4, [sp], #4
+ 1119 0082 1846     		mov	r0, r3
+ 1120 0084 7047     		bx	lr
+ 1121              	.L232:
+ 1122 0086 0220     		movs	r0, #2
+ 1123 0088 7047     		bx	lr
+ 1124              	.L243:
+ 1125 008a 00BF     		.align	2
+ 1126              	.L242:
+ 1127 008c 00340040 		.word	1073755136
+ 1128 0090 00380040 		.word	1073756160
+ 1130              		.section	.text.HAL_I2S_DMAResume,"ax",%progbits
+ 1131              		.align	1
+ 1132              		.p2align 2,,3
+ 1133              		.global	HAL_I2S_DMAResume
+ 1134              		.syntax unified
+ 1135              		.thumb
+ 1136              		.thumb_func
+ 1137              		.fpu fpv4-sp-d16
+ 1139              	HAL_I2S_DMAResume:
+ 1140              		@ args = 0, pretend = 0, frame = 0
+ 1141              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1142              		@ link register save eliminated.
+ 1143 0000 90F84030 		ldrb	r3, [r0, #64]	@ zero_extendqisi2
+ 1144 0004 012B     		cmp	r3, #1
+ 1145 0006 4CD0     		beq	.L252
+ 1146 0008 0123     		movs	r3, #1
+ 1147 000a 80F84030 		strb	r3, [r0, #64]
+ 1148 000e 90F84130 		ldrb	r3, [r0, #65]	@ zero_extendqisi2
+ 1149 0012 032B     		cmp	r3, #3
+ 1150 0014 14D0     		beq	.L260
+ 1151 0016 90F84130 		ldrb	r3, [r0, #65]	@ zero_extendqisi2
+ 1152 001a 042B     		cmp	r3, #4
+ 1153 001c 16D0     		beq	.L261
+ 1154 001e 90F84130 		ldrb	r3, [r0, #65]	@ zero_extendqisi2
+ 1155 0022 052B     		cmp	r3, #5
+ 1156 0024 18D0     		beq	.L249
+ 1157 0026 0368     		ldr	r3, [r0]
+ 1158              	.L255:
+ 1159 0028 DA69     		ldr	r2, [r3, #28]
+ARM GAS  /tmp/cczQqIkK.s 			page 21
+
+
+ 1160 002a 5205     		lsls	r2, r2, #21
+ 1161 002c 03D4     		bmi	.L257
+ 1162 002e DA69     		ldr	r2, [r3, #28]
+ 1163 0030 42F48062 		orr	r2, r2, #1024
+ 1164 0034 DA61     		str	r2, [r3, #28]
+ 1165              	.L257:
+ 1166 0036 0023     		movs	r3, #0
+ 1167 0038 80F84030 		strb	r3, [r0, #64]
+ 1168 003c 1846     		mov	r0, r3
+ 1169 003e 7047     		bx	lr
+ 1170              	.L260:
+ 1171 0040 0368     		ldr	r3, [r0]
+ 1172 0042 5A68     		ldr	r2, [r3, #4]
+ 1173 0044 42F00202 		orr	r2, r2, #2
+ 1174 0048 5A60     		str	r2, [r3, #4]
+ 1175 004a EDE7     		b	.L255
+ 1176              	.L261:
+ 1177 004c 0368     		ldr	r3, [r0]
+ 1178 004e 5A68     		ldr	r2, [r3, #4]
+ 1179 0050 42F00102 		orr	r2, r2, #1
+ 1180 0054 5A60     		str	r2, [r3, #4]
+ 1181 0056 E7E7     		b	.L255
+ 1182              	.L249:
+ 1183 0058 0368     		ldr	r3, [r0]
+ 1184 005a 134A     		ldr	r2, .L262
+ 1185 005c 5968     		ldr	r1, [r3, #4]
+ 1186 005e 10B4     		push	{r4}
+ 1187 0060 124C     		ldr	r4, .L262+4
+ 1188 0062 41F00301 		orr	r1, r1, #3
+ 1189 0066 A342     		cmp	r3, r4
+ 1190 0068 18BF     		it	ne
+ 1191 006a 4FF04022 		movne	r2, #1073758208
+ 1192 006e 5960     		str	r1, [r3, #4]
+ 1193 0070 5168     		ldr	r1, [r2, #4]
+ 1194 0072 41F00301 		orr	r1, r1, #3
+ 1195 0076 5160     		str	r1, [r2, #4]
+ 1196 0078 D169     		ldr	r1, [r2, #28]
+ 1197 007a 4C05     		lsls	r4, r1, #21
+ 1198 007c 03D4     		bmi	.L247
+ 1199 007e D169     		ldr	r1, [r2, #28]
+ 1200 0080 41F48061 		orr	r1, r1, #1024
+ 1201 0084 D161     		str	r1, [r2, #28]
+ 1202              	.L247:
+ 1203 0086 DA69     		ldr	r2, [r3, #28]
+ 1204 0088 5105     		lsls	r1, r2, #21
+ 1205 008a 03D4     		bmi	.L251
+ 1206 008c DA69     		ldr	r2, [r3, #28]
+ 1207 008e 42F48062 		orr	r2, r2, #1024
+ 1208 0092 DA61     		str	r2, [r3, #28]
+ 1209              	.L251:
+ 1210 0094 0023     		movs	r3, #0
+ 1211 0096 80F84030 		strb	r3, [r0, #64]
+ 1212 009a 5DF8044B 		ldr	r4, [sp], #4
+ 1213 009e 1846     		mov	r0, r3
+ 1214 00a0 7047     		bx	lr
+ 1215              	.L252:
+ 1216 00a2 0220     		movs	r0, #2
+ARM GAS  /tmp/cczQqIkK.s 			page 22
+
+
+ 1217 00a4 7047     		bx	lr
+ 1218              	.L263:
+ 1219 00a6 00BF     		.align	2
+ 1220              	.L262:
+ 1221 00a8 00340040 		.word	1073755136
+ 1222 00ac 00380040 		.word	1073756160
+ 1224              		.section	.text.HAL_I2S_DMAStop,"ax",%progbits
+ 1225              		.align	1
+ 1226              		.p2align 2,,3
+ 1227              		.global	HAL_I2S_DMAStop
+ 1228              		.syntax unified
+ 1229              		.thumb
+ 1230              		.thumb_func
+ 1231              		.fpu fpv4-sp-d16
+ 1233              	HAL_I2S_DMAStop:
+ 1234              		@ args = 0, pretend = 0, frame = 16
+ 1235              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1236 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+ 1237 0004 4368     		ldr	r3, [r0, #4]
+ 1238 0006 33F40073 		bics	r3, r3, #512
+ 1239 000a 85B0     		sub	sp, sp, #20
+ 1240 000c 0546     		mov	r5, r0
+ 1241 000e 05D0     		beq	.L320
+ 1242 0010 B3F5807F 		cmp	r3, #256
+ 1243 0014 00F08680 		beq	.L321
+ 1244 0018 0026     		movs	r6, #0
+ 1245 001a 32E0     		b	.L275
+ 1246              	.L320:
+ 1247 001c 806B     		ldr	r0, [r0, #56]
+ 1248 001e 18B1     		cbz	r0, .L268
+ 1249 0020 FFF7FEFF 		bl	HAL_DMA_Abort
+ 1250 0024 0028     		cmp	r0, #0
+ 1251 0026 75D1     		bne	.L322
+ 1252              	.L268:
+ 1253 0028 0026     		movs	r6, #0
+ 1254              	.L267:
+ 1255 002a FFF7FEFF 		bl	HAL_GetTick
+ 1256 002e 0746     		mov	r7, r0
+ 1257 0030 04E0     		b	.L269
+ 1258              	.L271:
+ 1259 0032 FFF7FEFF 		bl	HAL_GetTick
+ 1260 0036 C01B     		subs	r0, r0, r7
+ 1261 0038 6328     		cmp	r0, #99
+ 1262 003a 29D8     		bhi	.L323
+ 1263              	.L269:
+ 1264 003c 2B68     		ldr	r3, [r5]
+ 1265 003e 9C68     		ldr	r4, [r3, #8]
+ 1266 0040 14F00204 		ands	r4, r4, #2
+ 1267 0044 F5D0     		beq	.L271
+ 1268              	.L270:
+ 1269 0046 FFF7FEFF 		bl	HAL_GetTick
+ 1270 004a 0446     		mov	r4, r0
+ 1271 004c 04E0     		b	.L272
+ 1272              	.L274:
+ 1273 004e FFF7FEFF 		bl	HAL_GetTick
+ 1274 0052 001B     		subs	r0, r0, r4
+ 1275 0054 6328     		cmp	r0, #99
+ARM GAS  /tmp/cczQqIkK.s 			page 23
+
+
+ 1276 0056 27D8     		bhi	.L324
+ 1277              	.L272:
+ 1278 0058 2B68     		ldr	r3, [r5]
+ 1279 005a 9A68     		ldr	r2, [r3, #8]
+ 1280 005c 1106     		lsls	r1, r2, #24
+ 1281 005e F6D4     		bmi	.L274
+ 1282              	.L273:
+ 1283 0060 DA69     		ldr	r2, [r3, #28]
+ 1284 0062 0021     		movs	r1, #0
+ 1285 0064 22F48062 		bic	r2, r2, #1024
+ 1286 0068 DA61     		str	r2, [r3, #28]
+ 1287 006a 0091     		str	r1, [sp]
+ 1288 006c 9A68     		ldr	r2, [r3, #8]
+ 1289 006e 0092     		str	r2, [sp]
+ 1290 0070 009A     		ldr	r2, [sp]
+ 1291 0072 5A68     		ldr	r2, [r3, #4]
+ 1292 0074 22F00202 		bic	r2, r2, #2
+ 1293 0078 5A60     		str	r2, [r3, #4]
+ 1294 007a 95F84120 		ldrb	r2, [r5, #65]	@ zero_extendqisi2
+ 1295 007e 052A     		cmp	r2, #5
+ 1296 0080 20D0     		beq	.L325
+ 1297              	.L275:
+ 1298 0082 0123     		movs	r3, #1
+ 1299 0084 3046     		mov	r0, r6
+ 1300 0086 85F84130 		strb	r3, [r5, #65]
+ 1301 008a 05B0     		add	sp, sp, #20
+ 1302              		@ sp needed
+ 1303 008c BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 1304              	.L323:
+ 1305 0090 0123     		movs	r3, #1
+ 1306 0092 85F84130 		strb	r3, [r5, #65]
+ 1307 0096 85F84040 		strb	r4, [r5, #64]
+ 1308 009a 6A6C     		ldr	r2, [r5, #68]
+ 1309 009c 1A43     		orrs	r2, r2, r3
+ 1310 009e 6A64     		str	r2, [r5, #68]
+ 1311 00a0 1E46     		mov	r6, r3
+ 1312 00a2 85F84130 		strb	r3, [r5, #65]
+ 1313 00a6 CEE7     		b	.L270
+ 1314              	.L324:
+ 1315 00a8 0122     		movs	r2, #1
+ 1316 00aa 0023     		movs	r3, #0
+ 1317 00ac 85F84120 		strb	r2, [r5, #65]
+ 1318 00b0 85F84030 		strb	r3, [r5, #64]
+ 1319 00b4 696C     		ldr	r1, [r5, #68]
+ 1320 00b6 2B68     		ldr	r3, [r5]
+ 1321 00b8 1143     		orrs	r1, r1, r2
+ 1322 00ba 6964     		str	r1, [r5, #68]
+ 1323 00bc 1646     		mov	r6, r2
+ 1324 00be 85F84120 		strb	r2, [r5, #65]
+ 1325 00c2 CDE7     		b	.L273
+ 1326              	.L325:
+ 1327 00c4 E86B     		ldr	r0, [r5, #60]
+ 1328 00c6 28B1     		cbz	r0, .L276
+ 1329 00c8 FFF7FEFF 		bl	HAL_DMA_Abort
+ 1330 00cc 0028     		cmp	r0, #0
+ 1331 00ce 40F08D80 		bne	.L277
+ 1332 00d2 2B68     		ldr	r3, [r5]
+ARM GAS  /tmp/cczQqIkK.s 			page 24
+
+
+ 1333              	.L276:
+ 1334 00d4 5449     		ldr	r1, .L328
+ 1335 00d6 554A     		ldr	r2, .L328+4
+ 1336 00d8 8B42     		cmp	r3, r1
+ 1337 00da 18BF     		it	ne
+ 1338 00dc 4FF04022 		movne	r2, #1073758208
+ 1339 00e0 0021     		movs	r1, #0
+ 1340 00e2 D369     		ldr	r3, [r2, #28]
+ 1341 00e4 23F48063 		bic	r3, r3, #1024
+ 1342 00e8 D361     		str	r3, [r2, #28]
+ 1343 00ea 0191     		str	r1, [sp, #4]
+ 1344 00ec D368     		ldr	r3, [r2, #12]
+ 1345 00ee 0193     		str	r3, [sp, #4]
+ 1346 00f0 9368     		ldr	r3, [r2, #8]
+ 1347 00f2 0193     		str	r3, [sp, #4]
+ 1348 00f4 019B     		ldr	r3, [sp, #4]
+ 1349 00f6 5368     		ldr	r3, [r2, #4]
+ 1350 00f8 6968     		ldr	r1, [r5, #4]
+ 1351 00fa 23F00103 		bic	r3, r3, #1
+ 1352 00fe 5360     		str	r3, [r2, #4]
+ 1353 0100 71B9     		cbnz	r1, .L279
+ 1354              	.L319:
+ 1355 0102 6B6C     		ldr	r3, [r5, #68]
+ 1356 0104 0122     		movs	r2, #1
+ 1357 0106 43F04003 		orr	r3, r3, #64
+ 1358 010a 6B64     		str	r3, [r5, #68]
+ 1359 010c 1646     		mov	r6, r2
+ 1360 010e 85F84120 		strb	r2, [r5, #65]
+ 1361 0112 B6E7     		b	.L275
+ 1362              	.L322:
+ 1363 0114 6B6C     		ldr	r3, [r5, #68]
+ 1364 0116 43F00803 		orr	r3, r3, #8
+ 1365 011a 0126     		movs	r6, #1
+ 1366 011c 6B64     		str	r3, [r5, #68]
+ 1367 011e 84E7     		b	.L267
+ 1368              	.L279:
+ 1369 0120 D368     		ldr	r3, [r2, #12]
+ 1370 0122 AEE7     		b	.L275
+ 1371              	.L321:
+ 1372 0124 C06B     		ldr	r0, [r0, #60]
+ 1373 0126 18B1     		cbz	r0, .L282
+ 1374 0128 FFF7FEFF 		bl	HAL_DMA_Abort
+ 1375 012c 0028     		cmp	r0, #0
+ 1376 012e 75D1     		bne	.L326
+ 1377              	.L282:
+ 1378 0130 0026     		movs	r6, #0
+ 1379              	.L281:
+ 1380 0132 95F84130 		ldrb	r3, [r5, #65]	@ zero_extendqisi2
+ 1381 0136 052B     		cmp	r3, #5
+ 1382 0138 15D0     		beq	.L283
+ 1383 013a 2B68     		ldr	r3, [r5]
+ 1384              	.L284:
+ 1385 013c DA69     		ldr	r2, [r3, #28]
+ 1386 013e 0021     		movs	r1, #0
+ 1387 0140 22F48062 		bic	r2, r2, #1024
+ 1388 0144 DA61     		str	r2, [r3, #28]
+ 1389 0146 0391     		str	r1, [sp, #12]
+ARM GAS  /tmp/cczQqIkK.s 			page 25
+
+
+ 1390 0148 DA68     		ldr	r2, [r3, #12]
+ 1391 014a 0392     		str	r2, [sp, #12]
+ 1392 014c 9A68     		ldr	r2, [r3, #8]
+ 1393 014e 0392     		str	r2, [sp, #12]
+ 1394 0150 039A     		ldr	r2, [sp, #12]
+ 1395 0152 6968     		ldr	r1, [r5, #4]
+ 1396 0154 5A68     		ldr	r2, [r3, #4]
+ 1397 0156 B1F5807F 		cmp	r1, #256
+ 1398 015a 22F00102 		bic	r2, r2, #1
+ 1399 015e 5A60     		str	r2, [r3, #4]
+ 1400 0160 CFD0     		beq	.L319
+ 1401 0162 DB68     		ldr	r3, [r3, #12]
+ 1402 0164 8DE7     		b	.L275
+ 1403              	.L283:
+ 1404 0166 A86B     		ldr	r0, [r5, #56]
+ 1405 0168 38B1     		cbz	r0, .L285
+ 1406 016a FFF7FEFF 		bl	HAL_DMA_Abort
+ 1407 016e 20B1     		cbz	r0, .L285
+ 1408 0170 6B6C     		ldr	r3, [r5, #68]
+ 1409 0172 43F00803 		orr	r3, r3, #8
+ 1410 0176 0126     		movs	r6, #1
+ 1411 0178 6B64     		str	r3, [r5, #68]
+ 1412              	.L285:
+ 1413 017a FFF7FEFF 		bl	HAL_GetTick
+ 1414 017e DFF8A880 		ldr	r8, .L328
+ 1415 0182 2A4F     		ldr	r7, .L328+4
+ 1416 0184 0446     		mov	r4, r0
+ 1417 0186 4FF00109 		mov	r9, #1
+ 1418 018a 04E0     		b	.L287
+ 1419              	.L289:
+ 1420 018c FFF7FEFF 		bl	HAL_GetTick
+ 1421 0190 001B     		subs	r0, r0, r4
+ 1422 0192 6428     		cmp	r0, #100
+ 1423 0194 3AD8     		bhi	.L327
+ 1424              	.L287:
+ 1425 0196 2B68     		ldr	r3, [r5]
+ 1426 0198 4345     		cmp	r3, r8
+ 1427 019a 0CBF     		ite	eq
+ 1428 019c 3A46     		moveq	r2, r7
+ 1429 019e 4FF04022 		movne	r2, #1073758208
+ 1430 01a2 9268     		ldr	r2, [r2, #8]
+ 1431 01a4 9207     		lsls	r2, r2, #30
+ 1432 01a6 F1D5     		bpl	.L289
+ 1433 01a8 DFF87C80 		ldr	r8, .L328
+ 1434 01ac 1F4F     		ldr	r7, .L328+4
+ 1435 01ae 4FF00109 		mov	r9, #1
+ 1436 01b2 05E0     		b	.L292
+ 1437              	.L294:
+ 1438 01b4 FFF7FEFF 		bl	HAL_GetTick
+ 1439 01b8 001B     		subs	r0, r0, r4
+ 1440 01ba 6428     		cmp	r0, #100
+ 1441 01bc 1DD8     		bhi	.L291
+ 1442 01be 2B68     		ldr	r3, [r5]
+ 1443              	.L292:
+ 1444 01c0 4345     		cmp	r3, r8
+ 1445 01c2 0CBF     		ite	eq
+ 1446 01c4 3946     		moveq	r1, r7
+ARM GAS  /tmp/cczQqIkK.s 			page 26
+
+
+ 1447 01c6 4FF04021 		movne	r1, #1073758208
+ 1448 01ca 8A68     		ldr	r2, [r1, #8]
+ 1449 01cc 12F08002 		ands	r2, r2, #128
+ 1450 01d0 F0D1     		bne	.L294
+ 1451 01d2 C869     		ldr	r0, [r1, #28]
+ 1452 01d4 20F48060 		bic	r0, r0, #1024
+ 1453 01d8 C861     		str	r0, [r1, #28]
+ 1454 01da 0292     		str	r2, [sp, #8]
+ 1455 01dc 8A68     		ldr	r2, [r1, #8]
+ 1456 01de 0292     		str	r2, [sp, #8]
+ 1457 01e0 029A     		ldr	r2, [sp, #8]
+ 1458 01e2 4A68     		ldr	r2, [r1, #4]
+ 1459 01e4 22F00202 		bic	r2, r2, #2
+ 1460 01e8 4A60     		str	r2, [r1, #4]
+ 1461 01ea A7E7     		b	.L284
+ 1462              	.L277:
+ 1463 01ec 6A6C     		ldr	r2, [r5, #68]
+ 1464 01ee 2B68     		ldr	r3, [r5]
+ 1465 01f0 42F00802 		orr	r2, r2, #8
+ 1466 01f4 6A64     		str	r2, [r5, #68]
+ 1467 01f6 0126     		movs	r6, #1
+ 1468 01f8 6CE7     		b	.L276
+ 1469              	.L291:
+ 1470 01fa 6B6C     		ldr	r3, [r5, #68]
+ 1471 01fc 43F00103 		orr	r3, r3, #1
+ 1472 0200 6B64     		str	r3, [r5, #68]
+ 1473 0202 0126     		movs	r6, #1
+ 1474 0204 2B68     		ldr	r3, [r5]
+ 1475 0206 85F84190 		strb	r9, [r5, #65]
+ 1476 020a D9E7     		b	.L292
+ 1477              	.L327:
+ 1478 020c 6B6C     		ldr	r3, [r5, #68]
+ 1479 020e 43F00103 		orr	r3, r3, #1
+ 1480 0212 6B64     		str	r3, [r5, #68]
+ 1481 0214 0126     		movs	r6, #1
+ 1482 0216 85F84190 		strb	r9, [r5, #65]
+ 1483 021a BCE7     		b	.L287
+ 1484              	.L326:
+ 1485 021c 6B6C     		ldr	r3, [r5, #68]
+ 1486 021e 43F00803 		orr	r3, r3, #8
+ 1487 0222 0126     		movs	r6, #1
+ 1488 0224 6B64     		str	r3, [r5, #68]
+ 1489 0226 84E7     		b	.L281
+ 1490              	.L329:
+ 1491              		.align	2
+ 1492              	.L328:
+ 1493 0228 00380040 		.word	1073756160
+ 1494 022c 00340040 		.word	1073755136
+ 1496              		.section	.text.HAL_I2S_IRQHandler,"ax",%progbits
+ 1497              		.align	1
+ 1498              		.p2align 2,,3
+ 1499              		.global	HAL_I2S_IRQHandler
+ 1500              		.syntax unified
+ 1501              		.thumb
+ 1502              		.thumb_func
+ 1503              		.fpu fpv4-sp-d16
+ 1505              	HAL_I2S_IRQHandler:
+ARM GAS  /tmp/cczQqIkK.s 			page 27
+
+
+ 1506              		@ args = 0, pretend = 0, frame = 0
+ 1507              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1508              		@ link register save eliminated.
+ 1509 0000 436B     		ldr	r3, [r0, #52]
+ 1510 0002 1847     		bx	r3	@ indirect register sibling call
+ 1512              		.section	.text.HAL_I2S_TxHalfCpltCallback,"ax",%progbits
+ 1513              		.align	1
+ 1514              		.p2align 2,,3
+ 1515              		.weak	HAL_I2S_TxHalfCpltCallback
+ 1516              		.syntax unified
+ 1517              		.thumb
+ 1518              		.thumb_func
+ 1519              		.fpu fpv4-sp-d16
+ 1521              	HAL_I2S_TxHalfCpltCallback:
+ 1522              		@ args = 0, pretend = 0, frame = 0
+ 1523              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1524              		@ link register save eliminated.
+ 1525 0000 7047     		bx	lr
+ 1527 0002 00BF     		.section	.text.I2S_DMATxHalfCplt,"ax",%progbits
+ 1528              		.align	1
+ 1529              		.p2align 2,,3
+ 1530              		.syntax unified
+ 1531              		.thumb
+ 1532              		.thumb_func
+ 1533              		.fpu fpv4-sp-d16
+ 1535              	I2S_DMATxHalfCplt:
+ 1536              		@ args = 0, pretend = 0, frame = 0
+ 1537              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1538 0000 08B5     		push	{r3, lr}
+ 1539 0002 806B     		ldr	r0, [r0, #56]
+ 1540 0004 FFF7FEFF 		bl	HAL_I2S_TxHalfCpltCallback
+ 1541 0008 08BD     		pop	{r3, pc}
+ 1543 000a 00BF     		.section	.text.HAL_I2S_TxCpltCallback,"ax",%progbits
+ 1544              		.align	1
+ 1545              		.p2align 2,,3
+ 1546              		.weak	HAL_I2S_TxCpltCallback
+ 1547              		.syntax unified
+ 1548              		.thumb
+ 1549              		.thumb_func
+ 1550              		.fpu fpv4-sp-d16
+ 1552              	HAL_I2S_TxCpltCallback:
+ 1553              		@ args = 0, pretend = 0, frame = 0
+ 1554              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1555              		@ link register save eliminated.
+ 1556 0000 7047     		bx	lr
+ 1558 0002 00BF     		.section	.text.I2S_DMATxCplt,"ax",%progbits
+ 1559              		.align	1
+ 1560              		.p2align 2,,3
+ 1561              		.syntax unified
+ 1562              		.thumb
+ 1563              		.thumb_func
+ 1564              		.fpu fpv4-sp-d16
+ 1566              	I2S_DMATxCplt:
+ 1567              		@ args = 0, pretend = 0, frame = 0
+ 1568              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1569 0000 08B5     		push	{r3, lr}
+ 1570 0002 C369     		ldr	r3, [r0, #28]
+ARM GAS  /tmp/cczQqIkK.s 			page 28
+
+
+ 1571 0004 806B     		ldr	r0, [r0, #56]
+ 1572 0006 4BB9     		cbnz	r3, .L336
+ 1573 0008 0168     		ldr	r1, [r0]
+ 1574 000a 4A68     		ldr	r2, [r1, #4]
+ 1575 000c 4FF0010C 		mov	ip, #1
+ 1576 0010 22F00202 		bic	r2, r2, #2
+ 1577 0014 4A60     		str	r2, [r1, #4]
+ 1578 0016 4385     		strh	r3, [r0, #42]	@ movhi
+ 1579 0018 80F841C0 		strb	ip, [r0, #65]
+ 1580              	.L336:
+ 1581 001c FFF7FEFF 		bl	HAL_I2S_TxCpltCallback
+ 1582 0020 08BD     		pop	{r3, pc}
+ 1584              		.section	.text.HAL_I2S_RxHalfCpltCallback,"ax",%progbits
+ 1585              		.align	1
+ 1586              		.p2align 2,,3
+ 1587              		.weak	HAL_I2S_RxHalfCpltCallback
+ 1588              		.syntax unified
+ 1589              		.thumb
+ 1590              		.thumb_func
+ 1591              		.fpu fpv4-sp-d16
+ 1593              	HAL_I2S_RxHalfCpltCallback:
+ 1594              		@ args = 0, pretend = 0, frame = 0
+ 1595              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1596              		@ link register save eliminated.
+ 1597 0000 7047     		bx	lr
+ 1599 0002 00BF     		.section	.text.I2S_DMARxHalfCplt,"ax",%progbits
+ 1600              		.align	1
+ 1601              		.p2align 2,,3
+ 1602              		.syntax unified
+ 1603              		.thumb
+ 1604              		.thumb_func
+ 1605              		.fpu fpv4-sp-d16
+ 1607              	I2S_DMARxHalfCplt:
+ 1608              		@ args = 0, pretend = 0, frame = 0
+ 1609              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1610 0000 08B5     		push	{r3, lr}
+ 1611 0002 806B     		ldr	r0, [r0, #56]
+ 1612 0004 FFF7FEFF 		bl	HAL_I2S_RxHalfCpltCallback
+ 1613 0008 08BD     		pop	{r3, pc}
+ 1615 000a 00BF     		.section	.text.HAL_I2S_RxCpltCallback,"ax",%progbits
+ 1616              		.align	1
+ 1617              		.p2align 2,,3
+ 1618              		.weak	HAL_I2S_RxCpltCallback
+ 1619              		.syntax unified
+ 1620              		.thumb
+ 1621              		.thumb_func
+ 1622              		.fpu fpv4-sp-d16
+ 1624              	HAL_I2S_RxCpltCallback:
+ 1625              		@ args = 0, pretend = 0, frame = 0
+ 1626              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1627              		@ link register save eliminated.
+ 1628 0000 7047     		bx	lr
+ 1630 0002 00BF     		.section	.text.I2S_DMARxCplt,"ax",%progbits
+ 1631              		.align	1
+ 1632              		.p2align 2,,3
+ 1633              		.syntax unified
+ 1634              		.thumb
+ARM GAS  /tmp/cczQqIkK.s 			page 29
+
+
+ 1635              		.thumb_func
+ 1636              		.fpu fpv4-sp-d16
+ 1638              	I2S_DMARxCplt:
+ 1639              		@ args = 0, pretend = 0, frame = 0
+ 1640              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1641 0000 08B5     		push	{r3, lr}
+ 1642 0002 C369     		ldr	r3, [r0, #28]
+ 1643 0004 806B     		ldr	r0, [r0, #56]
+ 1644 0006 4BB9     		cbnz	r3, .L343
+ 1645 0008 0168     		ldr	r1, [r0]
+ 1646 000a 4A68     		ldr	r2, [r1, #4]
+ 1647 000c 4FF0010C 		mov	ip, #1
+ 1648 0010 22F00102 		bic	r2, r2, #1
+ 1649 0014 4A60     		str	r2, [r1, #4]
+ 1650 0016 4386     		strh	r3, [r0, #50]	@ movhi
+ 1651 0018 80F841C0 		strb	ip, [r0, #65]
+ 1652              	.L343:
+ 1653 001c FFF7FEFF 		bl	HAL_I2S_RxCpltCallback
+ 1654 0020 08BD     		pop	{r3, pc}
+ 1656              		.section	.text.HAL_I2S_ErrorCallback,"ax",%progbits
+ 1657              		.align	1
+ 1658              		.p2align 2,,3
+ 1659              		.weak	HAL_I2S_ErrorCallback
+ 1660              		.syntax unified
+ 1661              		.thumb
+ 1662              		.thumb_func
+ 1663              		.fpu fpv4-sp-d16
+ 1665              	HAL_I2S_ErrorCallback:
+ 1666              		@ args = 0, pretend = 0, frame = 0
+ 1667              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1668              		@ link register save eliminated.
+ 1669 0000 7047     		bx	lr
+ 1671 0002 00BF     		.section	.text.I2S_IRQHandler,"ax",%progbits
+ 1672              		.align	1
+ 1673              		.p2align 2,,3
+ 1674              		.syntax unified
+ 1675              		.thumb
+ 1676              		.thumb_func
+ 1677              		.fpu fpv4-sp-d16
+ 1679              	I2S_IRQHandler:
+ 1680              		@ args = 0, pretend = 0, frame = 16
+ 1681              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1682 0000 10B5     		push	{r4, lr}
+ 1683 0002 0368     		ldr	r3, [r0]
+ 1684 0004 84B0     		sub	sp, sp, #16
+ 1685 0006 9A68     		ldr	r2, [r3, #8]
+ 1686 0008 0192     		str	r2, [sp, #4]
+ 1687 000a 90F84120 		ldrb	r2, [r0, #65]	@ zero_extendqisi2
+ 1688 000e 042A     		cmp	r2, #4
+ 1689 0010 0446     		mov	r4, r0
+ 1690 0012 05D0     		beq	.L378
+ 1691              	.L348:
+ 1692 0014 94F84130 		ldrb	r3, [r4, #65]	@ zero_extendqisi2
+ 1693 0018 032B     		cmp	r3, #3
+ 1694 001a 31D0     		beq	.L379
+ 1695              	.L346:
+ 1696 001c 04B0     		add	sp, sp, #16
+ARM GAS  /tmp/cczQqIkK.s 			page 30
+
+
+ 1697              		@ sp needed
+ 1698 001e 10BD     		pop	{r4, pc}
+ 1699              	.L378:
+ 1700 0020 019A     		ldr	r2, [sp, #4]
+ 1701 0022 D107     		lsls	r1, r2, #31
+ 1702 0024 0FD5     		bpl	.L350
+ 1703 0026 5A68     		ldr	r2, [r3, #4]
+ 1704 0028 5206     		lsls	r2, r2, #25
+ 1705 002a 0CD5     		bpl	.L350
+ 1706 002c C16A     		ldr	r1, [r0, #44]
+ 1707 002e DA68     		ldr	r2, [r3, #12]
+ 1708 0030 21F8022B 		strh	r2, [r1], #2	@ movhi
+ 1709 0034 428E     		ldrh	r2, [r0, #50]
+ 1710 0036 C162     		str	r1, [r0, #44]
+ 1711 0038 013A     		subs	r2, r2, #1
+ 1712 003a 92B2     		uxth	r2, r2
+ 1713 003c 4286     		strh	r2, [r0, #50]	@ movhi
+ 1714 003e 428E     		ldrh	r2, [r0, #50]
+ 1715 0040 92B2     		uxth	r2, r2
+ 1716 0042 002A     		cmp	r2, #0
+ 1717 0044 4AD0     		beq	.L380
+ 1718              	.L350:
+ 1719 0046 019B     		ldr	r3, [sp, #4]
+ 1720 0048 5906     		lsls	r1, r3, #25
+ 1721 004a E3D5     		bpl	.L348
+ 1722 004c 2368     		ldr	r3, [r4]
+ 1723 004e 5A68     		ldr	r2, [r3, #4]
+ 1724 0050 9206     		lsls	r2, r2, #26
+ 1725 0052 DFD5     		bpl	.L348
+ 1726 0054 5A68     		ldr	r2, [r3, #4]
+ 1727 0056 0021     		movs	r1, #0
+ 1728 0058 22F06002 		bic	r2, r2, #96
+ 1729 005c 5A60     		str	r2, [r3, #4]
+ 1730 005e 0291     		str	r1, [sp, #8]
+ 1731 0060 DA68     		ldr	r2, [r3, #12]
+ 1732 0062 0292     		str	r2, [sp, #8]
+ 1733 0064 9B68     		ldr	r3, [r3, #8]
+ 1734 0066 0293     		str	r3, [sp, #8]
+ 1735 0068 0123     		movs	r3, #1
+ 1736 006a 029A     		ldr	r2, [sp, #8]
+ 1737 006c 84F84130 		strb	r3, [r4, #65]
+ 1738 0070 636C     		ldr	r3, [r4, #68]
+ 1739 0072 43F00203 		orr	r3, r3, #2
+ 1740 0076 2046     		mov	r0, r4
+ 1741 0078 6364     		str	r3, [r4, #68]
+ 1742 007a FFF7FEFF 		bl	HAL_I2S_ErrorCallback
+ 1743 007e C9E7     		b	.L348
+ 1744              	.L379:
+ 1745 0080 019B     		ldr	r3, [sp, #4]
+ 1746 0082 9B07     		lsls	r3, r3, #30
+ 1747 0084 0FD5     		bpl	.L356
+ 1748 0086 2368     		ldr	r3, [r4]
+ 1749 0088 5A68     		ldr	r2, [r3, #4]
+ 1750 008a 1006     		lsls	r0, r2, #24
+ 1751 008c 0BD5     		bpl	.L356
+ 1752 008e 616A     		ldr	r1, [r4, #36]
+ 1753 0090 31F8022B 		ldrh	r2, [r1], #2
+ARM GAS  /tmp/cczQqIkK.s 			page 31
+
+
+ 1754 0094 DA60     		str	r2, [r3, #12]
+ 1755 0096 628D     		ldrh	r2, [r4, #42]
+ 1756 0098 6162     		str	r1, [r4, #36]
+ 1757 009a 013A     		subs	r2, r2, #1
+ 1758 009c 92B2     		uxth	r2, r2
+ 1759 009e 6285     		strh	r2, [r4, #42]	@ movhi
+ 1760 00a0 628D     		ldrh	r2, [r4, #42]
+ 1761 00a2 92B2     		uxth	r2, r2
+ 1762 00a4 22B3     		cbz	r2, .L381
+ 1763              	.L356:
+ 1764 00a6 019B     		ldr	r3, [sp, #4]
+ 1765 00a8 1907     		lsls	r1, r3, #28
+ 1766 00aa B7D5     		bpl	.L346
+ 1767 00ac 2368     		ldr	r3, [r4]
+ 1768 00ae 5A68     		ldr	r2, [r3, #4]
+ 1769 00b0 9206     		lsls	r2, r2, #26
+ 1770 00b2 B3D5     		bpl	.L346
+ 1771 00b4 5A68     		ldr	r2, [r3, #4]
+ 1772 00b6 0021     		movs	r1, #0
+ 1773 00b8 22F0A002 		bic	r2, r2, #160
+ 1774 00bc 5A60     		str	r2, [r3, #4]
+ 1775 00be 0391     		str	r1, [sp, #12]
+ 1776 00c0 9B68     		ldr	r3, [r3, #8]
+ 1777 00c2 0393     		str	r3, [sp, #12]
+ 1778 00c4 0123     		movs	r3, #1
+ 1779 00c6 039A     		ldr	r2, [sp, #12]
+ 1780 00c8 84F84130 		strb	r3, [r4, #65]
+ 1781 00cc 636C     		ldr	r3, [r4, #68]
+ 1782 00ce 43F00403 		orr	r3, r3, #4
+ 1783 00d2 2046     		mov	r0, r4
+ 1784 00d4 6364     		str	r3, [r4, #68]
+ 1785 00d6 FFF7FEFF 		bl	HAL_I2S_ErrorCallback
+ 1786 00da 9FE7     		b	.L346
+ 1787              	.L380:
+ 1788 00dc 5A68     		ldr	r2, [r3, #4]
+ 1789 00de 0121     		movs	r1, #1
+ 1790 00e0 22F06002 		bic	r2, r2, #96
+ 1791 00e4 5A60     		str	r2, [r3, #4]
+ 1792 00e6 80F84110 		strb	r1, [r0, #65]
+ 1793 00ea FFF7FEFF 		bl	HAL_I2S_RxCpltCallback
+ 1794 00ee AAE7     		b	.L350
+ 1795              	.L381:
+ 1796 00f0 5A68     		ldr	r2, [r3, #4]
+ 1797 00f2 0121     		movs	r1, #1
+ 1798 00f4 22F0A002 		bic	r2, r2, #160
+ 1799 00f8 5A60     		str	r2, [r3, #4]
+ 1800 00fa 2046     		mov	r0, r4
+ 1801 00fc 84F84110 		strb	r1, [r4, #65]
+ 1802 0100 FFF7FEFF 		bl	HAL_I2S_TxCpltCallback
+ 1803 0104 CFE7     		b	.L356
+ 1805 0106 00BF     		.section	.text.I2S_DMAError,"ax",%progbits
+ 1806              		.align	1
+ 1807              		.p2align 2,,3
+ 1808              		.syntax unified
+ 1809              		.thumb
+ 1810              		.thumb_func
+ 1811              		.fpu fpv4-sp-d16
+ARM GAS  /tmp/cczQqIkK.s 			page 32
+
+
+ 1813              	I2S_DMAError:
+ 1814              		@ args = 0, pretend = 0, frame = 0
+ 1815              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1816 0000 806B     		ldr	r0, [r0, #56]
+ 1817 0002 0168     		ldr	r1, [r0]
+ 1818 0004 08B5     		push	{r3, lr}
+ 1819 0006 4B68     		ldr	r3, [r1, #4]
+ 1820 0008 0022     		movs	r2, #0
+ 1821 000a 4FF0010C 		mov	ip, #1
+ 1822 000e 23F00303 		bic	r3, r3, #3
+ 1823 0012 4B60     		str	r3, [r1, #4]
+ 1824 0014 4285     		strh	r2, [r0, #42]	@ movhi
+ 1825 0016 4286     		strh	r2, [r0, #50]	@ movhi
+ 1826 0018 80F841C0 		strb	ip, [r0, #65]
+ 1827 001c 436C     		ldr	r3, [r0, #68]
+ 1828 001e 43F00803 		orr	r3, r3, #8
+ 1829 0022 4364     		str	r3, [r0, #68]
+ 1830 0024 FFF7FEFF 		bl	HAL_I2S_ErrorCallback
+ 1831 0028 08BD     		pop	{r3, pc}
+ 1833 002a 00BF     		.section	.text.HAL_I2S_GetState,"ax",%progbits
+ 1834              		.align	1
+ 1835              		.p2align 2,,3
+ 1836              		.global	HAL_I2S_GetState
+ 1837              		.syntax unified
+ 1838              		.thumb
+ 1839              		.thumb_func
+ 1840              		.fpu fpv4-sp-d16
+ 1842              	HAL_I2S_GetState:
+ 1843              		@ args = 0, pretend = 0, frame = 0
+ 1844              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1845              		@ link register save eliminated.
+ 1846 0000 90F84100 		ldrb	r0, [r0, #65]	@ zero_extendqisi2
+ 1847 0004 7047     		bx	lr
+ 1849 0006 00BF     		.section	.text.HAL_I2S_GetError,"ax",%progbits
+ 1850              		.align	1
+ 1851              		.p2align 2,,3
+ 1852              		.global	HAL_I2S_GetError
+ 1853              		.syntax unified
+ 1854              		.thumb
+ 1855              		.thumb_func
+ 1856              		.fpu fpv4-sp-d16
+ 1858              	HAL_I2S_GetError:
+ 1859              		@ args = 0, pretend = 0, frame = 0
+ 1860              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1861              		@ link register save eliminated.
+ 1862 0000 406C     		ldr	r0, [r0, #68]
+ 1863 0002 7047     		bx	lr
+ 1865              		.ident	"GCC: (15:10.3-2021.07-4) 10.3.1 20210621 (release)"
+ARM GAS  /tmp/cczQqIkK.s 			page 33
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 stm32f4xx_hal_i2s.c
+     /tmp/cczQqIkK.s:16     .text.HAL_I2S_MspInit:0000000000000000 $t
+     /tmp/cczQqIkK.s:25     .text.HAL_I2S_MspInit:0000000000000000 HAL_I2S_MspInit
+     /tmp/cczQqIkK.s:32     .rodata.HAL_I2S_Init.str1.4:0000000000000000 $d
+     /tmp/cczQqIkK.s:37     .text.HAL_I2S_Init:0000000000000000 $t
+     /tmp/cczQqIkK.s:45     .text.HAL_I2S_Init:0000000000000000 HAL_I2S_Init
+     /tmp/cczQqIkK.s:262    .text.HAL_I2S_Init:00000000000001fc $d
+     /tmp/cczQqIkK.s:1679   .text.I2S_IRQHandler:0000000000000000 I2S_IRQHandler
+     /tmp/cczQqIkK.s:271    .text.HAL_I2S_MspDeInit:0000000000000000 $t
+     /tmp/cczQqIkK.s:279    .text.HAL_I2S_MspDeInit:0000000000000000 HAL_I2S_MspDeInit
+     /tmp/cczQqIkK.s:286    .text.HAL_I2S_DeInit:0000000000000000 $t
+     /tmp/cczQqIkK.s:294    .text.HAL_I2S_DeInit:0000000000000000 HAL_I2S_DeInit
+     /tmp/cczQqIkK.s:331    .text.HAL_I2S_DeInit:000000000000004c $d
+     /tmp/cczQqIkK.s:335    .text.HAL_I2S_Transmit:0000000000000000 $t
+     /tmp/cczQqIkK.s:343    .text.HAL_I2S_Transmit:0000000000000000 HAL_I2S_Transmit
+     /tmp/cczQqIkK.s:523    .text.HAL_I2S_Receive:0000000000000000 $t
+     /tmp/cczQqIkK.s:531    .text.HAL_I2S_Receive:0000000000000000 HAL_I2S_Receive
+     /tmp/cczQqIkK.s:679    .text.HAL_I2S_Transmit_IT:0000000000000000 $t
+     /tmp/cczQqIkK.s:687    .text.HAL_I2S_Transmit_IT:0000000000000000 HAL_I2S_Transmit_IT
+     /tmp/cczQqIkK.s:751    .text.HAL_I2S_Receive_IT:0000000000000000 $t
+     /tmp/cczQqIkK.s:759    .text.HAL_I2S_Receive_IT:0000000000000000 HAL_I2S_Receive_IT
+     /tmp/cczQqIkK.s:823    .text.HAL_I2S_Transmit_DMA:0000000000000000 $t
+     /tmp/cczQqIkK.s:831    .text.HAL_I2S_Transmit_DMA:0000000000000000 HAL_I2S_Transmit_DMA
+     /tmp/cczQqIkK.s:923    .text.HAL_I2S_Transmit_DMA:00000000000000b8 $d
+     /tmp/cczQqIkK.s:1535   .text.I2S_DMATxHalfCplt:0000000000000000 I2S_DMATxHalfCplt
+     /tmp/cczQqIkK.s:1566   .text.I2S_DMATxCplt:0000000000000000 I2S_DMATxCplt
+     /tmp/cczQqIkK.s:1813   .text.I2S_DMAError:0000000000000000 I2S_DMAError
+     /tmp/cczQqIkK.s:928    .text.HAL_I2S_Receive_DMA:0000000000000000 $t
+     /tmp/cczQqIkK.s:936    .text.HAL_I2S_Receive_DMA:0000000000000000 HAL_I2S_Receive_DMA
+     /tmp/cczQqIkK.s:1049   .text.HAL_I2S_Receive_DMA:00000000000000dc $d
+     /tmp/cczQqIkK.s:1607   .text.I2S_DMARxHalfCplt:0000000000000000 I2S_DMARxHalfCplt
+     /tmp/cczQqIkK.s:1638   .text.I2S_DMARxCplt:0000000000000000 I2S_DMARxCplt
+     /tmp/cczQqIkK.s:1054   .text.HAL_I2S_DMAPause:0000000000000000 $t
+     /tmp/cczQqIkK.s:1062   .text.HAL_I2S_DMAPause:0000000000000000 HAL_I2S_DMAPause
+     /tmp/cczQqIkK.s:1127   .text.HAL_I2S_DMAPause:000000000000008c $d
+     /tmp/cczQqIkK.s:1131   .text.HAL_I2S_DMAResume:0000000000000000 $t
+     /tmp/cczQqIkK.s:1139   .text.HAL_I2S_DMAResume:0000000000000000 HAL_I2S_DMAResume
+     /tmp/cczQqIkK.s:1221   .text.HAL_I2S_DMAResume:00000000000000a8 $d
+     /tmp/cczQqIkK.s:1225   .text.HAL_I2S_DMAStop:0000000000000000 $t
+     /tmp/cczQqIkK.s:1233   .text.HAL_I2S_DMAStop:0000000000000000 HAL_I2S_DMAStop
+     /tmp/cczQqIkK.s:1493   .text.HAL_I2S_DMAStop:0000000000000228 $d
+     /tmp/cczQqIkK.s:1497   .text.HAL_I2S_IRQHandler:0000000000000000 $t
+     /tmp/cczQqIkK.s:1505   .text.HAL_I2S_IRQHandler:0000000000000000 HAL_I2S_IRQHandler
+     /tmp/cczQqIkK.s:1513   .text.HAL_I2S_TxHalfCpltCallback:0000000000000000 $t
+     /tmp/cczQqIkK.s:1521   .text.HAL_I2S_TxHalfCpltCallback:0000000000000000 HAL_I2S_TxHalfCpltCallback
+     /tmp/cczQqIkK.s:1528   .text.I2S_DMATxHalfCplt:0000000000000000 $t
+     /tmp/cczQqIkK.s:1544   .text.HAL_I2S_TxCpltCallback:0000000000000000 $t
+     /tmp/cczQqIkK.s:1552   .text.HAL_I2S_TxCpltCallback:0000000000000000 HAL_I2S_TxCpltCallback
+     /tmp/cczQqIkK.s:1559   .text.I2S_DMATxCplt:0000000000000000 $t
+     /tmp/cczQqIkK.s:1585   .text.HAL_I2S_RxHalfCpltCallback:0000000000000000 $t
+     /tmp/cczQqIkK.s:1593   .text.HAL_I2S_RxHalfCpltCallback:0000000000000000 HAL_I2S_RxHalfCpltCallback
+     /tmp/cczQqIkK.s:1600   .text.I2S_DMARxHalfCplt:0000000000000000 $t
+     /tmp/cczQqIkK.s:1616   .text.HAL_I2S_RxCpltCallback:0000000000000000 $t
+     /tmp/cczQqIkK.s:1624   .text.HAL_I2S_RxCpltCallback:0000000000000000 HAL_I2S_RxCpltCallback
+     /tmp/cczQqIkK.s:1631   .text.I2S_DMARxCplt:0000000000000000 $t
+     /tmp/cczQqIkK.s:1657   .text.HAL_I2S_ErrorCallback:0000000000000000 $t
+ARM GAS  /tmp/cczQqIkK.s 			page 34
+
+
+     /tmp/cczQqIkK.s:1665   .text.HAL_I2S_ErrorCallback:0000000000000000 HAL_I2S_ErrorCallback
+     /tmp/cczQqIkK.s:1672   .text.I2S_IRQHandler:0000000000000000 $t
+     /tmp/cczQqIkK.s:1806   .text.I2S_DMAError:0000000000000000 $t
+     /tmp/cczQqIkK.s:1834   .text.HAL_I2S_GetState:0000000000000000 $t
+     /tmp/cczQqIkK.s:1842   .text.HAL_I2S_GetState:0000000000000000 HAL_I2S_GetState
+     /tmp/cczQqIkK.s:1850   .text.HAL_I2S_GetError:0000000000000000 $t
+     /tmp/cczQqIkK.s:1858   .text.HAL_I2S_GetError:0000000000000000 HAL_I2S_GetError
+
+UNDEFINED SYMBOLS
+assert_failed
+HAL_RCCEx_GetPeriphCLKFreq
+HAL_I2SEx_FullDuplex_IRQHandler
+HAL_GetTick
+HAL_DMA_Start_IT
+HAL_DMA_Abort

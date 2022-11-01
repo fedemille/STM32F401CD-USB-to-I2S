@@ -1,0 +1,180 @@
+ARM GAS  /tmp/cc8VD4WN.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"usart.c"
+  14              		.text
+  15              		.section	.text.MX_USART2_UART_Init,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.global	MX_USART2_UART_Init
+  19              		.arch armv7e-m
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	MX_USART2_UART_Init:
+  26              		@ args = 0, pretend = 0, frame = 0
+  27              		@ frame_needed = 0, uses_anonymous_args = 0
+  28 0000 10B5     		push	{r4, lr}
+  29 0002 0B48     		ldr	r0, .L6
+  30 0004 0B4C     		ldr	r4, .L6+4
+  31 0006 0023     		movs	r3, #0
+  32 0008 4FF4E131 		mov	r1, #115200
+  33 000c 0C22     		movs	r2, #12
+  34 000e C0E90041 		strd	r4, r1, [r0]
+  35 0012 C0E90233 		strd	r3, r3, [r0, #8]
+  36 0016 C0E90432 		strd	r3, r2, [r0, #16]
+  37 001a C0E90633 		strd	r3, r3, [r0, #24]
+  38 001e FFF7FEFF 		bl	HAL_UART_Init
+  39 0022 00B9     		cbnz	r0, .L5
+  40 0024 10BD     		pop	{r4, pc}
+  41              	.L5:
+  42 0026 BDE81040 		pop	{r4, lr}
+  43 002a FFF7FEBF 		b	Error_Handler
+  44              	.L7:
+  45 002e 00BF     		.align	2
+  46              	.L6:
+  47 0030 00000000 		.word	.LANCHOR0
+  48 0034 00440040 		.word	1073759232
+  50              		.section	.text.HAL_UART_MspInit,"ax",%progbits
+  51              		.align	1
+  52              		.p2align 2,,3
+  53              		.global	HAL_UART_MspInit
+  54              		.syntax unified
+  55              		.thumb
+  56              		.thumb_func
+  57              		.fpu fpv4-sp-d16
+  59              	HAL_UART_MspInit:
+  60              		@ args = 0, pretend = 0, frame = 32
+ARM GAS  /tmp/cc8VD4WN.s 			page 2
+
+
+  61              		@ frame_needed = 0, uses_anonymous_args = 0
+  62 0000 30B5     		push	{r4, r5, lr}
+  63 0002 194A     		ldr	r2, .L12
+  64 0004 0168     		ldr	r1, [r0]
+  65 0006 89B0     		sub	sp, sp, #36
+  66 0008 0023     		movs	r3, #0
+  67 000a 9142     		cmp	r1, r2
+  68 000c CDE90333 		strd	r3, r3, [sp, #12]
+  69 0010 CDE90533 		strd	r3, r3, [sp, #20]
+  70 0014 0793     		str	r3, [sp, #28]
+  71 0016 01D0     		beq	.L11
+  72 0018 09B0     		add	sp, sp, #36
+  73              		@ sp needed
+  74 001a 30BD     		pop	{r4, r5, pc}
+  75              	.L11:
+  76 001c 02F5FA32 		add	r2, r2, #128000
+  77 0020 0193     		str	r3, [sp, #4]
+  78 0022 116C     		ldr	r1, [r2, #64]
+  79 0024 41F40031 		orr	r1, r1, #131072
+  80 0028 1164     		str	r1, [r2, #64]
+  81 002a 106C     		ldr	r0, [r2, #64]
+  82 002c 00F40030 		and	r0, r0, #131072
+  83 0030 0190     		str	r0, [sp, #4]
+  84 0032 0198     		ldr	r0, [sp, #4]
+  85 0034 0293     		str	r3, [sp, #8]
+  86 0036 136B     		ldr	r3, [r2, #48]
+  87 0038 0C48     		ldr	r0, .L12+4
+  88 003a 43F00103 		orr	r3, r3, #1
+  89 003e 1363     		str	r3, [r2, #48]
+  90 0040 136B     		ldr	r3, [r2, #48]
+  91 0042 0C25     		movs	r5, #12
+  92 0044 03F00103 		and	r3, r3, #1
+  93 0048 0293     		str	r3, [sp, #8]
+  94 004a 0DEB0501 		add	r1, sp, r5
+  95 004e 0322     		movs	r2, #3
+  96 0050 0723     		movs	r3, #7
+  97 0052 0224     		movs	r4, #2
+  98 0054 0395     		str	r5, [sp, #12]
+  99 0056 CDE90623 		strd	r2, r3, [sp, #24]
+ 100 005a 029D     		ldr	r5, [sp, #8]
+ 101 005c 0494     		str	r4, [sp, #16]
+ 102 005e FFF7FEFF 		bl	HAL_GPIO_Init
+ 103 0062 09B0     		add	sp, sp, #36
+ 104              		@ sp needed
+ 105 0064 30BD     		pop	{r4, r5, pc}
+ 106              	.L13:
+ 107 0066 00BF     		.align	2
+ 108              	.L12:
+ 109 0068 00440040 		.word	1073759232
+ 110 006c 00000240 		.word	1073872896
+ 112              		.section	.text.HAL_UART_MspDeInit,"ax",%progbits
+ 113              		.align	1
+ 114              		.p2align 2,,3
+ 115              		.global	HAL_UART_MspDeInit
+ 116              		.syntax unified
+ 117              		.thumb
+ 118              		.thumb_func
+ARM GAS  /tmp/cc8VD4WN.s 			page 3
+
+
+ 119              		.fpu fpv4-sp-d16
+ 121              	HAL_UART_MspDeInit:
+ 122              		@ args = 0, pretend = 0, frame = 0
+ 123              		@ frame_needed = 0, uses_anonymous_args = 0
+ 124              		@ link register save eliminated.
+ 125 0000 064B     		ldr	r3, .L17
+ 126 0002 0268     		ldr	r2, [r0]
+ 127 0004 9A42     		cmp	r2, r3
+ 128 0006 00D0     		beq	.L16
+ 129 0008 7047     		bx	lr
+ 130              	.L16:
+ 131 000a 054A     		ldr	r2, .L17+4
+ 132 000c 0548     		ldr	r0, .L17+8
+ 133 000e 136C     		ldr	r3, [r2, #64]
+ 134 0010 23F40033 		bic	r3, r3, #131072
+ 135 0014 0C21     		movs	r1, #12
+ 136 0016 1364     		str	r3, [r2, #64]
+ 137 0018 FFF7FEBF 		b	HAL_GPIO_DeInit
+ 138              	.L18:
+ 139              		.align	2
+ 140              	.L17:
+ 141 001c 00440040 		.word	1073759232
+ 142 0020 00380240 		.word	1073887232
+ 143 0024 00000240 		.word	1073872896
+ 145              		.global	huart2
+ 146              		.section	.bss.huart2,"aw",%nobits
+ 147              		.align	2
+ 148              		.set	.LANCHOR0,. + 0
+ 151              	huart2:
+ 152 0000 00000000 		.space	64
+ 152      00000000 
+ 152      00000000 
+ 152      00000000 
+ 152      00000000 
+ 153              		.ident	"GCC: (15:10.3-2021.07-4) 10.3.1 20210621 (release)"
+ARM GAS  /tmp/cc8VD4WN.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 usart.c
+     /tmp/cc8VD4WN.s:16     .text.MX_USART2_UART_Init:0000000000000000 $t
+     /tmp/cc8VD4WN.s:25     .text.MX_USART2_UART_Init:0000000000000000 MX_USART2_UART_Init
+     /tmp/cc8VD4WN.s:47     .text.MX_USART2_UART_Init:0000000000000030 $d
+     /tmp/cc8VD4WN.s:51     .text.HAL_UART_MspInit:0000000000000000 $t
+     /tmp/cc8VD4WN.s:59     .text.HAL_UART_MspInit:0000000000000000 HAL_UART_MspInit
+     /tmp/cc8VD4WN.s:109    .text.HAL_UART_MspInit:0000000000000068 $d
+     /tmp/cc8VD4WN.s:113    .text.HAL_UART_MspDeInit:0000000000000000 $t
+     /tmp/cc8VD4WN.s:121    .text.HAL_UART_MspDeInit:0000000000000000 HAL_UART_MspDeInit
+     /tmp/cc8VD4WN.s:141    .text.HAL_UART_MspDeInit:000000000000001c $d
+     /tmp/cc8VD4WN.s:151    .bss.huart2:0000000000000000 huart2
+     /tmp/cc8VD4WN.s:147    .bss.huart2:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+HAL_UART_Init
+Error_Handler
+HAL_GPIO_Init
+HAL_GPIO_DeInit

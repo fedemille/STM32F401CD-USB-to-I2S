@@ -1,0 +1,463 @@
+ARM GAS  /tmp/ccYyA7AF.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"main.c"
+  14              		.text
+  15              		.section	.text.printMsg,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.global	printMsg
+  19              		.arch armv7e-m
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	printMsg:
+  26              		@ args = 4, pretend = 16, frame = 104
+  27              		@ frame_needed = 0, uses_anonymous_args = 1
+  28 0000 0FB4     		push	{r0, r1, r2, r3}
+  29 0002 00B5     		push	{lr}
+  30 0004 9BB0     		sub	sp, sp, #108
+  31 0006 1CAA     		add	r2, sp, #112
+  32 0008 01A8     		add	r0, sp, #4
+  33 000a 52F8041B 		ldr	r1, [r2], #4
+  34 000e 0092     		str	r2, [sp]
+  35 0010 FFF7FEFF 		bl	vsprintf
+  36 0014 01A8     		add	r0, sp, #4
+  37 0016 FFF7FEFF 		bl	strlen
+  38 001a 0246     		mov	r2, r0
+  39 001c 4FF0FF33 		mov	r3, #-1
+  40 0020 92B2     		uxth	r2, r2
+  41 0022 01A9     		add	r1, sp, #4
+  42 0024 0348     		ldr	r0, .L4
+  43 0026 FFF7FEFF 		bl	HAL_UART_Transmit
+  44 002a 1BB0     		add	sp, sp, #108
+  45              		@ sp needed
+  46 002c 5DF804EB 		ldr	lr, [sp], #4
+  47 0030 04B0     		add	sp, sp, #16
+  48 0032 7047     		bx	lr
+  49              	.L5:
+  50              		.align	2
+  51              	.L4:
+  52 0034 00000000 		.word	huart2
+  54              		.section	.text.Error_Handler,"ax",%progbits
+  55              		.align	1
+  56              		.p2align 2,,3
+  57              		.global	Error_Handler
+  58              		.syntax unified
+  59              		.thumb
+ARM GAS  /tmp/ccYyA7AF.s 			page 2
+
+
+  60              		.thumb_func
+  61              		.fpu fpv4-sp-d16
+  63              	Error_Handler:
+  64              		@ args = 0, pretend = 0, frame = 0
+  65              		@ frame_needed = 0, uses_anonymous_args = 0
+  66 0000 08B5     		push	{r3, lr}
+  67              	.L8:
+  68 0002 FFF7FEFF 		bl	BSP_OnboardLED_Toggle
+  69 0006 4FF48033 		mov	r3, #65536
+  70              	.L7:
+  71 000a 013B     		subs	r3, r3, #1
+  72 000c FDD1     		bne	.L7
+  73 000e F8E7     		b	.L8
+  75              		.section	.text.SystemClock_Config,"ax",%progbits
+  76              		.align	1
+  77              		.p2align 2,,3
+  78              		.global	SystemClock_Config
+  79              		.syntax unified
+  80              		.thumb
+  81              		.thumb_func
+  82              		.fpu fpv4-sp-d16
+  84              	SystemClock_Config:
+  85              		@ args = 0, pretend = 0, frame = 96
+  86              		@ frame_needed = 0, uses_anonymous_args = 0
+  87 0000 30B5     		push	{r4, r5, lr}
+  88 0002 0023     		movs	r3, #0
+  89 0004 99B0     		sub	sp, sp, #100
+  90 0006 CDE90E33 		strd	r3, r3, [sp, #56]
+  91 000a CDE91033 		strd	r3, r3, [sp, #64]
+  92 000e CDE90233 		strd	r3, r3, [sp, #8]
+  93 0012 CDE90433 		strd	r3, r3, [sp, #16]
+  94 0016 CDE90633 		strd	r3, r3, [sp, #24]
+  95 001a CDE90833 		strd	r3, r3, [sp, #32]
+  96 001e CDE90A33 		strd	r3, r3, [sp, #40]
+  97 0022 254A     		ldr	r2, .L15
+  98 0024 0093     		str	r3, [sp]
+  99 0026 116C     		ldr	r1, [r2, #64]
+ 100 0028 41F08051 		orr	r1, r1, #268435456
+ 101 002c 1164     		str	r1, [r2, #64]
+ 102 002e 126C     		ldr	r2, [r2, #64]
+ 103 0030 02F08052 		and	r2, r2, #268435456
+ 104 0034 0092     		str	r2, [sp]
+ 105 0036 214A     		ldr	r2, .L15+4
+ 106 0038 0099     		ldr	r1, [sp]
+ 107 003a 0193     		str	r3, [sp, #4]
+ 108 003c 1368     		ldr	r3, [r2]
+ 109 003e 23F44043 		bic	r3, r3, #49152
+ 110 0042 43F40043 		orr	r3, r3, #32768
+ 111 0046 1360     		str	r3, [r2]
+ 112 0048 1368     		ldr	r3, [r2]
+ 113 004a 03F44043 		and	r3, r3, #49152
+ 114 004e 0193     		str	r3, [sp, #4]
+ 115 0050 4FF48033 		mov	r3, #65536
+ 116 0054 0D93     		str	r3, [sp, #52]
+ 117 0056 4FF48001 		mov	r1, #4194304
+ 118 005a 019B     		ldr	r3, [sp, #4]
+ 119 005c 1923     		movs	r3, #25
+ARM GAS  /tmp/ccYyA7AF.s 			page 3
+
+
+ 120 005e CDE91313 		strd	r1, r3, [sp, #76]
+ 121 0062 4FF4A870 		mov	r0, #336
+ 122 0066 0423     		movs	r3, #4
+ 123 0068 0124     		movs	r4, #1
+ 124 006a 0225     		movs	r5, #2
+ 125 006c 0C94     		str	r4, [sp, #48]
+ 126 006e 1295     		str	r5, [sp, #72]
+ 127 0070 CDE91503 		strd	r0, r3, [sp, #84]
+ 128 0074 0723     		movs	r3, #7
+ 129 0076 0CA8     		add	r0, sp, #48
+ 130 0078 1793     		str	r3, [sp, #92]
+ 131 007a FFF7FEFF 		bl	HAL_RCC_OscConfig
+ 132 007e C8B9     		cbnz	r0, .L13
+ 133 0080 0346     		mov	r3, r0
+ 134 0082 0493     		str	r3, [sp, #16]
+ 135 0084 0693     		str	r3, [sp, #24]
+ 136 0086 0F23     		movs	r3, #15
+ 137 0088 0293     		str	r3, [sp, #8]
+ 138 008a 02A8     		add	r0, sp, #8
+ 139 008c 4FF48053 		mov	r3, #4096
+ 140 0090 2946     		mov	r1, r5
+ 141 0092 0395     		str	r5, [sp, #12]
+ 142 0094 0593     		str	r3, [sp, #20]
+ 143 0096 FFF7FEFF 		bl	HAL_RCC_ClockConfig
+ 144 009a 58B9     		cbnz	r0, .L13
+ 145 009c 40F20F12 		movw	r2, #271
+ 146 00a0 0623     		movs	r3, #6
+ 147 00a2 07A8     		add	r0, sp, #28
+ 148 00a4 CDE90742 		strd	r4, r2, [sp, #28]
+ 149 00a8 0993     		str	r3, [sp, #36]
+ 150 00aa FFF7FEFF 		bl	HAL_RCCEx_PeriphCLKConfig
+ 151 00ae 08B9     		cbnz	r0, .L13
+ 152 00b0 19B0     		add	sp, sp, #100
+ 153              		@ sp needed
+ 154 00b2 30BD     		pop	{r4, r5, pc}
+ 155              	.L13:
+ 156 00b4 FFF7FEFF 		bl	Error_Handler
+ 157              	.L16:
+ 158              		.align	2
+ 159              	.L15:
+ 160 00b8 00380240 		.word	1073887232
+ 161 00bc 00700040 		.word	1073770496
+ 163              		.section	.rodata.main.str1.4,"aMS",%progbits,1
+ 164              		.align	2
+ 165              	.LC0:
+ 166 0000 0D0A5553 		.ascii	"\015\012USB Audio I2S Bridge\015\012\000"
+ 166      42204175 
+ 166      64696F20 
+ 166      49325320 
+ 166      42726964 
+ 167 0019 000000   		.align	2
+ 168              	.LC1:
+ 169 001c 4462674F 		.ascii	"DbgOptimalWritableSamples = %d\015\012DbgSafeZoneWr"
+ 169      7074696D 
+ 169      616C5772 
+ 169      69746162 
+ 169      6C655361 
+ARM GAS  /tmp/ccYyA7AF.s 			page 4
+
+
+ 170 0049 69746162 		.ascii	"itableSamples = %d\015\012\000"
+ 170      6C655361 
+ 170      6D706C65 
+ 170      73203D20 
+ 170      25640D0A 
+ 171 005e 0000     		.align	2
+ 172              	.LC2:
+ 173 0060 4462674D 		.ascii	"DbgMaxWritableSamples = %d\015\012DbgMinWritableSam"
+ 173      61785772 
+ 173      69746162 
+ 173      6C655361 
+ 173      6D706C65 
+ 174 008d 706C6573 		.ascii	"ples = %d\015\012\015\012\000"
+ 174      203D2025 
+ 174      640D0A0D 
+ 174      0A00
+ 175 009b 00       		.align	2
+ 176              	.LC3:
+ 177 009c 25642025 		.ascii	"%d %d %f\015\012\000"
+ 177      64202566 
+ 177      0D0A00
+ 178              		.global	__aeabi_f2d
+ 179              		.section	.text.startup.main,"ax",%progbits
+ 180              		.align	1
+ 181              		.p2align 2,,3
+ 182              		.global	main
+ 183              		.syntax unified
+ 184              		.thumb
+ 185              		.thumb_func
+ 186              		.fpu fpv4-sp-d16
+ 188              	main:
+ 189              		@ args = 0, pretend = 0, frame = 8
+ 190              		@ frame_needed = 0, uses_anonymous_args = 0
+ 191 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 192 0004 85B0     		sub	sp, sp, #20
+ 193 0006 FFF7FEFF 		bl	HAL_Init
+ 194 000a FFF7FEFF 		bl	SystemClock_Config
+ 195 000e FFF7FEFF 		bl	MX_USART2_UART_Init
+ 196 0012 4648     		ldr	r0, .L32
+ 197 0014 DFF84CA1 		ldr	r10, .L32+56
+ 198 0018 454C     		ldr	r4, .L32+4
+ 199 001a DFF84C91 		ldr	r9, .L32+60
+ 200 001e DFF84C81 		ldr	r8, .L32+64
+ 201 0022 444F     		ldr	r7, .L32+8
+ 202 0024 FFF7FEFF 		bl	printMsg
+ 203 0028 FFF7FEFF 		bl	bsp_init
+ 204 002c 0022     		movs	r2, #0
+ 205 002e 4249     		ldr	r1, .L32+12
+ 206 0030 4248     		ldr	r0, .L32+16
+ 207 0032 FFF7FEFF 		bl	USBD_Init
+ 208 0036 4249     		ldr	r1, .L32+20
+ 209 0038 4048     		ldr	r0, .L32+16
+ 210 003a FFF7FEFF 		bl	USBD_RegisterClass
+ 211 003e 4149     		ldr	r1, .L32+24
+ 212 0040 3E48     		ldr	r0, .L32+16
+ 213 0042 FFF7FEFF 		bl	USBD_AUDIO_RegisterInterface
+ 214 0046 3D48     		ldr	r0, .L32+16
+ARM GAS  /tmp/ccYyA7AF.s 			page 5
+
+
+ 215 0048 FFF7FEFF 		bl	USBD_Start
+ 216              	.L24:
+ 217 004c 4BF68035 		movw	r5, #48000
+ 218 0050 0FE0     		b	.L22
+ 219              	.L31:
+ 220 0052 9342     		cmp	r3, r2
+ 221 0054 61D0     		beq	.L29
+ 222 0056 FFF7FEFF 		bl	BSP_LED_Off
+ 223 005a 0120     		movs	r0, #1
+ 224 005c FFF7FEFF 		bl	BSP_LED_Off
+ 225 0060 0220     		movs	r0, #2
+ 226 0062 FFF7FEFF 		bl	BSP_LED_Off
+ 227              	.L21:
+ 228 0066 6420     		movs	r0, #100
+ 229 0068 FFF7FEFF 		bl	HAL_Delay
+ 230 006c DAF80030 		ldr	r3, [r10]
+ 231 0070 D3B9     		cbnz	r3, .L30
+ 232              	.L22:
+ 233 0072 354B     		ldr	r3, .L32+28
+ 234 0074 5B68     		ldr	r3, [r3, #4]
+ 235 0076 AB42     		cmp	r3, r5
+ 236 0078 4AF64442 		movw	r2, #44100
+ 237 007c 4FF00000 		mov	r0, #0
+ 238 0080 42D0     		beq	.L18
+ 239 0082 3249     		ldr	r1, .L32+32
+ 240 0084 8B42     		cmp	r3, r1
+ 241 0086 E4D1     		bne	.L31
+ 242 0088 0020     		movs	r0, #0
+ 243 008a FFF7FEFF 		bl	BSP_LED_On
+ 244 008e 0120     		movs	r0, #1
+ 245 0090 FFF7FEFF 		bl	BSP_LED_Off
+ 246 0094 0220     		movs	r0, #2
+ 247 0096 FFF7FEFF 		bl	BSP_LED_Off
+ 248 009a 6420     		movs	r0, #100
+ 249 009c FFF7FEFF 		bl	HAL_Delay
+ 250 00a0 DAF80030 		ldr	r3, [r10]
+ 251 00a4 002B     		cmp	r3, #0
+ 252 00a6 E4D0     		beq	.L22
+ 253              	.L30:
+ 254 00a8 0023     		movs	r3, #0
+ 255 00aa 2948     		ldr	r0, .L32+36
+ 256 00ac CAF80030 		str	r3, [r10]
+ 257 00b0 6122     		movs	r2, #97
+ 258 00b2 4FF4C271 		mov	r1, #388
+ 259 00b6 FFF7FEFF 		bl	printMsg
+ 260 00ba 264B     		ldr	r3, .L32+40
+ 261 00bc 2648     		ldr	r0, .L32+44
+ 262 00be 1968     		ldr	r1, [r3]
+ 263 00c0 264B     		ldr	r3, .L32+48
+ 264 00c2 274D     		ldr	r5, .L32+52
+ 265 00c4 1A68     		ldr	r2, [r3]
+ 266 00c6 FFF7FEFF 		bl	printMsg
+ 267 00ca 4FF48076 		mov	r6, #256
+ 268              	.L23:
+ 269 00ce 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 270 00d0 DBB2     		uxtb	r3, r3
+ 271 00d2 59F823B0 		ldr	fp, [r9, r3, lsl #2]
+ARM GAS  /tmp/ccYyA7AF.s 			page 6
+
+
+ 272 00d6 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 273 00d8 DBB2     		uxtb	r3, r3
+ 274 00da 58F82320 		ldr	r2, [r8, r3, lsl #2]
+ 275 00de 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 276 00e0 0392     		str	r2, [sp, #12]
+ 277 00e2 07EB8303 		add	r3, r7, r3, lsl #2
+ 278 00e6 1868     		ldr	r0, [r3]	@ float
+ 279 00e8 FFF7FEFF 		bl	__aeabi_f2d
+ 280 00ec 039A     		ldr	r2, [sp, #12]
+ 281 00ee CDE90001 		strd	r0, [sp]
+ 282 00f2 5946     		mov	r1, fp
+ 283 00f4 2846     		mov	r0, r5
+ 284 00f6 FFF7FEFF 		bl	printMsg
+ 285 00fa 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 286 00fc 0133     		adds	r3, r3, #1
+ 287 00fe DBB2     		uxtb	r3, r3
+ 288 0100 013E     		subs	r6, r6, #1
+ 289 0102 2370     		strb	r3, [r4]
+ 290 0104 E3D1     		bne	.L23
+ 291 0106 A1E7     		b	.L24
+ 292              	.L18:
+ 293 0108 FFF7FEFF 		bl	BSP_LED_Off
+ 294 010c 0120     		movs	r0, #1
+ 295 010e FFF7FEFF 		bl	BSP_LED_On
+ 296 0112 0220     		movs	r0, #2
+ 297 0114 FFF7FEFF 		bl	BSP_LED_Off
+ 298 0118 A5E7     		b	.L21
+ 299              	.L29:
+ 300 011a FFF7FEFF 		bl	BSP_LED_Off
+ 301 011e 0120     		movs	r0, #1
+ 302 0120 FFF7FEFF 		bl	BSP_LED_Off
+ 303 0124 0220     		movs	r0, #2
+ 304 0126 FFF7FEFF 		bl	BSP_LED_On
+ 305 012a 9CE7     		b	.L21
+ 306              	.L33:
+ 307              		.align	2
+ 308              	.L32:
+ 309 012c 00000000 		.word	.LC0
+ 310 0130 00000000 		.word	DbgIndex
+ 311 0134 00000000 		.word	DbgFeedbackHistory
+ 312 0138 00000000 		.word	AUDIO_Desc
+ 313 013c 00000000 		.word	.LANCHOR0
+ 314 0140 00000000 		.word	USBD_AUDIO
+ 315 0144 00000000 		.word	USBD_AUDIO_fops
+ 316 0148 00000000 		.word	.LANCHOR1
+ 317 014c 00770100 		.word	96000
+ 318 0150 1C000000 		.word	.LC1
+ 319 0154 00000000 		.word	DbgMaxWritableSamples
+ 320 0158 60000000 		.word	.LC2
+ 321 015c 00000000 		.word	DbgMinWritableSamples
+ 322 0160 9C000000 		.word	.LC3
+ 323 0164 00000000 		.word	BtnPressed
+ 324 0168 00000000 		.word	DbgSofHistory
+ 325 016c 00000000 		.word	DbgWritableSampleHistory
+ 327              		.section	.rodata.assert_failed.str1.4,"aMS",%progbits,1
+ 328              		.align	2
+ 329              	.LC4:
+ARM GAS  /tmp/ccYyA7AF.s 			page 7
+
+
+ 330 0000 57726F6E 		.ascii	"Wrong parameters value: file %s on line %d\015\012\000"
+ 330      67207061 
+ 330      72616D65 
+ 330      74657273 
+ 330      2076616C 
+ 331              		.section	.text.assert_failed,"ax",%progbits
+ 332              		.align	1
+ 333              		.p2align 2,,3
+ 334              		.global	assert_failed
+ 335              		.syntax unified
+ 336              		.thumb
+ 337              		.thumb_func
+ 338              		.fpu fpv4-sp-d16
+ 340              	assert_failed:
+ 341              		@ args = 0, pretend = 0, frame = 0
+ 342              		@ frame_needed = 0, uses_anonymous_args = 0
+ 343              		@ link register save eliminated.
+ 344 0000 0346     		mov	r3, r0
+ 345 0002 0A46     		mov	r2, r1
+ 346 0004 0148     		ldr	r0, .L35
+ 347 0006 1946     		mov	r1, r3
+ 348 0008 FFF7FEBF 		b	printMsg
+ 349              	.L36:
+ 350              		.align	2
+ 351              	.L35:
+ 352 000c 00000000 		.word	.LC4
+ 354              		.global	audio_status
+ 355              		.global	USBD_Device
+ 356              		.section	.bss.USBD_Device,"aw",%nobits
+ 357              		.align	2
+ 358              		.set	.LANCHOR0,. + 0
+ 361              	USBD_Device:
+ 362 0000 00000000 		.space	668
+ 362      00000000 
+ 362      00000000 
+ 362      00000000 
+ 362      00000000 
+ 363              		.section	.bss.audio_status,"aw",%nobits
+ 364              		.align	2
+ 365              		.set	.LANCHOR1,. + 0
+ 368              	audio_status:
+ 369 0000 00000000 		.space	8
+ 369      00000000 
+ 370              		.ident	"GCC: (15:10.3-2021.07-4) 10.3.1 20210621 (release)"
+ARM GAS  /tmp/ccYyA7AF.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 main.c
+     /tmp/ccYyA7AF.s:16     .text.printMsg:0000000000000000 $t
+     /tmp/ccYyA7AF.s:25     .text.printMsg:0000000000000000 printMsg
+     /tmp/ccYyA7AF.s:52     .text.printMsg:0000000000000034 $d
+     /tmp/ccYyA7AF.s:55     .text.Error_Handler:0000000000000000 $t
+     /tmp/ccYyA7AF.s:63     .text.Error_Handler:0000000000000000 Error_Handler
+     /tmp/ccYyA7AF.s:76     .text.SystemClock_Config:0000000000000000 $t
+     /tmp/ccYyA7AF.s:84     .text.SystemClock_Config:0000000000000000 SystemClock_Config
+     /tmp/ccYyA7AF.s:160    .text.SystemClock_Config:00000000000000b8 $d
+     /tmp/ccYyA7AF.s:164    .rodata.main.str1.4:0000000000000000 $d
+     /tmp/ccYyA7AF.s:180    .text.startup.main:0000000000000000 $t
+     /tmp/ccYyA7AF.s:188    .text.startup.main:0000000000000000 main
+     /tmp/ccYyA7AF.s:309    .text.startup.main:000000000000012c $d
+     /tmp/ccYyA7AF.s:328    .rodata.assert_failed.str1.4:0000000000000000 $d
+     /tmp/ccYyA7AF.s:332    .text.assert_failed:0000000000000000 $t
+     /tmp/ccYyA7AF.s:340    .text.assert_failed:0000000000000000 assert_failed
+     /tmp/ccYyA7AF.s:352    .text.assert_failed:000000000000000c $d
+     /tmp/ccYyA7AF.s:368    .bss.audio_status:0000000000000000 audio_status
+     /tmp/ccYyA7AF.s:361    .bss.USBD_Device:0000000000000000 USBD_Device
+     /tmp/ccYyA7AF.s:357    .bss.USBD_Device:0000000000000000 $d
+     /tmp/ccYyA7AF.s:364    .bss.audio_status:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+vsprintf
+strlen
+HAL_UART_Transmit
+huart2
+BSP_OnboardLED_Toggle
+HAL_RCC_OscConfig
+HAL_RCC_ClockConfig
+HAL_RCCEx_PeriphCLKConfig
+__aeabi_f2d
+HAL_Init
+MX_USART2_UART_Init
+bsp_init
+USBD_Init
+USBD_RegisterClass
+USBD_AUDIO_RegisterInterface
+USBD_Start
+BSP_LED_Off
+HAL_Delay
+BSP_LED_On
+DbgIndex
+DbgFeedbackHistory
+AUDIO_Desc
+USBD_AUDIO
+USBD_AUDIO_fops
+DbgMaxWritableSamples
+DbgMinWritableSamples
+BtnPressed
+DbgSofHistory
+DbgWritableSampleHistory

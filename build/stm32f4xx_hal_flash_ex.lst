@@ -1,0 +1,811 @@
+ARM GAS  /tmp/ccUz97fh.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32f4xx_hal_flash_ex.c"
+  14              		.text
+  15              		.section	.rodata.FLASH_MassErase.str1.4,"aMS",%progbits,1
+  16              		.align	2
+  17              	.LC0:
+  18 0000 64726976 		.ascii	"drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flas"
+  18      6572732F 
+  18      53544D33 
+  18      32463478 
+  18      785F4841 
+  19 0033 685F6578 		.ascii	"h_ex.c\000"
+  19      2E6300
+  20              		.section	.text.FLASH_MassErase,"ax",%progbits
+  21              		.align	1
+  22              		.p2align 2,,3
+  23              		.arch armv7e-m
+  24              		.syntax unified
+  25              		.thumb
+  26              		.thumb_func
+  27              		.fpu fpv4-sp-d16
+  29              	FLASH_MassErase:
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 0328     		cmp	r0, #3
+  33 0002 38B5     		push	{r3, r4, r5, lr}
+  34 0004 0446     		mov	r4, r0
+  35 0006 0D46     		mov	r5, r1
+  36 0008 16D8     		bhi	.L9
+  37              	.L2:
+  38 000a 012D     		cmp	r5, #1
+  39 000c 04D0     		beq	.L3
+  40 000e 0D48     		ldr	r0, .L10
+  41 0010 40F2BD31 		movw	r1, #957
+  42 0014 FFF7FEFF 		bl	assert_failed
+  43              	.L3:
+  44 0018 0B4B     		ldr	r3, .L10+4
+  45 001a 1A69     		ldr	r2, [r3, #16]
+  46 001c 22F44072 		bic	r2, r2, #768
+  47 0020 1A61     		str	r2, [r3, #16]
+  48 0022 1A69     		ldr	r2, [r3, #16]
+  49 0024 42F00402 		orr	r2, r2, #4
+  50 0028 1A61     		str	r2, [r3, #16]
+  51 002a 1869     		ldr	r0, [r3, #16]
+  52 002c 40EA0420 		orr	r0, r0, r4, lsl #8
+  53 0030 40F48030 		orr	r0, r0, #65536
+ARM GAS  /tmp/ccUz97fh.s 			page 2
+
+
+  54 0034 1861     		str	r0, [r3, #16]
+  55 0036 38BD     		pop	{r3, r4, r5, pc}
+  56              	.L9:
+  57 0038 0248     		ldr	r0, .L10
+  58 003a 4FF46F71 		mov	r1, #956
+  59 003e FFF7FEFF 		bl	assert_failed
+  60 0042 E2E7     		b	.L2
+  61              	.L11:
+  62              		.align	2
+  63              	.L10:
+  64 0044 00000000 		.word	.LC0
+  65 0048 003C0240 		.word	1073888256
+  67              		.section	.text.HAL_FLASHEx_OBProgram,"ax",%progbits
+  68              		.align	1
+  69              		.p2align 2,,3
+  70              		.global	HAL_FLASHEx_OBProgram
+  71              		.syntax unified
+  72              		.thumb
+  73              		.thumb_func
+  74              		.fpu fpv4-sp-d16
+  76              	HAL_FLASHEx_OBProgram:
+  77              		@ args = 0, pretend = 0, frame = 0
+  78              		@ frame_needed = 0, uses_anonymous_args = 0
+  79 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+  80 0002 534D     		ldr	r5, .L72
+  81 0004 2B7E     		ldrb	r3, [r5, #24]	@ zero_extendqisi2
+  82 0006 012B     		cmp	r3, #1
+  83 0008 00F09F80 		beq	.L33
+  84 000c 0123     		movs	r3, #1
+  85 000e 2B76     		strb	r3, [r5, #24]
+  86 0010 0368     		ldr	r3, [r0]
+  87 0012 0F2B     		cmp	r3, #15
+  88 0014 0446     		mov	r4, r0
+  89 0016 72D8     		bhi	.L66
+  90              	.L14:
+  91 0018 D807     		lsls	r0, r3, #31
+  92 001a 09D4     		bmi	.L67
+  93 001c 0120     		movs	r0, #1
+  94              	.L15:
+  95 001e 9907     		lsls	r1, r3, #30
+  96 0020 33D4     		bmi	.L68
+  97              	.L26:
+  98 0022 5A07     		lsls	r2, r3, #29
+  99 0024 47D4     		bmi	.L69
+ 100              	.L29:
+ 101 0026 1B07     		lsls	r3, r3, #28
+ 102 0028 56D4     		bmi	.L70
+ 103              	.L31:
+ 104 002a 0023     		movs	r3, #0
+ 105 002c 2B76     		strb	r3, [r5, #24]
+ 106 002e F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 107              	.L67:
+ 108 0030 6368     		ldr	r3, [r4, #4]
+ 109 0032 012B     		cmp	r3, #1
+ 110 0034 05D9     		bls	.L16
+ 111 0036 4748     		ldr	r0, .L72+4
+ 112 0038 40F22B11 		movw	r1, #299
+ARM GAS  /tmp/ccUz97fh.s 			page 3
+
+
+ 113 003c FFF7FEFF 		bl	assert_failed
+ 114 0040 6368     		ldr	r3, [r4, #4]
+ 115              	.L16:
+ 116 0042 D4E90267 		ldrd	r6, r7, [r4, #8]
+ 117 0046 012B     		cmp	r3, #1
+ 118 0048 26F47F63 		bic	r3, r6, #4080
+ 119 004c 23F00F03 		bic	r3, r3, #15
+ 120 0050 5ED0     		beq	.L71
+ 121 0052 03B9     		cbnz	r3, .L22
+ 122 0054 26B9     		cbnz	r6, .L23
+ 123              	.L22:
+ 124 0056 3F48     		ldr	r0, .L72+4
+ 125 0058 40F23141 		movw	r1, #1073
+ 126 005c FFF7FEFF 		bl	assert_failed
+ 127              	.L23:
+ 128 0060 012F     		cmp	r7, #1
+ 129 0062 04D0     		beq	.L24
+ 130 0064 3B48     		ldr	r0, .L72+4
+ 131 0066 40F23241 		movw	r1, #1074
+ 132 006a FFF7FEFF 		bl	assert_failed
+ 133              	.L24:
+ 134 006e 4CF25030 		movw	r0, #50000
+ 135 0072 FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 136 0076 0028     		cmp	r0, #0
+ 137 0078 48D1     		bne	.L63
+ 138 007a 374A     		ldr	r2, .L72+8
+ 139 007c 2368     		ldr	r3, [r4]
+ 140 007e D18A     		ldrh	r1, [r2, #22]
+ 141 0080 0E43     		orrs	r6, r6, r1
+ 142 0082 B6B2     		uxth	r6, r6
+ 143 0084 9907     		lsls	r1, r3, #30
+ 144 0086 D682     		strh	r6, [r2, #22]	@ movhi
+ 145 0088 CBD5     		bpl	.L26
+ 146              	.L68:
+ 147 008a 267C     		ldrb	r6, [r4, #16]	@ zero_extendqisi2
+ 148 008c AA2E     		cmp	r6, #170
+ 149 008e 08D0     		beq	.L27
+ 150 0090 552E     		cmp	r6, #85
+ 151 0092 06D0     		beq	.L27
+ 152 0094 CC2E     		cmp	r6, #204
+ 153 0096 04D0     		beq	.L27
+ 154 0098 2E48     		ldr	r0, .L72+4
+ 155 009a 40F28F41 		movw	r1, #1167
+ 156 009e FFF7FEFF 		bl	assert_failed
+ 157              	.L27:
+ 158 00a2 4CF25030 		movw	r0, #50000
+ 159 00a6 FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 160 00aa 08B9     		cbnz	r0, .L64
+ 161 00ac 2A4B     		ldr	r3, .L72+8
+ 162 00ae 5E75     		strb	r6, [r3, #21]
+ 163              	.L64:
+ 164 00b0 2368     		ldr	r3, [r4]
+ 165 00b2 5A07     		lsls	r2, r3, #29
+ 166 00b4 B7D5     		bpl	.L29
+ 167              	.L69:
+ 168 00b6 4CF25030 		movw	r0, #50000
+ 169 00ba 267E     		ldrb	r6, [r4, #24]	@ zero_extendqisi2
+ARM GAS  /tmp/ccUz97fh.s 			page 4
+
+
+ 170 00bc FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 171 00c0 38B9     		cbnz	r0, .L65
+ 172 00c2 254A     		ldr	r2, .L72+8
+ 173 00c4 137D     		ldrb	r3, [r2, #20]	@ zero_extendqisi2
+ 174 00c6 26F01F06 		bic	r6, r6, #31
+ 175 00ca 03F01F03 		and	r3, r3, #31
+ 176 00ce 3343     		orrs	r3, r3, r6
+ 177 00d0 1375     		strb	r3, [r2, #20]
+ 178              	.L65:
+ 179 00d2 2368     		ldr	r3, [r4]
+ 180 00d4 1B07     		lsls	r3, r3, #28
+ 181 00d6 A8D5     		bpl	.L31
+ 182              	.L70:
+ 183 00d8 247D     		ldrb	r4, [r4, #20]	@ zero_extendqisi2
+ 184 00da 14F0F30F 		tst	r4, #243
+ 185 00de 04D0     		beq	.L32
+ 186 00e0 1C48     		ldr	r0, .L72+4
+ 187 00e2 40F2D241 		movw	r1, #1234
+ 188 00e6 FFF7FEFF 		bl	assert_failed
+ 189              	.L32:
+ 190 00ea 1B4B     		ldr	r3, .L72+8
+ 191 00ec 1A7D     		ldrb	r2, [r3, #20]	@ zero_extendqisi2
+ 192 00ee 02F0F302 		and	r2, r2, #243
+ 193 00f2 1A75     		strb	r2, [r3, #20]
+ 194 00f4 1A7D     		ldrb	r2, [r3, #20]	@ zero_extendqisi2
+ 195 00f6 1443     		orrs	r4, r4, r2
+ 196 00f8 0020     		movs	r0, #0
+ 197 00fa 1C75     		strb	r4, [r3, #20]
+ 198 00fc 95E7     		b	.L31
+ 199              	.L66:
+ 200 00fe 1548     		ldr	r0, .L72+4
+ 201 0100 4FF49371 		mov	r1, #294
+ 202 0104 FFF7FEFF 		bl	assert_failed
+ 203 0108 2368     		ldr	r3, [r4]
+ 204 010a 85E7     		b	.L14
+ 205              	.L63:
+ 206 010c 2368     		ldr	r3, [r4]
+ 207 010e 86E7     		b	.L15
+ 208              	.L71:
+ 209 0110 ABB9     		cbnz	r3, .L18
+ 210 0112 A6B1     		cbz	r6, .L18
+ 211              	.L19:
+ 212 0114 012F     		cmp	r7, #1
+ 213 0116 04D0     		beq	.L20
+ 214 0118 0E48     		ldr	r0, .L72+4
+ 215 011a 40F20E41 		movw	r1, #1038
+ 216 011e FFF7FEFF 		bl	assert_failed
+ 217              	.L20:
+ 218 0122 4CF25030 		movw	r0, #50000
+ 219 0126 FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 220 012a 0028     		cmp	r0, #0
+ 221 012c EED1     		bne	.L63
+ 222 012e 0A49     		ldr	r1, .L72+8
+ 223 0130 2368     		ldr	r3, [r4]
+ 224 0132 CA8A     		ldrh	r2, [r1, #22]
+ 225 0134 92B2     		uxth	r2, r2
+ 226 0136 22EA0606 		bic	r6, r2, r6
+ARM GAS  /tmp/ccUz97fh.s 			page 5
+
+
+ 227 013a CE82     		strh	r6, [r1, #22]	@ movhi
+ 228 013c 6FE7     		b	.L15
+ 229              	.L18:
+ 230 013e 0548     		ldr	r0, .L72+4
+ 231 0140 40F20D41 		movw	r1, #1037
+ 232 0144 FFF7FEFF 		bl	assert_failed
+ 233 0148 E4E7     		b	.L19
+ 234              	.L33:
+ 235 014a 0220     		movs	r0, #2
+ 236 014c F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 237              	.L73:
+ 238 014e 00BF     		.align	2
+ 239              	.L72:
+ 240 0150 00000000 		.word	pFlash
+ 241 0154 00000000 		.word	.LC0
+ 242 0158 003C0240 		.word	1073888256
+ 244              		.section	.text.HAL_FLASHEx_OBGetConfig,"ax",%progbits
+ 245              		.align	1
+ 246              		.p2align 2,,3
+ 247              		.global	HAL_FLASHEx_OBGetConfig
+ 248              		.syntax unified
+ 249              		.thumb
+ 250              		.thumb_func
+ 251              		.fpu fpv4-sp-d16
+ 253              	HAL_FLASHEx_OBGetConfig:
+ 254              		@ args = 0, pretend = 0, frame = 0
+ 255              		@ frame_needed = 0, uses_anonymous_args = 0
+ 256              		@ link register save eliminated.
+ 257 0000 0C4A     		ldr	r2, .L78
+ 258 0002 D38A     		ldrh	r3, [r2, #22]
+ 259 0004 0F21     		movs	r1, #15
+ 260 0006 9BB2     		uxth	r3, r3
+ 261 0008 8360     		str	r3, [r0, #8]
+ 262 000a 0160     		str	r1, [r0]
+ 263 000c 517D     		ldrb	r1, [r2, #21]	@ zero_extendqisi2
+ 264 000e CC29     		cmp	r1, #204
+ 265 0010 CBB2     		uxtb	r3, r1
+ 266 0012 04D0     		beq	.L75
+ 267 0014 537D     		ldrb	r3, [r2, #21]	@ zero_extendqisi2
+ 268 0016 AA2B     		cmp	r3, #170
+ 269 0018 0CBF     		ite	eq
+ 270 001a AA23     		moveq	r3, #170
+ 271 001c 5523     		movne	r3, #85
+ 272              	.L75:
+ 273 001e 054A     		ldr	r2, .L78
+ 274 0020 0361     		str	r3, [r0, #16]
+ 275 0022 5369     		ldr	r3, [r2, #20]
+ 276 0024 23F01F03 		bic	r3, r3, #31
+ 277 0028 0376     		strb	r3, [r0, #24]
+ 278 002a 137D     		ldrb	r3, [r2, #20]	@ zero_extendqisi2
+ 279 002c 03F00C03 		and	r3, r3, #12
+ 280 0030 4361     		str	r3, [r0, #20]
+ 281 0032 7047     		bx	lr
+ 282              	.L79:
+ 283              		.align	2
+ 284              	.L78:
+ 285 0034 003C0240 		.word	1073888256
+ARM GAS  /tmp/ccUz97fh.s 			page 6
+
+
+ 287              		.section	.text.HAL_FLASHEx_AdvOBProgram,"ax",%progbits
+ 288              		.align	1
+ 289              		.p2align 2,,3
+ 290              		.global	HAL_FLASHEx_AdvOBProgram
+ 291              		.syntax unified
+ 292              		.thumb
+ 293              		.thumb_func
+ 294              		.fpu fpv4-sp-d16
+ 296              	HAL_FLASHEx_AdvOBProgram:
+ 297              		@ args = 0, pretend = 0, frame = 0
+ 298              		@ frame_needed = 0, uses_anonymous_args = 0
+ 299 0000 0368     		ldr	r3, [r0]
+ 300 0002 012B     		cmp	r3, #1
+ 301 0004 10B5     		push	{r4, lr}
+ 302 0006 0446     		mov	r4, r0
+ 303 0008 1AD1     		bne	.L81
+ 304              	.L84:
+ 305 000a 6368     		ldr	r3, [r4, #4]
+ 306 000c 012B     		cmp	r3, #1
+ 307 000e 21D8     		bhi	.L92
+ 308 0010 012B     		cmp	r3, #1
+ 309 0012 2489     		ldrh	r4, [r4, #8]
+ 310 0014 27D0     		beq	.L93
+ 311              	.L86:
+ 312 0016 14F4704F 		tst	r4, #61440
+ 313 001a 00D1     		bne	.L89
+ 314 001c 24B9     		cbnz	r4, .L90
+ 315              	.L89:
+ 316 001e 1C48     		ldr	r0, .L94
+ 317 0020 40F26E41 		movw	r1, #1134
+ 318 0024 FFF7FEFF 		bl	assert_failed
+ 319              	.L90:
+ 320 0028 4CF25030 		movw	r0, #50000
+ 321 002c FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 322 0030 28B9     		cbnz	r0, .L85
+ 323 0032 184A     		ldr	r2, .L94+4
+ 324 0034 D38A     		ldrh	r3, [r2, #22]
+ 325 0036 9BB2     		uxth	r3, r3
+ 326 0038 23EA0404 		bic	r4, r3, r4
+ 327 003c D482     		strh	r4, [r2, #22]	@ movhi
+ 328              	.L85:
+ 329 003e 10BD     		pop	{r4, pc}
+ 330              	.L81:
+ 331 0040 1348     		ldr	r0, .L94
+ 332 0042 40F27B11 		movw	r1, #379
+ 333 0046 FFF7FEFF 		bl	assert_failed
+ 334 004a 2368     		ldr	r3, [r4]
+ 335 004c DB07     		lsls	r3, r3, #31
+ 336 004e DCD4     		bmi	.L84
+ 337 0050 0120     		movs	r0, #1
+ 338 0052 10BD     		pop	{r4, pc}
+ 339              	.L92:
+ 340 0054 0E48     		ldr	r0, .L94
+ 341 0056 40F28111 		movw	r1, #385
+ 342 005a FFF7FEFF 		bl	assert_failed
+ 343 005e 6368     		ldr	r3, [r4, #4]
+ 344 0060 2489     		ldrh	r4, [r4, #8]
+ARM GAS  /tmp/ccUz97fh.s 			page 7
+
+
+ 345 0062 012B     		cmp	r3, #1
+ 346 0064 D7D1     		bne	.L86
+ 347              	.L93:
+ 348 0066 14F4704F 		tst	r4, #61440
+ 349 006a 00D1     		bne	.L87
+ 350 006c 24B9     		cbnz	r4, .L88
+ 351              	.L87:
+ 352 006e 0848     		ldr	r0, .L94
+ 353 0070 40F25241 		movw	r1, #1106
+ 354 0074 FFF7FEFF 		bl	assert_failed
+ 355              	.L88:
+ 356 0078 4CF25030 		movw	r0, #50000
+ 357 007c FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 358 0080 0028     		cmp	r0, #0
+ 359 0082 DCD1     		bne	.L85
+ 360 0084 034A     		ldr	r2, .L94+4
+ 361 0086 D38A     		ldrh	r3, [r2, #22]
+ 362 0088 9BB2     		uxth	r3, r3
+ 363 008a 1C43     		orrs	r4, r4, r3
+ 364 008c D482     		strh	r4, [r2, #22]	@ movhi
+ 365 008e 10BD     		pop	{r4, pc}
+ 366              	.L95:
+ 367              		.align	2
+ 368              	.L94:
+ 369 0090 00000000 		.word	.LC0
+ 370 0094 003C0240 		.word	1073888256
+ 372              		.section	.text.HAL_FLASHEx_AdvOBGetConfig,"ax",%progbits
+ 373              		.align	1
+ 374              		.p2align 2,,3
+ 375              		.global	HAL_FLASHEx_AdvOBGetConfig
+ 376              		.syntax unified
+ 377              		.thumb
+ 378              		.thumb_func
+ 379              		.fpu fpv4-sp-d16
+ 381              	HAL_FLASHEx_AdvOBGetConfig:
+ 382              		@ args = 0, pretend = 0, frame = 0
+ 383              		@ frame_needed = 0, uses_anonymous_args = 0
+ 384              		@ link register save eliminated.
+ 385 0000 014B     		ldr	r3, .L97
+ 386 0002 DB8A     		ldrh	r3, [r3, #22]
+ 387 0004 0381     		strh	r3, [r0, #8]	@ movhi
+ 388 0006 7047     		bx	lr
+ 389              	.L98:
+ 390              		.align	2
+ 391              	.L97:
+ 392 0008 003C0240 		.word	1073888256
+ 394              		.section	.text.HAL_FLASHEx_OB_SelectPCROP,"ax",%progbits
+ 395              		.align	1
+ 396              		.p2align 2,,3
+ 397              		.global	HAL_FLASHEx_OB_SelectPCROP
+ 398              		.syntax unified
+ 399              		.thumb
+ 400              		.thumb_func
+ 401              		.fpu fpv4-sp-d16
+ 403              	HAL_FLASHEx_OB_SelectPCROP:
+ 404              		@ args = 0, pretend = 0, frame = 0
+ 405              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /tmp/ccUz97fh.s 			page 8
+
+
+ 406              		@ link register save eliminated.
+ 407 0000 034A     		ldr	r2, .L100
+ 408 0002 D37D     		ldrb	r3, [r2, #23]	@ zero_extendqisi2
+ 409 0004 43F08003 		orr	r3, r3, #128
+ 410 0008 0020     		movs	r0, #0
+ 411 000a D375     		strb	r3, [r2, #23]
+ 412 000c 7047     		bx	lr
+ 413              	.L101:
+ 414 000e 00BF     		.align	2
+ 415              	.L100:
+ 416 0010 003C0240 		.word	1073888256
+ 418              		.section	.text.HAL_FLASHEx_OB_DeSelectPCROP,"ax",%progbits
+ 419              		.align	1
+ 420              		.p2align 2,,3
+ 421              		.global	HAL_FLASHEx_OB_DeSelectPCROP
+ 422              		.syntax unified
+ 423              		.thumb
+ 424              		.thumb_func
+ 425              		.fpu fpv4-sp-d16
+ 427              	HAL_FLASHEx_OB_DeSelectPCROP:
+ 428              		@ args = 0, pretend = 0, frame = 0
+ 429              		@ frame_needed = 0, uses_anonymous_args = 0
+ 430              		@ link register save eliminated.
+ 431 0000 034A     		ldr	r2, .L103
+ 432 0002 D37D     		ldrb	r3, [r2, #23]	@ zero_extendqisi2
+ 433 0004 03F07F03 		and	r3, r3, #127
+ 434 0008 0020     		movs	r0, #0
+ 435 000a D375     		strb	r3, [r2, #23]
+ 436 000c 7047     		bx	lr
+ 437              	.L104:
+ 438 000e 00BF     		.align	2
+ 439              	.L103:
+ 440 0010 003C0240 		.word	1073888256
+ 442              		.section	.text.FLASH_Erase_Sector,"ax",%progbits
+ 443              		.align	1
+ 444              		.p2align 2,,3
+ 445              		.global	FLASH_Erase_Sector
+ 446              		.syntax unified
+ 447              		.thumb
+ 448              		.thumb_func
+ 449              		.fpu fpv4-sp-d16
+ 451              	FLASH_Erase_Sector:
+ 452              		@ args = 0, pretend = 0, frame = 0
+ 453              		@ frame_needed = 0, uses_anonymous_args = 0
+ 454 0000 0528     		cmp	r0, #5
+ 455 0002 38B5     		push	{r3, r4, r5, lr}
+ 456 0004 0546     		mov	r5, r0
+ 457 0006 0C46     		mov	r4, r1
+ 458 0008 26D8     		bhi	.L113
+ 459              	.L106:
+ 460 000a 032C     		cmp	r4, #3
+ 461 000c 1CD8     		bhi	.L114
+ 462 000e B4B9     		cbnz	r4, .L115
+ 463              	.L108:
+ 464 0010 184B     		ldr	r3, .L117
+ 465 0012 1A69     		ldr	r2, [r3, #16]
+ 466 0014 22F44072 		bic	r2, r2, #768
+ARM GAS  /tmp/ccUz97fh.s 			page 9
+
+
+ 467 0018 1A61     		str	r2, [r3, #16]
+ 468 001a 1969     		ldr	r1, [r3, #16]
+ 469 001c 0C43     		orrs	r4, r4, r1
+ 470 001e 1C61     		str	r4, [r3, #16]
+ 471 0020 1A69     		ldr	r2, [r3, #16]
+ 472 0022 22F0F802 		bic	r2, r2, #248
+ 473 0026 1A61     		str	r2, [r3, #16]
+ 474 0028 1869     		ldr	r0, [r3, #16]
+ 475 002a 40EAC500 		orr	r0, r0, r5, lsl #3
+ 476 002e 40F00200 		orr	r0, r0, #2
+ 477 0032 1861     		str	r0, [r3, #16]
+ 478 0034 1A69     		ldr	r2, [r3, #16]
+ 479 0036 42F48032 		orr	r2, r2, #65536
+ 480 003a 1A61     		str	r2, [r3, #16]
+ 481 003c 38BD     		pop	{r3, r4, r5, pc}
+ 482              	.L115:
+ 483 003e 012C     		cmp	r4, #1
+ 484 0040 10D1     		bne	.L116
+ 485 0042 4FF48074 		mov	r4, #256
+ 486 0046 E3E7     		b	.L108
+ 487              	.L114:
+ 488 0048 0B48     		ldr	r0, .L117+4
+ 489 004a 4FF47771 		mov	r1, #988
+ 490 004e FFF7FEFF 		bl	assert_failed
+ 491 0052 4FF44074 		mov	r4, #768
+ 492 0056 DBE7     		b	.L108
+ 493              	.L113:
+ 494 0058 0748     		ldr	r0, .L117+4
+ 495 005a 40F2DB31 		movw	r1, #987
+ 496 005e FFF7FEFF 		bl	assert_failed
+ 497 0062 D2E7     		b	.L106
+ 498              	.L116:
+ 499 0064 022C     		cmp	r4, #2
+ 500 0066 0CBF     		ite	eq
+ 501 0068 4FF40074 		moveq	r4, #512
+ 502 006c 4FF44074 		movne	r4, #768
+ 503 0070 CEE7     		b	.L108
+ 504              	.L118:
+ 505 0072 00BF     		.align	2
+ 506              	.L117:
+ 507 0074 003C0240 		.word	1073888256
+ 508 0078 00000000 		.word	.LC0
+ 510              		.section	.text.HAL_FLASHEx_Erase_IT,"ax",%progbits
+ 511              		.align	1
+ 512              		.p2align 2,,3
+ 513              		.global	HAL_FLASHEx_Erase_IT
+ 514              		.syntax unified
+ 515              		.thumb
+ 516              		.thumb_func
+ 517              		.fpu fpv4-sp-d16
+ 519              	HAL_FLASHEx_Erase_IT:
+ 520              		@ args = 0, pretend = 0, frame = 0
+ 521              		@ frame_needed = 0, uses_anonymous_args = 0
+ 522 0000 38B5     		push	{r3, r4, r5, lr}
+ 523 0002 204D     		ldr	r5, .L128
+ 524 0004 2B7E     		ldrb	r3, [r5, #24]	@ zero_extendqisi2
+ 525 0006 012B     		cmp	r3, #1
+ARM GAS  /tmp/ccUz97fh.s 			page 10
+
+
+ 526 0008 39D0     		beq	.L124
+ 527 000a 0123     		movs	r3, #1
+ 528 000c 2B76     		strb	r3, [r5, #24]
+ 529 000e 0168     		ldr	r1, [r0]
+ 530 0010 9942     		cmp	r1, r3
+ 531 0012 0446     		mov	r4, r0
+ 532 0014 04D9     		bls	.L121
+ 533 0016 F121     		movs	r1, #241
+ 534 0018 1B48     		ldr	r0, .L128+4
+ 535 001a FFF7FEFF 		bl	assert_failed
+ 536 001e 2168     		ldr	r1, [r4]
+ 537              	.L121:
+ 538 0020 1A4B     		ldr	r3, .L128+8
+ 539 0022 1A69     		ldr	r2, [r3, #16]
+ 540 0024 42F08072 		orr	r2, r2, #16777216
+ 541 0028 1A61     		str	r2, [r3, #16]
+ 542 002a 1A69     		ldr	r2, [r3, #16]
+ 543 002c 42F00072 		orr	r2, r2, #33554432
+ 544 0030 1A61     		str	r2, [r3, #16]
+ 545 0032 0129     		cmp	r1, #1
+ 546 0034 4FF0F302 		mov	r2, #243
+ 547 0038 DA60     		str	r2, [r3, #12]
+ 548 003a 17D0     		beq	.L126
+ 549 003c D4E90202 		ldrd	r0, r2, [r4, #8]
+ 550 0040 1318     		adds	r3, r2, r0
+ 551 0042 013B     		subs	r3, r3, #1
+ 552 0044 052B     		cmp	r3, #5
+ 553 0046 09D8     		bhi	.L127
+ 554              	.L123:
+ 555 0048 217C     		ldrb	r1, [r4, #16]	@ zero_extendqisi2
+ 556 004a 0123     		movs	r3, #1
+ 557 004c 2B70     		strb	r3, [r5]
+ 558 004e 6A60     		str	r2, [r5, #4]
+ 559 0050 E860     		str	r0, [r5, #12]
+ 560 0052 2972     		strb	r1, [r5, #8]
+ 561 0054 FFF7FEFF 		bl	FLASH_Erase_Sector
+ 562 0058 0020     		movs	r0, #0
+ 563 005a 38BD     		pop	{r3, r4, r5, pc}
+ 564              	.L127:
+ 565 005c 0A48     		ldr	r0, .L128+4
+ 566 005e 40F20911 		movw	r1, #265
+ 567 0062 FFF7FEFF 		bl	assert_failed
+ 568 0066 D4E90202 		ldrd	r0, r2, [r4, #8]
+ 569 006a EDE7     		b	.L123
+ 570              	.L126:
+ 571 006c 207C     		ldrb	r0, [r4, #16]	@ zero_extendqisi2
+ 572 006e 6168     		ldr	r1, [r4, #4]
+ 573 0070 0223     		movs	r3, #2
+ 574 0072 2B70     		strb	r3, [r5]
+ 575 0074 2961     		str	r1, [r5, #16]
+ 576 0076 FFF7FEFF 		bl	FLASH_MassErase
+ 577 007a 0020     		movs	r0, #0
+ 578 007c 38BD     		pop	{r3, r4, r5, pc}
+ 579              	.L124:
+ 580 007e 0220     		movs	r0, #2
+ 581 0080 38BD     		pop	{r3, r4, r5, pc}
+ 582              	.L129:
+ARM GAS  /tmp/ccUz97fh.s 			page 11
+
+
+ 583 0082 00BF     		.align	2
+ 584              	.L128:
+ 585 0084 00000000 		.word	pFlash
+ 586 0088 00000000 		.word	.LC0
+ 587 008c 003C0240 		.word	1073888256
+ 589              		.section	.text.FLASH_FlushCaches,"ax",%progbits
+ 590              		.align	1
+ 591              		.p2align 2,,3
+ 592              		.global	FLASH_FlushCaches
+ 593              		.syntax unified
+ 594              		.thumb
+ 595              		.thumb_func
+ 596              		.fpu fpv4-sp-d16
+ 598              	FLASH_FlushCaches:
+ 599              		@ args = 0, pretend = 0, frame = 0
+ 600              		@ frame_needed = 0, uses_anonymous_args = 0
+ 601              		@ link register save eliminated.
+ 602 0000 144B     		ldr	r3, .L139
+ 603 0002 1A68     		ldr	r2, [r3]
+ 604 0004 9105     		lsls	r1, r2, #22
+ 605 0006 0FD5     		bpl	.L131
+ 606 0008 1A68     		ldr	r2, [r3]
+ 607 000a 22F40072 		bic	r2, r2, #512
+ 608 000e 1A60     		str	r2, [r3]
+ 609 0010 1A68     		ldr	r2, [r3]
+ 610 0012 42F40062 		orr	r2, r2, #2048
+ 611 0016 1A60     		str	r2, [r3]
+ 612 0018 1A68     		ldr	r2, [r3]
+ 613 001a 22F40062 		bic	r2, r2, #2048
+ 614 001e 1A60     		str	r2, [r3]
+ 615 0020 1A68     		ldr	r2, [r3]
+ 616 0022 42F40072 		orr	r2, r2, #512
+ 617 0026 1A60     		str	r2, [r3]
+ 618              	.L131:
+ 619 0028 0A4B     		ldr	r3, .L139
+ 620 002a 1A68     		ldr	r2, [r3]
+ 621 002c 5205     		lsls	r2, r2, #21
+ 622 002e 0FD5     		bpl	.L130
+ 623 0030 1A68     		ldr	r2, [r3]
+ 624 0032 22F48062 		bic	r2, r2, #1024
+ 625 0036 1A60     		str	r2, [r3]
+ 626 0038 1A68     		ldr	r2, [r3]
+ 627 003a 42F48052 		orr	r2, r2, #4096
+ 628 003e 1A60     		str	r2, [r3]
+ 629 0040 1A68     		ldr	r2, [r3]
+ 630 0042 22F48052 		bic	r2, r2, #4096
+ 631 0046 1A60     		str	r2, [r3]
+ 632 0048 1A68     		ldr	r2, [r3]
+ 633 004a 42F48062 		orr	r2, r2, #1024
+ 634 004e 1A60     		str	r2, [r3]
+ 635              	.L130:
+ 636 0050 7047     		bx	lr
+ 637              	.L140:
+ 638 0052 00BF     		.align	2
+ 639              	.L139:
+ 640 0054 003C0240 		.word	1073888256
+ 642              		.section	.text.HAL_FLASHEx_Erase,"ax",%progbits
+ARM GAS  /tmp/ccUz97fh.s 			page 12
+
+
+ 643              		.align	1
+ 644              		.p2align 2,,3
+ 645              		.global	HAL_FLASHEx_Erase
+ 646              		.syntax unified
+ 647              		.thumb
+ 648              		.thumb_func
+ 649              		.fpu fpv4-sp-d16
+ 651              	HAL_FLASHEx_Erase:
+ 652              		@ args = 0, pretend = 0, frame = 0
+ 653              		@ frame_needed = 0, uses_anonymous_args = 0
+ 654 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+ 655 0004 304F     		ldr	r7, .L157
+ 656 0006 3B7E     		ldrb	r3, [r7, #24]	@ zero_extendqisi2
+ 657 0008 012B     		cmp	r3, #1
+ 658 000a 42D0     		beq	.L151
+ 659 000c 0123     		movs	r3, #1
+ 660 000e 3B76     		strb	r3, [r7, #24]
+ 661 0010 0368     		ldr	r3, [r0]
+ 662 0012 012B     		cmp	r3, #1
+ 663 0014 0446     		mov	r4, r0
+ 664 0016 8846     		mov	r8, r1
+ 665 0018 03D9     		bls	.L143
+ 666 001a 2C48     		ldr	r0, .L157+4
+ 667 001c AB21     		movs	r1, #171
+ 668 001e FFF7FEFF 		bl	assert_failed
+ 669              	.L143:
+ 670 0022 4CF25030 		movw	r0, #50000
+ 671 0026 FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 672 002a 0646     		mov	r6, r0
+ 673 002c 60BB     		cbnz	r0, .L144
+ 674 002e 4FF0FF33 		mov	r3, #-1
+ 675 0032 C8F80030 		str	r3, [r8]
+ 676 0036 2368     		ldr	r3, [r4]
+ 677 0038 012B     		cmp	r3, #1
+ 678 003a 36D0     		beq	.L155
+ 679 003c D4E90253 		ldrd	r5, r3, [r4, #8]
+ 680 0040 2B44     		add	r3, r3, r5
+ 681 0042 5A1E     		subs	r2, r3, #1
+ 682 0044 052A     		cmp	r2, #5
+ 683 0046 28D8     		bhi	.L156
+ 684              	.L147:
+ 685 0048 9D42     		cmp	r5, r3
+ 686 004a 1BD2     		bcs	.L146
+ 687 004c DFF88090 		ldr	r9, .L157+8
+ 688 0050 05E0     		b	.L148
+ 689              	.L149:
+ 690 0052 D4E90223 		ldrd	r2, r3, [r4, #8]
+ 691 0056 0135     		adds	r5, r5, #1
+ 692 0058 1344     		add	r3, r3, r2
+ 693 005a AB42     		cmp	r3, r5
+ 694 005c 12D9     		bls	.L146
+ 695              	.L148:
+ 696 005e 217C     		ldrb	r1, [r4, #16]	@ zero_extendqisi2
+ 697 0060 2846     		mov	r0, r5
+ 698 0062 FFF7FEFF 		bl	FLASH_Erase_Sector
+ 699 0066 4CF25030 		movw	r0, #50000
+ 700 006a FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ARM GAS  /tmp/ccUz97fh.s 			page 13
+
+
+ 701 006e D9F81030 		ldr	r3, [r9, #16]
+ 702 0072 23F0FA03 		bic	r3, r3, #250
+ 703 0076 C9F81030 		str	r3, [r9, #16]
+ 704 007a 0028     		cmp	r0, #0
+ 705 007c E9D0     		beq	.L149
+ 706 007e C8F80050 		str	r5, [r8]
+ 707 0082 0646     		mov	r6, r0
+ 708              	.L146:
+ 709 0084 FFF7FEFF 		bl	FLASH_FlushCaches
+ 710              	.L144:
+ 711 0088 0023     		movs	r3, #0
+ 712 008a 3B76     		strb	r3, [r7, #24]
+ 713 008c 3046     		mov	r0, r6
+ 714 008e BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 715              	.L151:
+ 716 0092 0226     		movs	r6, #2
+ 717 0094 3046     		mov	r0, r6
+ 718 0096 BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 719              	.L156:
+ 720 009a 0C48     		ldr	r0, .L157+4
+ 721 009c C321     		movs	r1, #195
+ 722 009e FFF7FEFF 		bl	assert_failed
+ 723 00a2 D4E90253 		ldrd	r5, r3, [r4, #8]
+ 724 00a6 2B44     		add	r3, r3, r5
+ 725 00a8 CEE7     		b	.L147
+ 726              	.L155:
+ 727 00aa 6168     		ldr	r1, [r4, #4]
+ 728 00ac 207C     		ldrb	r0, [r4, #16]	@ zero_extendqisi2
+ 729 00ae FFF7FEFF 		bl	FLASH_MassErase
+ 730 00b2 4CF25030 		movw	r0, #50000
+ 731 00b6 FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 732 00ba 054A     		ldr	r2, .L157+8
+ 733 00bc 1369     		ldr	r3, [r2, #16]
+ 734 00be 23F00403 		bic	r3, r3, #4
+ 735 00c2 0646     		mov	r6, r0
+ 736 00c4 1361     		str	r3, [r2, #16]
+ 737 00c6 DDE7     		b	.L146
+ 738              	.L158:
+ 739              		.align	2
+ 740              	.L157:
+ 741 00c8 00000000 		.word	pFlash
+ 742 00cc 00000000 		.word	.LC0
+ 743 00d0 003C0240 		.word	1073888256
+ 745              		.ident	"GCC: (15:10.3-2021.07-4) 10.3.1 20210621 (release)"
+ARM GAS  /tmp/ccUz97fh.s 			page 14
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 stm32f4xx_hal_flash_ex.c
+     /tmp/ccUz97fh.s:16     .rodata.FLASH_MassErase.str1.4:0000000000000000 $d
+     /tmp/ccUz97fh.s:21     .text.FLASH_MassErase:0000000000000000 $t
+     /tmp/ccUz97fh.s:29     .text.FLASH_MassErase:0000000000000000 FLASH_MassErase
+     /tmp/ccUz97fh.s:64     .text.FLASH_MassErase:0000000000000044 $d
+     /tmp/ccUz97fh.s:68     .text.HAL_FLASHEx_OBProgram:0000000000000000 $t
+     /tmp/ccUz97fh.s:76     .text.HAL_FLASHEx_OBProgram:0000000000000000 HAL_FLASHEx_OBProgram
+     /tmp/ccUz97fh.s:240    .text.HAL_FLASHEx_OBProgram:0000000000000150 $d
+     /tmp/ccUz97fh.s:245    .text.HAL_FLASHEx_OBGetConfig:0000000000000000 $t
+     /tmp/ccUz97fh.s:253    .text.HAL_FLASHEx_OBGetConfig:0000000000000000 HAL_FLASHEx_OBGetConfig
+     /tmp/ccUz97fh.s:285    .text.HAL_FLASHEx_OBGetConfig:0000000000000034 $d
+     /tmp/ccUz97fh.s:288    .text.HAL_FLASHEx_AdvOBProgram:0000000000000000 $t
+     /tmp/ccUz97fh.s:296    .text.HAL_FLASHEx_AdvOBProgram:0000000000000000 HAL_FLASHEx_AdvOBProgram
+     /tmp/ccUz97fh.s:369    .text.HAL_FLASHEx_AdvOBProgram:0000000000000090 $d
+     /tmp/ccUz97fh.s:373    .text.HAL_FLASHEx_AdvOBGetConfig:0000000000000000 $t
+     /tmp/ccUz97fh.s:381    .text.HAL_FLASHEx_AdvOBGetConfig:0000000000000000 HAL_FLASHEx_AdvOBGetConfig
+     /tmp/ccUz97fh.s:392    .text.HAL_FLASHEx_AdvOBGetConfig:0000000000000008 $d
+     /tmp/ccUz97fh.s:395    .text.HAL_FLASHEx_OB_SelectPCROP:0000000000000000 $t
+     /tmp/ccUz97fh.s:403    .text.HAL_FLASHEx_OB_SelectPCROP:0000000000000000 HAL_FLASHEx_OB_SelectPCROP
+     /tmp/ccUz97fh.s:416    .text.HAL_FLASHEx_OB_SelectPCROP:0000000000000010 $d
+     /tmp/ccUz97fh.s:419    .text.HAL_FLASHEx_OB_DeSelectPCROP:0000000000000000 $t
+     /tmp/ccUz97fh.s:427    .text.HAL_FLASHEx_OB_DeSelectPCROP:0000000000000000 HAL_FLASHEx_OB_DeSelectPCROP
+     /tmp/ccUz97fh.s:440    .text.HAL_FLASHEx_OB_DeSelectPCROP:0000000000000010 $d
+     /tmp/ccUz97fh.s:443    .text.FLASH_Erase_Sector:0000000000000000 $t
+     /tmp/ccUz97fh.s:451    .text.FLASH_Erase_Sector:0000000000000000 FLASH_Erase_Sector
+     /tmp/ccUz97fh.s:507    .text.FLASH_Erase_Sector:0000000000000074 $d
+     /tmp/ccUz97fh.s:511    .text.HAL_FLASHEx_Erase_IT:0000000000000000 $t
+     /tmp/ccUz97fh.s:519    .text.HAL_FLASHEx_Erase_IT:0000000000000000 HAL_FLASHEx_Erase_IT
+     /tmp/ccUz97fh.s:585    .text.HAL_FLASHEx_Erase_IT:0000000000000084 $d
+     /tmp/ccUz97fh.s:590    .text.FLASH_FlushCaches:0000000000000000 $t
+     /tmp/ccUz97fh.s:598    .text.FLASH_FlushCaches:0000000000000000 FLASH_FlushCaches
+     /tmp/ccUz97fh.s:640    .text.FLASH_FlushCaches:0000000000000054 $d
+     /tmp/ccUz97fh.s:643    .text.HAL_FLASHEx_Erase:0000000000000000 $t
+     /tmp/ccUz97fh.s:651    .text.HAL_FLASHEx_Erase:0000000000000000 HAL_FLASHEx_Erase
+     /tmp/ccUz97fh.s:741    .text.HAL_FLASHEx_Erase:00000000000000c8 $d
+
+UNDEFINED SYMBOLS
+assert_failed
+FLASH_WaitForLastOperation
+pFlash

@@ -1,0 +1,354 @@
+ARM GAS  /tmp/ccZKH81L.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"usbd_desc.c"
+  14              		.text
+  15              		.section	.text.USBD_AUDIO_DeviceDescriptor,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.global	USBD_AUDIO_DeviceDescriptor
+  19              		.arch armv7e-m
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	USBD_AUDIO_DeviceDescriptor:
+  26              		@ args = 0, pretend = 0, frame = 0
+  27              		@ frame_needed = 0, uses_anonymous_args = 0
+  28              		@ link register save eliminated.
+  29 0000 1223     		movs	r3, #18
+  30 0002 0148     		ldr	r0, .L3
+  31 0004 0B80     		strh	r3, [r1]	@ movhi
+  32 0006 7047     		bx	lr
+  33              	.L4:
+  34              		.align	2
+  35              	.L3:
+  36 0008 00000000 		.word	.LANCHOR0
+  38              		.section	.text.USBD_AUDIO_LangIDStrDescriptor,"ax",%progbits
+  39              		.align	1
+  40              		.p2align 2,,3
+  41              		.global	USBD_AUDIO_LangIDStrDescriptor
+  42              		.syntax unified
+  43              		.thumb
+  44              		.thumb_func
+  45              		.fpu fpv4-sp-d16
+  47              	USBD_AUDIO_LangIDStrDescriptor:
+  48              		@ args = 0, pretend = 0, frame = 0
+  49              		@ frame_needed = 0, uses_anonymous_args = 0
+  50              		@ link register save eliminated.
+  51 0000 0423     		movs	r3, #4
+  52 0002 0148     		ldr	r0, .L6
+  53 0004 0B80     		strh	r3, [r1]	@ movhi
+  54 0006 7047     		bx	lr
+  55              	.L7:
+  56              		.align	2
+  57              	.L6:
+  58 0008 00000000 		.word	.LANCHOR1
+  60              		.section	.rodata.USBD_AUDIO_ManufacturerStrDescriptor.str1.4,"aMS",%progbits,1
+  61              		.align	2
+ARM GAS  /tmp/ccZKH81L.s 			page 2
+
+
+  62              	.LC0:
+  63 0000 53544D33 		.ascii	"STM32 Black Pill\000"
+  63      3220426C 
+  63      61636B20 
+  63      50696C6C 
+  63      00
+  64              		.section	.text.USBD_AUDIO_ManufacturerStrDescriptor,"ax",%progbits
+  65              		.align	1
+  66              		.p2align 2,,3
+  67              		.global	USBD_AUDIO_ManufacturerStrDescriptor
+  68              		.syntax unified
+  69              		.thumb
+  70              		.thumb_func
+  71              		.fpu fpv4-sp-d16
+  73              	USBD_AUDIO_ManufacturerStrDescriptor:
+  74              		@ args = 0, pretend = 0, frame = 0
+  75              		@ frame_needed = 0, uses_anonymous_args = 0
+  76 0000 10B5     		push	{r4, lr}
+  77 0002 044C     		ldr	r4, .L10
+  78 0004 0448     		ldr	r0, .L10+4
+  79 0006 0A46     		mov	r2, r1
+  80 0008 2146     		mov	r1, r4
+  81 000a FFF7FEFF 		bl	USBD_GetString
+  82 000e 2046     		mov	r0, r4
+  83 0010 10BD     		pop	{r4, pc}
+  84              	.L11:
+  85 0012 00BF     		.align	2
+  86              	.L10:
+  87 0014 00000000 		.word	.LANCHOR2
+  88 0018 00000000 		.word	.LC0
+  90              		.section	.rodata.USBD_AUDIO_ProductStrDescriptor.str1.4,"aMS",%progbits,1
+  91              		.align	2
+  92              	.LC1:
+  93 0000 50434D35 		.ascii	"PCM5102A DAC\000"
+  93      31303241 
+  93      20444143 
+  93      00
+  94              		.section	.text.USBD_AUDIO_ProductStrDescriptor,"ax",%progbits
+  95              		.align	1
+  96              		.p2align 2,,3
+  97              		.global	USBD_AUDIO_ProductStrDescriptor
+  98              		.syntax unified
+  99              		.thumb
+ 100              		.thumb_func
+ 101              		.fpu fpv4-sp-d16
+ 103              	USBD_AUDIO_ProductStrDescriptor:
+ 104              		@ args = 0, pretend = 0, frame = 0
+ 105              		@ frame_needed = 0, uses_anonymous_args = 0
+ 106 0000 10B5     		push	{r4, lr}
+ 107 0002 044C     		ldr	r4, .L14
+ 108 0004 0448     		ldr	r0, .L14+4
+ 109 0006 0A46     		mov	r2, r1
+ 110 0008 2146     		mov	r1, r4
+ 111 000a FFF7FEFF 		bl	USBD_GetString
+ 112 000e 2046     		mov	r0, r4
+ 113 0010 10BD     		pop	{r4, pc}
+ 114              	.L15:
+ARM GAS  /tmp/ccZKH81L.s 			page 3
+
+
+ 115 0012 00BF     		.align	2
+ 116              	.L14:
+ 117 0014 00000000 		.word	.LANCHOR2
+ 118 0018 00000000 		.word	.LC1
+ 120              		.section	.rodata.USBD_AUDIO_ConfigStrDescriptor.str1.4,"aMS",%progbits,1
+ 121              		.align	2
+ 122              	.LC2:
+ 123 0000 41554449 		.ascii	"AUDIO Config\000"
+ 123      4F20436F 
+ 123      6E666967 
+ 123      00
+ 124              		.section	.text.USBD_AUDIO_ConfigStrDescriptor,"ax",%progbits
+ 125              		.align	1
+ 126              		.p2align 2,,3
+ 127              		.global	USBD_AUDIO_ConfigStrDescriptor
+ 128              		.syntax unified
+ 129              		.thumb
+ 130              		.thumb_func
+ 131              		.fpu fpv4-sp-d16
+ 133              	USBD_AUDIO_ConfigStrDescriptor:
+ 134              		@ args = 0, pretend = 0, frame = 0
+ 135              		@ frame_needed = 0, uses_anonymous_args = 0
+ 136 0000 10B5     		push	{r4, lr}
+ 137 0002 044C     		ldr	r4, .L18
+ 138 0004 0448     		ldr	r0, .L18+4
+ 139 0006 0A46     		mov	r2, r1
+ 140 0008 2146     		mov	r1, r4
+ 141 000a FFF7FEFF 		bl	USBD_GetString
+ 142 000e 2046     		mov	r0, r4
+ 143 0010 10BD     		pop	{r4, pc}
+ 144              	.L19:
+ 145 0012 00BF     		.align	2
+ 146              	.L18:
+ 147 0014 00000000 		.word	.LANCHOR2
+ 148 0018 00000000 		.word	.LC2
+ 150              		.section	.rodata.USBD_AUDIO_InterfaceStrDescriptor.str1.4,"aMS",%progbits,1
+ 151              		.align	2
+ 152              	.LC3:
+ 153 0000 41554449 		.ascii	"AUDIO Interface\000"
+ 153      4F20496E 
+ 153      74657266 
+ 153      61636500 
+ 154              		.section	.text.USBD_AUDIO_InterfaceStrDescriptor,"ax",%progbits
+ 155              		.align	1
+ 156              		.p2align 2,,3
+ 157              		.global	USBD_AUDIO_InterfaceStrDescriptor
+ 158              		.syntax unified
+ 159              		.thumb
+ 160              		.thumb_func
+ 161              		.fpu fpv4-sp-d16
+ 163              	USBD_AUDIO_InterfaceStrDescriptor:
+ 164              		@ args = 0, pretend = 0, frame = 0
+ 165              		@ frame_needed = 0, uses_anonymous_args = 0
+ 166 0000 10B5     		push	{r4, lr}
+ 167 0002 044C     		ldr	r4, .L22
+ 168 0004 0448     		ldr	r0, .L22+4
+ 169 0006 0A46     		mov	r2, r1
+ARM GAS  /tmp/ccZKH81L.s 			page 4
+
+
+ 170 0008 2146     		mov	r1, r4
+ 171 000a FFF7FEFF 		bl	USBD_GetString
+ 172 000e 2046     		mov	r0, r4
+ 173 0010 10BD     		pop	{r4, pc}
+ 174              	.L23:
+ 175 0012 00BF     		.align	2
+ 176              	.L22:
+ 177 0014 00000000 		.word	.LANCHOR2
+ 178 0018 00000000 		.word	.LC3
+ 180              		.section	.text.USBD_AUDIO_SerialStrDescriptor,"ax",%progbits
+ 181              		.align	1
+ 182              		.p2align 2,,3
+ 183              		.global	USBD_AUDIO_SerialStrDescriptor
+ 184              		.syntax unified
+ 185              		.thumb
+ 186              		.thumb_func
+ 187              		.fpu fpv4-sp-d16
+ 189              	USBD_AUDIO_SerialStrDescriptor:
+ 190              		@ args = 0, pretend = 0, frame = 0
+ 191              		@ frame_needed = 0, uses_anonymous_args = 0
+ 192 0000 2048     		ldr	r0, .L38
+ 193 0002 D0F8103A 		ldr	r3, [r0, #2576]
+ 194 0006 D0F8182A 		ldr	r2, [r0, #2584]
+ 195 000a 30B5     		push	{r4, r5, lr}
+ 196 000c 9B18     		adds	r3, r3, r2
+ 197 000e 4FF01A04 		mov	r4, #26
+ 198 0012 0C80     		strh	r4, [r1]	@ movhi
+ 199 0014 01D1     		bne	.L37
+ 200 0016 1C48     		ldr	r0, .L38+4
+ 201 0018 30BD     		pop	{r4, r5, pc}
+ 202              	.L37:
+ 203 001a 1B4A     		ldr	r2, .L38+4
+ 204 001c D0F8141A 		ldr	r1, [r0, #2580]
+ 205 0020 4FF0000E 		mov	lr, #0
+ 206 0024 1046     		mov	r0, r2
+ 207 0026 7546     		mov	r5, lr
+ 208              	.L28:
+ 209 0028 B3F1204F 		cmp	r3, #-1610612736
+ 210 002c 4FEA137C 		lsr	ip, r3, #28
+ 211 0030 0CF13004 		add	r4, ip, #48
+ 212 0034 0EF1020E 		add	lr, lr, #2
+ 213 0038 2ABF     		itet	cs
+ 214 003a 0CF1370C 		addcs	ip, ip, #55
+ 215 003e 8470     		strbcc	r4, [r0, #2]
+ 216 0040 80F802C0 		strbcs	ip, [r0, #2]
+ 217 0044 BEF1100F 		cmp	lr, #16
+ 218 0048 C570     		strb	r5, [r0, #3]
+ 219 004a 4FEA0313 		lsl	r3, r3, #4
+ 220 004e 00F10200 		add	r0, r0, #2
+ 221 0052 E9D1     		bne	.L28
+ 222 0054 0020     		movs	r0, #0
+ 223 0056 0446     		mov	r4, r0
+ 224              	.L31:
+ 225 0058 B1F1204F 		cmp	r1, #-1610612736
+ 226 005c 4FEA1173 		lsr	r3, r1, #28
+ 227 0060 03F1300C 		add	ip, r3, #48
+ 228 0064 00F10200 		add	r0, r0, #2
+ARM GAS  /tmp/ccZKH81L.s 			page 5
+
+
+ 229 0068 2ABF     		itet	cs
+ 230 006a 3733     		addcs	r3, r3, #55
+ 231 006c 82F812C0 		strbcc	ip, [r2, #18]
+ 232 0070 9374     		strbcs	r3, [r2, #18]
+ 233 0072 0828     		cmp	r0, #8
+ 234 0074 D474     		strb	r4, [r2, #19]
+ 235 0076 4FEA0111 		lsl	r1, r1, #4
+ 236 007a 02F10202 		add	r2, r2, #2
+ 237 007e EBD1     		bne	.L31
+ 238 0080 0148     		ldr	r0, .L38+4
+ 239 0082 30BD     		pop	{r4, r5, pc}
+ 240              	.L39:
+ 241              		.align	2
+ 242              	.L38:
+ 243 0084 0070FF1F 		.word	536834048
+ 244 0088 00000000 		.word	.LANCHOR3
+ 246              		.global	USBD_StrDesc
+ 247              		.global	USBD_StringSerial
+ 248              		.global	USBD_LangIDDesc
+ 249              		.global	USBD_DeviceDesc
+ 250              		.global	AUDIO_Desc
+ 251              		.section	.bss.USBD_StrDesc,"aw",%nobits
+ 252              		.align	2
+ 253              		.set	.LANCHOR2,. + 0
+ 256              	USBD_StrDesc:
+ 257 0000 00000000 		.space	256
+ 257      00000000 
+ 257      00000000 
+ 257      00000000 
+ 257      00000000 
+ 258              		.section	.data.AUDIO_Desc,"aw"
+ 259              		.align	2
+ 262              	AUDIO_Desc:
+ 263 0000 00000000 		.word	USBD_AUDIO_DeviceDescriptor
+ 264 0004 00000000 		.word	USBD_AUDIO_LangIDStrDescriptor
+ 265 0008 00000000 		.word	USBD_AUDIO_ManufacturerStrDescriptor
+ 266 000c 00000000 		.word	USBD_AUDIO_ProductStrDescriptor
+ 267 0010 00000000 		.word	USBD_AUDIO_SerialStrDescriptor
+ 268 0014 00000000 		.word	USBD_AUDIO_ConfigStrDescriptor
+ 269 0018 00000000 		.word	USBD_AUDIO_InterfaceStrDescriptor
+ 270              		.section	.data.USBD_DeviceDesc,"aw"
+ 271              		.align	2
+ 272              		.set	.LANCHOR0,. + 0
+ 275              	USBD_DeviceDesc:
+ 276 0000 12010002 		.ascii	"\022\001\000\002\000\000\000@ff4\022\000\001\001\002"
+ 276      00000040 
+ 276      66663412 
+ 276      00010102 
+ 277 0010 0301     		.ascii	"\003\001"
+ 278              		.section	.data.USBD_LangIDDesc,"aw"
+ 279              		.align	2
+ 280              		.set	.LANCHOR1,. + 0
+ 283              	USBD_LangIDDesc:
+ 284 0000 04030904 		.ascii	"\004\003\011\004"
+ 285              		.section	.data.USBD_StringSerial,"aw"
+ 286              		.align	2
+ 287              		.set	.LANCHOR3,. + 0
+ARM GAS  /tmp/ccZKH81L.s 			page 6
+
+
+ 290              	USBD_StringSerial:
+ 291 0000 1A0300   		.ascii	"\032\003\000"
+ 292 0003 00000000 		.space	23
+ 292      00000000 
+ 292      00000000 
+ 292      00000000 
+ 292      00000000 
+ 293              		.ident	"GCC: (15:10.3-2021.07-4) 10.3.1 20210621 (release)"
+ARM GAS  /tmp/ccZKH81L.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 usbd_desc.c
+     /tmp/ccZKH81L.s:16     .text.USBD_AUDIO_DeviceDescriptor:0000000000000000 $t
+     /tmp/ccZKH81L.s:25     .text.USBD_AUDIO_DeviceDescriptor:0000000000000000 USBD_AUDIO_DeviceDescriptor
+     /tmp/ccZKH81L.s:36     .text.USBD_AUDIO_DeviceDescriptor:0000000000000008 $d
+     /tmp/ccZKH81L.s:39     .text.USBD_AUDIO_LangIDStrDescriptor:0000000000000000 $t
+     /tmp/ccZKH81L.s:47     .text.USBD_AUDIO_LangIDStrDescriptor:0000000000000000 USBD_AUDIO_LangIDStrDescriptor
+     /tmp/ccZKH81L.s:58     .text.USBD_AUDIO_LangIDStrDescriptor:0000000000000008 $d
+     /tmp/ccZKH81L.s:61     .rodata.USBD_AUDIO_ManufacturerStrDescriptor.str1.4:0000000000000000 $d
+     /tmp/ccZKH81L.s:65     .text.USBD_AUDIO_ManufacturerStrDescriptor:0000000000000000 $t
+     /tmp/ccZKH81L.s:73     .text.USBD_AUDIO_ManufacturerStrDescriptor:0000000000000000 USBD_AUDIO_ManufacturerStrDescriptor
+     /tmp/ccZKH81L.s:87     .text.USBD_AUDIO_ManufacturerStrDescriptor:0000000000000014 $d
+     /tmp/ccZKH81L.s:91     .rodata.USBD_AUDIO_ProductStrDescriptor.str1.4:0000000000000000 $d
+     /tmp/ccZKH81L.s:95     .text.USBD_AUDIO_ProductStrDescriptor:0000000000000000 $t
+     /tmp/ccZKH81L.s:103    .text.USBD_AUDIO_ProductStrDescriptor:0000000000000000 USBD_AUDIO_ProductStrDescriptor
+     /tmp/ccZKH81L.s:117    .text.USBD_AUDIO_ProductStrDescriptor:0000000000000014 $d
+     /tmp/ccZKH81L.s:121    .rodata.USBD_AUDIO_ConfigStrDescriptor.str1.4:0000000000000000 $d
+     /tmp/ccZKH81L.s:125    .text.USBD_AUDIO_ConfigStrDescriptor:0000000000000000 $t
+     /tmp/ccZKH81L.s:133    .text.USBD_AUDIO_ConfigStrDescriptor:0000000000000000 USBD_AUDIO_ConfigStrDescriptor
+     /tmp/ccZKH81L.s:147    .text.USBD_AUDIO_ConfigStrDescriptor:0000000000000014 $d
+     /tmp/ccZKH81L.s:151    .rodata.USBD_AUDIO_InterfaceStrDescriptor.str1.4:0000000000000000 $d
+     /tmp/ccZKH81L.s:155    .text.USBD_AUDIO_InterfaceStrDescriptor:0000000000000000 $t
+     /tmp/ccZKH81L.s:163    .text.USBD_AUDIO_InterfaceStrDescriptor:0000000000000000 USBD_AUDIO_InterfaceStrDescriptor
+     /tmp/ccZKH81L.s:177    .text.USBD_AUDIO_InterfaceStrDescriptor:0000000000000014 $d
+     /tmp/ccZKH81L.s:181    .text.USBD_AUDIO_SerialStrDescriptor:0000000000000000 $t
+     /tmp/ccZKH81L.s:189    .text.USBD_AUDIO_SerialStrDescriptor:0000000000000000 USBD_AUDIO_SerialStrDescriptor
+     /tmp/ccZKH81L.s:243    .text.USBD_AUDIO_SerialStrDescriptor:0000000000000084 $d
+     /tmp/ccZKH81L.s:256    .bss.USBD_StrDesc:0000000000000000 USBD_StrDesc
+     /tmp/ccZKH81L.s:290    .data.USBD_StringSerial:0000000000000000 USBD_StringSerial
+     /tmp/ccZKH81L.s:283    .data.USBD_LangIDDesc:0000000000000000 USBD_LangIDDesc
+     /tmp/ccZKH81L.s:275    .data.USBD_DeviceDesc:0000000000000000 USBD_DeviceDesc
+     /tmp/ccZKH81L.s:262    .data.AUDIO_Desc:0000000000000000 AUDIO_Desc
+     /tmp/ccZKH81L.s:252    .bss.USBD_StrDesc:0000000000000000 $d
+     /tmp/ccZKH81L.s:259    .data.AUDIO_Desc:0000000000000000 $d
+     /tmp/ccZKH81L.s:271    .data.USBD_DeviceDesc:0000000000000000 $d
+     /tmp/ccZKH81L.s:279    .data.USBD_LangIDDesc:0000000000000000 $d
+     /tmp/ccZKH81L.s:286    .data.USBD_StringSerial:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+USBD_GetString

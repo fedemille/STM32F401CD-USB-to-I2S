@@ -1,0 +1,1419 @@
+ARM GAS  /tmp/ccCmdqeQ.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"usbd_audio.c"
+  14              		.text
+  15              		.section	.text.USBD_AUDIO_GetCfgDesc,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.arch armv7e-m
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu fpv4-sp-d16
+  24              	USBD_AUDIO_GetCfgDesc:
+  25              		@ args = 0, pretend = 0, frame = 0
+  26              		@ frame_needed = 0, uses_anonymous_args = 0
+  27              		@ link register save eliminated.
+  28 0000 7C23     		movs	r3, #124
+  29 0002 0380     		strh	r3, [r0]	@ movhi
+  30 0004 0048     		ldr	r0, .L3
+  31 0006 7047     		bx	lr
+  32              	.L4:
+  33              		.align	2
+  34              	.L3:
+  35 0008 00000000 		.word	.LANCHOR0
+  37              		.section	.text.USBD_AUDIO_DataIn,"ax",%progbits
+  38              		.align	1
+  39              		.p2align 2,,3
+  40              		.syntax unified
+  41              		.thumb
+  42              		.thumb_func
+  43              		.fpu fpv4-sp-d16
+  45              	USBD_AUDIO_DataIn:
+  46              		@ args = 0, pretend = 0, frame = 0
+  47              		@ frame_needed = 0, uses_anonymous_args = 0
+  48              		@ link register save eliminated.
+  49 0000 0129     		cmp	r1, #1
+  50 0002 02D1     		bne	.L6
+  51 0004 024B     		ldr	r3, .L7
+  52 0006 0022     		movs	r2, #0
+  53 0008 1A60     		str	r2, [r3]
+  54              	.L6:
+  55 000a 0020     		movs	r0, #0
+  56 000c 7047     		bx	lr
+  57              	.L8:
+  58 000e 00BF     		.align	2
+  59              	.L7:
+  60 0010 00000000 		.word	.LANCHOR1
+ARM GAS  /tmp/ccCmdqeQ.s 			page 2
+
+
+  62              		.section	.text.USBD_AUDIO_IsoOutIncomplete,"ax",%progbits
+  63              		.align	1
+  64              		.p2align 2,,3
+  65              		.syntax unified
+  66              		.thumb
+  67              		.thumb_func
+  68              		.fpu fpv4-sp-d16
+  70              	USBD_AUDIO_IsoOutIncomplete:
+  71              		@ args = 0, pretend = 0, frame = 0
+  72              		@ frame_needed = 0, uses_anonymous_args = 0
+  73              		@ link register save eliminated.
+  74 0000 0020     		movs	r0, #0
+  75 0002 7047     		bx	lr
+  77              		.section	.text.USBD_AUDIO_EP0_TxReady,"ax",%progbits
+  78              		.align	1
+  79              		.p2align 2,,3
+  80              		.syntax unified
+  81              		.thumb
+  82              		.thumb_func
+  83              		.fpu fpv4-sp-d16
+  85              	USBD_AUDIO_EP0_TxReady:
+  86              		@ args = 0, pretend = 0, frame = 0
+  87              		@ frame_needed = 0, uses_anonymous_args = 0
+  88              		@ link register save eliminated.
+  89 0000 0020     		movs	r0, #0
+  90 0002 7047     		bx	lr
+  92              		.section	.text.USBD_AUDIO_GetDeviceQualifierDesc,"ax",%progbits
+  93              		.align	1
+  94              		.p2align 2,,3
+  95              		.syntax unified
+  96              		.thumb
+  97              		.thumb_func
+  98              		.fpu fpv4-sp-d16
+ 100              	USBD_AUDIO_GetDeviceQualifierDesc:
+ 101              		@ args = 0, pretend = 0, frame = 0
+ 102              		@ frame_needed = 0, uses_anonymous_args = 0
+ 103              		@ link register save eliminated.
+ 104 0000 0A23     		movs	r3, #10
+ 105 0002 0380     		strh	r3, [r0]	@ movhi
+ 106 0004 0048     		ldr	r0, .L12
+ 107 0006 7047     		bx	lr
+ 108              	.L13:
+ 109              		.align	2
+ 110              	.L12:
+ 111 0008 00000000 		.word	.LANCHOR2
+ 113              		.section	.text.AUDIO_OUT_StopAndReset,"ax",%progbits
+ 114              		.align	1
+ 115              		.p2align 2,,3
+ 116              		.syntax unified
+ 117              		.thumb
+ 118              		.thumb_func
+ 119              		.fpu fpv4-sp-d16
+ 121              	AUDIO_OUT_StopAndReset:
+ 122              		@ args = 0, pretend = 0, frame = 0
+ 123              		@ frame_needed = 0, uses_anonymous_args = 0
+ 124 0000 D0F89032 		ldr	r3, [r0, #656]
+ 125 0004 1A4A     		ldr	r2, .L16
+ARM GAS  /tmp/ccCmdqeQ.s 			page 3
+
+
+ 126 0006 DFF87CC0 		ldr	ip, .L16+20
+ 127 000a 1A49     		ldr	r1, .L16+4
+ 128 000c 03F50053 		add	r3, r3, #8192
+ 129 0010 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 130 0014 DFF87090 		ldr	r9, .L16+24
+ 131 0018 DFF87080 		ldr	r8, .L16+28
+ 132 001c DFF870E0 		ldr	lr, .L16+32
+ 133 0020 154F     		ldr	r7, .L16+8
+ 134 0022 0326     		movs	r6, #3
+ 135 0024 0024     		movs	r4, #0
+ 136 0026 C3F86464 		str	r6, [r3, #1124]
+ 137 002a 0126     		movs	r6, #1
+ 138 002c 1460     		str	r4, [r2]
+ 139 002e A3F86844 		strh	r4, [r3, #1128]	@ movhi
+ 140 0032 C9F80060 		str	r6, [r9]
+ 141 0036 114B     		ldr	r3, .L16+12
+ 142 0038 C8F80040 		str	r4, [r8]
+ 143 003c 104A     		ldr	r2, .L16+16
+ 144 003e 4FF4C278 		mov	r8, #388
+ 145 0042 CEF80080 		str	r8, [lr]
+ 146 0046 0546     		mov	r5, r0
+ 147 0048 CCF80030 		str	r3, [ip]
+ 148 004c 3C60     		str	r4, [r7]
+ 149 004e 0C70     		strb	r4, [r1]
+ 150 0050 8121     		movs	r1, #129
+ 151 0052 1460     		str	r4, [r2]
+ 152 0054 FFF7FEFF 		bl	USBD_LL_FlushEP
+ 153 0058 3146     		mov	r1, r6
+ 154 005a 2846     		mov	r0, r5
+ 155 005c FFF7FEFF 		bl	USBD_LL_FlushEP
+ 156 0060 D5F89432 		ldr	r3, [r5, #660]
+ 157 0064 2046     		mov	r0, r4
+ 158 0066 5B68     		ldr	r3, [r3, #4]
+ 159 0068 BDE8F047 		pop	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 160 006c 1847     		bx	r3
+ 161              	.L17:
+ 162 006e 00BF     		.align	2
+ 163              	.L16:
+ 164 0070 00000000 		.word	.LANCHOR3
+ 165 0074 00000000 		.word	.LANCHOR8
+ 166 0078 00000000 		.word	.LANCHOR7
+ 167 007c 9F860100 		.word	99999
+ 168 0080 00000000 		.word	.LANCHOR9
+ 169 0084 00000000 		.word	.LANCHOR6
+ 170 0088 00000000 		.word	.LANCHOR1
+ 171 008c 00000000 		.word	.LANCHOR4
+ 172 0090 00000000 		.word	.LANCHOR5
+ 174              		.section	.text.AUDIO_OUT_Restart,"ax",%progbits
+ 175              		.align	1
+ 176              		.p2align 2,,3
+ 177              		.syntax unified
+ 178              		.thumb
+ 179              		.thumb_func
+ 180              		.fpu fpv4-sp-d16
+ 182              	AUDIO_OUT_Restart:
+ 183              		@ args = 0, pretend = 0, frame = 0
+ 184              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /tmp/ccCmdqeQ.s 			page 4
+
+
+ 185 0000 38B5     		push	{r3, r4, r5, lr}
+ 186 0002 D0F89042 		ldr	r4, [r0, #656]
+ 187 0006 0546     		mov	r5, r0
+ 188 0008 FFF7FEFF 		bl	AUDIO_OUT_StopAndReset
+ 189 000c 04F50053 		add	r3, r4, #8192
+ 190 0010 4AF64442 		movw	r2, #44100
+ 191 0014 D3F86C04 		ldr	r0, [r3, #1132]
+ 192 0018 9042     		cmp	r0, r2
+ 193 001a 18D0     		beq	.L19
+ 194 001c 4BF68032 		movw	r2, #48000
+ 195 0020 9042     		cmp	r0, r2
+ 196 0022 1BD0     		beq	.L20
+ 197 0024 114A     		ldr	r2, .L25
+ 198 0026 1249     		ldr	r1, .L25+4
+ 199 0028 926B     		ldr	r2, [r2, #56]
+ 200 002a 0A60     		str	r2, [r1]
+ 201 002c 1149     		ldr	r1, .L25+8
+ 202 002e 0A60     		str	r2, [r1]
+ 203              	.L22:
+ 204 0030 D5F89412 		ldr	r1, [r5, #660]
+ 205 0034 93F87C24 		ldrb	r2, [r3, #1148]	@ zero_extendqisi2
+ 206 0038 0C68     		ldr	r4, [r1]
+ 207 003a B3F97414 		ldrsh	r1, [r3, #1140]
+ 208 003e A047     		blx	r4
+ 209 0040 0D49     		ldr	r1, .L25+12
+ 210 0042 0E4B     		ldr	r3, .L25+16
+ 211 0044 0020     		movs	r0, #0
+ 212 0046 0122     		movs	r2, #1
+ 213 0048 0860     		str	r0, [r1]
+ 214 004a 1A60     		str	r2, [r3]
+ 215 004c 38BD     		pop	{r3, r4, r5, pc}
+ 216              	.L19:
+ 217 004e 074A     		ldr	r2, .L25
+ 218 0050 0749     		ldr	r1, .L25+4
+ 219 0052 1269     		ldr	r2, [r2, #16]
+ 220 0054 0A60     		str	r2, [r1]
+ 221 0056 0749     		ldr	r1, .L25+8
+ 222 0058 0A60     		str	r2, [r1]
+ 223 005a E9E7     		b	.L22
+ 224              	.L20:
+ 225 005c 034A     		ldr	r2, .L25
+ 226 005e 0449     		ldr	r1, .L25+4
+ 227 0060 526A     		ldr	r2, [r2, #36]
+ 228 0062 0A60     		str	r2, [r1]
+ 229 0064 0349     		ldr	r1, .L25+8
+ 230 0066 0A60     		str	r2, [r1]
+ 231 0068 E2E7     		b	.L22
+ 232              	.L26:
+ 233 006a 00BF     		.align	2
+ 234              	.L25:
+ 235 006c 00000000 		.word	I2S_Clk_Config24
+ 236 0070 00000000 		.word	.LANCHOR10
+ 237 0074 00000000 		.word	.LANCHOR11
+ 238 0078 00000000 		.word	.LANCHOR1
+ 239 007c 00000000 		.word	.LANCHOR3
+ 241              		.section	.text.USBD_AUDIO_EP0_RxReady,"ax",%progbits
+ 242              		.align	1
+ARM GAS  /tmp/ccCmdqeQ.s 			page 5
+
+
+ 243              		.p2align 2,,3
+ 244              		.syntax unified
+ 245              		.thumb
+ 246              		.thumb_func
+ 247              		.fpu fpv4-sp-d16
+ 249              	USBD_AUDIO_EP0_RxReady:
+ 250              		@ args = 0, pretend = 0, frame = 0
+ 251              		@ frame_needed = 0, uses_anonymous_args = 0
+ 252 0000 38B5     		push	{r3, r4, r5, lr}
+ 253 0002 D0F89042 		ldr	r4, [r0, #656]
+ 254 0006 04F50054 		add	r4, r4, #8192
+ 255 000a 94F87D24 		ldrb	r2, [r4, #1149]	@ zero_extendqisi2
+ 256 000e 012A     		cmp	r2, #1
+ 257 0010 01D0     		beq	.L34
+ 258 0012 0020     		movs	r0, #0
+ 259 0014 38BD     		pop	{r3, r4, r5, pc}
+ 260              	.L34:
+ 261 0016 94F87E24 		ldrb	r2, [r4, #1150]	@ zero_extendqisi2
+ 262 001a 012A     		cmp	r2, #1
+ 263 001c 1DD0     		beq	.L35
+ 264 001e 022A     		cmp	r2, #2
+ 265 0020 0AD0     		beq	.L36
+ 266              	.L32:
+ 267 0022 0023     		movs	r3, #0
+ 268 0024 84F87D34 		strb	r3, [r4, #1149]
+ 269 0028 A4F87E34 		strh	r3, [r4, #1150]	@ movhi
+ 270 002c 84F88034 		strb	r3, [r4, #1152]
+ 271 0030 84F88234 		strb	r3, [r4, #1154]
+ 272 0034 0020     		movs	r0, #0
+ 273 0036 38BD     		pop	{r3, r4, r5, pc}
+ 274              	.L36:
+ 275 0038 94F87F34 		ldrb	r3, [r4, #1151]	@ zero_extendqisi2
+ 276 003c 012B     		cmp	r3, #1
+ 277 003e F0D1     		bne	.L32
+ 278 0040 D4F88334 		ldr	r3, [r4, #1155]
+ 279 0044 D4F86C24 		ldr	r2, [r4, #1132]
+ 280 0048 23F07F43 		bic	r3, r3, #-16777216
+ 281 004c 9A42     		cmp	r2, r3
+ 282 004e E8D0     		beq	.L32
+ 283 0050 C4F86C34 		str	r3, [r4, #1132]
+ 284 0054 FFF7FEFF 		bl	AUDIO_OUT_Restart
+ 285 0058 E3E7     		b	.L32
+ 286              	.L35:
+ 287 005a 94F87F24 		ldrb	r2, [r4, #1151]	@ zero_extendqisi2
+ 288 005e 012A     		cmp	r2, #1
+ 289 0060 0346     		mov	r3, r0
+ 290 0062 18D0     		beq	.L30
+ 291 0064 022A     		cmp	r2, #2
+ 292 0066 DCD1     		bne	.L32
+ 293 0068 B4F98304 		ldrsh	r0, [r4, #1155]
+ 294 006c 0E49     		ldr	r1, .L37
+ 295 006e 0F4D     		ldr	r5, .L37+4
+ 296 0070 00EAE072 		and	r2, r0, r0, asr #31
+ 297 0074 8A42     		cmp	r2, r1
+ 298 0076 B8BF     		it	lt
+ 299 0078 0A46     		movlt	r2, r1
+ 300 007a C2F5C072 		rsb	r2, r2, #384
+ARM GAS  /tmp/ccCmdqeQ.s 			page 6
+
+
+ 301 007e D3F89412 		ldr	r1, [r3, #660]
+ 302 0082 A5FB0223 		umull	r2, r3, r5, r2
+ 303 0086 5B0A     		lsrs	r3, r3, #9
+ 304 0088 CA68     		ldr	r2, [r1, #12]
+ 305 008a A4F87404 		strh	r0, [r4, #1140]	@ movhi
+ 306 008e C4F87834 		str	r3, [r4, #1144]
+ 307 0092 9047     		blx	r2
+ 308 0094 C5E7     		b	.L32
+ 309              	.L30:
+ 310 0096 94F88304 		ldrb	r0, [r4, #1155]	@ zero_extendqisi2
+ 311 009a 84F87C04 		strb	r0, [r4, #1148]
+ 312 009e D3F89432 		ldr	r3, [r3, #660]
+ 313 00a2 1B69     		ldr	r3, [r3, #16]
+ 314 00a4 9847     		blx	r3
+ 315 00a6 BCE7     		b	.L32
+ 316              	.L38:
+ 317              		.align	2
+ 318              	.L37:
+ 319 00a8 00A0FFFF 		.word	-24576
+ 320 00ac ABAAAAAA 		.word	-1431655765
+ 322              		.section	.text.USBD_AUDIO_SOF,"ax",%progbits
+ 323              		.align	1
+ 324              		.p2align 2,,3
+ 325              		.syntax unified
+ 326              		.thumb
+ 327              		.thumb_func
+ 328              		.fpu fpv4-sp-d16
+ 330              	USBD_AUDIO_SOF:
+ 331              		@ args = 0, pretend = 0, frame = 8
+ 332              		@ frame_needed = 0, uses_anonymous_args = 0
+ 333 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 334 0002 D0F89042 		ldr	r4, [r0, #656]
+ 335 0006 04F50054 		add	r4, r4, #8192
+ 336 000a 83B0     		sub	sp, sp, #12
+ 337 000c 94F86534 		ldrb	r3, [r4, #1125]	@ zero_extendqisi2
+ 338 0010 012B     		cmp	r3, #1
+ 339 0012 02D0     		beq	.L54
+ 340              	.L41:
+ 341 0014 0020     		movs	r0, #0
+ 342 0016 03B0     		add	sp, sp, #12
+ 343              		@ sp needed
+ 344 0018 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 345              	.L54:
+ 346 001a 504B     		ldr	r3, .L57
+ 347 001c 1B68     		ldr	r3, [r3]
+ 348 001e 012B     		cmp	r3, #1
+ 349 0020 F8D1     		bne	.L41
+ 350 0022 4F4E     		ldr	r6, .L57+4
+ 351 0024 3368     		ldr	r3, [r6]
+ 352 0026 0133     		adds	r3, r3, #1
+ 353 0028 3360     		str	r3, [r6]
+ 354 002a 0546     		mov	r5, r0
+ 355 002c FFF7FEFF 		bl	BSP_AUDIO_OUT_GetRemainingDataSize
+ 356 0030 41F23022 		movw	r2, #4656
+ 357 0034 B4F86834 		ldrh	r3, [r4, #1128]
+ 358 0038 101A     		subs	r0, r2, r0
+ 359 003a 80B2     		uxth	r0, r0
+ARM GAS  /tmp/ccCmdqeQ.s 			page 7
+
+
+ 360 003c 9842     		cmp	r0, r3
+ 361 003e A4F86604 		strh	r0, [r4, #1126]	@ movhi
+ 362 0042 38BF     		it	cc
+ 363 0044 8018     		addcc	r0, r0, r2
+ 364 0046 474C     		ldr	r4, .L57+8
+ 365 0048 C01A     		subs	r0, r0, r3
+ 366 004a 84FB0034 		smull	r3, r4, r4, r0
+ 367 004e A4EBE074 		sub	r4, r4, r0, asr #31
+ 368 0052 602C     		cmp	r4, #96
+ 369 0054 20D9     		bls	.L55
+ 370 0056 FFF7FEFF 		bl	BSP_OnboardLED_Off
+ 371              	.L46:
+ 372 005a 434B     		ldr	r3, .L57+12
+ 373 005c 1A68     		ldr	r2, [r3]
+ 374 005e 0132     		adds	r2, r2, #1
+ 375 0060 1A60     		str	r2, [r3]
+ 376 0062 1A68     		ldr	r2, [r3]
+ 377 0064 012A     		cmp	r2, #1
+ 378 0066 1AD0     		beq	.L56
+ 379              	.L47:
+ 380 0068 404C     		ldr	r4, .L57+16
+ 381 006a 2368     		ldr	r3, [r4]
+ 382 006c 002B     		cmp	r3, #0
+ 383 006e D1D1     		bne	.L41
+ 384 0070 3F4B     		ldr	r3, .L57+20
+ 385 0072 404A     		ldr	r2, .L57+24
+ 386 0074 9B68     		ldr	r3, [r3, #8]
+ 387 0076 C3F30D23 		ubfx	r3, r3, #8, #14
+ 388 007a 0193     		str	r3, [sp, #4]
+ 389 007c 1368     		ldr	r3, [r2]
+ 390 007e 019A     		ldr	r2, [sp, #4]
+ 391 0080 5340     		eors	r3, r3, r2
+ 392 0082 DB07     		lsls	r3, r3, #31
+ 393 0084 C6D4     		bmi	.L41
+ 394 0086 0323     		movs	r3, #3
+ 395 0088 3B4A     		ldr	r2, .L57+28
+ 396 008a 8121     		movs	r1, #129
+ 397 008c 2846     		mov	r0, r5
+ 398 008e FFF7FEFF 		bl	USBD_LL_Transmit
+ 399 0092 0123     		movs	r3, #1
+ 400 0094 2360     		str	r3, [r4]
+ 401 0096 BDE7     		b	.L41
+ 402              	.L55:
+ 403 0098 FFF7FEFF 		bl	BSP_OnboardLED_On
+ 404 009c DDE7     		b	.L46
+ 405              	.L56:
+ 406 009e 3749     		ldr	r1, .L57+32
+ 407 00a0 0022     		movs	r2, #0
+ 408 00a2 1A60     		str	r2, [r3]
+ 409 00a4 04F57952 		add	r2, r4, #15936
+ 410 00a8 0F68     		ldr	r7, [r1]
+ 411 00aa 3C32     		adds	r2, r2, #60
+ 412 00ac 1302     		lsls	r3, r2, #8
+ 413 00ae A3FB0730 		umull	r3, r0, r3, r7
+ 414 00b2 42F3C052 		sbfx	r2, r2, #23, #1
+ 415 00b6 07FB0202 		mla	r2, r7, r2, r0
+ 416 00ba 9B0D     		lsrs	r3, r3, #22
+ARM GAS  /tmp/ccCmdqeQ.s 			page 8
+
+
+ 417 00bc 43EA8223 		orr	r3, r3, r2, lsl #10
+ 418 00c0 2F4A     		ldr	r2, .L57+36
+ 419 00c2 1360     		str	r3, [r2]
+ 420 00c4 0B68     		ldr	r3, [r1]
+ 421 00c6 1068     		ldr	r0, [r2]
+ 422 00c8 03F58003 		add	r3, r3, #4194304
+ 423 00cc 8342     		cmp	r3, r0
+ 424 00ce 0B68     		ldr	r3, [r1]
+ 425 00d0 3AD2     		bcs	.L48
+ 426 00d2 03F58003 		add	r3, r3, #4194304
+ 427 00d6 1360     		str	r3, [r2]
+ 428              	.L49:
+ 429 00d8 2A48     		ldr	r0, .L57+40
+ 430 00da 0368     		ldr	r3, [r0]
+ 431 00dc A342     		cmp	r3, r4
+ 432 00de 25D0     		beq	.L50
+ 433 00e0 294B     		ldr	r3, .L57+44
+ 434 00e2 2A4F     		ldr	r7, .L57+48
+ 435 00e4 1968     		ldr	r1, [r3]
+ 436 00e6 A142     		cmp	r1, r4
+ 437 00e8 38BF     		it	cc
+ 438 00ea 1C60     		strcc	r4, [r3]
+ 439 00ec 284B     		ldr	r3, .L57+52
+ 440 00ee 1968     		ldr	r1, [r3]
+ 441 00f0 A142     		cmp	r1, r4
+ 442 00f2 88BF     		it	hi
+ 443 00f4 1C60     		strhi	r4, [r3]
+ 444 00f6 274B     		ldr	r3, .L57+56
+ 445 00f8 1978     		ldrb	r1, [r3]	@ zero_extendqisi2
+ 446 00fa C9B2     		uxtb	r1, r1
+ 447 00fc 47F82140 		str	r4, [r7, r1, lsl #2]
+ 448 0100 1168     		ldr	r1, [r2]
+ 449 0102 254F     		ldr	r7, .L57+60
+ 450 0104 090A     		lsrs	r1, r1, #8
+ 451 0106 07EE901A 		vmov	s15, r1	@ int
+ 452 010a 1978     		ldrb	r1, [r3]	@ zero_extendqisi2
+ 453 010c FAEEC97A 		vcvt.f32.s32	s15, s15, #14
+ 454 0110 07EB8101 		add	r1, r7, r1, lsl #2
+ 455 0114 C1ED007A 		vstr.32	s15, [r1]
+ 456 0118 1978     		ldrb	r1, [r3]	@ zero_extendqisi2
+ 457 011a 3768     		ldr	r7, [r6]
+ 458 011c 1F4E     		ldr	r6, .L57+64
+ 459 011e C9B2     		uxtb	r1, r1
+ 460 0120 46F82170 		str	r7, [r6, r1, lsl #2]
+ 461 0124 1978     		ldrb	r1, [r3]	@ zero_extendqisi2
+ 462 0126 0131     		adds	r1, r1, #1
+ 463 0128 C9B2     		uxtb	r1, r1
+ 464 012a 1970     		strb	r1, [r3]
+ 465              	.L50:
+ 466 012c 0460     		str	r4, [r0]
+ 467 012e 1168     		ldr	r1, [r2]
+ 468 0130 114B     		ldr	r3, .L57+28
+ 469 0132 C1F30721 		ubfx	r1, r1, #8, #8
+ 470 0136 1970     		strb	r1, [r3]
+ 471 0138 1168     		ldr	r1, [r2]
+ 472 013a C1F30741 		ubfx	r1, r1, #16, #8
+ 473 013e 5970     		strb	r1, [r3, #1]
+ARM GAS  /tmp/ccCmdqeQ.s 			page 9
+
+
+ 474 0140 1268     		ldr	r2, [r2]
+ 475 0142 120E     		lsrs	r2, r2, #24
+ 476 0144 9A70     		strb	r2, [r3, #2]
+ 477 0146 8FE7     		b	.L47
+ 478              	.L48:
+ 479 0148 1068     		ldr	r0, [r2]
+ 480 014a A3F58003 		sub	r3, r3, #4194304
+ 481 014e 8342     		cmp	r3, r0
+ 482 0150 C2D9     		bls	.L49
+ 483 0152 0B68     		ldr	r3, [r1]
+ 484 0154 A3F58003 		sub	r3, r3, #4194304
+ 485 0158 1360     		str	r3, [r2]
+ 486 015a BDE7     		b	.L49
+ 487              	.L58:
+ 488              		.align	2
+ 489              	.L57:
+ 490 015c 00000000 		.word	.LANCHOR3
+ 491 0160 00000000 		.word	.LANCHOR9
+ 492 0164 ABAAAA2A 		.word	715827883
+ 493 0168 00000000 		.word	.LANCHOR12
+ 494 016c 00000000 		.word	.LANCHOR1
+ 495 0170 00080050 		.word	1342179328
+ 496 0174 00000000 		.word	.LANCHOR17
+ 497 0178 00000000 		.word	.LANCHOR16
+ 498 017c 00000000 		.word	.LANCHOR11
+ 499 0180 00000000 		.word	.LANCHOR10
+ 500 0184 00000000 		.word	.LANCHOR5
+ 501 0188 00000000 		.word	.LANCHOR7
+ 502 018c 00000000 		.word	.LANCHOR13
+ 503 0190 00000000 		.word	.LANCHOR6
+ 504 0194 00000000 		.word	.LANCHOR8
+ 505 0198 00000000 		.word	.LANCHOR14
+ 506 019c 00000000 		.word	.LANCHOR15
+ 508              		.section	.text.USBD_AUDIO_DataOut,"ax",%progbits
+ 509              		.align	1
+ 510              		.p2align 2,,3
+ 511              		.syntax unified
+ 512              		.thumb
+ 513              		.thumb_func
+ 514              		.fpu fpv4-sp-d16
+ 516              	USBD_AUDIO_DataOut:
+ 517              		@ args = 0, pretend = 0, frame = 8
+ 518              		@ frame_needed = 0, uses_anonymous_args = 0
+ 519 0000 624B     		ldr	r3, .L84
+ 520 0002 1A68     		ldr	r2, [r3]
+ 521 0004 012A     		cmp	r2, #1
+ 522 0006 01D0     		beq	.L80
+ 523              	.L76:
+ 524 0008 0020     		movs	r0, #0
+ 525 000a 7047     		bx	lr
+ 526              	.L80:
+ 527 000c 0129     		cmp	r1, #1
+ 528 000e FBD1     		bne	.L76
+ 529 0010 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 530 0014 83B0     		sub	sp, sp, #12
+ 531 0016 D0F89062 		ldr	r6, [r0, #656]
+ 532 001a 0546     		mov	r5, r0
+ARM GAS  /tmp/ccCmdqeQ.s 			page 10
+
+
+ 533 001c FFF7FEFF 		bl	USBD_GetRxCount
+ 534 0020 40F24623 		movw	r3, #582
+ 535 0024 9842     		cmp	r0, r3
+ 536 0026 00F28780 		bhi	.L79
+ 537 002a 594B     		ldr	r3, .L84+4
+ 538 002c 0528     		cmp	r0, #5
+ 539 002e A3FB0023 		umull	r2, r3, r3, r0
+ 540 0032 4FEA9303 		lsr	r3, r3, #2
+ 541 0036 7FD9     		bls	.L79
+ 542 0038 06F5005C 		add	ip, r6, #8192
+ 543 003c 0195     		str	r5, [sp, #4]
+ 544 003e DCF87874 		ldr	r7, [ip, #1144]
+ 545 0042 544A     		ldr	r2, .L84+8
+ 546 0044 4FEA6708 		asr	r8, r7, #1
+ 547 0048 0020     		movs	r0, #0
+ 548 004a 07F00107 		and	r7, r7, #1
+ 549 004e 08F1010E 		add	lr, r8, #1
+ 550 0052 1D46     		mov	r5, r3
+ 551 0054 49E0     		b	.L70
+ 552              	.L82:
+ 553 0056 01EB6101 		add	r1, r1, r1, asr #1
+ 554              	.L66:
+ 555 005a BCF86834 		ldrh	r3, [ip, #1128]
+ 556 005e 03F10109 		add	r9, r3, #1
+ 557 0062 1FFA89F9 		uxth	r9, r9
+ 558 0066 06EB4909 		add	r9, r6, r9, lsl #1
+ 559 006a 06EB430A 		add	r10, r6, r3, lsl #1
+ 560 006e C1F30F2B 		ubfx	fp, r1, #8, #16
+ 561 0072 0902     		lsls	r1, r1, #8
+ 562 0074 AAF804B0 		strh	fp, [r10, #4]	@ movhi
+ 563 0078 A9F80410 		strh	r1, [r9, #4]	@ movhi
+ 564 007c D178     		ldrb	r1, [r2, #3]	@ zero_extendqisi2
+ 565 007e 61F30704 		bfi	r4, r1, #0, #8
+ 566 0082 1179     		ldrb	r1, [r2, #4]	@ zero_extendqisi2
+ 567 0084 61F30F24 		bfi	r4, r1, #8, #8
+ 568 0088 5179     		ldrb	r1, [r2, #5]	@ zero_extendqisi2
+ 569 008a 03F10209 		add	r9, r3, #2
+ 570 008e 61F31744 		bfi	r4, r1, #16, #8
+ 571 0092 41F3C011 		sbfx	r1, r1, #7, #1
+ 572 0096 61F31F64 		bfi	r4, r1, #24, #8
+ 573 009a 1FFA89F9 		uxth	r9, r9
+ 574 009e C7B3     		cbz	r7, .L67
+ 575 00a0 44FA0EF1 		asr	r1, r4, lr
+ 576 00a4 01EB6101 		add	r1, r1, r1, asr #1
+ 577              	.L68:
+ 578 00a8 03F1030A 		add	r10, r3, #3
+ 579 00ac 1FFA8AFA 		uxth	r10, r10
+ 580 00b0 06EB4909 		add	r9, r6, r9, lsl #1
+ 581 00b4 0433     		adds	r3, r3, #4
+ 582 00b6 06EB4A0A 		add	r10, r6, r10, lsl #1
+ 583 00ba 9BB2     		uxth	r3, r3
+ 584 00bc C1F30F2B 		ubfx	fp, r1, #8, #16
+ 585 00c0 0902     		lsls	r1, r1, #8
+ 586 00c2 A9F804B0 		strh	fp, [r9, #4]	@ movhi
+ 587 00c6 ACF86834 		strh	r3, [ip, #1128]	@ movhi
+ 588 00ca AAF80410 		strh	r1, [r10, #4]	@ movhi
+ 589 00ce 41F22F21 		movw	r1, #4655
+ARM GAS  /tmp/ccCmdqeQ.s 			page 11
+
+
+ 590 00d2 8B42     		cmp	r3, r1
+ 591 00d4 88BF     		it	hi
+ 592 00d6 0023     		movhi	r3, #0	@ movhi
+ 593 00d8 00F10100 		add	r0, r0, #1
+ 594 00dc 88BF     		it	hi
+ 595 00de ACF86834 		strhhi	r3, [ip, #1128]	@ movhi
+ 596 00e2 8542     		cmp	r5, r0
+ 597 00e4 02F10602 		add	r2, r2, #6
+ 598 00e8 16D9     		bls	.L81
+ 599              	.L70:
+ 600 00ea 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 601 00ec 63F30704 		bfi	r4, r3, #0, #8
+ 602 00f0 5378     		ldrb	r3, [r2, #1]	@ zero_extendqisi2
+ 603 00f2 63F30F24 		bfi	r4, r3, #8, #8
+ 604 00f6 9378     		ldrb	r3, [r2, #2]	@ zero_extendqisi2
+ 605 00f8 63F31744 		bfi	r4, r3, #16, #8
+ 606 00fc 43F3C013 		sbfx	r3, r3, #7, #1
+ 607 0100 63F31F64 		bfi	r4, r3, #24, #8
+ 608 0104 44FA0EF1 		asr	r1, r4, lr
+ 609 0108 002F     		cmp	r7, #0
+ 610 010a A4D1     		bne	.L82
+ 611 010c 44FA08F1 		asr	r1, r4, r8
+ 612 0110 A3E7     		b	.L66
+ 613              	.L67:
+ 614 0112 44FA08F1 		asr	r1, r4, r8
+ 615 0116 C7E7     		b	.L68
+ 616              	.L81:
+ 617 0118 019D     		ldr	r5, [sp, #4]
+ 618              	.L64:
+ 619 011a 9CF86434 		ldrb	r3, [ip, #1124]	@ zero_extendqisi2
+ 620 011e 032B     		cmp	r3, #3
+ 621 0120 0DD0     		beq	.L83
+ 622              	.L63:
+ 623 0122 1C4A     		ldr	r2, .L84+8
+ 624 0124 40F24623 		movw	r3, #582
+ 625 0128 0121     		movs	r1, #1
+ 626 012a 2846     		mov	r0, r5
+ 627 012c FFF7FEFF 		bl	USBD_LL_PrepareReceive
+ 628 0130 0020     		movs	r0, #0
+ 629 0132 03B0     		add	sp, sp, #12
+ 630              		@ sp needed
+ 631 0134 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 632              	.L79:
+ 633 0138 06F5005C 		add	ip, r6, #8192
+ 634 013c EDE7     		b	.L64
+ 635              	.L83:
+ 636 013e 164B     		ldr	r3, .L84+12
+ 637 0140 1A68     		ldr	r2, [r3]
+ 638 0142 002A     		cmp	r2, #0
+ 639 0144 EDD1     		bne	.L63
+ 640 0146 BCF86814 		ldrh	r1, [ip, #1128]
+ 641 014a 40F61710 		movw	r0, #2327
+ 642 014e 8142     		cmp	r1, r0
+ 643 0150 E7D9     		bls	.L63
+ 644 0152 9CF86504 		ldrb	r0, [ip, #1125]	@ zero_extendqisi2
+ 645 0156 8CF86424 		strb	r2, [ip, #1124]
+ 646 015a 0122     		movs	r2, #1
+ARM GAS  /tmp/ccCmdqeQ.s 			page 12
+
+
+ 647 015c 1A60     		str	r2, [r3]
+ 648 015e 58B9     		cbnz	r0, .L71
+ 649 0160 0E4B     		ldr	r3, .L84+16
+ 650 0162 8CF86524 		strb	r2, [ip, #1125]
+ 651 0166 C1F59151 		rsb	r1, r1, #4640
+ 652 016a 1031     		adds	r1, r1, #16
+ 653 016c 0C4A     		ldr	r2, .L84+20
+ 654 016e 83FB0103 		smull	r0, r3, r3, r1
+ 655 0172 A3EBE171 		sub	r1, r3, r1, asr #31
+ 656 0176 1160     		str	r1, [r2]
+ 657              	.L71:
+ 658 0178 D5F89432 		ldr	r3, [r5, #660]
+ 659 017c 0122     		movs	r2, #1
+ 660 017e 9B68     		ldr	r3, [r3, #8]
+ 661 0180 42F26041 		movw	r1, #9312
+ 662 0184 301D     		adds	r0, r6, #4
+ 663 0186 9847     		blx	r3
+ 664 0188 CBE7     		b	.L63
+ 665              	.L85:
+ 666 018a 00BF     		.align	2
+ 667              	.L84:
+ 668 018c 00000000 		.word	.LANCHOR3
+ 669 0190 ABAAAAAA 		.word	-1431655765
+ 670 0194 00000000 		.word	.LANCHOR18
+ 671 0198 00000000 		.word	.LANCHOR4
+ 672 019c ABAAAA2A 		.word	715827883
+ 673 01a0 00000000 		.word	.LANCHOR5
+ 675              		.section	.text.USBD_AUDIO_Setup,"ax",%progbits
+ 676              		.align	1
+ 677              		.p2align 2,,3
+ 678              		.syntax unified
+ 679              		.thumb
+ 680              		.thumb_func
+ 681              		.fpu fpv4-sp-d16
+ 683              	USBD_AUDIO_Setup:
+ 684              		@ args = 0, pretend = 0, frame = 8
+ 685              		@ frame_needed = 0, uses_anonymous_args = 0
+ 686 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 687 0004 0C46     		mov	r4, r1
+ 688 0006 82B0     		sub	sp, sp, #8
+ 689 0008 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 690 000a D0F89082 		ldr	r8, [r0, #656]
+ 691 000e 0021     		movs	r1, #0
+ 692 0010 13F06006 		ands	r6, r3, #96
+ 693 0014 0546     		mov	r5, r0
+ 694 0016 ADF80210 		strh	r1, [sp, #2]	@ movhi
+ 695 001a 1ED0     		beq	.L87
+ 696 001c 202E     		cmp	r6, #32
+ 697 001e 13D1     		bne	.L104
+ 698 0020 6778     		ldrb	r7, [r4, #1]	@ zero_extendqisi2
+ 699 0022 012F     		cmp	r7, #1
+ 700 0024 73D0     		beq	.L89
+ 701 0026 07F17F02 		add	r2, r7, #127
+ 702 002a D2B2     		uxtb	r2, r2
+ 703 002c 032A     		cmp	r2, #3
+ 704 002e 0BD8     		bhi	.L104
+ 705 0030 813F     		subs	r7, r7, #129
+ARM GAS  /tmp/ccCmdqeQ.s 			page 13
+
+
+ 706 0032 032F     		cmp	r7, #3
+ 707 0034 08D8     		bhi	.L104
+ 708 0036 DFE807F0 		tbb	[pc, r7]
+ 709              	.L91:
+ 710 003a 49       		.byte	(.L94-.L91)/2
+ 711 003b 5F       		.byte	(.L93-.L91)/2
+ 712 003c 39       		.byte	(.L92-.L91)/2
+ 713 003d 2F       		.byte	(.L90-.L91)/2
+ 714              		.p2align 1
+ 715              	.L103:
+ 716 003e 90F87432 		ldrb	r3, [r0, #628]	@ zero_extendqisi2
+ 717 0042 032B     		cmp	r3, #3
+ 718 0044 00F0B380 		beq	.L118
+ 719              	.L104:
+ 720 0048 2146     		mov	r1, r4
+ 721 004a 2846     		mov	r0, r5
+ 722 004c FFF7FEFF 		bl	USBD_CtlError
+ 723 0050 0226     		movs	r6, #2
+ 724              	.L98:
+ 725 0052 3046     		mov	r0, r6
+ 726 0054 02B0     		add	sp, sp, #8
+ 727              		@ sp needed
+ 728 0056 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 729              	.L87:
+ 730 005a 6778     		ldrb	r7, [r4, #1]	@ zero_extendqisi2
+ 731 005c 0B2F     		cmp	r7, #11
+ 732 005e F3D8     		bhi	.L104
+ 733 0060 01A3     		adr	r3, .L100
+ 734 0062 53F827F0 		ldr	pc, [r3, r7, lsl #2]
+ 735 0066 00BF     		.p2align 2
+ 736              	.L100:
+ 737 0068 3F000000 		.word	.L103+1
+ 738 006c 49000000 		.word	.L104+1
+ 739 0070 49000000 		.word	.L104+1
+ 740 0074 49000000 		.word	.L104+1
+ 741 0078 49000000 		.word	.L104+1
+ 742 007c 49000000 		.word	.L104+1
+ 743 0080 95010000 		.word	.L102+1
+ 744 0084 49000000 		.word	.L104+1
+ 745 0088 49000000 		.word	.L104+1
+ 746 008c 49000000 		.word	.L104+1
+ 747 0090 81010000 		.word	.L101+1
+ 748 0094 51010000 		.word	.L99+1
+ 749              		.p2align 1
+ 750              	.L90:
+ 751 0098 03F01F03 		and	r3, r3, #31
+ 752 009c 012B     		cmp	r3, #1
+ 753 009e 00F08D80 		beq	.L119
+ 754              	.L114:
+ 755 00a2 0026     		movs	r6, #0
+ 756 00a4 3046     		mov	r0, r6
+ 757 00a6 02B0     		add	sp, sp, #8
+ 758              		@ sp needed
+ 759 00a8 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 760              	.L92:
+ 761 00ac 03F01F03 		and	r3, r3, #31
+ 762 00b0 012B     		cmp	r3, #1
+ARM GAS  /tmp/ccCmdqeQ.s 			page 14
+
+
+ 763 00b2 F6D1     		bne	.L114
+ 764 00b4 6288     		ldrh	r2, [r4, #2]
+ 765 00b6 120A     		lsrs	r2, r2, #8
+ 766 00b8 022A     		cmp	r2, #2
+ 767 00ba 4FF00006 		mov	r6, #0
+ 768 00be C8D1     		bne	.L98
+ 769 00c0 01A9     		add	r1, sp, #4
+ 770 00c2 ADF80460 		strh	r6, [sp, #4]	@ movhi
+ 771 00c6 FFF7FEFF 		bl	USBD_CtlSendData
+ 772 00ca C2E7     		b	.L98
+ 773              	.L94:
+ 774 00cc 03F01F03 		and	r3, r3, #31
+ 775 00d0 012B     		cmp	r3, #1
+ 776 00d2 00F08280 		beq	.L120
+ 777 00d6 022B     		cmp	r3, #2
+ 778 00d8 E3D1     		bne	.L114
+ 779 00da 6388     		ldrh	r3, [r4, #2]
+ 780 00dc 1B0A     		lsrs	r3, r3, #8
+ 781 00de 012B     		cmp	r3, #1
+ 782 00e0 DFD1     		bne	.L114
+ 783 00e2 08F50058 		add	r8, r8, #8192
+ 784 00e6 0322     		movs	r2, #3
+ 785 00e8 D8F86C34 		ldr	r3, [r8, #1132]
+ 786 00ec 0193     		str	r3, [sp, #4]
+ 787 00ee 01A9     		add	r1, sp, #4
+ 788 00f0 0026     		movs	r6, #0
+ 789 00f2 FFF7FEFF 		bl	USBD_CtlSendData
+ 790 00f6 ACE7     		b	.L98
+ 791              	.L93:
+ 792 00f8 03F01F03 		and	r3, r3, #31
+ 793 00fc 012B     		cmp	r3, #1
+ 794 00fe D0D1     		bne	.L114
+ 795 0100 6288     		ldrh	r2, [r4, #2]
+ 796 0102 120A     		lsrs	r2, r2, #8
+ 797 0104 022A     		cmp	r2, #2
+ 798 0106 CCD1     		bne	.L114
+ 799 0108 4FF42043 		mov	r3, #40960
+ 800 010c 5DE0     		b	.L117
+ 801              	.L89:
+ 802 010e E688     		ldrh	r6, [r4, #6]
+ 803 0110 002E     		cmp	r6, #0
+ 804 0112 9ED0     		beq	.L98
+ 805 0114 3246     		mov	r2, r6
+ 806 0116 0E46     		mov	r6, r1
+ 807 0118 08F51251 		add	r1, r8, #9344
+ 808 011c 08F50058 		add	r8, r8, #8192
+ 809 0120 0331     		adds	r1, r1, #3
+ 810 0122 FFF7FEFF 		bl	USBD_CtlPrepareRx
+ 811 0126 88F87D74 		strb	r7, [r8, #1149]
+ 812 012a 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 813 012c 03F01F03 		and	r3, r3, #31
+ 814 0130 88F87E34 		strb	r3, [r8, #1150]
+ 815 0134 E388     		ldrh	r3, [r4, #6]
+ 816 0136 88F88234 		strb	r3, [r8, #1154]
+ 817 013a A388     		ldrh	r3, [r4, #4]
+ 818 013c 1B0A     		lsrs	r3, r3, #8
+ 819 013e 88F88134 		strb	r3, [r8, #1153]
+ARM GAS  /tmp/ccCmdqeQ.s 			page 15
+
+
+ 820 0142 6388     		ldrh	r3, [r4, #2]
+ 821 0144 88F88034 		strb	r3, [r8, #1152]
+ 822 0148 1B0A     		lsrs	r3, r3, #8
+ 823 014a 88F87F34 		strb	r3, [r8, #1151]
+ 824 014e 80E7     		b	.L98
+ 825              	.L99:
+ 826 0150 90F87432 		ldrb	r3, [r0, #628]	@ zero_extendqisi2
+ 827 0154 032B     		cmp	r3, #3
+ 828 0156 7FF477AF 		bne	.L104
+ 829 015a A378     		ldrb	r3, [r4, #2]	@ zero_extendqisi2
+ 830 015c 022B     		cmp	r3, #2
+ 831 015e 3FF673AF 		bhi	.L104
+ 832 0162 D8F80020 		ldr	r2, [r8]
+ 833 0166 9A42     		cmp	r2, r3
+ 834 0168 05D0     		beq	.L105
+ 835 016a C8F80030 		str	r3, [r8]
+ 836 016e 002B     		cmp	r3, #0
+ 837 0170 41D1     		bne	.L106
+ 838 0172 FFF7FEFF 		bl	AUDIO_OUT_StopAndReset
+ 839              	.L105:
+ 840 0176 8121     		movs	r1, #129
+ 841 0178 2846     		mov	r0, r5
+ 842 017a FFF7FEFF 		bl	USBD_LL_FlushEP
+ 843 017e 68E7     		b	.L98
+ 844              	.L101:
+ 845 0180 90F87432 		ldrb	r3, [r0, #628]	@ zero_extendqisi2
+ 846 0184 032B     		cmp	r3, #3
+ 847 0186 7FF45FAF 		bne	.L104
+ 848 018a 0122     		movs	r2, #1
+ 849 018c 4146     		mov	r1, r8
+ 850 018e FFF7FEFF 		bl	USBD_CtlSendData
+ 851 0192 5EE7     		b	.L98
+ 852              	.L102:
+ 853 0194 6388     		ldrh	r3, [r4, #2]
+ 854 0196 1B0A     		lsrs	r3, r3, #8
+ 855 0198 212B     		cmp	r3, #33
+ 856 019a 7FF45AAF 		bne	.L98
+ 857 019e E288     		ldrh	r2, [r4, #6]
+ 858 01a0 1C49     		ldr	r1, .L121
+ 859 01a2 092A     		cmp	r2, #9
+ 860 01a4 28BF     		it	cs
+ 861 01a6 0922     		movcs	r2, #9
+ 862 01a8 FFF7FEFF 		bl	USBD_CtlSendData
+ 863 01ac 51E7     		b	.L98
+ 864              	.L118:
+ 865 01ae 0222     		movs	r2, #2
+ 866 01b0 0DEB0201 		add	r1, sp, r2
+ 867 01b4 FFF7FEFF 		bl	USBD_CtlSendData
+ 868 01b8 3E46     		mov	r6, r7
+ 869 01ba 4AE7     		b	.L98
+ 870              	.L119:
+ 871 01bc 6288     		ldrh	r2, [r4, #2]
+ 872 01be 120A     		lsrs	r2, r2, #8
+ 873 01c0 022A     		cmp	r2, #2
+ 874 01c2 7FF46EAF 		bne	.L114
+ 875 01c6 4FF44073 		mov	r3, #768
+ 876              	.L117:
+ARM GAS  /tmp/ccCmdqeQ.s 			page 16
+
+
+ 877 01ca 01A9     		add	r1, sp, #4
+ 878 01cc 2846     		mov	r0, r5
+ 879 01ce ADF80430 		strh	r3, [sp, #4]	@ movhi
+ 880 01d2 0026     		movs	r6, #0
+ 881 01d4 FFF7FEFF 		bl	USBD_CtlSendData
+ 882 01d8 3BE7     		b	.L98
+ 883              	.L120:
+ 884 01da 6388     		ldrh	r3, [r4, #2]
+ 885 01dc 1A0A     		lsrs	r2, r3, #8
+ 886 01de 012A     		cmp	r2, #1
+ 887 01e0 11D0     		beq	.L96
+ 888 01e2 022A     		cmp	r2, #2
+ 889 01e4 7FF45DAF 		bne	.L114
+ 890 01e8 08F51151 		add	r1, r8, #9280
+ 891 01ec 3431     		adds	r1, r1, #52
+ 892 01ee FFF7FEFF 		bl	USBD_CtlSendData
+ 893 01f2 0026     		movs	r6, #0
+ 894 01f4 2DE7     		b	.L98
+ 895              	.L106:
+ 896 01f6 08F50058 		add	r8, r8, #8192
+ 897 01fa 1823     		movs	r3, #24
+ 898 01fc C8F87034 		str	r3, [r8, #1136]
+ 899 0200 FFF7FEFF 		bl	AUDIO_OUT_Restart
+ 900 0204 B7E7     		b	.L105
+ 901              	.L96:
+ 902 0206 08F51151 		add	r1, r8, #9280
+ 903 020a 3C31     		adds	r1, r1, #60
+ 904 020c FFF7FEFF 		bl	USBD_CtlSendData
+ 905 0210 0026     		movs	r6, #0
+ 906 0212 1EE7     		b	.L98
+ 907              	.L122:
+ 908              		.align	2
+ 909              	.L121:
+ 910 0214 12000000 		.word	.LANCHOR0+18
+ 912              		.section	.text.USBD_AUDIO_DeInit,"ax",%progbits
+ 913              		.align	1
+ 914              		.p2align 2,,3
+ 915              		.syntax unified
+ 916              		.thumb
+ 917              		.thumb_func
+ 918              		.fpu fpv4-sp-d16
+ 920              	USBD_AUDIO_DeInit:
+ 921              		@ args = 0, pretend = 0, frame = 0
+ 922              		@ frame_needed = 0, uses_anonymous_args = 0
+ 923 0000 38B5     		push	{r3, r4, r5, lr}
+ 924 0002 0121     		movs	r1, #1
+ 925 0004 0446     		mov	r4, r0
+ 926 0006 FFF7FEFF 		bl	USBD_LL_FlushEP
+ 927 000a 8121     		movs	r1, #129
+ 928 000c 2046     		mov	r0, r4
+ 929 000e FFF7FEFF 		bl	USBD_LL_FlushEP
+ 930 0012 0025     		movs	r5, #0
+ 931 0014 0121     		movs	r1, #1
+ 932 0016 2046     		mov	r0, r4
+ 933 0018 FFF7FEFF 		bl	USBD_LL_CloseEP
+ 934 001c C4F85851 		str	r5, [r4, #344]
+ 935 0020 8121     		movs	r1, #129
+ARM GAS  /tmp/ccCmdqeQ.s 			page 17
+
+
+ 936 0022 2046     		mov	r0, r4
+ 937 0024 FFF7FEFF 		bl	USBD_LL_CloseEP
+ 938 0028 094A     		ldr	r2, .L129
+ 939 002a D4F89032 		ldr	r3, [r4, #656]
+ 940 002e E562     		str	r5, [r4, #44]
+ 941 0030 1560     		str	r5, [r2]
+ 942 0032 53B1     		cbz	r3, .L124
+ 943 0034 D4F89432 		ldr	r3, [r4, #660]
+ 944 0038 2846     		mov	r0, r5
+ 945 003a 5B68     		ldr	r3, [r3, #4]
+ 946 003c 9847     		blx	r3
+ 947 003e D4F89002 		ldr	r0, [r4, #656]
+ 948 0042 FFF7FEFF 		bl	free
+ 949 0046 C4F89052 		str	r5, [r4, #656]
+ 950              	.L124:
+ 951 004a 0020     		movs	r0, #0
+ 952 004c 38BD     		pop	{r3, r4, r5, pc}
+ 953              	.L130:
+ 954 004e 00BF     		.align	2
+ 955              	.L129:
+ 956 0050 00000000 		.word	.LANCHOR1
+ 958              		.section	.text.USBD_AUDIO_Init,"ax",%progbits
+ 959              		.align	1
+ 960              		.p2align 2,,3
+ 961              		.syntax unified
+ 962              		.thumb
+ 963              		.thumb_func
+ 964              		.fpu fpv4-sp-d16
+ 966              	USBD_AUDIO_Init:
+ 967              		@ args = 0, pretend = 0, frame = 0
+ 968              		@ frame_needed = 0, uses_anonymous_args = 0
+ 969 0000 38B5     		push	{r3, r4, r5, lr}
+ 970 0002 0122     		movs	r2, #1
+ 971 0004 0446     		mov	r4, r0
+ 972 0006 1546     		mov	r5, r2
+ 973 0008 1146     		mov	r1, r2
+ 974 000a 40F24623 		movw	r3, #582
+ 975 000e FFF7FEFF 		bl	USBD_LL_OpenEP
+ 976 0012 0323     		movs	r3, #3
+ 977 0014 2A46     		mov	r2, r5
+ 978 0016 8121     		movs	r1, #129
+ 979 0018 C4F85851 		str	r5, [r4, #344]
+ 980 001c 2046     		mov	r0, r4
+ 981 001e FFF7FEFF 		bl	USBD_LL_OpenEP
+ 982 0022 8121     		movs	r1, #129
+ 983 0024 E562     		str	r5, [r4, #44]
+ 984 0026 2046     		mov	r0, r4
+ 985 0028 FFF7FEFF 		bl	USBD_LL_FlushEP
+ 986 002c 154B     		ldr	r3, .L139
+ 987 002e 42F2C440 		movw	r0, #9412
+ 988 0032 1D60     		str	r5, [r3]
+ 989 0034 FFF7FEFF 		bl	malloc
+ 990 0038 C4F89002 		str	r0, [r4, #656]
+ 991 003c F8B1     		cbz	r0, .L132
+ 992 003e 00F50053 		add	r3, r0, #8192
+ 993 0042 0022     		movs	r2, #0
+ 994 0044 0321     		movs	r1, #3
+ARM GAS  /tmp/ccCmdqeQ.s 			page 18
+
+
+ 995 0046 D4F89442 		ldr	r4, [r4, #660]
+ 996 004a 0260     		str	r2, [r0]
+ 997 004c C3F86414 		str	r1, [r3, #1124]
+ 998 0050 83F87C24 		strb	r2, [r3, #1148]
+ 999 0054 1821     		movs	r1, #24
+ 1000 0056 2468     		ldr	r4, [r4]
+ 1001 0058 0B4D     		ldr	r5, .L139+4
+ 1002 005a C3F87014 		str	r1, [r3, #1136]
+ 1003 005e 4FF42041 		mov	r1, #40960
+ 1004 0062 A3F87414 		strh	r1, [r3, #1140]	@ movhi
+ 1005 0066 2021     		movs	r1, #32
+ 1006 0068 C3F87814 		str	r1, [r3, #1144]
+ 1007 006c A3F86824 		strh	r2, [r3, #1128]	@ movhi
+ 1008 0070 0649     		ldr	r1, .L139+8
+ 1009 0072 C3F86C54 		str	r5, [r3, #1132]
+ 1010 0076 2846     		mov	r0, r5
+ 1011 0078 A047     		blx	r4
+ 1012 007a 00B9     		cbnz	r0, .L132
+ 1013 007c 38BD     		pop	{r3, r4, r5, pc}
+ 1014              	.L132:
+ 1015 007e 0220     		movs	r0, #2
+ 1016 0080 38BD     		pop	{r3, r4, r5, pc}
+ 1017              	.L140:
+ 1018 0082 00BF     		.align	2
+ 1019              	.L139:
+ 1020 0084 00000000 		.word	.LANCHOR1
+ 1021 0088 00770100 		.word	96000
+ 1022 008c 00A0FFFF 		.word	-24576
+ 1024              		.section	.text.USBD_AUDIO_IsoINIncomplete,"ax",%progbits
+ 1025              		.align	1
+ 1026              		.p2align 2,,3
+ 1027              		.syntax unified
+ 1028              		.thumb
+ 1029              		.thumb_func
+ 1030              		.fpu fpv4-sp-d16
+ 1032              	USBD_AUDIO_IsoINIncomplete:
+ 1033              		@ args = 0, pretend = 0, frame = 0
+ 1034              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1035 0000 08B5     		push	{r3, lr}
+ 1036 0002 094B     		ldr	r3, .L145
+ 1037 0004 0949     		ldr	r1, .L145+4
+ 1038 0006 9B68     		ldr	r3, [r3, #8]
+ 1039 0008 094A     		ldr	r2, .L145+8
+ 1040 000a C3F30D23 		ubfx	r3, r3, #8, #14
+ 1041 000e 0B60     		str	r3, [r1]
+ 1042 0010 1368     		ldr	r3, [r2]
+ 1043 0012 012B     		cmp	r3, #1
+ 1044 0014 01D0     		beq	.L144
+ 1045 0016 0020     		movs	r0, #0
+ 1046 0018 08BD     		pop	{r3, pc}
+ 1047              	.L144:
+ 1048 001a 0023     		movs	r3, #0
+ 1049 001c 8121     		movs	r1, #129
+ 1050 001e 1360     		str	r3, [r2]
+ 1051 0020 FFF7FEFF 		bl	USBD_LL_FlushEP
+ 1052 0024 0020     		movs	r0, #0
+ 1053 0026 08BD     		pop	{r3, pc}
+ARM GAS  /tmp/ccCmdqeQ.s 			page 19
+
+
+ 1054              	.L146:
+ 1055              		.align	2
+ 1056              	.L145:
+ 1057 0028 00080050 		.word	1342179328
+ 1058 002c 00000000 		.word	.LANCHOR17
+ 1059 0030 00000000 		.word	.LANCHOR1
+ 1061              		.section	.text.USBD_AUDIO_Sync,"ax",%progbits
+ 1062              		.align	1
+ 1063              		.p2align 2,,3
+ 1064              		.global	USBD_AUDIO_Sync
+ 1065              		.syntax unified
+ 1066              		.thumb
+ 1067              		.thumb_func
+ 1068              		.fpu fpv4-sp-d16
+ 1070              	USBD_AUDIO_Sync:
+ 1071              		@ args = 0, pretend = 0, frame = 0
+ 1072              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1073              		@ link register save eliminated.
+ 1074 0000 7047     		bx	lr
+ 1076 0002 00BF     		.section	.text.USBD_AUDIO_RegisterInterface,"ax",%progbits
+ 1077              		.align	1
+ 1078              		.p2align 2,,3
+ 1079              		.global	USBD_AUDIO_RegisterInterface
+ 1080              		.syntax unified
+ 1081              		.thumb
+ 1082              		.thumb_func
+ 1083              		.fpu fpv4-sp-d16
+ 1085              	USBD_AUDIO_RegisterInterface:
+ 1086              		@ args = 0, pretend = 0, frame = 0
+ 1087              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1088              		@ link register save eliminated.
+ 1089 0000 09B1     		cbz	r1, .L149
+ 1090 0002 C0F89412 		str	r1, [r0, #660]
+ 1091              	.L149:
+ 1092 0006 0020     		movs	r0, #0
+ 1093 0008 7047     		bx	lr
+ 1095              		.global	DbgIndex
+ 1096              		.global	DbgFeedbackHistory
+ 1097              		.global	DbgWritableSampleHistory
+ 1098              		.global	DbgSofHistory
+ 1099              		.global	DbgMaxWritableSamples
+ 1100              		.global	DbgMinWritableSamples
+ 1101              		.global	fnsof
+ 1102              		.global	fb_data
+ 1103              		.global	audio_buf_writable_samples_last
+ 1104              		.global	fb_value
+ 1105              		.global	fb_nom
+ 1106              		.global	all_ready
+ 1107              		.global	is_playing
+ 1108              		.global	tx_flag
+ 1109              		.global	USBD_AUDIO
+ 1110 000a 00BF     		.section	.bss.DbgFeedbackHistory,"aw",%nobits
+ 1111              		.align	2
+ 1112              		.set	.LANCHOR14,. + 0
+ 1115              	DbgFeedbackHistory:
+ 1116 0000 00000000 		.space	1024
+ 1116      00000000 
+ARM GAS  /tmp/ccCmdqeQ.s 			page 20
+
+
+ 1116      00000000 
+ 1116      00000000 
+ 1116      00000000 
+ 1117              		.section	.bss.DbgIndex,"aw",%nobits
+ 1118              		.set	.LANCHOR8,. + 0
+ 1121              	DbgIndex:
+ 1122 0000 00       		.space	1
+ 1123              		.section	.bss.DbgMaxWritableSamples,"aw",%nobits
+ 1124              		.align	2
+ 1125              		.set	.LANCHOR7,. + 0
+ 1128              	DbgMaxWritableSamples:
+ 1129 0000 00000000 		.space	4
+ 1130              		.section	.bss.DbgSofCounter,"aw",%nobits
+ 1131              		.align	2
+ 1132              		.set	.LANCHOR9,. + 0
+ 1135              	DbgSofCounter:
+ 1136 0000 00000000 		.space	4
+ 1137              		.section	.bss.DbgSofHistory,"aw",%nobits
+ 1138              		.align	2
+ 1139              		.set	.LANCHOR15,. + 0
+ 1142              	DbgSofHistory:
+ 1143 0000 00000000 		.space	1024
+ 1143      00000000 
+ 1143      00000000 
+ 1143      00000000 
+ 1143      00000000 
+ 1144              		.section	.bss.DbgWritableSampleHistory,"aw",%nobits
+ 1145              		.align	2
+ 1146              		.set	.LANCHOR13,. + 0
+ 1149              	DbgWritableSampleHistory:
+ 1150 0000 00000000 		.space	1024
+ 1150      00000000 
+ 1150      00000000 
+ 1150      00000000 
+ 1150      00000000 
+ 1151              		.section	.bss.all_ready,"aw",%nobits
+ 1152              		.align	2
+ 1153              		.set	.LANCHOR3,. + 0
+ 1156              	all_ready:
+ 1157 0000 00000000 		.space	4
+ 1158              		.section	.bss.fnsof,"aw",%nobits
+ 1159              		.align	2
+ 1160              		.set	.LANCHOR17,. + 0
+ 1163              	fnsof:
+ 1164 0000 00000000 		.space	4
+ 1165              		.section	.bss.is_playing,"aw",%nobits
+ 1166              		.align	2
+ 1167              		.set	.LANCHOR4,. + 0
+ 1170              	is_playing:
+ 1171 0000 00000000 		.space	4
+ 1172              		.section	.bss.sof_count.1,"aw",%nobits
+ 1173              		.align	2
+ 1174              		.set	.LANCHOR12,. + 0
+ 1177              	sof_count.1:
+ 1178 0000 00000000 		.space	4
+ 1179              		.section	.bss.tmpbuf.0,"aw",%nobits
+ 1180              		.align	2
+ARM GAS  /tmp/ccCmdqeQ.s 			page 21
+
+
+ 1181              		.set	.LANCHOR18,. + 0
+ 1184              	tmpbuf.0:
+ 1185 0000 00000000 		.space	1024
+ 1185      00000000 
+ 1185      00000000 
+ 1185      00000000 
+ 1185      00000000 
+ 1186              		.section	.data.DbgMinWritableSamples,"aw"
+ 1187              		.align	2
+ 1188              		.set	.LANCHOR6,. + 0
+ 1191              	DbgMinWritableSamples:
+ 1192 0000 9F860100 		.word	99999
+ 1193              		.section	.data.USBD_AUDIO,"aw"
+ 1194              		.align	2
+ 1197              	USBD_AUDIO:
+ 1198 0000 00000000 		.word	USBD_AUDIO_Init
+ 1199 0004 00000000 		.word	USBD_AUDIO_DeInit
+ 1200 0008 00000000 		.word	USBD_AUDIO_Setup
+ 1201 000c 00000000 		.word	USBD_AUDIO_EP0_TxReady
+ 1202 0010 00000000 		.word	USBD_AUDIO_EP0_RxReady
+ 1203 0014 00000000 		.word	USBD_AUDIO_DataIn
+ 1204 0018 00000000 		.word	USBD_AUDIO_DataOut
+ 1205 001c 00000000 		.word	USBD_AUDIO_SOF
+ 1206 0020 00000000 		.word	USBD_AUDIO_IsoINIncomplete
+ 1207 0024 00000000 		.word	USBD_AUDIO_IsoOutIncomplete
+ 1208 0028 00000000 		.word	USBD_AUDIO_GetCfgDesc
+ 1209 002c 00000000 		.word	USBD_AUDIO_GetCfgDesc
+ 1210 0030 00000000 		.word	USBD_AUDIO_GetCfgDesc
+ 1211 0034 00000000 		.word	USBD_AUDIO_GetDeviceQualifierDesc
+ 1212              		.section	.data.USBD_AUDIO_CfgDesc,"aw"
+ 1213              		.align	2
+ 1214              		.set	.LANCHOR0,. + 0
+ 1217              	USBD_AUDIO_CfgDesc:
+ 1218 0000 09027C00 		.ascii	"\011\002|\000\002\001\000\2002\011\004\000\000\000\001"
+ 1218      02010080 
+ 1218      32090400 
+ 1218      000001
+ 1219 000f 01000009 		.ascii	"\001\000\000\011$\001\000\001'\000\001\001\014$\002"
+ 1219      24010001 
+ 1219      27000101 
+ 1219      0C2402
+ 1220 001e 01010100 		.ascii	"\001\001\001\000\002\003\000\000\000\011$\006\002\001"
+ 1220      02030000 
+ 1220      00092406 
+ 1220      0201
+ 1221 002c 01030000 		.ascii	"\001\003\000\000\011$\003\003\001\003\000\002\000\011"
+ 1221      09240303 
+ 1221      01030002 
+ 1221      0009
+ 1222 003a 04010000 		.ascii	"\004\001\000\000\001\002\000\000\011\004\001\001\002"
+ 1222      01020000 
+ 1222      09040101 
+ 1222      02
+ 1223 0047 01020000 		.ascii	"\001\002\000\000\007$\001\001\001\001\000\021$\002\001"
+ 1223      07240101 
+ 1223      01010011 
+ 1223      240201
+ARM GAS  /tmp/ccCmdqeQ.s 			page 22
+
+
+ 1224 0056 02031803 		.ascii	"\002\003\030\003D\254\000\200\273\000\000w\001\011\005"
+ 1224      44AC0080 
+ 1224      BB000077 
+ 1224      010905
+ 1225 0065 01054602 		.ascii	"\001\005F\002\001\000\201\007%\001\001\000\000\000\011"
+ 1225      01008107 
+ 1225      25010100 
+ 1225      000009
+ 1226 0074 05811103 		.ascii	"\005\201\021\003\000\001\002\000"
+ 1226      00010200 
+ 1227              		.section	.data.USBD_AUDIO_DeviceQualifierDesc,"aw"
+ 1228              		.align	2
+ 1229              		.set	.LANCHOR2,. + 0
+ 1232              	USBD_AUDIO_DeviceQualifierDesc:
+ 1233 0000 0A060002 		.ascii	"\012\006\000\002\000\000\000@\001\000"
+ 1233      00000040 
+ 1233      0100
+ 1234              		.section	.data.audio_buf_writable_samples_last,"aw"
+ 1235              		.align	2
+ 1236              		.set	.LANCHOR5,. + 0
+ 1239              	audio_buf_writable_samples_last:
+ 1240 0000 84010000 		.word	388
+ 1241              		.section	.data.fb_data,"aw"
+ 1242              		.align	2
+ 1243              		.set	.LANCHOR16,. + 0
+ 1246              	fb_data:
+ 1247 0000 ED0018   		.ascii	"\355\000\030"
+ 1248              		.section	.data.fb_nom,"aw"
+ 1249              		.align	2
+ 1250              		.set	.LANCHOR11,. + 0
+ 1253              	fb_nom:
+ 1254 0000 70ED0018 		.word	402713968
+ 1255              		.section	.data.fb_value,"aw"
+ 1256              		.align	2
+ 1257              		.set	.LANCHOR10,. + 0
+ 1260              	fb_value:
+ 1261 0000 70ED0018 		.word	402713968
+ 1262              		.section	.data.tx_flag,"aw"
+ 1263              		.align	2
+ 1264              		.set	.LANCHOR1,. + 0
+ 1267              	tx_flag:
+ 1268 0000 01000000 		.word	1
+ 1269              		.ident	"GCC: (15:10.3-2021.07-4) 10.3.1 20210621 (release)"
+ARM GAS  /tmp/ccCmdqeQ.s 			page 23
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 usbd_audio.c
+     /tmp/ccCmdqeQ.s:16     .text.USBD_AUDIO_GetCfgDesc:0000000000000000 $t
+     /tmp/ccCmdqeQ.s:24     .text.USBD_AUDIO_GetCfgDesc:0000000000000000 USBD_AUDIO_GetCfgDesc
+     /tmp/ccCmdqeQ.s:35     .text.USBD_AUDIO_GetCfgDesc:0000000000000008 $d
+     /tmp/ccCmdqeQ.s:38     .text.USBD_AUDIO_DataIn:0000000000000000 $t
+     /tmp/ccCmdqeQ.s:45     .text.USBD_AUDIO_DataIn:0000000000000000 USBD_AUDIO_DataIn
+     /tmp/ccCmdqeQ.s:60     .text.USBD_AUDIO_DataIn:0000000000000010 $d
+     /tmp/ccCmdqeQ.s:63     .text.USBD_AUDIO_IsoOutIncomplete:0000000000000000 $t
+     /tmp/ccCmdqeQ.s:70     .text.USBD_AUDIO_IsoOutIncomplete:0000000000000000 USBD_AUDIO_IsoOutIncomplete
+     /tmp/ccCmdqeQ.s:78     .text.USBD_AUDIO_EP0_TxReady:0000000000000000 $t
+     /tmp/ccCmdqeQ.s:85     .text.USBD_AUDIO_EP0_TxReady:0000000000000000 USBD_AUDIO_EP0_TxReady
+     /tmp/ccCmdqeQ.s:93     .text.USBD_AUDIO_GetDeviceQualifierDesc:0000000000000000 $t
+     /tmp/ccCmdqeQ.s:100    .text.USBD_AUDIO_GetDeviceQualifierDesc:0000000000000000 USBD_AUDIO_GetDeviceQualifierDesc
+     /tmp/ccCmdqeQ.s:111    .text.USBD_AUDIO_GetDeviceQualifierDesc:0000000000000008 $d
+     /tmp/ccCmdqeQ.s:114    .text.AUDIO_OUT_StopAndReset:0000000000000000 $t
+     /tmp/ccCmdqeQ.s:121    .text.AUDIO_OUT_StopAndReset:0000000000000000 AUDIO_OUT_StopAndReset
+     /tmp/ccCmdqeQ.s:164    .text.AUDIO_OUT_StopAndReset:0000000000000070 $d
+     /tmp/ccCmdqeQ.s:175    .text.AUDIO_OUT_Restart:0000000000000000 $t
+     /tmp/ccCmdqeQ.s:182    .text.AUDIO_OUT_Restart:0000000000000000 AUDIO_OUT_Restart
+     /tmp/ccCmdqeQ.s:235    .text.AUDIO_OUT_Restart:000000000000006c $d
+     /tmp/ccCmdqeQ.s:242    .text.USBD_AUDIO_EP0_RxReady:0000000000000000 $t
+     /tmp/ccCmdqeQ.s:249    .text.USBD_AUDIO_EP0_RxReady:0000000000000000 USBD_AUDIO_EP0_RxReady
+     /tmp/ccCmdqeQ.s:319    .text.USBD_AUDIO_EP0_RxReady:00000000000000a8 $d
+     /tmp/ccCmdqeQ.s:323    .text.USBD_AUDIO_SOF:0000000000000000 $t
+     /tmp/ccCmdqeQ.s:330    .text.USBD_AUDIO_SOF:0000000000000000 USBD_AUDIO_SOF
+     /tmp/ccCmdqeQ.s:490    .text.USBD_AUDIO_SOF:000000000000015c $d
+     /tmp/ccCmdqeQ.s:509    .text.USBD_AUDIO_DataOut:0000000000000000 $t
+     /tmp/ccCmdqeQ.s:516    .text.USBD_AUDIO_DataOut:0000000000000000 USBD_AUDIO_DataOut
+     /tmp/ccCmdqeQ.s:668    .text.USBD_AUDIO_DataOut:000000000000018c $d
+     /tmp/ccCmdqeQ.s:676    .text.USBD_AUDIO_Setup:0000000000000000 $t
+     /tmp/ccCmdqeQ.s:683    .text.USBD_AUDIO_Setup:0000000000000000 USBD_AUDIO_Setup
+     /tmp/ccCmdqeQ.s:710    .text.USBD_AUDIO_Setup:000000000000003a $d
+     /tmp/ccCmdqeQ.s:714    .text.USBD_AUDIO_Setup:000000000000003e $t
+     /tmp/ccCmdqeQ.s:737    .text.USBD_AUDIO_Setup:0000000000000068 $d
+     /tmp/ccCmdqeQ.s:749    .text.USBD_AUDIO_Setup:0000000000000098 $t
+     /tmp/ccCmdqeQ.s:910    .text.USBD_AUDIO_Setup:0000000000000214 $d
+     /tmp/ccCmdqeQ.s:913    .text.USBD_AUDIO_DeInit:0000000000000000 $t
+     /tmp/ccCmdqeQ.s:920    .text.USBD_AUDIO_DeInit:0000000000000000 USBD_AUDIO_DeInit
+     /tmp/ccCmdqeQ.s:956    .text.USBD_AUDIO_DeInit:0000000000000050 $d
+     /tmp/ccCmdqeQ.s:959    .text.USBD_AUDIO_Init:0000000000000000 $t
+     /tmp/ccCmdqeQ.s:966    .text.USBD_AUDIO_Init:0000000000000000 USBD_AUDIO_Init
+     /tmp/ccCmdqeQ.s:1020   .text.USBD_AUDIO_Init:0000000000000084 $d
+     /tmp/ccCmdqeQ.s:1025   .text.USBD_AUDIO_IsoINIncomplete:0000000000000000 $t
+     /tmp/ccCmdqeQ.s:1032   .text.USBD_AUDIO_IsoINIncomplete:0000000000000000 USBD_AUDIO_IsoINIncomplete
+     /tmp/ccCmdqeQ.s:1057   .text.USBD_AUDIO_IsoINIncomplete:0000000000000028 $d
+     /tmp/ccCmdqeQ.s:1062   .text.USBD_AUDIO_Sync:0000000000000000 $t
+     /tmp/ccCmdqeQ.s:1070   .text.USBD_AUDIO_Sync:0000000000000000 USBD_AUDIO_Sync
+     /tmp/ccCmdqeQ.s:1077   .text.USBD_AUDIO_RegisterInterface:0000000000000000 $t
+     /tmp/ccCmdqeQ.s:1085   .text.USBD_AUDIO_RegisterInterface:0000000000000000 USBD_AUDIO_RegisterInterface
+     /tmp/ccCmdqeQ.s:1121   .bss.DbgIndex:0000000000000000 DbgIndex
+     /tmp/ccCmdqeQ.s:1115   .bss.DbgFeedbackHistory:0000000000000000 DbgFeedbackHistory
+     /tmp/ccCmdqeQ.s:1149   .bss.DbgWritableSampleHistory:0000000000000000 DbgWritableSampleHistory
+     /tmp/ccCmdqeQ.s:1142   .bss.DbgSofHistory:0000000000000000 DbgSofHistory
+     /tmp/ccCmdqeQ.s:1128   .bss.DbgMaxWritableSamples:0000000000000000 DbgMaxWritableSamples
+     /tmp/ccCmdqeQ.s:1191   .data.DbgMinWritableSamples:0000000000000000 DbgMinWritableSamples
+     /tmp/ccCmdqeQ.s:1163   .bss.fnsof:0000000000000000 fnsof
+ARM GAS  /tmp/ccCmdqeQ.s 			page 24
+
+
+     /tmp/ccCmdqeQ.s:1246   .data.fb_data:0000000000000000 fb_data
+     /tmp/ccCmdqeQ.s:1239   .data.audio_buf_writable_samples_last:0000000000000000 audio_buf_writable_samples_last
+     /tmp/ccCmdqeQ.s:1260   .data.fb_value:0000000000000000 fb_value
+     /tmp/ccCmdqeQ.s:1253   .data.fb_nom:0000000000000000 fb_nom
+     /tmp/ccCmdqeQ.s:1156   .bss.all_ready:0000000000000000 all_ready
+     /tmp/ccCmdqeQ.s:1170   .bss.is_playing:0000000000000000 is_playing
+     /tmp/ccCmdqeQ.s:1267   .data.tx_flag:0000000000000000 tx_flag
+     /tmp/ccCmdqeQ.s:1197   .data.USBD_AUDIO:0000000000000000 USBD_AUDIO
+     /tmp/ccCmdqeQ.s:1111   .bss.DbgFeedbackHistory:0000000000000000 $d
+     /tmp/ccCmdqeQ.s:1122   .bss.DbgIndex:0000000000000000 $d
+     /tmp/ccCmdqeQ.s:1124   .bss.DbgMaxWritableSamples:0000000000000000 $d
+     /tmp/ccCmdqeQ.s:1131   .bss.DbgSofCounter:0000000000000000 $d
+     /tmp/ccCmdqeQ.s:1135   .bss.DbgSofCounter:0000000000000000 DbgSofCounter
+     /tmp/ccCmdqeQ.s:1138   .bss.DbgSofHistory:0000000000000000 $d
+     /tmp/ccCmdqeQ.s:1145   .bss.DbgWritableSampleHistory:0000000000000000 $d
+     /tmp/ccCmdqeQ.s:1152   .bss.all_ready:0000000000000000 $d
+     /tmp/ccCmdqeQ.s:1159   .bss.fnsof:0000000000000000 $d
+     /tmp/ccCmdqeQ.s:1166   .bss.is_playing:0000000000000000 $d
+     /tmp/ccCmdqeQ.s:1173   .bss.sof_count.1:0000000000000000 $d
+     /tmp/ccCmdqeQ.s:1177   .bss.sof_count.1:0000000000000000 sof_count.1
+     /tmp/ccCmdqeQ.s:1180   .bss.tmpbuf.0:0000000000000000 $d
+     /tmp/ccCmdqeQ.s:1184   .bss.tmpbuf.0:0000000000000000 tmpbuf.0
+     /tmp/ccCmdqeQ.s:1187   .data.DbgMinWritableSamples:0000000000000000 $d
+     /tmp/ccCmdqeQ.s:1194   .data.USBD_AUDIO:0000000000000000 $d
+     /tmp/ccCmdqeQ.s:1213   .data.USBD_AUDIO_CfgDesc:0000000000000000 $d
+     /tmp/ccCmdqeQ.s:1217   .data.USBD_AUDIO_CfgDesc:0000000000000000 USBD_AUDIO_CfgDesc
+     /tmp/ccCmdqeQ.s:1228   .data.USBD_AUDIO_DeviceQualifierDesc:0000000000000000 $d
+     /tmp/ccCmdqeQ.s:1232   .data.USBD_AUDIO_DeviceQualifierDesc:0000000000000000 USBD_AUDIO_DeviceQualifierDesc
+     /tmp/ccCmdqeQ.s:1235   .data.audio_buf_writable_samples_last:0000000000000000 $d
+     /tmp/ccCmdqeQ.s:1242   .data.fb_data:0000000000000000 $d
+     /tmp/ccCmdqeQ.s:1249   .data.fb_nom:0000000000000000 $d
+     /tmp/ccCmdqeQ.s:1256   .data.fb_value:0000000000000000 $d
+     /tmp/ccCmdqeQ.s:1263   .data.tx_flag:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+USBD_LL_FlushEP
+I2S_Clk_Config24
+BSP_AUDIO_OUT_GetRemainingDataSize
+BSP_OnboardLED_Off
+USBD_LL_Transmit
+BSP_OnboardLED_On
+USBD_GetRxCount
+USBD_LL_PrepareReceive
+USBD_CtlError
+USBD_CtlSendData
+USBD_CtlPrepareRx
+USBD_LL_CloseEP
+free
+USBD_LL_OpenEP
+malloc

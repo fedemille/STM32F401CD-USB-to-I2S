@@ -1,0 +1,248 @@
+ARM GAS  /tmp/cczSyUkQ.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"usbd_audio_if.c"
+  14              		.text
+  15              		.section	.text.Audio_VolumeCtl,"ax",%progbits
+  16              		.align	1
+  17              		.p2align 2,,3
+  18              		.arch armv7e-m
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu fpv4-sp-d16
+  24              	Audio_VolumeCtl:
+  25              		@ args = 0, pretend = 0, frame = 0
+  26              		@ frame_needed = 0, uses_anonymous_args = 0
+  27              		@ link register save eliminated.
+  28 0000 0020     		movs	r0, #0
+  29 0002 7047     		bx	lr
+  31              		.section	.text.Audio_PeriodicTC,"ax",%progbits
+  32              		.align	1
+  33              		.p2align 2,,3
+  34              		.syntax unified
+  35              		.thumb
+  36              		.thumb_func
+  37              		.fpu fpv4-sp-d16
+  39              	Audio_PeriodicTC:
+  40              		@ args = 0, pretend = 0, frame = 0
+  41              		@ frame_needed = 0, uses_anonymous_args = 0
+  42              		@ link register save eliminated.
+  43 0000 0020     		movs	r0, #0
+  44 0002 7047     		bx	lr
+  46              		.section	.text.Audio_GetState,"ax",%progbits
+  47              		.align	1
+  48              		.p2align 2,,3
+  49              		.syntax unified
+  50              		.thumb
+  51              		.thumb_func
+  52              		.fpu fpv4-sp-d16
+  54              	Audio_GetState:
+  55              		@ args = 0, pretend = 0, frame = 0
+  56              		@ frame_needed = 0, uses_anonymous_args = 0
+  57              		@ link register save eliminated.
+  58 0000 0020     		movs	r0, #0
+  59 0002 7047     		bx	lr
+  61              		.section	.text.Audio_MuteCtl,"ax",%progbits
+  62              		.align	1
+  63              		.p2align 2,,3
+ARM GAS  /tmp/cczSyUkQ.s 			page 2
+
+
+  64              		.syntax unified
+  65              		.thumb
+  66              		.thumb_func
+  67              		.fpu fpv4-sp-d16
+  69              	Audio_MuteCtl:
+  70              		@ args = 0, pretend = 0, frame = 0
+  71              		@ frame_needed = 0, uses_anonymous_args = 0
+  72 0000 08B5     		push	{r3, lr}
+  73 0002 FFF7FEFF 		bl	BSP_AUDIO_OUT_SetMute
+  74 0006 0020     		movs	r0, #0
+  75 0008 08BD     		pop	{r3, pc}
+  77 000a 00BF     		.section	.text.Audio_PlaybackCmd,"ax",%progbits
+  78              		.align	1
+  79              		.p2align 2,,3
+  80              		.syntax unified
+  81              		.thumb
+  82              		.thumb_func
+  83              		.fpu fpv4-sp-d16
+  85              	Audio_PlaybackCmd:
+  86              		@ args = 0, pretend = 0, frame = 0
+  87              		@ frame_needed = 0, uses_anonymous_args = 0
+  88 0000 012A     		cmp	r2, #1
+  89 0002 10B5     		push	{r4, lr}
+  90 0004 1446     		mov	r4, r2
+  91 0006 09D0     		beq	.L8
+  92 0008 022A     		cmp	r2, #2
+  93 000a 05D1     		bne	.L10
+  94 000c 89B2     		uxth	r1, r1
+  95 000e FFF7FEFF 		bl	BSP_AUDIO_OUT_ChangeBuffer
+  96 0012 054B     		ldr	r3, .L12
+  97 0014 0122     		movs	r2, #1
+  98 0016 1A60     		str	r2, [r3]
+  99              	.L10:
+ 100 0018 0020     		movs	r0, #0
+ 101 001a 10BD     		pop	{r4, pc}
+ 102              	.L8:
+ 103 001c FFF7FEFF 		bl	BSP_AUDIO_OUT_Play
+ 104 0020 014B     		ldr	r3, .L12
+ 105 0022 0020     		movs	r0, #0
+ 106 0024 1C60     		str	r4, [r3]
+ 107 0026 10BD     		pop	{r4, pc}
+ 108              	.L13:
+ 109              		.align	2
+ 110              	.L12:
+ 111 0028 00000000 		.word	audio_status
+ 113              		.section	.text.Audio_DeInit,"ax",%progbits
+ 114              		.align	1
+ 115              		.p2align 2,,3
+ 116              		.syntax unified
+ 117              		.thumb
+ 118              		.thumb_func
+ 119              		.fpu fpv4-sp-d16
+ 121              	Audio_DeInit:
+ 122              		@ args = 0, pretend = 0, frame = 0
+ 123              		@ frame_needed = 0, uses_anonymous_args = 0
+ 124 0000 10B5     		push	{r4, lr}
+ 125 0002 034B     		ldr	r3, .L16
+ARM GAS  /tmp/cczSyUkQ.s 			page 3
+
+
+ 126 0004 0024     		movs	r4, #0
+ 127 0006 1C60     		str	r4, [r3]
+ 128 0008 FFF7FEFF 		bl	BSP_AUDIO_OUT_Stop
+ 129 000c 2046     		mov	r0, r4
+ 130 000e 10BD     		pop	{r4, pc}
+ 131              	.L17:
+ 132              		.align	2
+ 133              	.L16:
+ 134 0010 00000000 		.word	audio_status
+ 136              		.section	.text.Audio_Init,"ax",%progbits
+ 137              		.align	1
+ 138              		.p2align 2,,3
+ 139              		.syntax unified
+ 140              		.thumb
+ 141              		.thumb_func
+ 142              		.fpu fpv4-sp-d16
+ 144              	Audio_Init:
+ 145              		@ args = 0, pretend = 0, frame = 0
+ 146              		@ frame_needed = 0, uses_anonymous_args = 0
+ 147 0000 10B5     		push	{r4, lr}
+ 148 0002 0346     		mov	r3, r0
+ 149 0004 034C     		ldr	r4, .L20
+ 150 0006 0846     		mov	r0, r1
+ 151 0008 1946     		mov	r1, r3
+ 152 000a 6360     		str	r3, [r4, #4]
+ 153 000c FFF7FEFF 		bl	BSP_AUDIO_OUT_Init
+ 154 0010 0020     		movs	r0, #0
+ 155 0012 10BD     		pop	{r4, pc}
+ 156              	.L21:
+ 157              		.align	2
+ 158              	.L20:
+ 159 0014 00000000 		.word	audio_status
+ 161              		.section	.text.BSP_AUDIO_OUT_TransferComplete_CallBack,"ax",%progbits
+ 162              		.align	1
+ 163              		.p2align 2,,3
+ 164              		.global	BSP_AUDIO_OUT_TransferComplete_CallBack
+ 165              		.syntax unified
+ 166              		.thumb
+ 167              		.thumb_func
+ 168              		.fpu fpv4-sp-d16
+ 170              	BSP_AUDIO_OUT_TransferComplete_CallBack:
+ 171              		@ args = 0, pretend = 0, frame = 0
+ 172              		@ frame_needed = 0, uses_anonymous_args = 0
+ 173              		@ link register save eliminated.
+ 174 0000 0148     		ldr	r0, .L23
+ 175 0002 0221     		movs	r1, #2
+ 176 0004 FFF7FEBF 		b	USBD_AUDIO_Sync
+ 177              	.L24:
+ 178              		.align	2
+ 179              	.L23:
+ 180 0008 00000000 		.word	USBD_Device
+ 182              		.section	.text.BSP_AUDIO_OUT_HalfTransfer_CallBack,"ax",%progbits
+ 183              		.align	1
+ 184              		.p2align 2,,3
+ 185              		.global	BSP_AUDIO_OUT_HalfTransfer_CallBack
+ 186              		.syntax unified
+ 187              		.thumb
+ARM GAS  /tmp/cczSyUkQ.s 			page 4
+
+
+ 188              		.thumb_func
+ 189              		.fpu fpv4-sp-d16
+ 191              	BSP_AUDIO_OUT_HalfTransfer_CallBack:
+ 192              		@ args = 0, pretend = 0, frame = 0
+ 193              		@ frame_needed = 0, uses_anonymous_args = 0
+ 194              		@ link register save eliminated.
+ 195 0000 0148     		ldr	r0, .L26
+ 196 0002 0121     		movs	r1, #1
+ 197 0004 FFF7FEBF 		b	USBD_AUDIO_Sync
+ 198              	.L27:
+ 199              		.align	2
+ 200              	.L26:
+ 201 0008 00000000 		.word	USBD_Device
+ 203              		.global	USBD_AUDIO_fops
+ 204              		.section	.data.USBD_AUDIO_fops,"aw"
+ 205              		.align	2
+ 208              	USBD_AUDIO_fops:
+ 209 0000 00000000 		.word	Audio_Init
+ 210 0004 00000000 		.word	Audio_DeInit
+ 211 0008 00000000 		.word	Audio_PlaybackCmd
+ 212 000c 00000000 		.word	Audio_VolumeCtl
+ 213 0010 00000000 		.word	Audio_MuteCtl
+ 214 0014 00000000 		.word	Audio_PeriodicTC
+ 215 0018 00000000 		.word	Audio_GetState
+ 216              		.ident	"GCC: (15:10.3-2021.07-4) 10.3.1 20210621 (release)"
+ARM GAS  /tmp/cczSyUkQ.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 usbd_audio_if.c
+     /tmp/cczSyUkQ.s:16     .text.Audio_VolumeCtl:0000000000000000 $t
+     /tmp/cczSyUkQ.s:24     .text.Audio_VolumeCtl:0000000000000000 Audio_VolumeCtl
+     /tmp/cczSyUkQ.s:32     .text.Audio_PeriodicTC:0000000000000000 $t
+     /tmp/cczSyUkQ.s:39     .text.Audio_PeriodicTC:0000000000000000 Audio_PeriodicTC
+     /tmp/cczSyUkQ.s:47     .text.Audio_GetState:0000000000000000 $t
+     /tmp/cczSyUkQ.s:54     .text.Audio_GetState:0000000000000000 Audio_GetState
+     /tmp/cczSyUkQ.s:62     .text.Audio_MuteCtl:0000000000000000 $t
+     /tmp/cczSyUkQ.s:69     .text.Audio_MuteCtl:0000000000000000 Audio_MuteCtl
+     /tmp/cczSyUkQ.s:78     .text.Audio_PlaybackCmd:0000000000000000 $t
+     /tmp/cczSyUkQ.s:85     .text.Audio_PlaybackCmd:0000000000000000 Audio_PlaybackCmd
+     /tmp/cczSyUkQ.s:111    .text.Audio_PlaybackCmd:0000000000000028 $d
+     /tmp/cczSyUkQ.s:114    .text.Audio_DeInit:0000000000000000 $t
+     /tmp/cczSyUkQ.s:121    .text.Audio_DeInit:0000000000000000 Audio_DeInit
+     /tmp/cczSyUkQ.s:134    .text.Audio_DeInit:0000000000000010 $d
+     /tmp/cczSyUkQ.s:137    .text.Audio_Init:0000000000000000 $t
+     /tmp/cczSyUkQ.s:144    .text.Audio_Init:0000000000000000 Audio_Init
+     /tmp/cczSyUkQ.s:159    .text.Audio_Init:0000000000000014 $d
+     /tmp/cczSyUkQ.s:162    .text.BSP_AUDIO_OUT_TransferComplete_CallBack:0000000000000000 $t
+     /tmp/cczSyUkQ.s:170    .text.BSP_AUDIO_OUT_TransferComplete_CallBack:0000000000000000 BSP_AUDIO_OUT_TransferComplete_CallBack
+     /tmp/cczSyUkQ.s:180    .text.BSP_AUDIO_OUT_TransferComplete_CallBack:0000000000000008 $d
+     /tmp/cczSyUkQ.s:183    .text.BSP_AUDIO_OUT_HalfTransfer_CallBack:0000000000000000 $t
+     /tmp/cczSyUkQ.s:191    .text.BSP_AUDIO_OUT_HalfTransfer_CallBack:0000000000000000 BSP_AUDIO_OUT_HalfTransfer_CallBack
+     /tmp/cczSyUkQ.s:201    .text.BSP_AUDIO_OUT_HalfTransfer_CallBack:0000000000000008 $d
+     /tmp/cczSyUkQ.s:208    .data.USBD_AUDIO_fops:0000000000000000 USBD_AUDIO_fops
+     /tmp/cczSyUkQ.s:205    .data.USBD_AUDIO_fops:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+BSP_AUDIO_OUT_SetMute
+BSP_AUDIO_OUT_ChangeBuffer
+BSP_AUDIO_OUT_Play
+audio_status
+BSP_AUDIO_OUT_Stop
+BSP_AUDIO_OUT_Init
+USBD_AUDIO_Sync
+USBD_Device

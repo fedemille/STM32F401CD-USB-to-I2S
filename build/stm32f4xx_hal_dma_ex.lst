@@ -1,0 +1,645 @@
+ARM GAS  /tmp/cc3MkKrG.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32f4xx_hal_dma_ex.c"
+  14              		.text
+  15              		.section	.rodata.HAL_DMAEx_MultiBufferStart.str1.4,"aMS",%progbits,1
+  16              		.align	2
+  17              	.LC0:
+  18 0000 64726976 		.ascii	"drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_"
+  18      6572732F 
+  18      53544D33 
+  18      32463478 
+  18      785F4841 
+  19 0033 65782E63 		.ascii	"ex.c\000"
+  19      00
+  20              		.section	.text.HAL_DMAEx_MultiBufferStart,"ax",%progbits
+  21              		.align	1
+  22              		.p2align 2,,3
+  23              		.global	HAL_DMAEx_MultiBufferStart
+  24              		.arch armv7e-m
+  25              		.syntax unified
+  26              		.thumb
+  27              		.thumb_func
+  28              		.fpu fpv4-sp-d16
+  30              	HAL_DMAEx_MultiBufferStart:
+  31              		@ args = 4, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+  34 0004 089F     		ldr	r7, [sp, #32]
+  35 0006 0446     		mov	r4, r0
+  36 0008 7D1E     		subs	r5, r7, #1
+  37 000a 4FF6FE70 		movw	r0, #65534
+  38 000e 8542     		cmp	r5, r0
+  39 0010 8846     		mov	r8, r1
+  40 0012 9146     		mov	r9, r2
+  41 0014 1E46     		mov	r6, r3
+  42 0016 31D8     		bhi	.L11
+  43              	.L2:
+  44 0018 A068     		ldr	r0, [r4, #8]
+  45 001a 8028     		cmp	r0, #128
+  46 001c 28D0     		beq	.L12
+  47 001e 94F83430 		ldrb	r3, [r4, #52]	@ zero_extendqisi2
+  48 0022 012B     		cmp	r3, #1
+  49 0024 06D0     		beq	.L6
+  50 0026 94F83530 		ldrb	r3, [r4, #53]	@ zero_extendqisi2
+  51 002a 0122     		movs	r2, #1
+  52 002c 9342     		cmp	r3, r2
+  53 002e 84F83420 		strb	r2, [r4, #52]
+ARM GAS  /tmp/cc3MkKrG.s 			page 2
+
+
+  54 0032 02D0     		beq	.L13
+  55              	.L6:
+  56 0034 0220     		movs	r0, #2
+  57 0036 BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+  58              	.L13:
+  59 003a 2568     		ldr	r5, [r4]
+  60 003c 0223     		movs	r3, #2
+  61 003e 84F83530 		strb	r3, [r4, #53]
+  62 0042 2B68     		ldr	r3, [r5]
+  63 0044 4028     		cmp	r0, #64
+  64 0046 43F48023 		orr	r3, r3, #262144
+  65 004a 2B60     		str	r3, [r5]
+  66 004c 2E61     		str	r6, [r5, #16]
+  67 004e 6F60     		str	r7, [r5, #4]
+  68 0050 0BBF     		itete	eq
+  69 0052 C5F80890 		streq	r9, [r5, #8]
+  70 0056 C5F80880 		strne	r8, [r5, #8]
+  71 005a C5F80C80 		streq	r8, [r5, #12]
+  72 005e C5F80C90 		strne	r9, [r5, #12]
+  73 0062 2B68     		ldr	r3, [r5]
+  74 0064 43F00103 		orr	r3, r3, #1
+  75 0068 0020     		movs	r0, #0
+  76 006a 2B60     		str	r3, [r5]
+  77 006c BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+  78              	.L12:
+  79 0070 4FF48073 		mov	r3, #256
+  80 0074 6365     		str	r3, [r4, #84]
+  81 0076 0120     		movs	r0, #1
+  82 0078 BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+  83              	.L11:
+  84 007c 0248     		ldr	r0, .L14
+  85 007e 6A21     		movs	r1, #106
+  86 0080 FFF7FEFF 		bl	assert_failed
+  87 0084 C8E7     		b	.L2
+  88              	.L15:
+  89 0086 00BF     		.align	2
+  90              	.L14:
+  91 0088 00000000 		.word	.LC0
+  93              		.section	.text.HAL_DMAEx_MultiBufferStart_IT,"ax",%progbits
+  94              		.align	1
+  95              		.p2align 2,,3
+  96              		.global	HAL_DMAEx_MultiBufferStart_IT
+  97              		.syntax unified
+  98              		.thumb
+  99              		.thumb_func
+ 100              		.fpu fpv4-sp-d16
+ 102              	HAL_DMAEx_MultiBufferStart_IT:
+ 103              		@ args = 4, pretend = 0, frame = 0
+ 104              		@ frame_needed = 0, uses_anonymous_args = 0
+ 105 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+ 106 0004 089E     		ldr	r6, [sp, #32]
+ 107 0006 0446     		mov	r4, r0
+ 108 0008 751E     		subs	r5, r6, #1
+ 109 000a 4FF6FE70 		movw	r0, #65534
+ 110 000e 8542     		cmp	r5, r0
+ 111 0010 8846     		mov	r8, r1
+ 112 0012 9146     		mov	r9, r2
+ARM GAS  /tmp/cc3MkKrG.s 			page 3
+
+
+ 113 0014 1F46     		mov	r7, r3
+ 114 0016 1FD8     		bhi	.L103
+ 115 0018 A068     		ldr	r0, [r4, #8]
+ 116 001a 8028     		cmp	r0, #128
+ 117 001c 23D0     		beq	.L104
+ 118              	.L18:
+ 119 001e E36B     		ldr	r3, [r4, #60]
+ 120 0020 ABB1     		cbz	r3, .L20
+ 121 0022 636C     		ldr	r3, [r4, #68]
+ 122 0024 9BB1     		cbz	r3, .L20
+ 123 0026 E36C     		ldr	r3, [r4, #76]
+ 124 0028 8BB1     		cbz	r3, .L20
+ 125 002a 94F83430 		ldrb	r3, [r4, #52]	@ zero_extendqisi2
+ 126 002e 012B     		cmp	r3, #1
+ 127 0030 00F0FA80 		beq	.L87
+ 128 0034 94F83530 		ldrb	r3, [r4, #53]	@ zero_extendqisi2
+ 129 0038 0122     		movs	r2, #1
+ 130 003a 9342     		cmp	r3, r2
+ 131 003c 84F83420 		strb	r2, [r4, #52]
+ 132 0040 17D0     		beq	.L105
+ 133 0042 0023     		movs	r3, #0
+ 134 0044 84F83430 		strb	r3, [r4, #52]
+ 135 0048 0220     		movs	r0, #2
+ 136 004a BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 137              	.L20:
+ 138 004e 4023     		movs	r3, #64
+ 139 0050 6365     		str	r3, [r4, #84]
+ 140 0052 0120     		movs	r0, #1
+ 141              	.L97:
+ 142 0054 BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 143              	.L103:
+ 144 0058 9E48     		ldr	r0, .L108
+ 145 005a A021     		movs	r1, #160
+ 146 005c FFF7FEFF 		bl	assert_failed
+ 147 0060 A068     		ldr	r0, [r4, #8]
+ 148 0062 8028     		cmp	r0, #128
+ 149 0064 DBD1     		bne	.L18
+ 150              	.L104:
+ 151 0066 4FF48073 		mov	r3, #256
+ 152 006a 6365     		str	r3, [r4, #84]
+ 153 006c 0120     		movs	r0, #1
+ 154 006e BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 155              	.L105:
+ 156 0072 0223     		movs	r3, #2
+ 157 0074 84F83530 		strb	r3, [r4, #53]
+ 158 0078 2568     		ldr	r5, [r4]
+ 159 007a 0023     		movs	r3, #0
+ 160 007c 6365     		str	r3, [r4, #84]
+ 161 007e 2B68     		ldr	r3, [r5]
+ 162 0080 43F48023 		orr	r3, r3, #262144
+ 163 0084 2B60     		str	r3, [r5]
+ 164 0086 944B     		ldr	r3, .L108+4
+ 165 0088 2F61     		str	r7, [r5, #16]
+ 166 008a 4028     		cmp	r0, #64
+ 167 008c 6E60     		str	r6, [r5, #4]
+ 168 008e 0BBF     		itete	eq
+ 169 0090 C5F80890 		streq	r9, [r5, #8]
+ARM GAS  /tmp/cc3MkKrG.s 			page 4
+
+
+ 170 0094 C5F80880 		strne	r8, [r5, #8]
+ 171 0098 C5F80C80 		streq	r8, [r5, #12]
+ 172 009c C5F80C90 		strne	r9, [r5, #12]
+ 173 00a0 9D42     		cmp	r5, r3
+ 174 00a2 69D9     		bls	.L25
+ 175 00a4 A3F58963 		sub	r3, r3, #1096
+ 176 00a8 9D42     		cmp	r5, r3
+ 177 00aa 43D0     		beq	.L29
+ 178 00ac 03F58063 		add	r3, r3, #1024
+ 179 00b0 9D42     		cmp	r5, r3
+ 180 00b2 3FD0     		beq	.L29
+ 181 00b4 A3F56873 		sub	r3, r3, #928
+ 182 00b8 9D42     		cmp	r5, r3
+ 183 00ba 3BD0     		beq	.L29
+ 184 00bc 03F58063 		add	r3, r3, #1024
+ 185 00c0 9D42     		cmp	r5, r3
+ 186 00c2 37D0     		beq	.L29
+ 187 00c4 A3F58963 		sub	r3, r3, #1096
+ 188 00c8 9D42     		cmp	r5, r3
+ 189 00ca 00F06A81 		beq	.L31
+ 190 00ce 03F58063 		add	r3, r3, #1024
+ 191 00d2 9D42     		cmp	r5, r3
+ 192 00d4 00F06581 		beq	.L31
+ 193 00d8 A3F56873 		sub	r3, r3, #928
+ 194 00dc 9D42     		cmp	r5, r3
+ 195 00de 00F06081 		beq	.L31
+ 196 00e2 03F58063 		add	r3, r3, #1024
+ 197 00e6 9D42     		cmp	r5, r3
+ 198 00e8 00F05B81 		beq	.L31
+ 199 00ec A3F58963 		sub	r3, r3, #1096
+ 200 00f0 9D42     		cmp	r5, r3
+ 201 00f2 00F09281 		beq	.L35
+ 202 00f6 03F58063 		add	r3, r3, #1024
+ 203 00fa 9D42     		cmp	r5, r3
+ 204 00fc 00F08D81 		beq	.L35
+ 205 0100 A3F56873 		sub	r3, r3, #928
+ 206 0104 9D42     		cmp	r5, r3
+ 207 0106 00F08881 		beq	.L35
+ 208 010a 03F58063 		add	r3, r3, #1024
+ 209 010e 9D42     		cmp	r5, r3
+ 210 0110 00F08381 		beq	.L35
+ 211 0114 714B     		ldr	r3, .L108+8
+ 212 0116 4FF00061 		mov	r1, #134217728
+ 213 011a 4FF08062 		mov	r2, #67108864
+ 214 011e D960     		str	r1, [r3, #12]
+ 215 0120 DA60     		str	r2, [r3, #12]
+ 216 0122 4FF00071 		mov	r1, #33554432
+ 217 0126 4FF08072 		mov	r2, #16777216
+ 218 012a D960     		str	r1, [r3, #12]
+ 219 012c DA60     		str	r2, [r3, #12]
+ 220 012e 4FF48002 		mov	r2, #4194304
+ 221 0132 09E0     		b	.L83
+ 222              	.L29:
+ 223 0134 694B     		ldr	r3, .L108+8
+ 224 0136 2021     		movs	r1, #32
+ 225 0138 1022     		movs	r2, #16
+ 226 013a D960     		str	r1, [r3, #12]
+ARM GAS  /tmp/cc3MkKrG.s 			page 5
+
+
+ 227 013c DA60     		str	r2, [r3, #12]
+ 228 013e 0821     		movs	r1, #8
+ 229 0140 0422     		movs	r2, #4
+ 230 0142 D960     		str	r1, [r3, #12]
+ 231 0144 DA60     		str	r2, [r3, #12]
+ 232 0146 0122     		movs	r2, #1
+ 233              	.L83:
+ 234 0148 644B     		ldr	r3, .L108+8
+ 235 014a DA60     		str	r2, [r3, #12]
+ 236              	.L80:
+ 237 014c 2B68     		ldr	r3, [r5]
+ 238 014e 226C     		ldr	r2, [r4, #64]
+ 239 0150 43F01603 		orr	r3, r3, #22
+ 240 0154 2B60     		str	r3, [r5]
+ 241 0156 6B69     		ldr	r3, [r5, #20]
+ 242 0158 43F08003 		orr	r3, r3, #128
+ 243 015c 6B61     		str	r3, [r5, #20]
+ 244 015e 002A     		cmp	r2, #0
+ 245 0160 5ED0     		beq	.L106
+ 246              	.L81:
+ 247 0162 2B68     		ldr	r3, [r5]
+ 248 0164 43F00803 		orr	r3, r3, #8
+ 249 0168 2B60     		str	r3, [r5]
+ 250              	.L82:
+ 251 016a 2B68     		ldr	r3, [r5]
+ 252 016c 43F00103 		orr	r3, r3, #1
+ 253 0170 0020     		movs	r0, #0
+ 254 0172 2B60     		str	r3, [r5]
+ 255 0174 BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 256              	.L25:
+ 257 0178 594B     		ldr	r3, .L108+12
+ 258 017a 9D42     		cmp	r5, r3
+ 259 017c 56D8     		bhi	.L107
+ 260 017e 594B     		ldr	r3, .L108+16
+ 261 0180 9D42     		cmp	r5, r3
+ 262 0182 40F2B380 		bls	.L53
+ 263 0186 483B     		subs	r3, r3, #72
+ 264 0188 9D42     		cmp	r5, r3
+ 265 018a 00F0F480 		beq	.L57
+ 266 018e 03F58063 		add	r3, r3, #1024
+ 267 0192 9D42     		cmp	r5, r3
+ 268 0194 00F0EF80 		beq	.L57
+ 269 0198 A3F56873 		sub	r3, r3, #928
+ 270 019c 9D42     		cmp	r5, r3
+ 271 019e 00F0EA80 		beq	.L57
+ 272 01a2 03F58063 		add	r3, r3, #1024
+ 273 01a6 9D42     		cmp	r5, r3
+ 274 01a8 00F0E580 		beq	.L57
+ 275 01ac A3F58963 		sub	r3, r3, #1096
+ 276 01b0 9D42     		cmp	r5, r3
+ 277 01b2 00F02381 		beq	.L61
+ 278 01b6 03F58063 		add	r3, r3, #1024
+ 279 01ba 9D42     		cmp	r5, r3
+ 280 01bc 00F01E81 		beq	.L61
+ 281 01c0 A3F56873 		sub	r3, r3, #928
+ 282 01c4 9D42     		cmp	r5, r3
+ 283 01c6 00F01981 		beq	.L61
+ARM GAS  /tmp/cc3MkKrG.s 			page 6
+
+
+ 284 01ca 03F58063 		add	r3, r3, #1024
+ 285 01ce 9D42     		cmp	r5, r3
+ 286 01d0 00F01481 		beq	.L61
+ 287 01d4 A3F58963 		sub	r3, r3, #1096
+ 288 01d8 9D42     		cmp	r5, r3
+ 289 01da 00F04E81 		beq	.L64
+ 290 01de 03F58063 		add	r3, r3, #1024
+ 291 01e2 9D42     		cmp	r5, r3
+ 292 01e4 00F04981 		beq	.L64
+ 293 01e8 A3F56873 		sub	r3, r3, #928
+ 294 01ec 9D42     		cmp	r5, r3
+ 295 01ee 00F04481 		beq	.L64
+ 296 01f2 03F58063 		add	r3, r3, #1024
+ 297 01f6 9D42     		cmp	r5, r3
+ 298 01f8 00F03F81 		beq	.L64
+ 299 01fc 3A4B     		ldr	r3, .L108+20
+ 300 01fe 4FF00061 		mov	r1, #134217728
+ 301 0202 4FF08062 		mov	r2, #67108864
+ 302 0206 D960     		str	r1, [r3, #12]
+ 303 0208 DA60     		str	r2, [r3, #12]
+ 304 020a 4FF00071 		mov	r1, #33554432
+ 305 020e 4FF08072 		mov	r2, #16777216
+ 306 0212 D960     		str	r1, [r3, #12]
+ 307 0214 DA60     		str	r2, [r3, #12]
+ 308 0216 4FF48003 		mov	r3, #4194304
+ 309              	.L85:
+ 310 021a 334A     		ldr	r2, .L108+20
+ 311 021c D360     		str	r3, [r2, #12]
+ 312 021e 95E7     		b	.L80
+ 313              	.L106:
+ 314 0220 A36C     		ldr	r3, [r4, #72]
+ 315 0222 002B     		cmp	r3, #0
+ 316 0224 9DD1     		bne	.L81
+ 317 0226 A0E7     		b	.L82
+ 318              	.L87:
+ 319 0228 0220     		movs	r0, #2
+ 320 022a 13E7     		b	.L97
+ 321              	.L107:
+ 322 022c A83B     		subs	r3, r3, #168
+ 323 022e 9D42     		cmp	r5, r3
+ 324 0230 45D0     		beq	.L43
+ 325 0232 03F58063 		add	r3, r3, #1024
+ 326 0236 9D42     		cmp	r5, r3
+ 327 0238 41D0     		beq	.L43
+ 328 023a A3F56873 		sub	r3, r3, #928
+ 329 023e 9D42     		cmp	r5, r3
+ 330 0240 3DD0     		beq	.L43
+ 331 0242 03F58063 		add	r3, r3, #1024
+ 332 0246 9D42     		cmp	r5, r3
+ 333 0248 39D0     		beq	.L43
+ 334 024a A3F58963 		sub	r3, r3, #1096
+ 335 024e 9D42     		cmp	r5, r3
+ 336 0250 00F0B680 		beq	.L44
+ 337 0254 03F58063 		add	r3, r3, #1024
+ 338 0258 9D42     		cmp	r5, r3
+ 339 025a 00F0B180 		beq	.L44
+ 340 025e A3F56873 		sub	r3, r3, #928
+ARM GAS  /tmp/cc3MkKrG.s 			page 7
+
+
+ 341 0262 9D42     		cmp	r5, r3
+ 342 0264 00F0AC80 		beq	.L44
+ 343 0268 03F58063 		add	r3, r3, #1024
+ 344 026c 9D42     		cmp	r5, r3
+ 345 026e 00F0A780 		beq	.L44
+ 346 0272 A3F58963 		sub	r3, r3, #1096
+ 347 0276 9D42     		cmp	r5, r3
+ 348 0278 00F0DF80 		beq	.L49
+ 349 027c 03F58063 		add	r3, r3, #1024
+ 350 0280 9D42     		cmp	r5, r3
+ 351 0282 00F0DA80 		beq	.L49
+ 352 0286 A3F56873 		sub	r3, r3, #928
+ 353 028a 9D42     		cmp	r5, r3
+ 354 028c 00F0D580 		beq	.L49
+ 355 0290 03F58063 		add	r3, r3, #1024
+ 356 0294 9D42     		cmp	r5, r3
+ 357 0296 00F0D080 		beq	.L49
+ 358 029a 104B     		ldr	r3, .L108+8
+ 359 029c 4FF00061 		mov	r1, #134217728
+ 360 02a0 4FF08062 		mov	r2, #67108864
+ 361 02a4 9960     		str	r1, [r3, #8]
+ 362 02a6 9A60     		str	r2, [r3, #8]
+ 363 02a8 4FF00071 		mov	r1, #33554432
+ 364 02ac 4FF08072 		mov	r2, #16777216
+ 365 02b0 9960     		str	r1, [r3, #8]
+ 366 02b2 9A60     		str	r2, [r3, #8]
+ 367 02b4 4FF48002 		mov	r2, #4194304
+ 368              	.L84:
+ 369 02b8 084B     		ldr	r3, .L108+8
+ 370 02ba 9A60     		str	r2, [r3, #8]
+ 371 02bc 46E7     		b	.L80
+ 372              	.L43:
+ 373 02be 074B     		ldr	r3, .L108+8
+ 374 02c0 2021     		movs	r1, #32
+ 375 02c2 1022     		movs	r2, #16
+ 376 02c4 9960     		str	r1, [r3, #8]
+ 377 02c6 9A60     		str	r2, [r3, #8]
+ 378 02c8 0821     		movs	r1, #8
+ 379 02ca 0422     		movs	r2, #4
+ 380 02cc 9960     		str	r1, [r3, #8]
+ 381 02ce 9A60     		str	r2, [r3, #8]
+ 382 02d0 0122     		movs	r2, #1
+ 383 02d2 F1E7     		b	.L84
+ 384              	.L109:
+ 385              		.align	2
+ 386              	.L108:
+ 387 02d4 00000000 		.word	.LC0
+ 388 02d8 58640240 		.word	1073898584
+ 389 02dc 00640240 		.word	1073898496
+ 390 02e0 B8600240 		.word	1073897656
+ 391 02e4 58600240 		.word	1073897560
+ 392 02e8 00600240 		.word	1073897472
+ 393              	.L53:
+ 394 02ec 6B4B     		ldr	r3, .L110
+ 395 02ee 9D42     		cmp	r5, r3
+ 396 02f0 4CD0     		beq	.L70
+ 397 02f2 03F58063 		add	r3, r3, #1024
+ARM GAS  /tmp/cc3MkKrG.s 			page 8
+
+
+ 398 02f6 9D42     		cmp	r5, r3
+ 399 02f8 48D0     		beq	.L70
+ 400 02fa A3F56873 		sub	r3, r3, #928
+ 401 02fe 9D42     		cmp	r5, r3
+ 402 0300 44D0     		beq	.L70
+ 403 0302 03F58063 		add	r3, r3, #1024
+ 404 0306 9D42     		cmp	r5, r3
+ 405 0308 40D0     		beq	.L70
+ 406 030a A3F58963 		sub	r3, r3, #1096
+ 407 030e 9D42     		cmp	r5, r3
+ 408 0310 65D0     		beq	.L72
+ 409 0312 03F58063 		add	r3, r3, #1024
+ 410 0316 9D42     		cmp	r5, r3
+ 411 0318 61D0     		beq	.L72
+ 412 031a A3F56873 		sub	r3, r3, #928
+ 413 031e 9D42     		cmp	r5, r3
+ 414 0320 5DD0     		beq	.L72
+ 415 0322 03F58063 		add	r3, r3, #1024
+ 416 0326 9D42     		cmp	r5, r3
+ 417 0328 59D0     		beq	.L72
+ 418 032a A3F58963 		sub	r3, r3, #1096
+ 419 032e 9D42     		cmp	r5, r3
+ 420 0330 00F09380 		beq	.L76
+ 421 0334 03F58063 		add	r3, r3, #1024
+ 422 0338 9D42     		cmp	r5, r3
+ 423 033a 00F08E80 		beq	.L76
+ 424 033e A3F56873 		sub	r3, r3, #928
+ 425 0342 9D42     		cmp	r5, r3
+ 426 0344 00F08980 		beq	.L76
+ 427 0348 03F58063 		add	r3, r3, #1024
+ 428 034c 9D42     		cmp	r5, r3
+ 429 034e 00F08480 		beq	.L76
+ 430 0352 534B     		ldr	r3, .L110+4
+ 431 0354 4FF00061 		mov	r1, #134217728
+ 432 0358 4FF08062 		mov	r2, #67108864
+ 433 035c 9960     		str	r1, [r3, #8]
+ 434 035e 9A60     		str	r2, [r3, #8]
+ 435 0360 4FF00071 		mov	r1, #33554432
+ 436 0364 4FF08072 		mov	r2, #16777216
+ 437 0368 9960     		str	r1, [r3, #8]
+ 438 036a 9A60     		str	r2, [r3, #8]
+ 439 036c 4FF48003 		mov	r3, #4194304
+ 440              	.L86:
+ 441 0370 4B4A     		ldr	r2, .L110+4
+ 442 0372 9360     		str	r3, [r2, #8]
+ 443 0374 EAE6     		b	.L80
+ 444              	.L57:
+ 445 0376 4A4B     		ldr	r3, .L110+4
+ 446 0378 2021     		movs	r1, #32
+ 447 037a 1022     		movs	r2, #16
+ 448 037c D960     		str	r1, [r3, #12]
+ 449 037e DA60     		str	r2, [r3, #12]
+ 450 0380 0821     		movs	r1, #8
+ 451 0382 0422     		movs	r2, #4
+ 452 0384 D960     		str	r1, [r3, #12]
+ 453 0386 DA60     		str	r2, [r3, #12]
+ 454 0388 0123     		movs	r3, #1
+ARM GAS  /tmp/cc3MkKrG.s 			page 9
+
+
+ 455 038a 46E7     		b	.L85
+ 456              	.L70:
+ 457 038c 444B     		ldr	r3, .L110+4
+ 458 038e 2021     		movs	r1, #32
+ 459 0390 1022     		movs	r2, #16
+ 460 0392 9960     		str	r1, [r3, #8]
+ 461 0394 9A60     		str	r2, [r3, #8]
+ 462 0396 0821     		movs	r1, #8
+ 463 0398 0422     		movs	r2, #4
+ 464 039a 9960     		str	r1, [r3, #8]
+ 465 039c 9A60     		str	r2, [r3, #8]
+ 466 039e 0123     		movs	r3, #1
+ 467 03a0 E6E7     		b	.L86
+ 468              	.L31:
+ 469 03a2 404B     		ldr	r3, .L110+8
+ 470 03a4 4FF40061 		mov	r1, #2048
+ 471 03a8 4FF48062 		mov	r2, #1024
+ 472 03ac D960     		str	r1, [r3, #12]
+ 473 03ae DA60     		str	r2, [r3, #12]
+ 474 03b0 4FF40071 		mov	r1, #512
+ 475 03b4 4FF48072 		mov	r2, #256
+ 476 03b8 D960     		str	r1, [r3, #12]
+ 477 03ba DA60     		str	r2, [r3, #12]
+ 478 03bc 4022     		movs	r2, #64
+ 479 03be C3E6     		b	.L83
+ 480              	.L44:
+ 481 03c0 384B     		ldr	r3, .L110+8
+ 482 03c2 4FF40061 		mov	r1, #2048
+ 483 03c6 4FF48062 		mov	r2, #1024
+ 484 03ca 9960     		str	r1, [r3, #8]
+ 485 03cc 9A60     		str	r2, [r3, #8]
+ 486 03ce 4FF40071 		mov	r1, #512
+ 487 03d2 4FF48072 		mov	r2, #256
+ 488 03d6 9960     		str	r1, [r3, #8]
+ 489 03d8 9A60     		str	r2, [r3, #8]
+ 490 03da 4022     		movs	r2, #64
+ 491 03dc 6CE7     		b	.L84
+ 492              	.L72:
+ 493 03de 304B     		ldr	r3, .L110+4
+ 494 03e0 4FF40061 		mov	r1, #2048
+ 495 03e4 4FF48062 		mov	r2, #1024
+ 496 03e8 9960     		str	r1, [r3, #8]
+ 497 03ea 9A60     		str	r2, [r3, #8]
+ 498 03ec 4FF40071 		mov	r1, #512
+ 499 03f0 4FF48072 		mov	r2, #256
+ 500 03f4 9960     		str	r1, [r3, #8]
+ 501 03f6 9A60     		str	r2, [r3, #8]
+ 502 03f8 4023     		movs	r3, #64
+ 503 03fa B9E7     		b	.L86
+ 504              	.L61:
+ 505 03fc 284B     		ldr	r3, .L110+4
+ 506 03fe 4FF40061 		mov	r1, #2048
+ 507 0402 4FF48062 		mov	r2, #1024
+ 508 0406 D960     		str	r1, [r3, #12]
+ 509 0408 DA60     		str	r2, [r3, #12]
+ 510 040a 4FF40071 		mov	r1, #512
+ 511 040e 4FF48072 		mov	r2, #256
+ARM GAS  /tmp/cc3MkKrG.s 			page 10
+
+
+ 512 0412 D960     		str	r1, [r3, #12]
+ 513 0414 DA60     		str	r2, [r3, #12]
+ 514 0416 4023     		movs	r3, #64
+ 515 0418 FFE6     		b	.L85
+ 516              	.L35:
+ 517 041a 224B     		ldr	r3, .L110+8
+ 518 041c 4FF40011 		mov	r1, #2097152
+ 519 0420 4FF48012 		mov	r2, #1048576
+ 520 0424 D960     		str	r1, [r3, #12]
+ 521 0426 DA60     		str	r2, [r3, #12]
+ 522 0428 4FF40021 		mov	r1, #524288
+ 523 042c 4FF48022 		mov	r2, #262144
+ 524 0430 D960     		str	r1, [r3, #12]
+ 525 0432 DA60     		str	r2, [r3, #12]
+ 526 0434 4FF48032 		mov	r2, #65536
+ 527 0438 86E6     		b	.L83
+ 528              	.L49:
+ 529 043a 1A4B     		ldr	r3, .L110+8
+ 530 043c 4FF40011 		mov	r1, #2097152
+ 531 0440 4FF48012 		mov	r2, #1048576
+ 532 0444 9960     		str	r1, [r3, #8]
+ 533 0446 9A60     		str	r2, [r3, #8]
+ 534 0448 4FF40021 		mov	r1, #524288
+ 535 044c 4FF48022 		mov	r2, #262144
+ 536 0450 9960     		str	r1, [r3, #8]
+ 537 0452 9A60     		str	r2, [r3, #8]
+ 538 0454 4FF48032 		mov	r2, #65536
+ 539 0458 2EE7     		b	.L84
+ 540              	.L76:
+ 541 045a 114B     		ldr	r3, .L110+4
+ 542 045c 4FF40011 		mov	r1, #2097152
+ 543 0460 4FF48012 		mov	r2, #1048576
+ 544 0464 9960     		str	r1, [r3, #8]
+ 545 0466 9A60     		str	r2, [r3, #8]
+ 546 0468 4FF40021 		mov	r1, #524288
+ 547 046c 4FF48022 		mov	r2, #262144
+ 548 0470 9960     		str	r1, [r3, #8]
+ 549 0472 9A60     		str	r2, [r3, #8]
+ 550 0474 4FF48033 		mov	r3, #65536
+ 551 0478 7AE7     		b	.L86
+ 552              	.L64:
+ 553 047a 094B     		ldr	r3, .L110+4
+ 554 047c 4FF40011 		mov	r1, #2097152
+ 555 0480 4FF48012 		mov	r2, #1048576
+ 556 0484 D960     		str	r1, [r3, #12]
+ 557 0486 DA60     		str	r2, [r3, #12]
+ 558 0488 4FF40021 		mov	r1, #524288
+ 559 048c 4FF48022 		mov	r2, #262144
+ 560 0490 D960     		str	r1, [r3, #12]
+ 561 0492 DA60     		str	r2, [r3, #12]
+ 562 0494 4FF48033 		mov	r3, #65536
+ 563 0498 BFE6     		b	.L85
+ 564              	.L111:
+ 565 049a 00BF     		.align	2
+ 566              	.L110:
+ 567 049c 10600240 		.word	1073897488
+ 568 04a0 00600240 		.word	1073897472
+ARM GAS  /tmp/cc3MkKrG.s 			page 11
+
+
+ 569 04a4 00640240 		.word	1073898496
+ 571              		.section	.text.HAL_DMAEx_ChangeMemory,"ax",%progbits
+ 572              		.align	1
+ 573              		.p2align 2,,3
+ 574              		.global	HAL_DMAEx_ChangeMemory
+ 575              		.syntax unified
+ 576              		.thumb
+ 577              		.thumb_func
+ 578              		.fpu fpv4-sp-d16
+ 580              	HAL_DMAEx_ChangeMemory:
+ 581              		@ args = 0, pretend = 0, frame = 0
+ 582              		@ frame_needed = 0, uses_anonymous_args = 0
+ 583              		@ link register save eliminated.
+ 584 0000 0368     		ldr	r3, [r0]
+ 585 0002 12B9     		cbnz	r2, .L113
+ 586 0004 D960     		str	r1, [r3, #12]
+ 587 0006 0020     		movs	r0, #0
+ 588 0008 7047     		bx	lr
+ 589              	.L113:
+ 590 000a 1961     		str	r1, [r3, #16]
+ 591 000c 0020     		movs	r0, #0
+ 592 000e 7047     		bx	lr
+ 594              		.ident	"GCC: (15:10.3-2021.07-4) 10.3.1 20210621 (release)"
+ARM GAS  /tmp/cc3MkKrG.s 			page 12
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 stm32f4xx_hal_dma_ex.c
+     /tmp/cc3MkKrG.s:16     .rodata.HAL_DMAEx_MultiBufferStart.str1.4:0000000000000000 $d
+     /tmp/cc3MkKrG.s:21     .text.HAL_DMAEx_MultiBufferStart:0000000000000000 $t
+     /tmp/cc3MkKrG.s:30     .text.HAL_DMAEx_MultiBufferStart:0000000000000000 HAL_DMAEx_MultiBufferStart
+     /tmp/cc3MkKrG.s:91     .text.HAL_DMAEx_MultiBufferStart:0000000000000088 $d
+     /tmp/cc3MkKrG.s:94     .text.HAL_DMAEx_MultiBufferStart_IT:0000000000000000 $t
+     /tmp/cc3MkKrG.s:102    .text.HAL_DMAEx_MultiBufferStart_IT:0000000000000000 HAL_DMAEx_MultiBufferStart_IT
+     /tmp/cc3MkKrG.s:387    .text.HAL_DMAEx_MultiBufferStart_IT:00000000000002d4 $d
+     /tmp/cc3MkKrG.s:394    .text.HAL_DMAEx_MultiBufferStart_IT:00000000000002ec $t
+     /tmp/cc3MkKrG.s:567    .text.HAL_DMAEx_MultiBufferStart_IT:000000000000049c $d
+     /tmp/cc3MkKrG.s:572    .text.HAL_DMAEx_ChangeMemory:0000000000000000 $t
+     /tmp/cc3MkKrG.s:580    .text.HAL_DMAEx_ChangeMemory:0000000000000000 HAL_DMAEx_ChangeMemory
+
+UNDEFINED SYMBOLS
+assert_failed
