@@ -46,12 +46,12 @@
 #include "usbd_desc.h"
 #include "usbd_conf.h"
 
-#define USBD_VID                      0x6666 // prototyping 
+#define USBD_VID                      0x6666 // prototyping
 #define USBD_PID                      0x1234 // random value
 #define USBD_LANGID_STRING            0x409
-#define USBD_MANUFACTURER_STRING      "STM32 Black Pill"
-#define USBD_PRODUCT_HS_STRING        "PCM5102A DAC"
-#define USBD_PRODUCT_FS_STRING        "PCM5102A DAC"
+#define USBD_MANUFACTURER_STRING      "FM Technologies"
+#define USBD_PRODUCT_HS_STRING        "FM Audio HQ"
+#define USBD_PRODUCT_FS_STRING        "FM Audio HQ"
 #define USBD_CONFIGURATION_HS_STRING  "AUDIO Config"
 #define USBD_INTERFACE_HS_STRING      "AUDIO Interface"
 #define USBD_CONFIGURATION_FS_STRING  "AUDIO Config"

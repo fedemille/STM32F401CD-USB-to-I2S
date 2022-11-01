@@ -28,31 +28,35 @@ int main(void) {
   // Start Device Process
   USBD_Start(&USBD_Device);
   
-  while (1) {
-    switch (audio_status.frequency) {
-      case 44100:
-          BSP_LED_Off(LED_RED);
-          BSP_LED_Off(LED_GREEN);
-          BSP_LED_On(LED_BLUE);
-          break;
-      case 48000:
-          BSP_LED_Off(LED_RED);
-          BSP_LED_On(LED_GREEN);
-          BSP_LED_Off(LED_BLUE);
-          break;
-      case 96000:
-          BSP_LED_On(LED_RED);
-          BSP_LED_Off(LED_GREEN);
-          BSP_LED_Off(LED_BLUE);
-          break;
-      default:
-          BSP_LED_Off(LED_RED);
-          BSP_LED_Off(LED_GREEN);
-          BSP_LED_Off(LED_BLUE);
-          break;
-    }
 
-    HAL_Delay(100);
+  while (1) {
+	  if(audio_status.playing > 0){
+		  HAL_GPIO_TogglePin(ONBOARD_LED_PORT, ONBOARD_LED_PIN);
+			switch (audio_status.frequency) {
+			  case 44100:{
+				  HAL_Delay(1000);
+				  break;
+			  }
+			  case 48000:{
+				  HAL_Delay(600);
+				  break;
+			  }
+			  case 96000:{
+				  HAL_Delay(400);
+				  break;
+			  }
+			  default:{
+				  HAL_Delay(2000);
+				  break;
+			  }
+			}
+	  }
+	  else{
+		  HAL_GPIO_WritePin(ONBOARD_LED_PORT, ONBOARD_LED_PIN, GPIO_PIN_RESET);
+		  HAL_Delay(100);
+	  }
+
+
 #ifdef DEBUG_FEEDBACK_ENDPOINT // see Makefile C_DEFS
     // see USBD_AUDIO_SOF() in usbd_audio.c
 	if (BtnPressed) {
@@ -198,7 +202,7 @@ void printMsg(char* format, ...) {
 void Error_Handler(void){
 	uint32_t counter;
 	while(1){
-		BSP_OnboardLED_Toggle();
+		//BSP_OnboardLED_Toggle();
 		counter = 0xFFFF;
 		while (counter--) ;
 	}
